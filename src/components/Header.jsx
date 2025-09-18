@@ -1,9 +1,11 @@
+import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
-import { Building2 } from 'lucide-react'
+import { Building2, Menu, X } from 'lucide-react'
 
 const Header = () => {
   const location = useLocation()
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const navItems = [
     { name: 'Home', path: '/', color: 'bg-green-500 text-white' },
@@ -25,7 +27,7 @@ const Header = () => {
             <span className="text-xl font-bold text-gray-900">IPM</span>
           </Link>
 
-          {/* Navigation */}
+          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-2">
             {navItems.map((item) => (
               <Link key={item.name} to={item.path}>
@@ -43,16 +45,65 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="flex items-center space-x-4">
+          {/* Desktop CTA Button */}
+          <div className="hidden md:flex items-center space-x-4">
             <Link to="/contact">
               <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md text-sm font-medium">
                 Get Started
               </Button>
             </Link>
           </div>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2"
+            >
+              {isMobileMenuOpen ? (
+                <X className="h-6 w-6 text-gray-700" />
+              ) : (
+                <Menu className="h-6 w-6 text-gray-700" />
+              )}
+            </Button>
+          </div>
         </div>
       </div>
+
+      {/* Mobile Navigation Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-white border-t border-gray-100 shadow-lg">
+          <div className="px-4 pt-2 pb-3 space-y-1">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                to={item.path}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                  location.pathname === item.path
+                    ? 'bg-blue-600 text-white'
+                    : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+                }`}
+              >
+                {item.name}
+              </Link>
+            ))}
+            {/* Mobile CTA Button */}
+            <div className="pt-4">
+              <Link
+                to="/contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md text-sm font-medium">
+                  Get Started
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   )
 }
