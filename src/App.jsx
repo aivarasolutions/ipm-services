@@ -15,8 +15,11 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 
 function App() {
+  // Use Vite's BASE_URL for router basename to support GitHub Pages subpath deployment
+  const basename = import.meta.env.BASE_URL;
+
   return (
-    <Router>
+    <Router basename={basename}>
       <div className="min-h-screen bg-white">
         <Header />
         <main>
