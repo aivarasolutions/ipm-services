@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://ipm-services.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Disallow admin areas (if any)
+# Disallow: /admin/
+# Disallow: /api/
+
+# Allow important pages
+Allow: /
+Allow: /about
+Allow: /properties
+Allow: /contact
+
