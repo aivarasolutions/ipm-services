@@ -2,6 +2,7 @@ modules = ["nodejs-20", "web"]
 
 [nix]
 channel = "stable-25_05"
+packages = ["imagemagick"]
 
 [agent]
 expertMode = true
@@ -35,7 +36,7 @@ localPort = 5000
 externalPort = 80
 
 [[ports]]
-localPort = 40631
+localPort = 33487
 externalPort = 3000
 
 [deployment]
