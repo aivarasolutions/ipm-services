@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
+import './real-estate-styles.css'
 
 // Import pages
 import Home from './pages/Home'
@@ -9,6 +10,8 @@ import Properties from './pages/Properties'
 import PropertyDetail from './pages/PropertyDetail'
 import Contact from './pages/Contact'
 import OwnerPortal from './pages/OwnerPortal'
+import RealEstate from './pages/RealEstate'
+import RealEstateDetail from './pages/RealEstateDetail'
 
 // Import components
 import Header from './components/Header'
@@ -29,6 +32,8 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/properties" element={<Properties />} />
             <Route path="/properties/:slug" element={<PropertyDetail />} />
+            <Route path="/real-estate" element={<RealEstate />} />
+            <Route path="/real-estate/:slug" element={<RealEstateDetail />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/owner-portal" element={<OwnerPortal />} />
           </Routes>

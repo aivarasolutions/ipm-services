@@ -1,29 +1,23 @@
-import { notFound } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
-import Container from "@/components/Container";
-import LeadCaptureForm from "@/components/LeadCaptureForm";
-import { getRealEstateListing, getRealEstateListings } from "@/lib/realEstateData";
+import { useParams, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import Container from '../components/Container';
+import LeadCaptureForm from '../components/LeadCaptureForm';
+import { getRealEstateListing } from '../lib/realEstateData';
 
-type Props = { params: { slug: string } };
+const RealEstateDetail = () => {
+  const { slug } = useParams();
+  const navigate = useNavigate();
+  const listing = getRealEstateListing(slug);
 
-export async function generateStaticParams() {
-  return getRealEstateListings().map(listing => ({ slug: listing.slug }));
-}
+  useEffect(() => {
+    if (!listing) {
+      navigate('/real-estate');
+    }
+  }, [listing, navigate]);
 
-export async function generateMetadata({ params }: Props) {
-  const listing = getRealEstateListing(params.slug);
-  if (!listing) return { title: "Property Not Found" };
-  
-  return {
-    title: `${listing.title} | Real Estate Investment | IPM`,
-    description: `${listing.description} - ${listing.expectedROI}% ROI. Starting at $${listing.price.toLocaleString()}.`,
-  };
-}
-
-export default function PropertyDetailPage({ params }: Props) {
-  const listing = getRealEstateListing(params.slug);
-  if (!listing) notFound();
+  if (!listing) {
+    return null;
+  }
 
   return (
     <Container>
@@ -34,13 +28,16 @@ export default function PropertyDetailPage({ params }: Props) {
             <h1>{listing.title}</h1>
             <p className="location" style={{fontSize: '1.1rem'}}>{listing.location}</p>
             
-            <Image 
+            <img 
               src={listing.image} 
               alt={listing.title} 
-              width={800} 
-              height={500}
-              priority
-              style={{borderRadius: '12px', marginBottom: '30px'}}
+              style={{
+                width: '100%', 
+                height: '400px', 
+                objectFit: 'cover',
+                borderRadius: '12px', 
+                marginBottom: '30px'
+              }}
             />
             
             <div className="property-overview">
@@ -65,6 +62,9 @@ export default function PropertyDetailPage({ params }: Props) {
                     {listing.details.lotSize && (
                       <li><strong>Lot Size:</strong> {listing.details.lotSize}</li>
                     )}
+                    {listing.details.yearBuilt && (
+                      <li><strong>Year Built:</strong> {listing.details.yearBuilt}</li>
+                    )}
                   </ul>
                 </div>
                 
@@ -73,33 +73,41 @@ export default function PropertyDetailPage({ params }: Props) {
                   <ul>
                     <li><strong>Down Payment:</strong> ${listing.investment.downPayment.toLocaleString()}</li>
                     <li><strong>Monthly Payment:</strong> ${listing.investment.monthlyPayment.toLocaleString()}</li>
-                    <li><strong>Rental Income:</strong> ${listing.investment.rentalIncome.toLocaleString()}/month</li>
-                    <li><strong>Appreciation:</strong> {listing.investment.appreciation}</li>
+                    <li><strong>Expected Rental Income:</strong> ${listing.investment.rentalIncome.toLocaleString()}/month</li>
+                    <li><strong>Expected Appreciation:</strong> {listing.investment.appreciation}</li>
                   </ul>
                 </div>
               </div>
               
               <div className="amenities-section">
-                <h3>Amenities & Features</h3>
+                <h3>Amenities</h3>
                 <div className="amenities-grid">
-                  {listing.details.amenities.map((amenity, i) => (
-                    <span key={i} className="amenity-tag">{amenity}</span>
+                  {listing.details.amenities.map((amenity, index) => (
+                    <span key={index} className="amenity-tag">{amenity}</span>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="features-section">
+                <h3>Key Features</h3>
+                <div className="listing-features">
+                  {listing.features.map((feature, index) => (
+                    <span key={index} className="feature-tag">{feature}</span>
                   ))}
                 </div>
               </div>
             </div>
           </div>
           
-          <div style={{flex: '1', minWidth: '350px'}}>
-            <LeadCaptureForm variant="detailed" />
-            
-            <div style={{marginTop: '30px', textAlign: 'center'}}>
-              <Link className="btn" href="/real-estate">← Back to All Properties</Link>
+          <div style={{flex: '1', minWidth: '300px'}}>
+            <div style={{position: 'sticky', top: '20px'}}>
+              <LeadCaptureForm variant="detailed" />
             </div>
           </div>
         </div>
       </div>
     </Container>
   );
-}
+};
 
+export default RealEstateDetail;
