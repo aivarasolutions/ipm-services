@@ -1,312 +1,137 @@
-# IPM Services Website
+# Real Estate Sales Page - Installation Guide
 
-A complete recreation of the International Property Management (IPM) website with modern React architecture, responsive design, and full functionality.
+## 📁 Files to Add to Your Next.js Project
 
-## 🌟 Features
+### 1. Copy Files to Your Project
 
-- **Pixel-perfect recreation** of the original IPM Services website
-- **Fully responsive design** that works on desktop, tablet, and mobile
-- **Complete navigation system** with working links and buttons
-- **Property management system** with detailed property pages
-- **Working contact form** with backend API integration
-- **SEO optimized** with meta tags, structured data, and sitemap
-- **Performance optimized** with lazy loading images and efficient code splitting
+**Pages:**
+- Copy `app/real-estate/page.tsx` → Your project's `app/real-estate/page.tsx`
+- Copy `app/real-estate/[slug]/page.tsx` → Your project's `app/real-estate/[slug]/page.tsx`
 
-## 🏗️ Architecture
+**API Route:**
+- Copy `app/api/real-estate-leads/route.ts` → Your project's `app/api/real-estate-leads/route.ts`
 
-### Frontend (React + Vite)
-- **React 18** with modern hooks and functional components
-- **React Router** for client-side routing
-- **Tailwind CSS** for styling and responsive design
-- **Shadcn/UI** components for consistent UI elements
-- **Lucide React** for icons
-- **Vite** for fast development and optimized builds
+**Components:**
+- Copy `components/LeadCaptureForm.tsx` → Your project's `components/LeadCaptureForm.tsx`
 
-### Backend (Flask API)
-- **Flask** REST API for contact form submissions
-- **Flask-CORS** for cross-origin requests
-- **JSON file storage** for contact submissions (easily replaceable with database)
+**Data:**
+- Copy `lib/realEstateData.ts` → Your project's `lib/realEstateData.ts`
 
-## 📁 Project Structure
+**Styles:**
+- Add the contents of `real-estate-styles.css` to your existing `app/globals.css` file
 
-```
-ipm-services/
-├── public/
-│   ├── properties.json          # Property data
-│   ├── sitemap.xml             # SEO sitemap
-│   ├── robots.txt              # Search engine directives
-│   └── *.webp                  # Property images
-├── src/
-│   ├── components/
-│   │   ├── ui/                 # Shadcn/UI components
-│   │   ├── Header.jsx          # Navigation header
-│   │   └── Footer.jsx          # Site footer
-│   ├── pages/
-│   │   ├── Home.jsx            # Homepage
-│   │   ├── About.jsx           # About Us page
-│   │   ├── Properties.jsx      # Properties listing
-│   │   ├── PropertyDetail.jsx  # Individual property pages
-│   │   └── Contact.jsx         # Contact page with form
-│   ├── assets/                 # Static assets
-│   ├── App.jsx                 # Main app component
-│   └── main.jsx               # App entry point
-├── contact-api/               # Flask backend
-│   ├── src/
-│   │   ├── routes/
-│   │   │   └── contact.py     # Contact form API
-│   │   └── main.py            # Flask app
-│   └── requirements.txt       # Python dependencies
-└── dist/                      # Production build
+### 2. Update Navigation
+
+Add the Real Estate link to your navigation in `components/Header.tsx`:
+
+```tsx
+<Link href="/real-estate">Real Estate</Link>
 ```
 
-## 🚀 Getting Started
+### 3. Create Image Directory
 
-### Prerequisites
-- Node.js 18+ and pnpm
-- Python 3.11+ (for contact form backend)
-
-### Frontend Setup
-```bash
-cd ipm-services
-pnpm install
-pnpm run dev
+Create a new directory in your `public` folder:
+```
+public/real-estate/
 ```
 
-### Backend Setup (Optional - for contact form)
-```bash
-cd contact-api
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
-python src/main.py
+Add placeholder images or real property images:
+- `tulum-eco-resort.jpg`
+- `playa-penthouses.jpg`
+- `lake-norman-homes.jpg`
+- `cancun-villas.jpg`
+- `miami-condos.jpg`
+- `puerto-vallarta-suites.jpg`
+
+### 4. Environment Variables (Optional)
+
+For email integration, add to your `.env.local`:
+```
+RESEND_API_KEY=your_resend_api_key_here
 ```
 
-## 📄 Pages
+### 5. Test the Implementation
 
-### 🏠 Home Page (`/`)
-- Hero section with call-to-action buttons
-- Company statistics and achievements
-- Services overview with icons and descriptions
-- Featured properties carousel
-- Contact call-to-action section
+1. Start your development server: `npm run dev`
+2. Navigate to `/real-estate`
+3. Test the lead capture forms
+4. Check individual property pages at `/real-estate/[property-slug]`
 
-### ℹ️ About Page (`/about`)
-- Company story and mission
-- Team values and principles
-- Service offerings and expertise
-- Statistics and achievements
+## 🎯 Features Included
 
-### 🏘️ Properties Page (`/properties`)
-- Property search and filtering
-- Grid layout of all properties
-- Property cards with images, pricing, and features
-- Links to detailed property pages
+### Lead Generation
+- ✅ Advanced lead capture forms
+- ✅ Investment budget selection
+- ✅ Location preferences
+- ✅ Investment goals collection
+- ✅ API endpoint for lead processing
 
-### 🏡 Property Detail Pages (`/properties/:slug`)
-- Large hero image and property overview
-- Detailed property information and amenities
-- Booking sidebar with pricing and availability
-- Contact information and booking options
+### Property Showcase
+- ✅ Featured investment properties
+- ✅ ROI calculations and projections
+- ✅ Pre-sale vs Ready property status
+- ✅ Detailed property information
+- ✅ Investment metrics (down payment, monthly payment, rental income)
 
-### 📞 Contact Page (`/contact`)
-- Multiple contact methods (phone, email, WhatsApp)
-- Working contact form with validation
-- Office hours and location information
-- Success/error handling for form submissions
+### Business Features
+- ✅ Guaranteed ROI messaging (8-12%)
+- ✅ Pre-sale discount opportunities
+- ✅ Turnkey investment solutions
+- ✅ Legal support messaging
+- ✅ Investment process explanation
 
-## 🔧 Key Features
+### Technical Features
+- ✅ TypeScript for type safety
+- ✅ Responsive mobile-first design
+- ✅ SEO optimized pages
+- ✅ Static generation for performance
+- ✅ Form validation and error handling
 
-### Navigation
-- Responsive header with mobile menu
-- Active page highlighting
-- Smooth transitions and hover effects
-- Logo linking to homepage
+## 🔧 Customization
 
-### Property Management
-- Dynamic property loading from JSON
-- Search and filter functionality
-- Lazy-loaded images for performance
-- Responsive property cards and layouts
+### Update Property Data
+Edit `lib/realEstateData.ts` to add/modify properties:
+- Add new properties to the array
+- Update pricing and ROI information
+- Modify property features and amenities
+- Change investment calculations
 
-### Contact Form
-- Form validation and error handling
-- API integration with Flask backend
-- Success confirmation and user feedback
-- Professional email formatting
+### Customize Lead Forms
+Edit `components/LeadCaptureForm.tsx` to:
+- Add/remove form fields
+- Modify investment budget ranges
+- Update location options
+- Change form styling
 
-### SEO Optimization
-- Comprehensive meta tags for all pages
-- Open Graph and Twitter Card support
-- Structured data (JSON-LD) for search engines
-- Sitemap.xml and robots.txt
-- Semantic HTML structure
+### Email Integration
+Uncomment and configure the email code in `app/api/real-estate-leads/route.ts`:
+- Set up Resend API key
+- Configure recipient emails
+- Customize email templates
 
-### Performance
-- Lazy loading for all images
-- Code splitting and tree shaking
-- Optimized asset delivery
-- Responsive images with WebP format
+## 📊 Analytics & Tracking
 
-## 🎨 Design System
-
-### Colors
-- Primary Blue: `#2563eb`
-- Secondary Gray: `#6b7280`
-- Success Green: `#10b981`
-- Background: `#f9fafb`
-
-### Typography
-- Headings: Inter font family, bold weights
-- Body text: Inter font family, regular weight
-- Responsive font sizes using Tailwind CSS
-
-### Components
-- Consistent button styles and hover states
-- Card components with shadows and transitions
-- Form inputs with validation states
-- Icon usage throughout the interface
-
-## 📱 Responsive Design
-
-The website is fully responsive and tested on:
-- Desktop (1920px+)
-- Laptop (1024px - 1919px)
-- Tablet (768px - 1023px)
-- Mobile (320px - 767px)
-
-## 🔗 Contact Information
-
-All contact links are functional:
-- **Phone**: [+1 310-400-0032](tel:+13104000032)
-- **Email**: [info@richaf.global](mailto:info@richaf.global)
-- **WhatsApp**: [https://wa.me/13104000032](https://wa.me/13104000032)
+Consider adding:
+- Google Analytics events for form submissions
+- Lead tracking pixels
+- Conversion tracking for property inquiries
+- A/B testing for different form variants
 
 ## 🚀 Deployment
 
-### Deploy to Vercel (Recommended)
-
-1. **Push to GitHub**
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin https://github.com/yourusername/ipm-services.git
-   git push -u origin main
-   ```
-
-2. **Deploy to Vercel**
-   - Go to [vercel.com](https://vercel.com) and sign in
-   - Click "New Project"
-   - Import your GitHub repository
-   - Vercel will automatically detect the configuration from `vercel.json`
-   - Click "Deploy"
-
-3. **Automatic Configuration**
-   - Build Command: `pnpm run build`
-   - Output Directory: `dist`
-   - Install Command: `pnpm install`
-   - Framework Preset: Vite
-
-### Deploy to GitHub Pages
-
-1. **Install gh-pages**
-   ```bash
-   pnpm add -D gh-pages
-   ```
-
-2. **Add deployment script**
-   ```bash
-   # Add this to package.json scripts:
-   "deploy-gh": "pnpm run build && gh-pages -d dist"
-   ```
-
-3. **Deploy**
-   ```bash
-   pnpm run deploy-gh
-   ```
-
-### Deploy to Netlify
-
-1. **Push to GitHub** (same as Vercel step 1)
-2. **Connect to Netlify**
-   - Go to [netlify.com](https://netlify.com)
-   - Click "New site from Git"
-   - Choose your repository
-   - Build command: `pnpm run build`
-   - Publish directory: `dist`
-
-### Build Commands
-```bash
-pnpm run build    # Creates optimized production build
-pnpm run preview  # Preview production build locally
-pnpm run deploy   # Build for deployment
-```
-
-## 📊 Property Data Management
-
-Properties are managed through the `public/properties.json` file. To add or edit properties:
-
-1. Open `public/properties.json`
-2. Add/modify property objects with the following structure:
-```json
-{
-  "slug": "property-url-slug",
-  "title": "Property Title",
-  "location": "City, State/Country",
-  "price": "$XXX/night",
-  "guests": 8,
-  "bedrooms": 4,
-  "bathrooms": 3,
-  "description": "Detailed property description...",
-  "features": ["Feature 1", "Feature 2"],
-  "amenities": ["Amenity 1", "Amenity 2"],
-  "availability": "Available year-round"
-}
-```
-3. Add corresponding property images to the `src/assets/` directory
-4. Update the `propertyImages` object in relevant components
-
-## 🛠️ Customization
-
-### Adding New Pages
-1. Create a new component in `src/pages/`
-2. Add the route to `src/App.jsx`
-3. Update navigation in `src/components/Header.jsx`
-4. Add to sitemap.xml for SEO
-
-### Styling Changes
-- Modify Tailwind classes in components
-- Update the color scheme in `tailwind.config.js`
-- Customize component styles in individual files
-
-### API Integration
-- Contact form API is in `contact-api/src/routes/contact.py`
-- Easily replaceable with external services (Formspree, Netlify Forms, etc.)
-- Database integration can be added for production use
-
-## 📈 Performance Metrics
-
-- **Lighthouse Score**: 95+ (Performance, Accessibility, Best Practices, SEO)
-- **First Contentful Paint**: < 1.5s
-- **Largest Contentful Paint**: < 2.5s
-- **Cumulative Layout Shift**: < 0.1
-
-## 🔒 Security
-
-- Form validation on both client and server side
-- CORS properly configured for API requests
-- No sensitive data exposed in frontend code
-- Secure contact form handling
+After adding all files:
+1. Test locally: `npm run dev`
+2. Build for production: `npm run build`
+3. Deploy to your hosting platform
+4. Configure environment variables in production
 
 ## 📞 Support
 
-For questions or issues with this implementation, please refer to:
-- React documentation: https://react.dev/
-- Tailwind CSS documentation: https://tailwindcss.com/
-- Vite documentation: https://vitejs.dev/
+The real estate page is designed to:
+- Generate qualified investment leads
+- Showcase IPM's real estate expertise
+- Convert property management clients to real estate buyers
+- Provide comprehensive investment information
 
----
-
-**Built with ❤️ using modern web technologies**
+All forms are ready for CRM integration and email automation.
 
