@@ -32,7 +32,9 @@ const LocationGuide = () => {
     setErrorMessage('');
 
     try {
-      const response = await fetch('/api/relocation-guide', {
+      // Use the current domain for API requests
+      const apiUrl = `${window.location.origin}/api/relocation-guide`;
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
