@@ -6,6 +6,7 @@ packages = ["imagemagick"]
 
 [agent]
 expertMode = true
+integrations = ["replitmail:1.0.0"]
 
 [workflows]
 runButton = "Project"
@@ -36,12 +37,12 @@ localPort = 5000
 externalPort = 80
 
 [[ports]]
-localPort = 37307
-externalPort = 3000
+localPort = 33303
+externalPort = 3001
 
 [[ports]]
-localPort = 38303
-externalPort = 3001
+localPort = 37307
+externalPort = 3000
 
 [deployment]
 deploymentTarget = "autoscale"

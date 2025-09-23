@@ -1,10 +1,66 @@
+import { useState } from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Link } from 'react-router-dom'
 import Container from '@/components/Container'
-import { MapPin, Plane, Car, Home, Utensils, Camera, Waves, TreePine, Building } from 'lucide-react'
+import { MapPin, Plane, Car, Home, Utensils, Camera, Waves, TreePine, Building, CheckCircle, AlertCircle } from 'lucide-react'
 
 const LocationGuide = () => {
+  // Form state management
+  const [formState, setFormState] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: ''
+  });
+  const [submissionStatus, setSubmissionStatus] = useState(null); // null, 'loading', 'success', 'error'
+  const [errorMessage, setErrorMessage] = useState('');
+
+  // Handle form input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormState(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  // Handle form submission
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    setSubmissionStatus('loading');
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('/api/relocation-guide', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formState),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmissionStatus('success');
+        // Reset form
+        setFormState({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: ''
+        });
+      } else {
+        setSubmissionStatus('error');
+        setErrorMessage(result.error || 'Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      setSubmissionStatus('error');
+      setErrorMessage('Network error. Please check your connection and try again.');
+    }
+  };
+
   const locations = [
     {
       id: 'cancun',
@@ -134,7 +190,27 @@ const LocationGuide = () => {
             
             <Card className="p-8">
               <CardContent>
-                <form className="space-y-6">
+                {submissionStatus === 'success' && (
+                  <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-md flex items-center space-x-3">
+                    <CheckCircle className="h-5 w-5 text-green-600" />
+                    <div>
+                      <p className="text-green-800 font-medium">Success! Check your email.</p>
+                      <p className="text-green-600 text-sm">Your relocation guide has been sent to your inbox.</p>
+                    </div>
+                  </div>
+                )}
+                
+                {submissionStatus === 'error' && (
+                  <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-md flex items-center space-x-3">
+                    <AlertCircle className="h-5 w-5 text-red-600" />
+                    <div>
+                      <p className="text-red-800 font-medium">Error sending guide</p>
+                      <p className="text-red-600 text-sm">{errorMessage}</p>
+                    </div>
+                  </div>
+                )}
+
+                <form onSubmit={handleFormSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
@@ -144,8 +220,11 @@ const LocationGuide = () => {
                         type="text"
                         id="firstName"
                         name="firstName"
+                        value={formState.firstName}
+                        onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        disabled={submissionStatus === 'loading'}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-50 disabled:cursor-not-allowed"
                         placeholder="Enter your first name"
                       />
                     </div>
@@ -157,8 +236,11 @@ const LocationGuide = () => {
                         type="text"
                         id="lastName"
                         name="lastName"
+                        value={formState.lastName}
+                        onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        disabled={submissionStatus === 'loading'}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-50 disabled:cursor-not-allowed"
                         placeholder="Enter your last name"
                       />
                     </div>
@@ -172,8 +254,11 @@ const LocationGuide = () => {
                       type="email"
                       id="email"
                       name="email"
+                      value={formState.email}
+                      onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      disabled={submissionStatus === 'loading'}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-50 disabled:cursor-not-allowed"
                       placeholder="Enter your email address"
                     />
                   </div>
@@ -186,8 +271,11 @@ const LocationGuide = () => {
                       type="tel"
                       id="phone"
                       name="phone"
+                      value={formState.phone}
+                      onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      disabled={submissionStatus === 'loading'}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-50 disabled:cursor-not-allowed"
                       placeholder="Enter your phone number"
                     />
                   </div>
@@ -197,7 +285,8 @@ const LocationGuide = () => {
                       <input
                         type="checkbox"
                         required
-                        className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                        disabled={submissionStatus === 'loading'}
+                        className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded disabled:cursor-not-allowed"
                       />
                       <span className="text-sm text-gray-600">
                         I agree to receive the relocation guide and occasional updates about properties and services in Mexico. You can unsubscribe at any time.
@@ -208,14 +297,17 @@ const LocationGuide = () => {
                   <Button 
                     type="submit" 
                     size="lg" 
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      // Form submission logic would go here
-                      alert('Thank you! Your relocation guide will be sent to your email shortly.');
-                    }}
+                    disabled={submissionStatus === 'loading'}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white disabled:bg-gray-400 disabled:cursor-not-allowed"
                   >
-                    Download Free Relocation Guide (PDF)
+                    {submissionStatus === 'loading' ? (
+                      <>
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                        Sending Guide...
+                      </>
+                    ) : (
+                      'Download Free Relocation Guide (PDF)'
+                    )}
                   </Button>
                   
                   <p className="text-xs text-gray-500 text-center">
