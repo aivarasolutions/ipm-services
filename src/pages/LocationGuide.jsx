@@ -34,6 +34,7 @@ const LocationGuide = () => {
     try {
       // Use the current domain for API requests
       const apiUrl = `${window.location.origin}/api/relocation-guide`;
+      
       const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
@@ -58,8 +59,9 @@ const LocationGuide = () => {
         setErrorMessage(result.error || 'Something went wrong. Please try again.');
       }
     } catch (error) {
+      console.error('Form submission error:', error);
       setSubmissionStatus('error');
-      setErrorMessage('Network error. Please check your connection and try again.');
+      setErrorMessage(`Network error: ${error.message}. Please check your connection and try again.`);
     }
   };
 
