@@ -12,7 +12,7 @@ const Header = () => {
     { name: 'Services', path: '/services', color: 'bg-blue-600 text-white' },
     { name: 'Properties', path: '/properties', color: 'bg-orange-500 text-white' },
     { name: 'Real Estate', path: '/real-estate', color: 'bg-red-600 text-white' },
-    { name: 'Location Guide', path: '/location-guide', color: 'bg-teal-600 text-white' },
+    { name: 'Relocation Guide', path: '/location-guide', color: 'bg-teal-600 text-white' },
     { name: 'Contact', path: '/contact', color: 'bg-gray-600 text-white' },
     { name: 'Owner Portal', path: '/owner-portal', color: 'bg-purple-600 text-white' }
   ]
