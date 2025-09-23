@@ -53,7 +53,14 @@ function validateFormData(data) {
 
 // API route for relocation guide
 app.post('/api/relocation-guide', async (req, res) => {
+  console.log('Received POST request to /api/relocation-guide');
+  console.log('Request body:', req.body);
+  console.log('Request headers:', req.headers);
+  
   try {
+    // Ensure response is JSON
+    res.setHeader('Content-Type', 'application/json');
+    
     // Validate form data
     const { firstName, lastName, email, phone } = validateFormData(req.body);
 
@@ -219,6 +226,9 @@ This lead has received the comprehensive relocation guide via email. Consider fo
   } catch (error) {
     console.error('Error processing relocation guide request:', error);
     
+    // Ensure response is JSON even on error
+    res.setHeader('Content-Type', 'application/json');
+    
     // Return appropriate error response
     if (error.name === 'ValidationError') {
       return res.status(400).json({ 
@@ -228,7 +238,8 @@ This lead has received the comprehensive relocation guide via email. Consider fo
     }
     
     return res.status(500).json({ 
-      error: 'Failed to send relocation guide. Please try again or contact support.' 
+      error: 'Failed to send relocation guide. Please try again or contact support.',
+      message: error.message
     });
   }
 });

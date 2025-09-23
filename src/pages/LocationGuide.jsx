@@ -43,7 +43,18 @@ const LocationGuide = () => {
         body: JSON.stringify(formState),
       });
 
-      const result = await response.json();
+      // Check if response has content before parsing JSON
+      const responseText = await response.text();
+      console.log('Raw response:', responseText);
+      console.log('Response status:', response.status);
+
+      let result;
+      try {
+        result = responseText ? JSON.parse(responseText) : {};
+      } catch (jsonError) {
+        console.error('JSON parse error:', jsonError);
+        throw new Error(`Server returned invalid response: ${responseText.substring(0, 100)}`);
+      }
 
       if (response.ok) {
         setSubmissionStatus('success');
@@ -56,7 +67,7 @@ const LocationGuide = () => {
         });
       } else {
         setSubmissionStatus('error');
-        setErrorMessage(result.error || 'Something went wrong. Please try again.');
+        setErrorMessage(result.error || responseText || 'Something went wrong. Please try again.');
       }
     } catch (error) {
       console.error('Form submission error:', error);
