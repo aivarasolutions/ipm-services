@@ -1,9 +1,23 @@
-// API endpoint for handling relocation guide form submissions
-// Using replitmail integration for PDF delivery
-
+import express from 'express';
+import cors from 'cors';
 import fs from 'fs';
 import path from 'path';
-import { sendEmail } from '../src/utils/replitmail.js';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import { sendEmail } from './src/utils/replitmail.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const app = express();
+const PORT = process.env.PORT || 5000;
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Serve static files from dist directory (built Vite app)
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // Simple validation function for form data
 function validateFormData(data) {
@@ -37,18 +51,19 @@ function validateFormData(data) {
   };
 }
 
-export default async function handler(req, res) {
-  // Only allow POST requests
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
+// API route for relocation guide
+app.post('/api/relocation-guide', async (req, res) => {
   try {
     // Validate form data
     const { firstName, lastName, email, phone } = validateFormData(req.body);
 
     // Read the PDF file and convert to base64
-    const pdfPath = path.join(process.cwd(), 'public', 'relocation-guide.pdf');
+    const pdfPath = path.join(__dirname, 'public', 'relocation-guide.pdf');
+    
+    if (!fs.existsSync(pdfPath)) {
+      throw new Error('Relocation guide PDF not found');
+    }
+    
     const pdfBuffer = fs.readFileSync(pdfPath);
     const pdfBase64 = pdfBuffer.toString('base64');
 
@@ -216,4 +231,35 @@ This lead has received the comprehensive relocation guide via email. Consider fo
       error: 'Failed to send relocation guide. Please try again or contact support.' 
     });
   }
-}
+});
+
+// Serve the React app for specific routes
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
+app.get('/location-guide', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
+app.get('/about', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
+app.get('/services', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
+app.get('/properties', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
+app.get('/contact', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
+  console.log(`Frontend served at http://localhost:${PORT}`);
+  console.log(`API available at http://localhost:${PORT}/api/relocation-guide`);
+});
