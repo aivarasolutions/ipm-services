@@ -56,6 +56,23 @@ const RealEstateDetail = () => {
   return (
     <Container>
       <div className="section">
+        <div style={{marginBottom: '20px'}}>
+          <button
+            onClick={() => navigate('/real-estate')}
+            className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors"
+            style={{
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              fontSize: '1rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px'
+            }}
+          >
+            ← Back to Properties
+          </button>
+        </div>
         <div className="row" style={{gap: '40px', alignItems: 'flex-start'}}>
           <div style={{flex: '2', minWidth: '400px'}}>
             <div className="listing-badge">{listing.status}</div>
