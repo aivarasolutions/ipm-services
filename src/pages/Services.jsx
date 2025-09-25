@@ -14,6 +14,7 @@ import {
   Mail
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import ReviewsSection from '../components/ReviewsSection'
 
 const Services = () => {
   const services = [
@@ -217,6 +218,9 @@ const Services = () => {
           </div>
         </div>
       </section>
+
+      {/* Reviews Section */}
+      <ReviewsSection />
 
       {/* CTA Section */}
       <section className="py-20 bg-gray-900 text-white">

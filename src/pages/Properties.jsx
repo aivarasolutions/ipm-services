@@ -12,6 +12,7 @@ import {
   Star,
   Filter
 } from 'lucide-react'
+import ReviewsSection from '../components/ReviewsSection'
 
 // Airbnb Widget Components
 const AirbnbWidget = ({ id, href, description }) => {
@@ -126,6 +127,9 @@ const Properties = () => {
           <AirbnbSection />
         </div>
       </section>
+
+      {/* Reviews Section */}
+      <ReviewsSection />
 
       {/* CTA Section */}
       <section className="py-20 bg-blue-600">
