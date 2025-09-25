@@ -13,21 +13,90 @@ import {
   Users
 } from 'lucide-react'
 
-// Import property images
-import luxuryBeachfront from '../assets/luxury_beachfront_resort.webp'
-import tulumPenthouse from '../assets/stunning_tulum_penthouse.webp'
-import lakeNorman from '../assets/lake_norman_retreat.webp'
+// Airbnb Widget Components
+const AirbnbWidget = ({ id, href, description }) => {
+  return (
+    <div 
+      className="airbnb-embed-frame" 
+      data-id={id}
+      data-view="home" 
+      data-hide-price="true" 
+      style={{width: '450px', height: '300px', margin: 'auto'}}
+    >
+      <a 
+        href={href}
+        rel="nofollow noopener noreferrer"
+        target="_blank"
+      >
+        View On Airbnb
+      </a>
+      <a 
+        href={href}
+        rel="nofollow noopener noreferrer"
+        target="_blank"
+      >
+        {description}
+      </a>
+    </div>
+  );
+};
+
+const AirbnbSection = () => {
+  useEffect(() => {
+    // Load Airbnb embed script
+    const script = document.createElement('script');
+    script.src = 'https://www.airbnb.com/embeddable/airbnb_jssdk';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      // Cleanup script on unmount
+      const existingScript = document.querySelector('script[src="https://www.airbnb.com/embeddable/airbnb_jssdk"]');
+      if (existingScript) {
+        existingScript.remove();
+      }
+    };
+  }, []);
+
+  const properties = [
+    {
+      id: "1347342374342049672",
+      href: "https://www.airbnb.com/rooms/1347342374342049672?guests=1&adults=1&s=66&source=embed_widget",
+      description: "Home in Mooresville · ★4.79 · 3 bedrooms · 5 beds · 3 baths"
+    },
+    {
+      id: "1471379203731591914",
+      href: "https://www.airbnb.com/rooms/1471379203731591914?guests=1&adults=1&s=66&source=embed_widget",
+      description: "Villa in Playa del Carmen · ★5.0 · 2 bedrooms · 2 beds · 2 baths"
+    },
+    {
+      id: "797383249287358281",
+      href: "https://www.airbnb.com/rooms/797383249287358281?guests=1&adults=1&s=66&source=embed_widget",
+      description: "Rental unit in Playa del Carmen · ★4.75 · 3 bedrooms · 6 beds · 3 baths"
+    },
+    {
+      id: "1360603145357884662",
+      href: "https://www.airbnb.com/rooms/1360603145357884662?guests=1&adults=1&s=66&source=embed_widget",
+      description: "Treehouse in Playa del Carmen · ★5.0 · 1 bedroom · 3 beds · 1 bath"
+    }
+  ];
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+      {properties.map((property, index) => (
+        <div key={property.id} className="flex justify-center">
+          <AirbnbWidget 
+            id={property.id}
+            href={property.href}
+            description={property.description}
+          />
+        </div>
+      ))}
+    </div>
+  );
+};
 
 const Home = () => {
-  const [properties, setProperties] = useState([])
-
-  useEffect(() => {
-    // Load properties data
-    fetch('/properties.json')
-      .then(response => response.json())
-      .then(data => setProperties(data))
-      .catch(error => console.error('Error loading properties:', error))
-  }, [])
 
   const stats = [
     {
@@ -75,11 +144,6 @@ const Home = () => {
     }
   ]
 
-  const propertyImages = {
-    'luxury-beachfront-resort': luxuryBeachfront,
-    'stunning-tulum-penthouse': tulumPenthouse,
-    'lake-norman-retreat': lakeNorman
-  }
 
   return (
     <div className="min-h-screen">
@@ -164,45 +228,14 @@ const Home = () => {
 
       {/* Featured Properties Section */}
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured Properties</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Discover our portfolio of luxury vacation rentals in prime locations
+              Discover our exceptional vacation rental properties available for booking directly through Airbnb.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {properties.slice(0, 3).map((property) => (
-              <Card key={property.slug} className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="aspect-w-16 aspect-h-12 relative">
-                  <img
-                    src={propertyImages[property.slug]}
-                    alt={property.title}
-                    className="w-full h-64 object-cover"
-                    loading="lazy"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    {property.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    {property.location} • {property.guests} guests
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {property.features.map((feature, index) => (
-                      <span
-                        key={index}
-                        className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
-                      >
-                        {feature}
-                      </span>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <AirbnbSection />
         </div>
       </section>
 
