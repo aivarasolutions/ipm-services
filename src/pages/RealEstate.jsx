@@ -58,7 +58,12 @@ const RealEstate = () => {
                   <h3>{listing.title}</h3>
                   <p className="location">{listing.location}</p>
                   <div className="price-info">
-                    <span className="price">${listing.price.toLocaleString()}</span>
+                    <span className="price">
+                      {listing.slug === 'paulus-condos' ? 
+                        `Starting at $${listing.price.toLocaleString()} USD` : 
+                        `$${listing.price.toLocaleString()}`
+                      }
+                    </span>
                     <span className="roi">ROI: {listing.expectedROI}%</span>
                   </div>
                   <p style={{fontSize: '0.95rem', color: '#666', marginBottom: '16px'}}>
