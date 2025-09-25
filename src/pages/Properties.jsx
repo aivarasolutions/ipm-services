@@ -13,10 +13,53 @@ import {
   Filter
 } from 'lucide-react'
 
+// Airbnb Widget Component
+const AirbnbWidget = () => {
+  useEffect(() => {
+    // Load Airbnb embed script
+    const script = document.createElement('script');
+    script.src = 'https://www.airbnb.com/embeddable/airbnb_jssdk';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      // Cleanup script on unmount
+      const existingScript = document.querySelector('script[src="https://www.airbnb.com/embeddable/airbnb_jssdk"]');
+      if (existingScript) {
+        existingScript.remove();
+      }
+    };
+  }, []);
+
+  return (
+    <div 
+      className="airbnb-embed-frame" 
+      data-id="1347342374342049672" 
+      data-view="home" 
+      data-hide-price="true" 
+      style={{width: '450px', height: '300px', margin: 'auto'}}
+    >
+      <a 
+        href="https://www.airbnb.com/rooms/1347342374342049672?guests=1&adults=1&s=66&source=embed_widget"
+        rel="nofollow noopener noreferrer"
+        target="_blank"
+      >
+        View On Airbnb
+      </a>
+      <a 
+        href="https://www.airbnb.com/rooms/1347342374342049672?guests=1&adults=1&s=66&source=embed_widget" 
+        rel="nofollow noopener noreferrer"
+        target="_blank"
+      >
+        Home in Mooresville · ★4.79 · 3 bedrooms · 5 beds · 3 baths
+      </a>
+    </div>
+  );
+};
+
 // Import property images
 import luxuryBeachfront from '../assets/luxury_beachfront_resort.webp'
 import tulumPenthouse from '../assets/stunning_tulum_penthouse.webp'
-import lakeNorman from '../assets/lake_norman_retreat.webp'
 
 const Properties = () => {
   const [properties, setProperties] = useState([])
@@ -26,8 +69,7 @@ const Properties = () => {
 
   const propertyImages = {
     'luxury-beachfront-resort': luxuryBeachfront,
-    'stunning-tulum-penthouse': tulumPenthouse,
-    'lake-norman-retreat': lakeNorman
+    'stunning-tulum-penthouse': tulumPenthouse
   }
 
   useEffect(() => {
@@ -205,6 +247,21 @@ const Properties = () => {
               ))}
             </div>
           )}
+        </div>
+      </section>
+
+      {/* Featured Airbnb Property */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl font-bold text-gray-900 mb-6">
+            Featured Property
+          </h2>
+          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+            Discover our exceptional Lake Norman property, now available for booking directly through Airbnb.
+          </p>
+          <div className="flex justify-center">
+            <AirbnbWidget />
+          </div>
         </div>
       </section>
 
