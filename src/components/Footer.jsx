@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Building2 } from 'lucide-react'
+import { Building2, Instagram, Facebook, Linkedin } from 'lucide-react'
 
 const Footer = () => {
   const services = [
@@ -35,9 +35,40 @@ const Footer = () => {
               </div>
               <span className="text-xl font-bold">IPM</span>
             </Link>
-            <p className="text-gray-400 text-sm leading-relaxed">
+            <p className="text-gray-400 text-sm leading-relaxed mb-4">
               International Property Management - Elevating vacation rental experiences worldwide.
             </p>
+            
+            {/* Social Media Links */}
+            <div className="flex space-x-4">
+              <a 
+                href="https://instagram.com/ipm.promotion" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+                aria-label="Follow us on Instagram"
+              >
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a 
+                href="https://www.facebook.com/61554061650450/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+                aria-label="Follow us on Facebook"
+              >
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a 
+                href="https://www.linkedin.com/company/107691694/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white transition-colors"
+                aria-label="Connect with us on LinkedIn"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+            </div>
           </div>
 
           {/* Services */}
