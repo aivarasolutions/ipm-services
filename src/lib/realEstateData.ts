@@ -50,7 +50,7 @@ export function getRealEstateListings(): RealEstateListing[] {
       price: 162000,
       expectedROI: 11,
       status: "Pre-Sale",
-      image: "/paulus-bedroom.jpg",
+      image: "/paulus-rooftop-main.jpg",
       description: "Modern luxury condos with premium finishes and rooftop terrace in the heart of Playa del Carmen",
       features: ["Pre-Sale Pricing", "Modern Design", "Rooftop Terrace", "Downtown Location"],
       featured: true,
@@ -85,6 +85,56 @@ export function getRealEstateListings(): RealEstateListing[] {
         ],
         downloadLink: {
           url: "/paulus-price-list.pdf",
+          text: "📄 Download Full Price List"
+        }
+      }
+    },
+    {
+      id: "2",
+      slug: "joshua-condos",
+      title: "Joshua Condos",
+      location: "Playa del Carmen, Mexico",
+      price: 140700,
+      expectedROI: 12,
+      status: "Pre-Sale",
+      image: "/joshua-rooftop.jpg",
+      description: "Contemporary condos with spacious layouts, rooftop amenities, and modern finishes in prime Playa del Carmen location",
+      features: ["Pre-Sale Pricing", "Spacious Layout", "Rooftop Pool", "Prime Location"],
+      featured: true,
+      details: {
+        bedrooms: 2,
+        bathrooms: 2,
+        sqft: 592,
+        amenities: ["Rooftop Pool", "Modern Kitchen", "Premium Finishes", "Elevator", "Security", "Parking"]
+      },
+      investment: {
+        downPayment: 42210,
+        monthlyPayment: 950,
+        rentalIncome: 2600,
+        appreciation: "10-14% annually"
+      },
+      gallery: {
+        images: [
+          { src: "/joshua-living-kitchen.jpg", alt: "Living Area & Kitchen" },
+          { src: "/joshua-bedroom.jpg", alt: "Bedroom" },
+          { src: "/joshua-exterior.jpg", alt: "Exterior View" },
+          { src: "/joshua-ground-floor.jpg", alt: "Ground Floor Plan" },
+          { src: "/joshua-upper-level.jpg", alt: "Upper Level Plan" },
+          { src: "/joshua-roof-layout.jpg", alt: "Roof Layout" }
+        ]
+      },
+      specialContent: {
+        title: "🏖️ Exceptional Value Opportunity",
+        highlights: [
+          "Unbeatable pre-sale pricing starting at $140,700 USD",
+          "Larger 592 sq ft units with 2 bedrooms and 2 bathrooms",
+          "30% down payment with flexible financing options",
+          "Premium Playa del Carmen location near beaches and attractions",
+          "Rooftop pool and modern amenities for maximum rental appeal",
+          "Guaranteed rental management program available"
+        ],
+        downloadLink: {
+          url: "/joshua-price-list.pdf",
           text: "📄 Download Full Price List"
         }
       }
