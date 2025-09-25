@@ -24,6 +24,20 @@ export type RealEstateListing = {
     rentalIncome: number;
     appreciation: string;
   };
+  gallery?: {
+    images: Array<{
+      src: string;
+      alt: string;
+    }>;
+  };
+  specialContent?: {
+    title: string;
+    highlights: string[];
+    downloadLink?: {
+      url: string;
+      text: string;
+    };
+  };
 };
 
 export function getRealEstateListings(): RealEstateListing[] {
@@ -203,6 +217,28 @@ export function getRealEstateListings(): RealEstateListing[] {
         monthlyPayment: 1100,
         rentalIncome: 2800,
         appreciation: "8-12% annually"
+      },
+      gallery: {
+        images: [
+          { src: "/paulus-kitchen1.jpg", alt: "Kitchen & Living Area" },
+          { src: "/paulus-rooftop.jpg", alt: "Rooftop Terrace" },
+          { src: "/paulus-floorplan.jpg", alt: "Floorplan" },
+          { src: "/paulus-kitchen3.jpg", alt: "Kitchen Detail" }
+        ]
+      },
+      specialContent: {
+        title: "🎯 Pre-Sale Opportunity",
+        highlights: [
+          "Limited time pre-sale pricing - Up to 25% below market value",
+          "Premium location in the heart of Playa del Carmen",
+          "Modern design with high-end finishes and materials",
+          "Delivery 2026 - Perfect timing for rental season",
+          "Guaranteed rental program available upon completion"
+        ],
+        downloadLink: {
+          url: "/paulus-price-list.pdf",
+          text: "📄 Download Full Price List"
+        }
       }
     }
   ];

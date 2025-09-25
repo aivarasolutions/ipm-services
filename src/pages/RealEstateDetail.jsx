@@ -28,12 +28,12 @@ const RealEstateDetail = () => {
             <h1>{listing.title}</h1>
             <p className="location" style={{fontSize: '1.1rem'}}>{listing.location}</p>
             
-            {listing.slug === 'paulus-condos' ? (
+            {listing.gallery ? (
               <div className="property-gallery" style={{marginBottom: '30px'}}>
                 <div className="gallery-main">
                   <img 
-                    src="/paulus-bedroom.jpg" 
-                    alt="Paulus Condos - Bedroom" 
+                    src={listing.image} 
+                    alt={listing.title} 
                     style={{
                       width: '100%', 
                       height: '400px', 
@@ -44,54 +44,24 @@ const RealEstateDetail = () => {
                 </div>
                 <div className="gallery-thumbnails" style={{
                   display: 'grid', 
-                  gridTemplateColumns: 'repeat(4, 1fr)', 
+                  gridTemplateColumns: `repeat(${Math.min(listing.gallery.images.length, 4)}, 1fr)`, 
                   gap: '10px', 
                   marginTop: '15px'
                 }}>
-                  <img 
-                    src="/paulus-kitchen1.jpg" 
-                    alt="Kitchen & Living Area"
-                    style={{
-                      width: '100%', 
-                      height: '100px', 
-                      objectFit: 'cover',
-                      borderRadius: '8px',
-                      cursor: 'pointer'
-                    }}
-                  />
-                  <img 
-                    src="/paulus-rooftop.jpg" 
-                    alt="Rooftop Terrace"
-                    style={{
-                      width: '100%', 
-                      height: '100px', 
-                      objectFit: 'cover',
-                      borderRadius: '8px',
-                      cursor: 'pointer'
-                    }}
-                  />
-                  <img 
-                    src="/paulus-floorplan.jpg" 
-                    alt="Floorplan"
-                    style={{
-                      width: '100%', 
-                      height: '100px', 
-                      objectFit: 'cover',
-                      borderRadius: '8px',
-                      cursor: 'pointer'
-                    }}
-                  />
-                  <img 
-                    src="/paulus-kitchen3.jpg" 
-                    alt="Kitchen Detail"
-                    style={{
-                      width: '100%', 
-                      height: '100px', 
-                      objectFit: 'cover',
-                      borderRadius: '8px',
-                      cursor: 'pointer'
-                    }}
-                  />
+                  {listing.gallery.images.map((image, index) => (
+                    <img 
+                      key={index}
+                      src={image.src} 
+                      alt={image.alt}
+                      style={{
+                        width: '100%', 
+                        height: '100px', 
+                        objectFit: 'cover',
+                        borderRadius: '8px',
+                        cursor: 'pointer'
+                      }}
+                    />
+                  ))}
                 </div>
               </div>
             ) : (
@@ -120,37 +90,38 @@ const RealEstateDetail = () => {
                 {listing.description}
               </p>
               
-              {listing.slug === 'paulus-condos' && (
-                <div className="presale-info" style={{
+              {listing.specialContent && (
+                <div className="special-content" style={{
                   backgroundColor: '#f8f9fa',
                   padding: '20px',
                   borderRadius: '12px',
                   marginBottom: '20px',
                   border: '2px solid #e9ecef'
                 }}>
-                  <h4 style={{color: '#2d3748', marginBottom: '15px'}}>🎯 Pre-Sale Opportunity</h4>
+                  <h4 style={{color: '#2d3748', marginBottom: '15px'}}>{listing.specialContent.title}</h4>
                   <ul style={{color: '#4a5568', lineHeight: '1.6'}}>
-                    <li>• <strong>Limited time pre-sale pricing</strong> - Up to 25% below market value</li>
-                    <li>• <strong>Premium location</strong> in the heart of Playa del Carmen</li>
-                    <li>• <strong>Modern design</strong> with high-end finishes and materials</li>
-                    <li>• <strong>Delivery 2026</strong> - Perfect timing for rental season</li>
-                    <li>• <strong>Guaranteed rental program</strong> available upon completion</li>
+                    {listing.specialContent.highlights.map((highlight, index) => (
+                      <li key={index}>• <strong>{highlight.split(' - ')[0]}</strong>{highlight.includes(' - ') ? ` - ${highlight.split(' - ')[1]}` : ''}</li>
+                    ))}
                   </ul>
-                  <div style={{marginTop: '15px'}}>
-                    <a 
-                      href="/paulus-price-list.pdf" 
-                      target="_blank" 
-                      className="btn primary"
-                      style={{
-                        display: 'inline-block',
-                        textDecoration: 'none',
-                        padding: '10px 20px',
-                        fontSize: '0.9rem'
-                      }}
-                    >
-                      📄 Download Full Price List
-                    </a>
-                  </div>
+                  {listing.specialContent.downloadLink && (
+                    <div style={{marginTop: '15px'}}>
+                      <a 
+                        href={listing.specialContent.downloadLink.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="btn primary"
+                        style={{
+                          display: 'inline-block',
+                          textDecoration: 'none',
+                          padding: '10px 20px',
+                          fontSize: '0.9rem'
+                        }}
+                      >
+                        {listing.specialContent.downloadLink.text}
+                      </a>
+                    </div>
+                  )}
                 </div>
               )}
               
