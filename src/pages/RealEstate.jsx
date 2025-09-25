@@ -8,76 +8,77 @@ const RealEstate = () => {
   const featuredListings = listings.filter(listing => listing.featured).slice(0, 6);
 
   return (
-    <>
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="hero">
-        <Container>
-          <h1>Premium Real Estate Investment Opportunities</h1>
-          <p>Discover high-ROI properties in Mexico & USA with guaranteed rental management</p>
-          <div className="hero-cta">
-            <a className="btn primary" href="#listings">View Properties</a>
-            <a className="btn" href="#consultation">Free Consultation</a>
+      <section className="bg-gray-50 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+            Premium Real Estate Investment Opportunities
+          </h1>
+          <p className="text-xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
+            Discover high-ROI properties in Mexico & USA with guaranteed rental management
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#listings" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg rounded-md font-medium transition-colors">
+              View Properties
+            </a>
+            <a href="#consultation" className="border-2 border-gray-300 hover:border-gray-400 px-8 py-3 text-lg rounded-md font-medium transition-colors">
+              Free Consultation
+            </a>
           </div>
-        </Container>
+        </div>
       </section>
 
-      <Container>
-        {/* Value Proposition */}
-        <section className="section">
-          <div className="row" style={{gap: '40px', alignItems: 'flex-start'}}>
-            <div style={{flex: '1', minWidth: '300px'}}>
-              <h2>Why Invest with IPM?</h2>
-              <ul className="value-props">
-                <li>✓ <strong>Guaranteed 8-12% ROI</strong> with our management</li>
-                <li>✓ <strong>Pre-sale opportunities</strong> with 20-30% discounts</li>
-                <li>✓ <strong>Turnkey solutions</strong> - we handle everything</li>
-                <li>✓ <strong>Prime locations</strong> in high-demand areas</li>
-                <li>✓ <strong>Legal support</strong> for international buyers</li>
-                <li>✓ <strong>Immediate rental income</strong> upon completion</li>
-              </ul>
-            </div>
-            <div style={{flex: '1', minWidth: '300px'}}>
-              <LeadCaptureForm />
-            </div>
+      {/* Featured Investment Properties - Now First */}
+      <section className="py-20 bg-white" id="listings">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured Investment Properties</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Exclusive pre-sale opportunities with guaranteed management and ROI
+            </p>
           </div>
-        </section>
-
-        {/* Featured Listings */}
-        <section className="section" id="listings">
-          <h2>Featured Investment Properties</h2>
-          <div className="real-estate-grid">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredListings.map(listing => (
-              <div key={listing.id} className="real-estate-card">
-                <div className="listing-badge">{listing.status}</div>
-                <img 
-                  src={listing.image} 
-                  alt={listing.title}
-                  style={{width: '100%', height: '220px', objectFit: 'cover'}}
-                />
-                <div style={{padding: '20px'}}>
-                  <h3>{listing.title}</h3>
-                  <p className="location">{listing.location}</p>
-                  <div className="price-info">
-                    <span className="price">
+              <div key={listing.id} className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                <div className="relative">
+                  <div className="absolute top-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium z-10">
+                    {listing.status}
+                  </div>
+                  <img 
+                    src={listing.image} 
+                    alt={listing.title}
+                    className="w-full h-64 object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{listing.title}</h3>
+                  <p className="text-gray-600 mb-4">{listing.location}</p>
+                  <div className="flex justify-between items-center mb-4">
+                    <span className="text-2xl font-bold text-gray-900">
                       {listing.slug === 'paulus-condos' ? 
                         `Starting at $${listing.price.toLocaleString()} USD` : 
                         `$${listing.price.toLocaleString()}`
                       }
                     </span>
-                    <span className="roi">ROI: {listing.expectedROI}%</span>
+                    <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm font-medium">
+                      ROI: {listing.expectedROI}%
+                    </span>
                   </div>
-                  <p style={{fontSize: '0.95rem', color: '#666', marginBottom: '16px'}}>
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
                     {listing.description}
                   </p>
-                  <div className="listing-features">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {listing.features.map((feature, index) => (
-                      <span key={index} className="feature-tag">{feature}</span>
+                      <span key={index} className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium">
+                        {feature}
+                      </span>
                     ))}
                   </div>
                   <Link 
                     to={`/real-estate/${listing.slug}`}
-                    className="btn primary"
-                    style={{width: '100%', textAlign: 'center', display: 'block', textDecoration: 'none'}}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-4 rounded-md font-medium text-center block transition-colors"
                   >
                     View Details
                   </Link>
@@ -85,44 +86,103 @@ const RealEstate = () => {
               </div>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Investment Process */}
-        <section className="section" id="consultation">
-          <h2>Investment Process</h2>
-          <div className="process-steps">
-            <div className="step">
-              <div className="step-number">1</div>
-              <h3>Consultation</h3>
-              <p>Free consultation to understand your investment goals</p>
+      {/* Value Proposition - Without Form */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Invest with IPM?</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Your trusted partner for international real estate investment
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-white p-8 rounded-lg shadow-md">
+              <div className="text-blue-600 text-3xl mb-4">✓</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Guaranteed 8-12% ROI</h3>
+              <p className="text-gray-600">Professional management ensures consistent returns with our proven track record</p>
             </div>
-            <div className="step">
-              <div className="step-number">2</div>
-              <h3>Property Selection</h3>
-              <p>We present properties matching your criteria and budget</p>
+            <div className="bg-white p-8 rounded-lg shadow-md">
+              <div className="text-blue-600 text-3xl mb-4">✓</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Pre-sale Opportunities</h3>
+              <p className="text-gray-600">Access exclusive properties with 20-30% discounts before public release</p>
             </div>
-            <div className="step">
-              <div className="step-number">3</div>
-              <h3>Due Diligence</h3>
-              <p>Legal review, market analysis, and ROI projections</p>
+            <div className="bg-white p-8 rounded-lg shadow-md">
+              <div className="text-blue-600 text-3xl mb-4">✓</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Turnkey Solutions</h3>
+              <p className="text-gray-600">We handle everything from purchase to rental management</p>
             </div>
-            <div className="step">
-              <div className="step-number">4</div>
-              <h3>Purchase & Management</h3>
-              <p>Handle purchase process and immediate rental management</p>
+            <div className="bg-white p-8 rounded-lg shadow-md">
+              <div className="text-blue-600 text-3xl mb-4">✓</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Prime Locations</h3>
+              <p className="text-gray-600">Strategic properties in high-demand vacation and investment areas</p>
+            </div>
+            <div className="bg-white p-8 rounded-lg shadow-md">
+              <div className="text-blue-600 text-3xl mb-4">✓</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Legal Support</h3>
+              <p className="text-gray-600">Full legal assistance for international buyers and investors</p>
+            </div>
+            <div className="bg-white p-8 rounded-lg shadow-md">
+              <div className="text-blue-600 text-3xl mb-4">✓</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Immediate Income</h3>
+              <p className="text-gray-600">Start earning rental income as soon as construction is complete</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Investment Process */}
+      <section className="py-20 bg-white" id="consultation">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Investment Process</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Simple, transparent steps to secure your real estate investment
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+            <div className="text-center">
+              <div className="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                1
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Consultation</h3>
+              <p className="text-gray-600">Free consultation to understand your investment goals and preferences</p>
+            </div>
+            <div className="text-center">
+              <div className="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                2
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Property Selection</h3>
+              <p className="text-gray-600">We present curated properties matching your criteria and budget</p>
+            </div>
+            <div className="text-center">
+              <div className="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                3
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Due Diligence</h3>
+              <p className="text-gray-600">Complete legal review, market analysis, and detailed ROI projections</p>
+            </div>
+            <div className="text-center">
+              <div className="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                4
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Purchase & Management</h3>
+              <p className="text-gray-600">Handle entire purchase process and provide immediate rental management</p>
             </div>
           </div>
           
-          <div className="cta-section" style={{textAlign: 'center', marginTop: '50px'}}>
-            <h2>Ready to Start Investing?</h2>
-            <p>Get your free investment analysis today</p>
-            <div style={{maxWidth: '500px', margin: '0 auto'}}>
+          <div className="bg-gray-50 rounded-lg p-8 text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Ready to Start Investing?</h2>
+            <p className="text-xl text-gray-600 mb-8">Get your free investment analysis today</p>
+            <div className="max-w-lg mx-auto">
               <LeadCaptureForm variant="detailed" />
             </div>
           </div>
-        </section>
-      </Container>
-    </>
+        </div>
+      </section>
+    </div>
   );
 };
 
