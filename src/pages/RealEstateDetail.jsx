@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Container from '../components/Container';
 import LeadCaptureForm from '../components/LeadCaptureForm';
 import { getRealEstateListing } from '../lib/realEstateData';
@@ -8,12 +8,46 @@ const RealEstateDetail = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
   const listing = getRealEstateListing(slug);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     if (!listing) {
       navigate('/real-estate');
     }
   }, [listing, navigate]);
+
+  const openModal = (index) => {
+    setCurrentImageIndex(index);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const nextImage = () => {
+    if (listing?.gallery) {
+      const totalImages = listing.gallery.images.length + 1; // +1 for main image
+      setCurrentImageIndex((prev) => (prev + 1) % totalImages);
+    }
+  };
+
+  const prevImage = () => {
+    if (listing?.gallery) {
+      const totalImages = listing.gallery.images.length + 1; // +1 for main image
+      setCurrentImageIndex((prev) => (prev - 1 + totalImages) % totalImages);
+    }
+  };
+
+  const getAllImages = () => {
+    if (!listing) return [];
+    const images = [{ src: listing.image, alt: listing.title }];
+    if (listing.gallery) {
+      images.push(...listing.gallery.images);
+    }
+    return images;
+  };
 
   if (!listing) {
     return null;
@@ -34,11 +68,13 @@ const RealEstateDetail = () => {
                   <img 
                     src={listing.image} 
                     alt={listing.title} 
+                    onClick={() => openModal(0)}
                     style={{
                       width: '100%', 
                       height: '400px', 
                       objectFit: 'cover',
-                      borderRadius: '12px'
+                      borderRadius: '12px',
+                      cursor: 'pointer'
                     }}
                   />
                 </div>
@@ -53,6 +89,7 @@ const RealEstateDetail = () => {
                       key={index}
                       src={image.src} 
                       alt={image.alt}
+                      onClick={() => openModal(index + 1)}
                       style={{
                         width: '100%', 
                         height: '100px', 
@@ -68,12 +105,14 @@ const RealEstateDetail = () => {
               <img 
                 src={listing.image} 
                 alt={listing.title} 
+                onClick={() => openModal(0)}
                 style={{
                   width: '100%', 
                   height: '400px', 
                   objectFit: 'cover',
                   borderRadius: '12px', 
-                  marginBottom: '30px'
+                  marginBottom: '30px',
+                  cursor: 'pointer'
                 }}
               />
             )}
@@ -179,6 +218,126 @@ const RealEstateDetail = () => {
           </div>
         </div>
       </div>
+
+      {/* Image Modal */}
+      {modalOpen && (
+        <div 
+          className="modal-overlay" 
+          onClick={closeModal}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.9)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 1000
+          }}
+        >
+          <div 
+            className="modal-content"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              position: 'relative',
+              maxWidth: '90vw',
+              maxHeight: '90vh'
+            }}
+          >
+            <img 
+              src={getAllImages()[currentImageIndex]?.src}
+              alt={getAllImages()[currentImageIndex]?.alt}
+              style={{
+                maxWidth: '100%',
+                maxHeight: '90vh',
+                objectFit: 'contain',
+                borderRadius: '8px'
+              }}
+            />
+            
+            {/* Close Button */}
+            <button
+              onClick={closeModal}
+              style={{
+                position: 'absolute',
+                top: '10px',
+                right: '10px',
+                background: 'rgba(0, 0, 0, 0.5)',
+                color: 'white',
+                border: 'none',
+                borderRadius: '50%',
+                width: '40px',
+                height: '40px',
+                fontSize: '20px',
+                cursor: 'pointer'
+              }}
+            >
+              ×
+            </button>
+
+            {/* Navigation Arrows */}
+            {getAllImages().length > 1 && (
+              <>
+                <button
+                  onClick={prevImage}
+                  style={{
+                    position: 'absolute',
+                    left: '10px',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    background: 'rgba(0, 0, 0, 0.5)',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '50%',
+                    width: '50px',
+                    height: '50px',
+                    fontSize: '24px',
+                    cursor: 'pointer'
+                  }}
+                >
+                  ‹
+                </button>
+                <button
+                  onClick={nextImage}
+                  style={{
+                    position: 'absolute',
+                    right: '10px',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    background: 'rgba(0, 0, 0, 0.5)',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '50%',
+                    width: '50px',
+                    height: '50px',
+                    fontSize: '24px',
+                    cursor: 'pointer'
+                  }}
+                >
+                  ›
+                </button>
+              </>
+            )}
+
+            {/* Image Counter */}
+            <div style={{
+              position: 'absolute',
+              bottom: '10px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              background: 'rgba(0, 0, 0, 0.5)',
+              color: 'white',
+              padding: '5px 15px',
+              borderRadius: '15px',
+              fontSize: '14px'
+            }}>
+              {currentImageIndex + 1} / {getAllImages().length}
+            </div>
+          </div>
+        </div>
+      )}
     </Container>
   );
 };
