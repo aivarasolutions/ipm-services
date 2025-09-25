@@ -13,8 +13,35 @@ import {
   Filter
 } from 'lucide-react'
 
-// Airbnb Widget Component
-const AirbnbWidget = () => {
+// Airbnb Widget Components
+const AirbnbWidget = ({ id, href, description }) => {
+  return (
+    <div 
+      className="airbnb-embed-frame" 
+      data-id={id}
+      data-view="home" 
+      data-hide-price="true" 
+      style={{width: '450px', height: '300px', margin: 'auto'}}
+    >
+      <a 
+        href={href}
+        rel="nofollow noopener noreferrer"
+        target="_blank"
+      >
+        View On Airbnb
+      </a>
+      <a 
+        href={href}
+        rel="nofollow noopener noreferrer"
+        target="_blank"
+      >
+        {description}
+      </a>
+    </div>
+  );
+};
+
+const AirbnbSection = () => {
   useEffect(() => {
     // Load Airbnb embed script
     const script = document.createElement('script');
@@ -31,80 +58,46 @@ const AirbnbWidget = () => {
     };
   }, []);
 
+  const properties = [
+    {
+      id: "1347342374342049672",
+      href: "https://www.airbnb.com/rooms/1347342374342049672?guests=1&adults=1&s=66&source=embed_widget",
+      description: "Home in Mooresville · ★4.79 · 3 bedrooms · 5 beds · 3 baths"
+    },
+    {
+      id: "1471379203731591914",
+      href: "https://www.airbnb.com/rooms/1471379203731591914?guests=1&adults=1&s=66&source=embed_widget",
+      description: "Villa in Playa del Carmen · ★5.0 · 2 bedrooms · 2 beds · 2 baths"
+    },
+    {
+      id: "797383249287358281",
+      href: "https://www.airbnb.com/rooms/797383249287358281?guests=1&adults=1&s=66&source=embed_widget",
+      description: "Rental unit in Playa del Carmen · ★4.75 · 3 bedrooms · 6 beds · 3 baths"
+    },
+    {
+      id: "1360603145357884662",
+      href: "https://www.airbnb.com/rooms/1360603145357884662?guests=1&adults=1&s=66&source=embed_widget",
+      description: "Treehouse in Playa del Carmen · ★5.0 · 1 bedroom · 3 beds · 1 bath"
+    }
+  ];
+
   return (
-    <div 
-      className="airbnb-embed-frame" 
-      data-id="1347342374342049672" 
-      data-view="home" 
-      data-hide-price="true" 
-      style={{width: '450px', height: '300px', margin: 'auto'}}
-    >
-      <a 
-        href="https://www.airbnb.com/rooms/1347342374342049672?guests=1&adults=1&s=66&source=embed_widget"
-        rel="nofollow noopener noreferrer"
-        target="_blank"
-      >
-        View On Airbnb
-      </a>
-      <a 
-        href="https://www.airbnb.com/rooms/1347342374342049672?guests=1&adults=1&s=66&source=embed_widget" 
-        rel="nofollow noopener noreferrer"
-        target="_blank"
-      >
-        Home in Mooresville · ★4.79 · 3 bedrooms · 5 beds · 3 baths
-      </a>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+      {properties.map((property, index) => (
+        <div key={property.id} className="flex justify-center">
+          <AirbnbWidget 
+            id={property.id}
+            href={property.href}
+            description={property.description}
+          />
+        </div>
+      ))}
     </div>
   );
 };
 
-// Import property images
-import luxuryBeachfront from '../assets/luxury_beachfront_resort.webp'
-import tulumPenthouse from '../assets/stunning_tulum_penthouse.webp'
 
 const Properties = () => {
-  const [properties, setProperties] = useState([])
-  const [filteredProperties, setFilteredProperties] = useState([])
-  const [searchTerm, setSearchTerm] = useState('')
-  const [selectedLocation, setSelectedLocation] = useState('all')
-
-  const propertyImages = {
-    'luxury-beachfront-resort': luxuryBeachfront,
-    'stunning-tulum-penthouse': tulumPenthouse
-  }
-
-  useEffect(() => {
-    // Load properties data
-    fetch('/properties.json')
-      .then(response => response.json())
-      .then(data => {
-        setProperties(data)
-        setFilteredProperties(data)
-      })
-      .catch(error => console.error('Error loading properties:', error))
-  }, [])
-
-  useEffect(() => {
-    // Filter properties based on search term and location
-    let filtered = properties
-
-    if (searchTerm) {
-      filtered = filtered.filter(property =>
-        property.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        property.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        property.description.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    }
-
-    if (selectedLocation !== 'all') {
-      filtered = filtered.filter(property =>
-        property.location.toLowerCase() === selectedLocation.toLowerCase()
-      )
-    }
-
-    setFilteredProperties(filtered)
-  }, [searchTerm, selectedLocation, properties])
-
-  const locations = ['all', ...new Set(properties.map(p => p.location))]
 
   return (
     <div className="min-h-screen">
@@ -121,147 +114,16 @@ const Properties = () => {
         </div>
       </section>
 
-      {/* Search and Filter Section */}
-      <section className="py-12 bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-            <div className="flex-1 max-w-md">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                <Input
-                  type="text"
-                  placeholder="Search properties..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
-                />
-              </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2">
-                <Filter className="h-5 w-5 text-gray-500" />
-                <select
-                  value={selectedLocation}
-                  onChange={(e) => setSelectedLocation(e.target.value)}
-                  className="border border-gray-300 rounded-md px-3 py-2 bg-white"
-                >
-                  {locations.map(location => (
-                    <option key={location} value={location}>
-                      {location === 'all' ? 'All Locations' : location}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="text-sm text-gray-500">
-                {filteredProperties.length} properties found
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Properties Grid */}
+      {/* Airbnb Properties Section */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {filteredProperties.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-xl text-gray-600">No properties found matching your criteria.</p>
-              <Button 
-                onClick={() => {
-                  setSearchTerm('')
-                  setSelectedLocation('all')
-                }}
-                className="mt-4"
-              >
-                Clear Filters
-              </Button>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredProperties.map((property) => (
-                <Card key={property.slug} className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                  <div className="relative">
-                    <img
-                      src={propertyImages[property.slug]}
-                      alt={property.title}
-                      className="w-full h-64 object-cover"
-                      loading="lazy"
-                    />
-                    <div className="absolute top-4 right-4 bg-white px-2 py-1 rounded-full text-sm font-semibold text-gray-900">
-                      {property.price}
-                    </div>
-                  </div>
-                  <CardContent className="p-6">
-                    <div className="flex items-start justify-between mb-3">
-                      <h3 className="text-xl font-semibold text-gray-900 line-clamp-1">
-                        {property.title}
-                      </h3>
-                      <div className="flex items-center space-x-1 text-yellow-500">
-                        <Star className="h-4 w-4 fill-current" />
-                        <span className="text-sm text-gray-600">4.9</span>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center text-gray-600 mb-3">
-                      <MapPin className="h-4 w-4 mr-1" />
-                      <span className="text-sm">{property.location}</span>
-                    </div>
-
-                    <div className="flex items-center space-x-4 text-sm text-gray-600 mb-4">
-                      <div className="flex items-center">
-                        <Users className="h-4 w-4 mr-1" />
-                        <span>{property.guests} guests</span>
-                      </div>
-                      <div className="flex items-center">
-                        <Bed className="h-4 w-4 mr-1" />
-                        <span>{property.bedrooms} beds</span>
-                      </div>
-                      <div className="flex items-center">
-                        <Bath className="h-4 w-4 mr-1" />
-                        <span>{property.bathrooms} baths</span>
-                      </div>
-                    </div>
-
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                      {property.description}
-                    </p>
-
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {property.features.slice(0, 3).map((feature, index) => (
-                        <span
-                          key={index}
-                          className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs font-medium"
-                        >
-                          {feature}
-                        </span>
-                      ))}
-                    </div>
-
-                    <Link to={`/properties/${property.slug}`}>
-                      <Button className="w-full bg-blue-600 hover:bg-blue-700">
-                        View Details
-                      </Button>
-                    </Link>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Featured Airbnb Property */}
-      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-gray-900 mb-6">
-            Featured Property
+            Our Featured Properties
           </h2>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Discover our exceptional Lake Norman property, now available for booking directly through Airbnb.
+          <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
+            Discover our exceptional vacation rental properties available for booking directly through Airbnb.
           </p>
-          <div className="flex justify-center">
-            <AirbnbWidget />
-          </div>
+          <AirbnbSection />
         </div>
       </section>
 
