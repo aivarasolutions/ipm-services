@@ -179,6 +179,31 @@ export function getRealEstateListings(): RealEstateListing[] {
         rentalIncome: 3200,
         appreciation: "7-11% annually"
       }
+    },
+    {
+      id: "7",
+      slug: "paulus-condos",
+      title: "Paulus Condos",
+      location: "Playa del Carmen, Mexico",
+      price: 225000,
+      expectedROI: 11,
+      status: "Pre-Sale",
+      image: "/paulus-bedroom.jpg",
+      description: "Modern luxury condos with premium finishes and rooftop terrace in the heart of Playa del Carmen",
+      features: ["Pre-Sale Pricing", "Modern Design", "Rooftop Terrace", "Downtown Location"],
+      featured: true,
+      details: {
+        bedrooms: 1,
+        bathrooms: 1,
+        sqft: 750,
+        amenities: ["Rooftop Terrace", "Modern Kitchen", "Premium Finishes", "Elevator", "Security"]
+      },
+      investment: {
+        downPayment: 67500,
+        monthlyPayment: 1100,
+        rentalIncome: 2800,
+        appreciation: "8-12% annually"
+      }
     }
   ];
 }
