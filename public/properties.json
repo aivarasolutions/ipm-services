@@ -58,36 +58,6 @@
     ],
     "price": "$650/night",
     "availability": "Available year-round"
-  },
-  {
-    "slug": "lake-norman-retreat",
-    "title": "Lake Norman Retreat",
-    "meta": {
-      "title": "Lake Norman Retreat - Waterfront Cabin | IPM",
-      "description": "Beautiful waterfront retreat at Lake Norman, North Carolina. Pet-friendly cabin perfect for large groups with stunning lake views."
-    },
-    "image": "/src/assets/lake_norman_retreat.webp",
-    "link": "/properties/lake-norman-retreat",
-    "description": "Escape to this beautiful waterfront retreat on Lake Norman in North Carolina. This spacious cabin offers stunning lake views, multiple outdoor spaces, and a pet-friendly environment. Ideal for large family gatherings and group retreats.",
-    "features": ["Waterfront", "Pet-Friendly", "Large Groups"],
-    "location": "North Carolina",
-    "guests": 9,
-    "bedrooms": 4,
-    "bathrooms": 3,
-    "amenities": [
-      "Direct lake access",
-      "Private dock",
-      "Pet-friendly",
-      "Large deck with lake views",
-      "Fire pit",
-      "Kayaks included",
-      "Full kitchen",
-      "Game room",
-      "WiFi",
-      "Parking for multiple cars"
-    ],
-    "price": "$450/night",
-    "availability": "Available year-round"
   }
 ]
 
