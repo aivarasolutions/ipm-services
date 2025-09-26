@@ -138,6 +138,61 @@ export function getRealEstateListings(): RealEstateListing[] {
           text: "📄 Download Full Price List"
         }
       }
+    },
+    {
+      id: "3",
+      slug: "ukana-condos",
+      title: "UKANA",
+      location: "Playa del Carmen, Mexico",
+      price: 184699,
+      expectedROI: 13,
+      status: "Pre-Sale",
+      image: "/ukana-main.jpg",
+      description: "Exclusive development of 33 luxury condominiums with modern design, premium finishes, and exceptional amenities in the heart of Playa del Carmen",
+      features: ["Pre-Sale Pricing", "Exclusive Development", "Modern Design", "Premium Location"],
+      featured: true,
+      details: {
+        bedrooms: 2,
+        bathrooms: 2,
+        sqft: 1206,
+        amenities: ["Elevator", "Rooftop Pool", "Jacuzzi", "Gym", "Solarium", "Lobby", "Security"]
+      },
+      investment: {
+        downPayment: 55409,
+        monthlyPayment: 1200,
+        rentalIncome: 3200,
+        appreciation: "12-16% annually"
+      },
+      gallery: {
+        images: [
+          { src: "/ukana-gallery-1.jpg", alt: "Dining & Kitchen Area" },
+          { src: "/ukana-gallery-2.jpg", alt: "Living Space" },
+          { src: "/ukana-gallery-3.jpg", alt: "Kitchen Detail" },
+          { src: "/ukana-gallery-4.jpg", alt: "Dining Area" },
+          { src: "/ukana-gallery-5.jpg", alt: "Modern Living Space" },
+          { src: "/ukana-gallery-6.jpg", alt: "Spacious Living Room" },
+          { src: "/ukana-gallery-7.jpg", alt: "Bedroom Suite" },
+          { src: "/ukana-gallery-8.jpg", alt: "Modern Bathroom" },
+          { src: "/ukana-exterior.jpg", alt: "Development Exterior" },
+          { src: "/ukana-aerial.jpg", alt: "Aerial View" }
+        ]
+      },
+      specialContent: {
+        title: "🌟 Exclusive Luxury Development",
+        highlights: [
+          "Starting at $184,699 USD - exceptional value for luxury living",
+          "Only 33 exclusive units ranging from 71-198 square meters",
+          "1-3 bedroom configurations to suit every lifestyle",
+          "Premium amenities: Rooftop pool, jacuzzi, gym, and solarium",
+          "Prime Playa del Carmen location with easy access to beaches",
+          "Modern elevator and luxury lobby entrance",
+          "Perfect for investment or personal retreat"
+        ],
+        downloadLink: {
+          url: "/ukana-brochure.pdf",
+          text: "📄 Download Complete Brochure"
+        }
+      }
     }
   ];
 }
