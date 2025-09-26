@@ -145,6 +145,9 @@ const Properties = () => {
         </div>
       </section>
 
+      {/* Reviews Section */}
+      <ReviewsSection />
+
       {/* Airbnb Properties Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -157,9 +160,6 @@ const Properties = () => {
           <AirbnbSection />
         </div>
       </section>
-
-      {/* Reviews Section */}
-      <ReviewsSection />
 
       {/* CTA Section */}
       <section className="py-20 bg-blue-600">
