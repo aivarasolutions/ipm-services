@@ -29,6 +29,26 @@ const RealEstate = () => {
         </div>
       </section>
 
+      {/* Buyers Company Information */}
+      <section className="py-16 bg-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-lg shadow-md p-8">
+            <div className="text-center">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">Full-Service Real Estate Solutions</h2>
+              <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
+                <strong>IPM is a buyers company</strong> specializing in connecting international investors with premium real estate opportunities. 
+                While we feature our exclusive pre-sale and investment properties below, our professional real estate agents 
+                provide access to <strong>all properties available for sale throughout Quintana Roo, Mexico and the United States</strong>.
+              </p>
+              <p className="text-lg text-gray-600 mt-4 max-w-4xl mx-auto">
+                Whether you're interested in our curated investment opportunities or seeking other properties in our markets, 
+                our experienced team can help you find and secure the perfect real estate investment.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Featured Investment Properties - Now First */}
       <section className="py-20 bg-white" id="listings">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

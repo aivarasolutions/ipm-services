@@ -147,7 +147,38 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
+      {/* Hero Image Section */}
+      <section 
+        className="relative h-screen flex items-center justify-start bg-cover bg-center"
+        style={{ backgroundImage: 'url(/ipm-hero.png)' }}
+      >
+        <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl">
+            <h1 className="text-6xl md:text-7xl font-bold text-white mb-6 leading-tight">
+              International Property Management
+            </h1>
+            <p className="text-2xl md:text-3xl font-medium text-white mb-8">
+              LIVE LIKE YOU OWN IT
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link to="/owner-portal">
+                <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg">
+                  <Users className="mr-2 h-5 w-5" />
+                  Owner Portal Login
+                </Button>
+              </Link>
+              <Link to="/properties">
+                <Button className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-4 text-lg">
+                  View Properties
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Elevating Property Management Section */}
       <section className="bg-gray-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
