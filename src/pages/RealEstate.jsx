@@ -77,7 +77,7 @@ const RealEstate = () => {
                   <p className="text-gray-600 mb-4">{listing.location}</p>
                   <div className="flex justify-between items-center mb-4">
                     <span className="text-2xl font-bold text-gray-900">
-                      {listing.slug === 'paulus-condos' || listing.slug === 'joshua-condos' ? 
+                      {listing.slug === 'paulus-condos' || listing.slug === 'joshua-condos' || listing.slug === 'ukana-condos' ? 
                         `Starting at $${listing.price.toLocaleString()} USD` : 
                         `$${listing.price.toLocaleString()}`
                       }
