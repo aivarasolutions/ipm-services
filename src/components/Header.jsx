@@ -24,8 +24,8 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <img 
-              src="/ipm-logo.png" 
-              alt="IPM Logo" 
+              src="/logo.png" 
+              alt="IPM International Property Management" 
               className="h-10 w-auto"
             />
           </Link>

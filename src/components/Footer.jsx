@@ -31,8 +31,8 @@ const Footer = () => {
           <div className="col-span-1">
             <Link to="/" className="flex items-center space-x-2 mb-4">
               <img 
-                src="/ipm-logo.png" 
-                alt="IPM Logo" 
+                src="/logo.png" 
+                alt="IPM International Property Management" 
                 className="h-8 w-auto"
               />
             </Link>
