@@ -31,16 +31,16 @@ const ReviewsSection = () => {
                 <span className="text-gray-700 font-medium">Overall Rating</span>
                 <div className="flex items-center">
                   <Star className="h-5 w-5 text-yellow-500 fill-current" />
-                  <span className="ml-1 font-bold text-gray-900">4.8+ Average</span>
+                  <span className="ml-1 font-bold text-gray-900">4.9 Average</span>
                 </div>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-gray-700 font-medium">Total Reviews</span>
-                <span className="font-bold text-gray-900">100+ Reviews</span>
+                <span className="font-bold text-gray-900">200+ Reviews</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-gray-700 font-medium">Properties Listed</span>
-                <span className="font-bold text-gray-900">30+ Active Listings</span>
+                <span className="font-bold text-gray-900">30+ Listings</span>
               </div>
             </div>
 
