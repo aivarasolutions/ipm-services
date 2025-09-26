@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import './real-estate-styles.css'
+import './audio-styles.css'
 
 // Import pages
 import Home from './pages/Home'

@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Play, Pause, Volume2, VolumeX } from 'lucide-react'
+import { useAudio } from '../contexts/AudioContext'
 
 const Header = () => {
   const location = useLocation()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { isPlaying, volume, toggleMusic, changeVolume } = useAudio()
 
   const navItems = [
     { name: 'Home', path: '/', color: 'bg-green-500 text-white' },
@@ -48,8 +50,43 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Desktop CTA Button */}
+          {/* Music Controls & Desktop CTA Button */}
           <div className="hidden md:flex items-center space-x-4">
+            {/* Music Controls */}
+            <div className="flex items-center space-x-2 px-3 py-1 bg-gray-50 rounded-lg">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={toggleMusic}
+                className="p-1 h-8 w-8"
+                title={isPlaying ? 'Pause Music' : 'Play Music'}
+              >
+                {isPlaying ? (
+                  <Pause className="h-4 w-4 text-gray-600" />
+                ) : (
+                  <Play className="h-4 w-4 text-gray-600" />
+                )}
+              </Button>
+              
+              <div className="flex items-center space-x-1">
+                {volume === 0 ? (
+                  <VolumeX className="h-4 w-4 text-gray-500" />
+                ) : (
+                  <Volume2 className="h-4 w-4 text-gray-500" />
+                )}
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.1"
+                  value={volume}
+                  onChange={(e) => changeVolume(parseFloat(e.target.value))}
+                  className="w-16 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
+                  title={`Volume: ${Math.round(volume * 100)}%`}
+                />
+              </div>
+            </div>
+            
             <Link to="/contact">
               <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md text-sm font-medium">
                 Get Started
@@ -93,8 +130,44 @@ const Header = () => {
                 {item.name}
               </Link>
             ))}
+            {/* Mobile Music Controls */}
+            <div className="pt-4 border-t border-gray-100">
+              <div className="flex items-center justify-center space-x-4 py-3">
+                <Button
+                  variant="ghost"
+                  onClick={toggleMusic}
+                  className="flex items-center space-x-2"
+                >
+                  {isPlaying ? (
+                    <Pause className="h-4 w-4" />
+                  ) : (
+                    <Play className="h-4 w-4" />
+                  )}
+                  <span className="text-sm">{isPlaying ? 'Pause' : 'Play'} Music</span>
+                </Button>
+                
+                <div className="flex items-center space-x-2">
+                  {volume === 0 ? (
+                    <VolumeX className="h-4 w-4 text-gray-500" />
+                  ) : (
+                    <Volume2 className="h-4 w-4 text-gray-500" />
+                  )}
+                  <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.1"
+                    value={volume}
+                    onChange={(e) => changeVolume(parseFloat(e.target.value))}
+                    className="w-20 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                  />
+                  <span className="text-xs text-gray-500 w-8">{Math.round(volume * 100)}%</span>
+                </div>
+              </div>
+            </div>
+            
             {/* Mobile CTA Button */}
-            <div className="pt-4">
+            <div className="pt-2">
               <Link
                 to="/contact"
                 onClick={() => setIsMobileMenuOpen(false)}
