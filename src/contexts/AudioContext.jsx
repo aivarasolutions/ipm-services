@@ -55,7 +55,7 @@ export const AudioProvider = ({ children }) => {
   }, [])
 
   const attemptAutoplay = async () => {
-    if (audioRef.current && isLoaded) {
+    if (audioRef.current) {
       try {
         await audioRef.current.play()
         console.log('Background music started automatically')
