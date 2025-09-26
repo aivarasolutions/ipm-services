@@ -79,6 +79,21 @@ const AirbnbSection = () => {
       id: "1360603145357884662",
       href: "https://www.airbnb.com/rooms/1360603145357884662?guests=1&adults=1&s=66&source=embed_widget",
       description: "Treehouse in Playa del Carmen · ★5.0 · 1 bedroom · 3 beds · 1 bath"
+    },
+    {
+      id: "979746807451190456",
+      href: "https://www.airbnb.com/rooms/979746807451190456?guests=1&adults=1&s=66&source=embed_widget",
+      description: "Condo in Playa del Carmen · ★5.0 · 2 bedrooms · 3 beds · 3 baths"
+    },
+    {
+      id: "748643168197644004",
+      href: "https://www.airbnb.com/rooms/748643168197644004?guests=1&adults=1&s=66&source=embed_widget",
+      description: "Condo in Playa del Carmen · ★5.0 · 2 bedrooms · 3 beds · 2 baths"
+    },
+    {
+      id: "940819925405007925",
+      href: "https://www.airbnb.com/rooms/940819925405007925?guests=1&adults=1&s=66&source=embed_widget",
+      description: "Villa in Playa del Carmen · ★4.67 · 2 bedrooms · 3 beds · 2 baths"
     }
   ];
 
