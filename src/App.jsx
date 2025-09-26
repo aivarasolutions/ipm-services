@@ -17,32 +17,35 @@ import LocationGuide from './pages/LocationGuide'
 // Import components
 import Header from './components/Header'
 import Footer from './components/Footer'
+import { AudioProvider } from './contexts/AudioContext'
 
 function App() {
   // Use Vite's BASE_URL for router basename to support GitHub Pages subpath deployment
   const basename = import.meta.env.BASE_URL;
 
   return (
-    <Router basename={basename}>
-      <div className="min-h-screen bg-white">
-        <Header />
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/properties" element={<Properties />} />
-            <Route path="/properties/:slug" element={<PropertyDetail />} />
-            <Route path="/real-estate" element={<RealEstate />} />
-            <Route path="/real-estate/:slug" element={<RealEstateDetail />} />
-            <Route path="/location-guide" element={<LocationGuide />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/owner-portal" element={<OwnerPortal />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+    <AudioProvider>
+      <Router basename={basename}>
+        <div className="min-h-screen bg-white">
+          <Header />
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/properties" element={<Properties />} />
+              <Route path="/properties/:slug" element={<PropertyDetail />} />
+              <Route path="/real-estate" element={<RealEstate />} />
+              <Route path="/real-estate/:slug" element={<RealEstateDetail />} />
+              <Route path="/location-guide" element={<LocationGuide />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/owner-portal" element={<OwnerPortal />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </AudioProvider>
   )
 }
 
