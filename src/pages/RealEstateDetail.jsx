@@ -160,22 +160,26 @@ const RealEstateDetail = () => {
                       <li key={index}>• <strong>{highlight.split(' - ')[0]}</strong>{highlight.includes(' - ') ? ` - ${highlight.split(' - ')[1]}` : ''}</li>
                     ))}
                   </ul>
-                  {listing.specialContent.downloadLink && (
-                    <div style={{marginTop: '15px'}}>
-                      <a 
-                        href={listing.specialContent.downloadLink.url} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="btn primary"
-                        style={{
-                          display: 'inline-block',
-                          textDecoration: 'none',
-                          padding: '10px 20px',
-                          fontSize: '0.9rem'
-                        }}
-                      >
-                        {listing.specialContent.downloadLink.text}
-                      </a>
+                  {listing.specialContent.downloadLinks && listing.specialContent.downloadLinks.length > 0 && (
+                    <div style={{marginTop: '15px', display: 'flex', flexDirection: 'column', gap: '10px'}}>
+                      {listing.specialContent.downloadLinks.map((downloadLink, index) => (
+                        <a 
+                          key={index}
+                          href={downloadLink.url} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="btn primary"
+                          style={{
+                            display: 'inline-block',
+                            textDecoration: 'none',
+                            padding: '10px 20px',
+                            fontSize: '0.9rem',
+                            width: 'fit-content'
+                          }}
+                        >
+                          {downloadLink.text}
+                        </a>
+                      ))}
                     </div>
                   )}
                 </div>

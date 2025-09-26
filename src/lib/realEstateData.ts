@@ -33,10 +33,10 @@ export type RealEstateListing = {
   specialContent?: {
     title: string;
     highlights: string[];
-    downloadLink?: {
+    downloadLinks?: Array<{
       url: string;
       text: string;
-    };
+    }>;
   };
 };
 
@@ -83,10 +83,10 @@ export function getRealEstateListings(): RealEstateListing[] {
           "Delivery 2026 - Perfect timing for rental season",
           "Guaranteed rental program available upon completion"
         ],
-        downloadLink: {
+        downloadLinks: [{
           url: "/paulus-price-list.pdf",
           text: "📄 Download Full Price List"
-        }
+        }]
       }
     },
     {
@@ -133,10 +133,10 @@ export function getRealEstateListings(): RealEstateListing[] {
           "Rooftop pool and modern amenities for maximum rental appeal",
           "Guaranteed rental management program available"
         ],
-        downloadLink: {
+        downloadLinks: [{
           url: "/joshua-price-list.pdf",
           text: "📄 Download Full Price List"
-        }
+        }]
       }
     },
     {
@@ -144,7 +144,7 @@ export function getRealEstateListings(): RealEstateListing[] {
       slug: "ukana-condos",
       title: "UKANA",
       location: "Playa del Carmen, Mexico",
-      price: 184699,
+      price: 185000,
       expectedROI: 13,
       status: "Pre-Sale",
       image: "/ukana-main.jpg",
@@ -154,7 +154,7 @@ export function getRealEstateListings(): RealEstateListing[] {
       details: {
         bedrooms: 2,
         bathrooms: 2,
-        sqft: 1206,
+        sqft: 764,
         amenities: ["Elevator", "Rooftop Pool", "Jacuzzi", "Gym", "Solarium", "Lobby", "Security"]
       },
       investment: {
@@ -180,18 +180,24 @@ export function getRealEstateListings(): RealEstateListing[] {
       specialContent: {
         title: "🌟 Exclusive Luxury Development",
         highlights: [
-          "Starting at $184,699 USD - exceptional value for luxury living",
-          "Only 33 exclusive units ranging from 71-198 square meters",
+          "Starting at $185,000 USD - exceptional value for luxury living",
+          "Only 33 exclusive units ranging from 71-142 square meters",
           "1-3 bedroom configurations to suit every lifestyle",
           "Premium amenities: Rooftop pool, jacuzzi, gym, and solarium",
           "Prime Playa del Carmen location with easy access to beaches",
           "Modern elevator and luxury lobby entrance",
           "Perfect for investment or personal retreat"
         ],
-        downloadLink: {
-          url: "/ukana-brochure.pdf",
-          text: "📄 Download Complete Brochure"
-        }
+        downloadLinks: [
+          {
+            url: "/ukana-brochure.pdf",
+            text: "📄 Download Complete Brochure"
+          },
+          {
+            url: "/ukana-pricing-availability.png",
+            text: "📊 Download Pricing & Availability"
+          }
+        ]
       }
     }
   ];
