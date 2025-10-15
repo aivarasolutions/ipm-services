@@ -22,6 +22,8 @@ This is a React-based Single Page Application (SPA) for International Property M
 - Owner portal access
 - SEO optimized with structured data
 - Service pages for property management offerings
+- Integrated chatbot widget for instant visitor assistance
+- Background music system with user controls
 
 ## Deployment Configuration
 - **Target**: Autoscale (stateless web application)
@@ -29,7 +31,13 @@ This is a React-based Single Page Application (SPA) for International Property M
 - **Start Command**: npm run preview
 - **Production Port**: 5000 with 0.0.0.0 host binding
 
-## Recent Changes (2025-09-18)
+## Recent Changes
+### 2025-10-15
+- Integrated IPM chatbot widget (https://ipm-chatbot.replit.app)
+- Updated homepage hero image with improved title positioning
+- Chatbot configured with light theme, English language, bottom-right position
+
+### 2025-09-18
 - Configured Vite for Replit environment compatibility
 - Set up development workflow on port 5000
 - Resolved React 19 dependency conflicts with --legacy-peer-deps

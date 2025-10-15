@@ -70,5 +70,16 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- IPM Chatbot Widget -->
+    <script src="https://ipm-chatbot.replit.app/widget.js"></script>
+    <script>
+      IPMChatbot.init({
+        apiUrl: 'https://ipm-chatbot.replit.app/api',
+        theme: 'light',    // 'light' or 'dark'
+        language: 'en',    // 'en' or 'es'
+        position: 'bottom-right' // 'bottom-right', 'bottom-left', 'top-right', 'top-left'
+      });
+    </script>
   </body>
 </html>
