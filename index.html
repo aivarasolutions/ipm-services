@@ -71,16 +71,15 @@
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
     
-    <!-- IPM Chatbot Widget -->
-    <script src="https://ipm-chatbot.replit.app/widget.js" defer onload="
-      if (typeof IPMChatbot !== 'undefined') {
-        IPMChatbot.init({
-          apiUrl: 'https://ipm-chatbot.replit.app/api',
-          theme: 'light',
-          language: 'en',
-          position: 'bottom-right'
-        });
-      }
-    "></script>
+    <!-- IPM Chatbot Widget - Add before </body> -->
+    <script src="https://ipm-chatbot.replit.app/widget.js"></script>
+    <script>
+      IPMChatbot.init({
+        apiUrl: 'https://ipm-chatbot.replit.app/api',
+        theme: 'light',
+        language: 'en',
+        position: 'bottom-right'
+      });
+    </script>
   </body>
 </html>
