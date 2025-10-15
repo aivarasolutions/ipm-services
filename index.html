@@ -71,15 +71,11 @@
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
     
-    <!-- IPM Chatbot Widget - Add before </body> -->
-    <script src="https://ipm-chatbot.replit.app/widget.js"></script>
-    <script>
-      IPMChatbot.init({
-        apiUrl: 'https://ipm-chatbot.replit.app/api',
-        theme: 'light',
-        language: 'en',
-        position: 'bottom-right'
-      });
-    </script>
+    <!-- Alternative: iFrame Embed (Works Now!) -->
+    <iframe 
+      src="https://ipm-chatbot.replit.app" 
+      style="position: fixed; bottom: 20px; right: 20px; width: 400px; height: 600px; border: 1px solid #e5e7eb; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); z-index: 9999;"
+      title="IPM Property Chatbot"
+    ></iframe>
   </body>
 </html>
