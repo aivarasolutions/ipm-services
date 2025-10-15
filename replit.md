@@ -22,7 +22,6 @@ This is a React-based Single Page Application (SPA) for International Property M
 - Owner portal access
 - SEO optimized with structured data
 - Service pages for property management offerings
-- Integrated chatbot widget for instant visitor assistance
 - Background music system with user controls
 
 ## Deployment Configuration
@@ -33,11 +32,9 @@ This is a React-based Single Page Application (SPA) for International Property M
 
 ## Recent Changes
 ### 2025-10-15
-- Integrated IPM chatbot button (https://ipm-chatbot.replit.app)
+- **REMOVED chatbot integration** - External chatbot service (https://ipm-chatbot.replit.app/widget.js) returns HTTP 500 error and is unavailable
 - Updated homepage hero image with improved title positioning
-- Chatbot accessible via blue circular button in bottom-right corner
-- Opens chatbot in popup window (450x700px) when clicked
-- Resolved iframe transparency issues by using popup approach
+- Production build created without broken chatbot code
 
 ### 2025-09-18
 - Configured Vite for Replit environment compatibility
