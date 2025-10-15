@@ -72,11 +72,17 @@
   <body>
     <div id="root"></div>
     
-    <!-- Alternative: iFrame Embed (Works Now!) -->
-    <iframe 
-      src="https://ipm-chatbot.replit.app" 
-      style="position: fixed; bottom: 20px; right: 20px; width: 400px; height: 600px; border: 1px solid #e5e7eb; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); z-index: 9999;"
-      title="IPM Property Chatbot"
-    ></iframe>
+    <!-- IPM Chatbot Button -->
+    <button 
+      onclick="window.open('https://ipm-chatbot.replit.app', 'IPM Chatbot', 'width=450,height=700,scrollbars=yes,resizable=yes')"
+      style="position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(30, 64, 175, 0.4); display: flex; align-items: center; justify-content: center; z-index: 9999; transition: transform 0.2s, box-shadow 0.2s;"
+      onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 20px rgba(30, 64, 175, 0.5)';"
+      onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 12px rgba(30, 64, 175, 0.4)';"
+      title="Chat with IPM Assistant"
+    >
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+    </button>
   </body>
 </html>

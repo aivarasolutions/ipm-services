@@ -33,10 +33,11 @@ This is a React-based Single Page Application (SPA) for International Property M
 
 ## Recent Changes
 ### 2025-10-15
-- Integrated IPM chatbot via iframe embed (https://ipm-chatbot.replit.app)
+- Integrated IPM chatbot button (https://ipm-chatbot.replit.app)
 - Updated homepage hero image with improved title positioning
-- Chatbot displays as fixed 400x600px interface in bottom-right corner
-- Shows sample questions for international property investment inquiries
+- Chatbot accessible via blue circular button in bottom-right corner
+- Opens chatbot in popup window (450x700px) when clicked
+- Resolved iframe transparency issues by using popup approach
 
 ### 2025-09-18
 - Configured Vite for Replit environment compatibility
