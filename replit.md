@@ -35,7 +35,8 @@ This is a React-based Single Page Application (SPA) for International Property M
 ### 2025-10-22
 - **Successfully integrated IPM chatbot** - Blue chat bubble in bottom-right corner
 - Chatbot connects to https://ipm-chatbot.replit.app/api for AI property assistance
-- Popup chat window with property expert branding
+- Fixed text wrapping issues in chatbot CSS (messages now display properly at 85% max-width)
+- Popup chat window with property expert branding and proper message formatting
 - Production build created with working chatbot integration
 
 ### 2025-10-15
