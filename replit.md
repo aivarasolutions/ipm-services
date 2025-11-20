@@ -34,6 +34,12 @@ This is a React-based Single Page Application (SPA) for International Property M
 
 ## Recent Changes
 ### 2025-11-20
+- **Enhanced News page with images and executive summary**
+  - Added professional stock images to all 4 news articles
+  - Created comprehensive executive summary highlighting market impact on vacation rental owners
+  - Executive summary includes 5 key takeaways: oversupply crisis, occupancy collapse, revenue impact, regulatory risk, and professional management importance
+  - Articles now feature side-by-side layout with images on desktop
+  - Bilingual support for executive summary (English/Spanish)
 - **Added bilingual News page** - Market updates on Quintana Roo vacation rental industry
 - English/Spanish language toggle with complete translations for all content
 - Blog-style layout featuring 4 current news articles with summaries

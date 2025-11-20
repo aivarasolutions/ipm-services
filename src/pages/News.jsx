@@ -12,6 +12,17 @@ export default function News() {
       toggleLabel: 'Español',
       readMore: 'Read Full Article',
       published: 'Published',
+      executiveSummary: {
+        title: 'Market Impact on Vacation Rental Owners',
+        content: 'The Quintana Roo vacation rental market is experiencing unprecedented challenges that directly impact property owner revenues. With over 17,275 listings in the Cancun-Riviera Maya corridor, severe oversupply has driven nightly rates down to less than half of competing markets like Puerto Vallarta. Occupancy rates have plummeted to just 26% statewide (down from 29%), with Tulum at a concerning 20.5%. This represents a projected 6% revenue decline from 2024\'s $588 million. Additionally, regulatory uncertainty and competition from the Dominican Republic are creating downward pressure on pricing power. Professional property management is now more critical than ever to maintain occupancy, maximize revenue per available night, ensure regulatory compliance, and differentiate properties in an increasingly crowded marketplace.',
+        keyTakeaways: [
+          'Oversupply Crisis: 17,275 listings driving rates down 50%+ vs. competing markets',
+          'Occupancy Collapse: Average 26% occupancy with Tulum at just 20.5%',
+          'Revenue Impact: 6% projected decline from $588M USD in 2024',
+          'Regulatory Risk: Unregulated properties face zoning and safety compliance issues',
+          'Professional Management Essential: Expert management crucial for maximizing returns'
+        ]
+      },
       articles: [
         {
           title: 'Hotels Report Increased Occupancy but Lower Revenue Due to Price Wars',
@@ -19,6 +30,7 @@ export default function News() {
           date: 'November 9, 2025',
           category: 'Hotel Industry',
           icon: Building2,
+          image: '/news-hotel-competition.jpg',
           summary: 'Small hotels in Playa del Carmen are experiencing a 47% occupancy rate but cannot recover high-season rates. Average prices have plummeted from $160 USD (14 years ago) to just $50 USD today. The destination faces intense competition from the Dominican Republic, while Playa del Carmen struggles with the lowest rates in the region compared to Tulum, Bacalar, and Holbox.',
           keyPoints: [
             'Current average rate: 850 pesos ($50 USD) per night for two people',
@@ -34,6 +46,7 @@ export default function News() {
           date: 'September 7, 2025',
           category: 'Market Analysis',
           icon: TrendingDown,
+          image: '/news-market-trends.jpg',
           summary: 'The Cancun-Riviera Maya corridor has 17,275 active vacation rental listings on Airbnb alone, five times more than Puerto Vallarta and 21 times more than Los Cabos. This oversupply is significantly lowering nightly rates compared to other Mexican beach destinations, with prices running at less than half those of competing markets.',
           keyPoints: [
             'Cancun: $146 USD average per night',
@@ -50,6 +63,7 @@ export default function News() {
           date: 'September 24, 2025',
           category: 'Regulation & Safety',
           icon: AlertTriangle,
+          image: '/news-regulation.jpg',
           summary: 'Hotel occupancy in the Mexican Caribbean continues well below expectations due to multiple factors, including lack of regulation for vacation rentals. Industry leaders warn that unregulated rentals in unsafe areas are prone to serious crimes including child abuse, creating unfair competition while compromising visitor safety.',
           keyPoints: [
             'Vacation rentals need proper zoning and neighbor approval',
@@ -65,6 +79,7 @@ export default function News() {
           date: 'November 10, 2025',
           category: 'Industry Impact',
           icon: DollarSign,
+          image: '/news-low-occupancy.jpg',
           summary: 'The drop in hotel occupancy has also severely impacted vacation rental operators using platforms like Airbnb and VRBO. Quintana Roo averages just 26% occupancy, down from 29% last year. Cancun sits at 28%, Playa del Carmen at 25.4%, and Tulum at just 20.5% - representing a 6% drop that will significantly reduce the $588 million USD generated in 2024.',
           keyPoints: [
             'State average: 26% occupancy (down from 29%)',
@@ -83,6 +98,17 @@ export default function News() {
       toggleLabel: 'English',
       readMore: 'Leer Artículo Completo',
       published: 'Publicado',
+      executiveSummary: {
+        title: 'Impacto del Mercado en Propietarios de Rentas Vacacionales',
+        content: 'El mercado de rentas vacacionales de Quintana Roo está experimentando desafíos sin precedentes que impactan directamente los ingresos de los propietarios. Con más de 17,275 anuncios en el corredor Cancún-Riviera Maya, la grave sobreoferta ha reducido las tarifas nocturnas a menos de la mitad de mercados competidores como Puerto Vallarta. Las tasas de ocupación han caído a solo 26% a nivel estatal (bajando del 29%), con Tulum en un preocupante 20.5%. Esto representa una caída proyectada del 6% en ingresos desde los $588 millones de 2024. Además, la incertidumbre regulatoria y la competencia de República Dominicana están creando presión a la baja en el poder de fijación de precios. La gestión profesional de propiedades es ahora más crítica que nunca para mantener la ocupación, maximizar ingresos por noche disponible, asegurar el cumplimiento regulatorio y diferenciar propiedades en un mercado cada vez más saturado.',
+        keyTakeaways: [
+          'Crisis de Sobreoferta: 17,275 anuncios reduciendo tarifas 50%+ vs. mercados competidores',
+          'Colapso de Ocupación: Promedio 26% de ocupación con Tulum en solo 20.5%',
+          'Impacto en Ingresos: Caída proyectada del 6% desde $588M USD en 2024',
+          'Riesgo Regulatorio: Propiedades no reguladas enfrentan problemas de zonificación y seguridad',
+          'Gestión Profesional Esencial: Administración experta crucial para maximizar retornos'
+        ]
+      },
       articles: [
         {
           title: 'Hoteles Reportan Incremento en Ocupación pero Menores Ingresos por Guerra de Precios',
@@ -90,6 +116,7 @@ export default function News() {
           date: '9 de noviembre, 2025',
           category: 'Industria Hotelera',
           icon: Building2,
+          image: '/news-hotel-competition.jpg',
           summary: 'Los pequeños hoteles de Playa del Carmen registran un 47% de ocupación pero no pueden recuperar las tarifas de temporada alta. Los precios promedio han caído de $160 dólares (hace 14 años) a solo $50 dólares hoy. El destino enfrenta intensa competencia de República Dominicana, mientras Playa del Carmen tiene las tarifas más bajas de la región comparado con Tulum, Bacalar y Holbox.',
           keyPoints: [
             'Tarifa promedio actual: 850 pesos ($50 USD) por noche para dos personas',
@@ -105,6 +132,7 @@ export default function News() {
           date: '7 de septiembre, 2025',
           category: 'Análisis de Mercado',
           icon: TrendingDown,
+          image: '/news-market-trends.jpg',
           summary: 'El corredor Cancún-Riviera Maya cuenta con 17,275 anuncios activos de rentas vacacionales solo en Airbnb, cinco veces más que Puerto Vallarta y 21 veces más que Los Cabos. Esta sobreoferta está reduciendo significativamente las tarifas nocturnas en comparación con otros destinos de playa mexicanos, con precios a menos de la mitad de mercados competidores.',
           keyPoints: [
             'Cancún: $146 USD promedio por noche',
@@ -121,6 +149,7 @@ export default function News() {
           date: '24 de septiembre, 2025',
           category: 'Regulación y Seguridad',
           icon: AlertTriangle,
+          image: '/news-regulation.jpg',
           summary: 'La ocupación hotelera en el Caribe Mexicano continúa muy por debajo de las expectativas debido a múltiples factores, incluyendo la falta de regulación de rentas vacacionales. Líderes de la industria advierten que las rentas no reguladas en áreas inseguras son propensas a delitos graves incluyendo abuso infantil, creando competencia desleal mientras comprometen la seguridad de visitantes.',
           keyPoints: [
             'Las rentas vacacionales necesitan zonificación adecuada y aprobación vecinal',
@@ -136,6 +165,7 @@ export default function News() {
           date: '10 de noviembre, 2025',
           category: 'Impacto Industrial',
           icon: DollarSign,
+          image: '/news-low-occupancy.jpg',
           summary: 'La caída en la ocupación hotelera también ha impactado severamente a operadores de rentas vacacionales usando plataformas como Airbnb y VRBO. Quintana Roo promedia solo 26% de ocupación, bajando del 29% del año pasado. Cancún tiene 28%, Playa del Carmen 25.4%, y Tulum apenas 20.5% - representando una caída del 6% que reducirá significativamente los $588 millones USD generados en 2024.',
           keyPoints: [
             'Promedio estatal: 26% de ocupación (bajó del 29%)',
@@ -187,6 +217,34 @@ export default function News() {
           </motion.button>
         </div>
 
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl shadow-xl p-8 mb-12 border-l-4 border-amber-500"
+        >
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
+            {currentContent.executiveSummary.title}
+          </h2>
+          <p className="text-lg text-slate-700 leading-relaxed mb-6">
+            {currentContent.executiveSummary.content}
+          </p>
+          <div className="bg-white/70 rounded-lg p-6">
+            <h3 className="font-semibold text-slate-900 mb-4 flex items-center gap-2">
+              <span className="text-amber-600">📊</span>
+              {language === 'en' ? 'Key Takeaways:' : 'Puntos Clave:'}
+            </h3>
+            <ul className="space-y-3">
+              {currentContent.executiveSummary.keyTakeaways.map((takeaway, idx) => (
+                <li key={idx} className="flex items-start gap-3">
+                  <span className="text-amber-600 font-bold mt-1">•</span>
+                  <span className="text-slate-800 font-medium">{takeaway}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </motion.div>
+
         <div className="grid gap-8">
           {currentContent.articles.map((article, index) => {
             const Icon = article.icon;
@@ -195,35 +253,43 @@ export default function News() {
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.1 + 0.3 }}
                 className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow"
               >
-                <div className="p-8">
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="p-3 bg-blue-100 rounded-lg">
-                      <Icon className="w-8 h-8 text-blue-600" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex flex-wrap items-center gap-4 mb-3">
-                        <span className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium">
-                          {article.category}
-                        </span>
-                        <div className="flex items-center gap-2 text-slate-500 text-sm">
-                          <Calendar className="w-4 h-4" />
-                          <span>{currentContent.published}: {article.date}</span>
-                        </div>
-                        <span className="text-slate-400 text-sm">•</span>
-                        <span className="text-slate-500 text-sm font-medium">{article.source}</span>
+                <div className="md:flex">
+                  <div className="md:w-1/3 h-64 md:h-auto relative overflow-hidden">
+                    <img 
+                      src={article.image} 
+                      alt={article.title}
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <div className="p-3 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg">
+                        <Icon className="w-6 h-6 text-blue-600" />
                       </div>
-                      <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
-                        {article.title}
-                      </h2>
                     </div>
                   </div>
+                  
+                  <div className="md:w-2/3 p-8">
+                    <div className="flex flex-wrap items-center gap-4 mb-4">
+                      <span className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm font-medium">
+                        {article.category}
+                      </span>
+                      <div className="flex items-center gap-2 text-slate-500 text-sm">
+                        <Calendar className="w-4 h-4" />
+                        <span>{currentContent.published}: {article.date}</span>
+                      </div>
+                      <span className="text-slate-400 text-sm">•</span>
+                      <span className="text-slate-500 text-sm font-medium">{article.source}</span>
+                    </div>
+                    
+                    <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
+                      {article.title}
+                    </h2>
 
-                  <p className="text-lg text-slate-600 leading-relaxed mb-6">
-                    {article.summary}
-                  </p>
+                    <p className="text-lg text-slate-600 leading-relaxed mb-6">
+                      {article.summary}
+                    </p>
 
                   <div className="bg-slate-50 rounded-lg p-6 mb-6">
                     <h3 className="font-semibold text-slate-900 mb-3">
@@ -248,6 +314,7 @@ export default function News() {
                     {currentContent.readMore}
                     <ExternalLink className="w-4 h-4" />
                   </a>
+                  </div>
                 </div>
               </motion.article>
             );
