@@ -14,6 +14,7 @@ import OwnerPortal from './pages/OwnerPortal'
 import RealEstate from './pages/RealEstate'
 import RealEstateDetail from './pages/RealEstateDetail'
 import LocationGuide from './pages/LocationGuide'
+import News from './pages/News'
 
 // Import components
 import Header from './components/Header'
@@ -38,6 +39,7 @@ function App() {
               <Route path="/properties/:slug" element={<PropertyDetail />} />
               <Route path="/real-estate" element={<RealEstate />} />
               <Route path="/real-estate/:slug" element={<RealEstateDetail />} />
+              <Route path="/news" element={<News />} />
               <Route path="/location-guide" element={<LocationGuide />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/owner-portal" element={<OwnerPortal />} />
