@@ -39,6 +39,7 @@ This is a React-based Single Page Application (SPA) for International Property M
 - Blog-style layout featuring 4 current news articles with summaries
 - Links to source articles from Newsday Caribe, El Economista, La Jornada, and Caribe Peninsular
 - News tab added to navigation with indigo color scheme
+- **Fixed React 19 compatibility** - Upgraded react-day-picker from 8.10.1 to 9.4.5 for React 19 support
 
 ### 2025-10-22
 - **Successfully integrated IPM chatbot** - Blue chat bubble in bottom-right corner
