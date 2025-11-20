@@ -24,6 +24,7 @@ This is a React-based Single Page Application (SPA) for International Property M
 - Service pages for property management offerings
 - Background music system with user controls
 - AI-powered chatbot for instant property assistance
+- Bilingual News page (English/Spanish) with vacation rental market updates
 
 ## Deployment Configuration
 - **Target**: Autoscale (stateless web application)
@@ -32,6 +33,13 @@ This is a React-based Single Page Application (SPA) for International Property M
 - **Production Port**: 5000 with 0.0.0.0 host binding
 
 ## Recent Changes
+### 2025-11-20
+- **Added bilingual News page** - Market updates on Quintana Roo vacation rental industry
+- English/Spanish language toggle with complete translations for all content
+- Blog-style layout featuring 4 current news articles with summaries
+- Links to source articles from Newsday Caribe, El Economista, La Jornada, and Caribe Peninsular
+- News tab added to navigation with indigo color scheme
+
 ### 2025-10-22
 - **Successfully integrated IPM chatbot** - Blue chat bubble in bottom-right corner
 - Chatbot connects to https://ipm-chatbot.replit.app/api for AI property assistance
