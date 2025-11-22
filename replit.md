@@ -25,6 +25,7 @@ This is a React-based Single Page Application (SPA) for International Property M
 - Background music system with user controls
 - AI-powered chatbot for instant property assistance
 - Bilingual News page (English/Spanish) with vacation rental market updates
+- Comprehensive Insights section with 5 educational subpages on Airbnb hosting strategies
 
 ## Deployment Configuration
 - **Target**: Autoscale (stateless web application)
@@ -33,6 +34,20 @@ This is a React-based Single Page Application (SPA) for International Property M
 - **Production Port**: 5000 with 0.0.0.0 host binding
 
 ## Recent Changes
+### 2025-11-22
+- **Added comprehensive Insights section** - Educational content hub for short-term rental hosts
+  - Created main Insights hub page with overview and 5 topic cards
+  - Built 5 detailed subpages with professional layouts:
+    1. Airbnb Fees Explained - Fee model comparisons and host impact analysis
+    2. API Connections & Hidden Costs - PMS integration cost breakdown
+    3. How to Avoid the 15.5% Fee - Step-by-step guide to reduce Airbnb fees
+    4. Check-In System Design (IPM Method) - API-free automation workflows
+    5. IPM Video Library - Placeholder sections for future video content
+  - Added Insights dropdown menu in header (desktop hover, mobile expandable)
+  - All pages include professional CTAs and "Schedule a Call" buttons
+  - Responsive design with color-coded sections and modern UI components
+  - Integrated with existing React Router navigation structure
+
 ### 2025-11-20
 - **Enhanced News page with images and executive summary**
   - Added professional stock images to all 4 news articles

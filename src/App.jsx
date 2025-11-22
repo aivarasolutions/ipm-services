@@ -15,6 +15,12 @@ import RealEstate from './pages/RealEstate'
 import RealEstateDetail from './pages/RealEstateDetail'
 import LocationGuide from './pages/LocationGuide'
 import News from './pages/News'
+import Insights from './pages/Insights'
+import AirbnbFees from './pages/insights/AirbnbFees'
+import ApiCosts from './pages/insights/ApiCosts'
+import AvoidFees from './pages/insights/AvoidFees'
+import CheckinSystem from './pages/insights/CheckinSystem'
+import VideoLibrary from './pages/insights/VideoLibrary'
 
 // Import components
 import Header from './components/Header'
@@ -39,6 +45,12 @@ function App() {
               <Route path="/properties/:slug" element={<PropertyDetail />} />
               <Route path="/real-estate" element={<RealEstate />} />
               <Route path="/real-estate/:slug" element={<RealEstateDetail />} />
+              <Route path="/insights" element={<Insights />} />
+              <Route path="/insights/airbnb-fees" element={<AirbnbFees />} />
+              <Route path="/insights/api-costs" element={<ApiCosts />} />
+              <Route path="/insights/avoid-fees" element={<AvoidFees />} />
+              <Route path="/insights/checkin-system" element={<CheckinSystem />} />
+              <Route path="/insights/video-library" element={<VideoLibrary />} />
               <Route path="/news" element={<News />} />
               <Route path="/location-guide" element={<LocationGuide />} />
               <Route path="/contact" element={<Contact />} />

@@ -1,0 +1,33 @@
+I am building a new “Insights” section for the IPM – International Property Management website (https://ipm.services).
+I have a PDF that contains the full content for the main Insights page and 5 subpages:
+1. Airbnb Fees Explained
+2. API Connections & Hidden Costs
+3. How to Avoid the 15.5% Fee
+4. Check-In System Design (IPM Method)
+5. IPM Video Library
+Your task:
+* Create clean, responsive HTML + CSS (and minimal JS only if needed) for:
+    * One parent page: Insights
+    * Five subpages listed above.
+* The design should look professional, modern, and consistent with an international property management brand (IPM).
+* Include a top navigation where Insights is a main tab, and the 5 subpages are accessible as sub-links or section links.
+* Each subpage should have:
+    * A clear H1 title
+    * Section headings that match the structure in the PDF
+    * Body text pulled accurately from the PDF content (no rewriting needed, just format it well)
+    * A CTA section at the bottom that says: “Book a Consultation with IPM Optimize your property, reduce costs, and increase profits. Click below to get started. [Schedule a Call]”
+    * Make the Schedule a Call button a placeholder link (e.g. href="#") so I can replace it later.
+* On the IPM Video Library page, create placeholder sections and cards where I can later embed videos (just use dummy thumbnails and titles for now).
+Technical requirements:
+* Use semantic HTML (section, header, main, footer, etc.).
+* Use clean, readable CSS (prefer a single CSS file).
+* Make sure the layout is mobile-friendly (responsive).
+* Do NOT use any frameworks (no Bootstrap, Tailwind, etc.) – just plain HTML + CSS.
+* Structure the files so I can easily integrate them into my existing website or adapt them into my CMS.
+
+The PDF with the content is in another attachment with this named “INSIGHTS - IPM Website Layout.pdf” 
+Here is additional context from a ChatGPT conversation that explains the concepts and structure I want: https://chatgpt.com/share/692133f5-1cec-8005-b4f7-609feb21e694 
+Please:
+1. Parse the content from the PDF and conversation.
+2. Build the full multi-page “Insights” section.
+3. Show me the full HTML + CSS code, clearly separated.

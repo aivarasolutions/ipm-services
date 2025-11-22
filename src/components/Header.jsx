@@ -9,11 +9,27 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { isPlaying, volume, toggleMusic, changeVolume } = useAudio()
 
+  const [showInsightsDropdown, setShowInsightsDropdown] = useState(false)
+
   const navItems = [
     { name: 'Home', path: '/', color: 'bg-green-500 text-white' },
     { name: 'Services', path: '/services', color: 'bg-blue-600 text-white' },
     { name: 'Properties', path: '/properties', color: 'bg-orange-500 text-white' },
     { name: 'Real Estate', path: '/real-estate', color: 'bg-red-600 text-white' },
+    { 
+      name: 'Insights', 
+      path: '/insights', 
+      color: 'bg-violet-600 text-white',
+      hasDropdown: true,
+      dropdownItems: [
+        { name: 'Insights Hub', path: '/insights' },
+        { name: 'Airbnb Fees Explained', path: '/insights/airbnb-fees' },
+        { name: 'API Connections & Hidden Costs', path: '/insights/api-costs' },
+        { name: 'How to Avoid the 15.5% Fee', path: '/insights/avoid-fees' },
+        { name: 'Check-In System Design', path: '/insights/checkin-system' },
+        { name: 'IPM Video Library', path: '/insights/video-library' }
+      ]
+    },
     { name: 'News', path: '/news', color: 'bg-indigo-600 text-white' },
     { name: 'Relocation Guide', path: '/location-guide', color: 'bg-teal-600 text-white' },
     { name: 'Contact', path: '/contact', color: 'bg-gray-600 text-white' },
@@ -35,20 +51,59 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-2">
-            {navItems.map((item) => (
-              <Link key={item.name} to={item.path}>
-                <Button
-                  variant="ghost"
-                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                    location.pathname === item.path
-                      ? item.color
-                      : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
-                  }`}
-                >
-                  {item.name}
-                </Button>
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              if (item.hasDropdown) {
+                const isActive = location.pathname.startsWith(item.path)
+                return (
+                  <div 
+                    key={item.name} 
+                    className="relative"
+                    onMouseEnter={() => setShowInsightsDropdown(true)}
+                    onMouseLeave={() => setShowInsightsDropdown(false)}
+                  >
+                    <Link to={item.path}>
+                      <Button
+                        variant="ghost"
+                        className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                          isActive
+                            ? item.color
+                            : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+                        }`}
+                      >
+                        {item.name} ▾
+                      </Button>
+                    </Link>
+                    {showInsightsDropdown && (
+                      <div className="absolute left-0 mt-2 w-64 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
+                        {item.dropdownItems.map((subItem) => (
+                          <Link 
+                            key={subItem.path} 
+                            to={subItem.path}
+                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-violet-50 hover:text-violet-700 transition-colors"
+                          >
+                            {subItem.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )
+              }
+              return (
+                <Link key={item.name} to={item.path}>
+                  <Button
+                    variant="ghost"
+                    className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                      location.pathname === item.path
+                        ? item.color
+                        : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+                    }`}
+                  >
+                    {item.name}
+                  </Button>
+                </Link>
+              )
+            })}
           </nav>
 
           {/* Music Controls & Desktop CTA Button */}
@@ -117,20 +172,58 @@ const Header = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 shadow-lg">
           <div className="px-4 pt-2 pb-3 space-y-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                  location.pathname === item.path
-                    ? 'bg-blue-600 text-white'
-                    : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const isActive = item.hasDropdown ? location.pathname.startsWith(item.path) : location.pathname === item.path
+              
+              if (item.hasDropdown) {
+                return (
+                  <div key={item.name} className="space-y-1">
+                    <Link
+                      to={item.path}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                        isActive
+                          ? 'bg-violet-600 text-white'
+                          : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+                      }`}
+                    >
+                      {item.name}
+                    </Link>
+                    <div className="pl-4 space-y-1">
+                      {item.dropdownItems.slice(1).map((subItem) => (
+                        <Link
+                          key={subItem.path}
+                          to={subItem.path}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className={`block px-3 py-2 rounded-md text-sm transition-colors ${
+                            location.pathname === subItem.path
+                              ? 'bg-violet-100 text-violet-700'
+                              : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                          }`}
+                        >
+                          {subItem.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )
+              }
+              
+              return (
+                <Link
+                  key={item.name}
+                  to={item.path}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                    isActive
+                      ? 'bg-blue-600 text-white'
+                      : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              )
+            })}
             {/* Mobile Music Controls */}
             <div className="pt-4 border-t border-gray-100">
               <div className="flex items-center justify-center space-x-4 py-3">
