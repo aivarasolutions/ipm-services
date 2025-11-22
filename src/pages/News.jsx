@@ -1,9 +1,9 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Globe, ExternalLink, Calendar, TrendingDown, AlertTriangle, Building2, DollarSign } from 'lucide-react';
+import { ExternalLink, Calendar, TrendingDown, AlertTriangle, Building2, DollarSign } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function News() {
-  const [language, setLanguage] = useState('en');
+  const { language } = useLanguage();
 
   const content = {
     en: {
@@ -185,36 +185,22 @@ export default function News() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="flex justify-between items-center mb-12">
-          <div>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-5xl font-bold text-slate-900 mb-4"
-            >
-              {currentContent.title}
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-xl text-slate-600"
-            >
-              {currentContent.subtitle}
-            </motion.p>
-          </div>
-
-          <motion.button
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setLanguage(language === 'en' ? 'es' : 'en')}
-            className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-lg"
+        <div className="mb-12">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-5xl font-bold text-slate-900 mb-4"
           >
-            <Globe className="w-5 h-5" />
-            {currentContent.toggleLabel}
-          </motion.button>
+            {currentContent.title}
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-xl text-slate-600"
+          >
+            {currentContent.subtitle}
+          </motion.p>
         </div>
 
         <motion.div

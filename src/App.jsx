@@ -26,14 +26,16 @@ import VideoLibrary from './pages/insights/VideoLibrary'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { AudioProvider } from './contexts/AudioContext'
+import { LanguageProvider } from './contexts/LanguageContext'
 
 function App() {
   // Use Vite's BASE_URL for router basename to support GitHub Pages subpath deployment
   const basename = import.meta.env.BASE_URL;
 
   return (
-    <AudioProvider>
-      <Router basename={basename}>
+    <LanguageProvider>
+      <AudioProvider>
+        <Router basename={basename}>
         <div className="min-h-screen bg-white">
           <Header />
           <main>
@@ -61,6 +63,7 @@ function App() {
         </div>
       </Router>
     </AudioProvider>
+    </LanguageProvider>
   )
 }
 

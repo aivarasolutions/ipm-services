@@ -1,13 +1,16 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
-import { Menu, X, Play, Pause, Volume2, VolumeX } from 'lucide-react'
+import { Menu, X, Play, Pause, Volume2, VolumeX, Globe } from 'lucide-react'
 import { useAudio } from '../contexts/AudioContext'
+import { useLanguage } from '../contexts/LanguageContext'
 
 const Header = () => {
   const location = useLocation()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { isPlaying, volume, toggleMusic, changeVolume } = useAudio()
+  const { language, toggleLanguage } = useLanguage()
+  const [showLanguageMenu, setShowLanguageMenu] = useState(false)
 
   const [showInsightsDropdown, setShowInsightsDropdown] = useState(false)
 
@@ -108,6 +111,41 @@ const Header = () => {
 
           {/* Music Controls & Desktop CTA Button */}
           <div className="hidden md:flex items-center space-x-4">
+            {/* Language Selector */}
+            <div className="relative">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowLanguageMenu(!showLanguageMenu)}
+                className="p-2 hover:bg-gray-100 flex items-center space-x-1 text-gray-700"
+              >
+                <Globe className="w-4 h-4" />
+                <span className="text-xs font-semibold">{language.toUpperCase()}</span>
+              </Button>
+              {showLanguageMenu && (
+                <div className="absolute right-0 mt-1 w-32 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+                  {['en', 'es', 'fr'].map((lang) => (
+                    <button
+                      key={lang}
+                      onClick={() => {
+                        toggleLanguage(lang);
+                        setShowLanguageMenu(false);
+                      }}
+                      className={`block w-full text-left px-4 py-2 text-sm transition-colors ${
+                        language === lang
+                          ? 'bg-blue-100 text-blue-700 font-semibold'
+                          : 'text-gray-700 hover:bg-gray-100'
+                      }`}
+                    >
+                      {lang === 'en' && 'English'}
+                      {lang === 'es' && 'Español'}
+                      {lang === 'fr' && 'Français'}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
             {/* Music Controls */}
             <div className="flex items-center space-x-2 px-3 py-1 bg-gray-50 rounded-lg">
               <Button
@@ -224,6 +262,31 @@ const Header = () => {
                 </Link>
               )
             })}
+            {/* Mobile Language Selector */}
+            <div className="pt-4 border-t border-gray-100 mb-4">
+              <div className="px-3 py-2 text-xs font-semibold text-gray-700 mb-2">Language</div>
+              <div className="flex gap-2 px-3">
+                {['en', 'es', 'fr'].map((lang) => (
+                  <button
+                    key={lang}
+                    onClick={() => {
+                      toggleLanguage(lang);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className={`flex-1 px-3 py-2 text-xs font-medium rounded-md transition-colors ${
+                      language === lang
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    {lang === 'en' && 'EN'}
+                    {lang === 'es' && 'ES'}
+                    {lang === 'fr' && 'FR'}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             {/* Mobile Music Controls */}
             <div className="pt-4 border-t border-gray-100">
               <div className="flex items-center justify-center space-x-4 py-3">
