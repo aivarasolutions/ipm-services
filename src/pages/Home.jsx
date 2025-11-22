@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
+import { useLanguage } from '../contexts/LanguageContext'
 import { 
   Building2, 
   TrendingUp, 
@@ -97,52 +98,118 @@ const AirbnbSection = () => {
 };
 
 const Home = () => {
+  const { language } = useLanguage()
 
-  const stats = [
-    {
-      icon: Building2,
-      number: '30+',
-      label: 'Properties Managed'
+  const translations = {
+    en: {
+      elevating: 'Elevating Property Management',
+      maxROI: 'Maximize your ROI with our comprehensive vacation rental management. We specialize in large family properties and waterfront locations, maintaining 75-85% occupancy rates year-round.',
+      ownerPortal: 'Owner Portal Login',
+      viewProperties: 'View Properties',
+      stats: [
+        { number: '30+', label: 'Properties Managed' },
+        { number: '75-85%', label: 'Average Occupancy' },
+        { number: '10+', label: 'Years Experience' },
+        { number: 'Always', label: '24/7 Support' }
+      ],
+      ourServices: 'Our Services',
+      servicesDesc: 'Comprehensive property management solutions designed to maximize your rental income',
+      services: [
+        {
+          title: 'Multi-Platform Optimization',
+          description: 'List your property on Airbnb, Booking.com, and Expedia to maximize exposure and reach all travelers'
+        },
+        {
+          title: '24/7 Support & Maintenance',
+          description: 'Round-the-clock property care and guest support to ensure seamless experiences'
+        },
+        {
+          title: 'Revenue Optimization',
+          description: 'Maintain 75-85% occupancy rates year-round through strategic pricing and marketing'
+        },
+        {
+          title: 'Monthly Payouts',
+          description: 'Reliable monthly payments with detailed reporting and transparent financial statements'
+        }
+      ]
     },
-    {
-      icon: TrendingUp,
-      number: '75-85%',
-      label: 'Average Occupancy'
+    es: {
+      elevating: 'Elevando la Gestión de Propiedades',
+      maxROI: 'Maximice su ROI con nuestra gestión integral de alquileres vacacionales. Nos especializamos en propiedades familiares grandes y ubicaciones frente al agua, manteniendo tasas de ocupación del 75-85% todo el año.',
+      ownerPortal: 'Acceso al Portal del Propietario',
+      viewProperties: 'Ver Propiedades',
+      stats: [
+        { number: '30+', label: 'Propiedades Gestionadas' },
+        { number: '75-85%', label: 'Ocupación Promedio' },
+        { number: '10+', label: 'Años de Experiencia' },
+        { number: 'Siempre', label: 'Soporte 24/7' }
+      ],
+      ourServices: 'Nuestros Servicios',
+      servicesDesc: 'Soluciones completas de gestión de propiedades diseñadas para maximizar ingresos de alquiler',
+      services: [
+        {
+          title: 'Optimización Multi-Plataforma',
+          description: 'Liste su propiedad en Airbnb, Booking.com y Expedia para maximizar exposición'
+        },
+        {
+          title: 'Soporte y Mantenimiento 24/7',
+          description: 'Cuidado de propiedad y soporte a huéspedes disponible las 24 horas'
+        },
+        {
+          title: 'Optimización de Ingresos',
+          description: 'Mantenga tasas de ocupación del 75-85% todo el año con estrategias de precios'
+        },
+        {
+          title: 'Pagos Mensuales',
+          description: 'Pagos mensuales confiables con reportes detallados y estados financieros transparentes'
+        }
+      ]
     },
-    {
-      icon: Star,
-      number: '10+',
-      label: 'Years Experience'
-    },
-    {
-      icon: Clock,
-      number: 'Always',
-      label: '24/7 Support'
+    fr: {
+      elevating: 'Élever la Gestion des Propriétés',
+      maxROI: 'Maximisez votre ROI avec notre gestion complète des locations de vacances. Nous nous spécialisons dans les grandes propriétés familiales et les emplacements en bord de mer.',
+      ownerPortal: 'Connexion au Portail Propriétaire',
+      viewProperties: 'Voir les Propriétés',
+      stats: [
+        { number: '30+', label: 'Propriétés Gérées' },
+        { number: '75-85%', label: 'Taux d\'Occupation Moyen' },
+        { number: '10+', label: 'Années d\'Expérience' },
+        { number: 'Toujours', label: 'Support 24/7' }
+      ],
+      ourServices: 'Nos Services',
+      servicesDesc: 'Solutions complètes de gestion de propriétés conçues pour maximiser vos revenus de location',
+      services: [
+        {
+          title: 'Optimisation Multi-Plateforme',
+          description: 'Listez votre propriété sur Airbnb, Booking.com et Expedia pour une exposition maximale'
+        },
+        {
+          title: 'Support et Maintenance 24/7',
+          description: 'Soins de propriété et support client disponibles 24 heures sur 24'
+        },
+        {
+          title: 'Optimisation des Revenus',
+          description: 'Maintenez des taux d\'occupation de 75-85% toute l\'année grâce à des stratégies tarifaires'
+        },
+        {
+          title: 'Paiements Mensuels',
+          description: 'Paiements mensuels fiables avec rapports détaillés et états financiers transparents'
+        }
+      ]
     }
-  ]
+  }
 
-  const services = [
-    {
-      icon: BarChart3,
-      title: 'Multi-Platform Optimization',
-      description: 'List your property on Airbnb, Booking.com, and Expedia to maximize exposure and reach all travelers, not just one market'
-    },
-    {
-      icon: Shield,
-      title: '24/7 Support & Maintenance',
-      description: 'Round-the-clock property care and guest support to ensure seamless experiences'
-    },
-    {
-      icon: TrendingUp,
-      title: 'Revenue Optimization',
-      description: 'Maintain 75-85% occupancy rates year-round through strategic pricing and marketing'
-    },
-    {
-      icon: DollarSign,
-      title: 'Monthly Payouts',
-      description: 'Reliable monthly payments with detailed reporting and transparent financial statements'
-    }
-  ]
+  const t = translations[language] || translations.en
+  const stats = t.stats.map((stat, idx) => ({
+    icon: [Building2, TrendingUp, Star, Clock][idx],
+    number: stat.number,
+    label: stat.label
+  }))
+  const services = t.services.map((svc, idx) => ({
+    icon: [BarChart3, Shield, TrendingUp, DollarSign][idx],
+    title: svc.title,
+    description: svc.description
+  }))
 
 
   return (
@@ -161,23 +228,21 @@ const Home = () => {
       <section className="bg-gray-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            Elevating Property Management
+            {t.elevating}
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-            Maximize your ROI with our comprehensive vacation rental management. 
-            We specialize in large family properties and waterfront locations, 
-            maintaining 75-85% occupancy rates year-round.
+            {t.maxROI}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/owner-portal">
               <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg">
                 <Users className="mr-2 h-5 w-5" />
-                Owner Portal Login
+                {t.ownerPortal}
               </Button>
             </Link>
             <Link to="/properties">
               <Button variant="outline" className="border-2 border-gray-300 px-8 py-3 text-lg">
-                View Properties
+                {t.viewProperties}
               </Button>
             </Link>
           </div>
@@ -207,9 +272,9 @@ const Home = () => {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">{t.ourServices}</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Comprehensive property management solutions designed to maximize your rental income
+              {t.servicesDesc}
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

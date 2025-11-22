@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, CardContent } from '../components/ui/card'
 import { Button } from '../components/ui/button'
+import { useLanguage } from '../contexts/LanguageContext'
 import { 
   Building2, 
   TrendingUp, 
@@ -17,6 +18,7 @@ import { Link } from 'react-router-dom'
 import ReviewsSection from '../components/ReviewsSection'
 
 const Services = () => {
+  const { language } = useLanguage()
   const services = [
     {
       icon: <Building2 className="h-12 w-12 text-blue-600" />,

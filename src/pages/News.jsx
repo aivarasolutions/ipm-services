@@ -177,10 +177,95 @@ export default function News() {
           url: 'https://caribepeninsular.mx/operan-debajo-del-30-sufren-rentas-vacacionales-caida-en-ocupacion/'
         }
       ]
+    },
+    fr: {
+      title: 'Actualités du Marché des Locations de Vacances',
+      subtitle: 'Dernières mises à jour sur le marché des locations de vacances et l\'hôtellerie à Quintana Roo',
+      readMore: 'Lire l\'Article Complet',
+      published: 'Publié',
+      executiveSummary: {
+        title: 'Impact du Marché sur les Propriétaires de Locations de Vacances',
+        content: 'Le marché des locations de vacances à Quintana Roo connaît des défis sans précédent qui impactent directement les revenus des propriétaires. Avec plus de 17 275 annonces dans le couloir Cancun-Riviera Maya, une suroffre grave a réduit les tarifs nocturnes à moins de la moitié des marchés concurrents comme Puerto Vallarta. Les taux d\'occupation ont plongé à seulement 26% au niveau de l\'État (en baisse de 29%), avec Tulum à 20,5%. Cela représente une baisse prévue de 6% par rapport aux 588 millions de 2024. De plus, l\'incertitude réglementaire et la concurrence de la République Dominicaine exercent une pression à la baisse. La gestion professionnelle des propriétés est plus critique que jamais pour maintenir l\'occupation, maximiser les revenus et assurer la conformité réglementaire.',
+        keyTakeaways: [
+          'Crise de Suroffre: 17 275 annonces réduisant les tarifs de 50%+ vs marchés concurrents',
+          'Effondrement de l\'Occupation: Occupation moyenne 26% avec Tulum à 20,5%',
+          'Impact sur les Revenus: Baisse prévue de 6% par rapport à 588M USD en 2024',
+          'Risque Réglementaire: Les propriétés non réglementées font face à des problèmes de zonage',
+          'Gestion Professionnelle Essentielle: Administration experte cruciale pour maximiser les retours'
+        ]
+      },
+      articles: [
+        {
+          title: 'Les Hôtels Signalent une Occupation Accrue Mais des Revenus Réduits',
+          source: 'Newsday Caribe',
+          date: '9 novembre, 2025',
+          category: 'Industrie Hôtelière',
+          icon: Building2,
+          image: '/news-hotel-competition.jpg',
+          summary: 'Les petits hôtels de Playa del Carmen enregistrent un taux d\'occupation de 47% mais ne peuvent pas récupérer les tarifs de haute saison. Les prix moyens ont chuté de 160 dollars (il y a 14 ans) à seulement 50 dollars aujourd\'hui. La destination fait face à une concurrence intense de la République Dominicaine.',
+          keyPoints: [
+            'Tarif moyen actuel: 850 pesos (50 USD) par nuit pour deux personnes',
+            'Les tarifs de haute saison ont atteint 1 400-1 600 pesos mais n\'ont pas pu être maintenus',
+            'République Dominicaine émergeant comme concurrent caribéen majeur',
+            'Occupation d\'octobre: 47% avec tendance à la hausse'
+          ],
+          url: 'https://newsdaycaribe.com/comunidad/playa/hoteles-de-playa-del-carmen-reportan-incremento-en-ocupacion-hotelera/'
+        },
+        {
+          title: 'Boom des Locations de Vacances Réduit les Tarifs des Caraïbes Mexicaines',
+          source: 'El Economista',
+          date: '7 septembre, 2025',
+          category: 'Analyse de Marché',
+          icon: TrendingDown,
+          image: '/news-market-trends.jpg',
+          summary: 'Le couloir Cancun-Riviera Maya compte 17 275 annonces actives de locations de vacances sur Airbnb seul, cinq fois plus que Puerto Vallarta. Cette suroffre réduit considérablement les tarifs nocturnes comparés à d\'autres destinations balnéaires mexicaines.',
+          keyPoints: [
+            'Cancun: 146 USD en moyenne par nuit',
+            'Playa del Carmen: 141 USD par nuit',
+            'Tulum: 165 USD par nuit',
+            'Puerto Vallarta commande 327 USD (plus du double)',
+            'Los Cabos fait en moyenne 295 USD par nuit'
+          ],
+          url: 'https://www.eleconomista.com.mx/amp/estados/auge-rentas-vacacionales-abaratan-tarifas-caribe-mexicano-20250907-776092.html'
+        },
+        {
+          title: 'Insécurité et Locations Non Réglementées Coulent l\'Occupation Hôtelière',
+          source: 'La Jornada',
+          date: '24 septembre, 2025',
+          category: 'Régulation et Sécurité',
+          icon: AlertTriangle,
+          image: '/news-regulation.jpg',
+          summary: 'L\'occupation hôtelière aux Caraïbes mexicaines continue bien en dessous des attentes en raison de facteurs multiples, notamment le manque de réglementation des locations de vacances. Les leaders de l\'industrie avertissent que les locations non réglementées dans les zones dangereuses sont sujettes aux crimes graves.',
+          keyPoints: [
+            'Les locations de vacances ont besoin de zonage approprié et d\'approbation des voisins',
+            'Préoccupations de sécurité dans les zones de locations non réglementées',
+            'Capacité aérienne en baisse de 2,1% (172 vols en moins)',
+            'Appel à concentrer les locations dans les centres-villes avec infrastructure adéquate'
+          ],
+          url: 'https://www.jornada.com.mx/noticia/2025/09/24/estados/inseguridad-y-rentas-no-reguladas-hunden-ocupacion-hotelera-en-cancun'
+        },
+        {
+          title: 'Locations de Vacances Opérant Sous 30% d\'Occupation',
+          source: 'Caribe Peninsular',
+          date: '10 novembre, 2025',
+          category: 'Impact Industriel',
+          icon: DollarSign,
+          image: '/news-low-occupancy.jpg',
+          summary: 'La baisse de l\'occupation hôtelière a également gravement impacté les opérateurs de locations de vacances utilisant des plateformes comme Airbnb et VRBO. Quintana Roo fait en moyenne 26% d\'occupation, en baisse par rapport à 29% l\'année dernière.',
+          keyPoints: [
+            'Moyenne d\'État: 26% d\'occupation (en baisse de 29%)',
+            'Cancun: 28% d\'occupation',
+            'Playa del Carmen: 25,4% d\'occupation',
+            'Tulum: 20,5% d\'occupation (le plus bas)',
+            'Baisse prévue de 6% des revenus par rapport à 588M USD en 2024'
+          ],
+          url: 'https://caribepeninsular.mx/operan-debajo-del-30-sufren-rentas-vacacionales-caida-en-ocupacion/'
+        }
+      ]
     }
   };
 
-  const currentContent = content[language];
+  const currentContent = content[language] || content.en;
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">

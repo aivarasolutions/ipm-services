@@ -4,6 +4,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
+import { useLanguage } from '../contexts/LanguageContext'
 import { 
   Phone, 
   Mail, 
@@ -15,6 +16,7 @@ import {
 } from 'lucide-react'
 
 const Contact = () => {
+  const { language } = useLanguage()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
