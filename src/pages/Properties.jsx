@@ -2,19 +2,9 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { 
-  Search, 
-  MapPin, 
-  Users, 
-  Bed, 
-  Bath,
-  Star,
-  Filter
-} from 'lucide-react'
+import { useLanguage } from '../contexts/LanguageContext'
 import ReviewsSection from '../components/ReviewsSection'
 
-// Airbnb Widget Components
 const AirbnbWidget = ({ id, href, description }) => {
   return (
     <div 
@@ -44,14 +34,12 @@ const AirbnbWidget = ({ id, href, description }) => {
 
 const AirbnbSection = () => {
   useEffect(() => {
-    // Load Airbnb embed script
     const script = document.createElement('script');
     script.src = 'https://www.airbnb.com/embeddable/airbnb_jssdk';
     script.async = true;
     document.body.appendChild(script);
 
     return () => {
-      // Cleanup script on unmount
       const existingScript = document.querySelector('script[src="https://www.airbnb.com/embeddable/airbnb_jssdk"]');
       if (existingScript) {
         existingScript.remove();
@@ -129,57 +117,77 @@ const AirbnbSection = () => {
 
 
 const Properties = () => {
+  const { language } = useLanguage()
+
+  const translations = {
+    en: {
+      ourProperties: 'Our Properties',
+      intro: 'Discover our curated collection of luxury vacation rentals in prime destinations. Each property is carefully selected and professionally managed to ensure exceptional experiences.',
+      featured: 'Featured Properties',
+      featuredDesc: 'Discover our exceptional vacation rental properties available for booking directly through Airbnb.',
+      notFound: 'Don\'t See What You\'re Looking For?',
+      notFoundDesc: 'We\'re constantly adding new properties to our portfolio. Contact us to discuss your specific needs or to learn about upcoming listings.',
+      contactUs: 'Contact Us',
+      propertyEvaluation: 'Property Evaluation'
+    },
+    es: {
+      ourProperties: 'Nuestras Propiedades',
+      intro: 'Descubra nuestra colección seleccionada de alquileres vacacionales de lujo en destinos principales. Cada propiedad es cuidadosamente seleccionada y profesionalmente gestionada para garantizar experiencias excepcionales.',
+      featured: 'Propiedades Destacadas',
+      featuredDesc: 'Descubra nuestras excepcionales propiedades de alquiler vacacional disponibles para reservar directamente a través de Airbnb.',
+      notFound: '¿No Encuentra Lo Que Busca?',
+      notFoundDesc: 'Estamos constantemente agregando nuevas propiedades a nuestro portafolio. Contáctenos para discutir sus necesidades específicas o para obtener información sobre próximos anuncios.',
+      contactUs: 'Contáctenos',
+      propertyEvaluation: 'Evaluación de Propiedad'
+    },
+    fr: {
+      ourProperties: 'Nos Propriétés',
+      intro: 'Découvrez notre collection curatée de locations de vacances de luxe dans les meilleures destinations. Chaque propriété est soigneusement sélectionnée et gérée professionnellement pour assurer des expériences exceptionnelles.',
+      featured: 'Propriétés Vedettes',
+      featuredDesc: 'Découvrez nos propriétés exceptionnelles de location de vacances disponibles pour réservation directe via Airbnb.',
+      notFound: 'Vous ne Trouvez Pas Ce que Vous Cherchez?',
+      notFoundDesc: 'Nous ajoutons constamment de nouvelles propriétés à notre portefeuille. Contactez-nous pour discuter de vos besoins spécifiques ou pour en savoir plus sur les annonces à venir.',
+      contactUs: 'Nous Contacter',
+      propertyEvaluation: 'Évaluation de Propriété'
+    }
+  }
+
+  const t = translations[language] || translations.en
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
       <section className="bg-gray-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-5xl font-bold text-gray-900 mb-6">Our Properties</h1>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Discover our curated collection of luxury vacation rentals in prime destinations. 
-              Each property is carefully selected and professionally managed to ensure exceptional experiences.
-            </p>
+            <h1 className="text-5xl font-bold text-gray-900 mb-6">{t.ourProperties}</h1>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">{t.intro}</p>
           </div>
         </div>
       </section>
 
-      {/* Reviews Section */}
       <ReviewsSection />
 
-      {/* Airbnb Properties Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">
-            Featured Properties
-          </h2>
-          <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
-            Discover our exceptional vacation rental properties available for booking directly through Airbnb.
-          </p>
+          <h2 className="text-4xl font-bold text-gray-900 mb-6">{t.featured}</h2>
+          <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">{t.featuredDesc}</p>
           <AirbnbSection />
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-20 bg-blue-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">
-            Don't See What You're Looking For?
-          </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            We're constantly adding new properties to our portfolio. Contact us to discuss 
-            your specific needs or to learn about upcoming listings.
-          </p>
+          <h2 className="text-4xl font-bold text-white mb-6">{t.notFound}</h2>
+          <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">{t.notFoundDesc}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
               <Button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 text-lg">
-                Contact Us
+                {t.contactUs}
               </Button>
             </Link>
             <Link to="/contact">
               <Button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 text-lg border-2 border-white">
-                Property Evaluation
+                {t.propertyEvaluation}
               </Button>
             </Link>
           </div>
@@ -190,4 +198,3 @@ const Properties = () => {
 }
 
 export default Properties
-

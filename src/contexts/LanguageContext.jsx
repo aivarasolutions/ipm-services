@@ -1,18 +1,9 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 const LanguageContext = createContext();
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState(() => {
-    // Try to get saved language from localStorage
-    const saved = localStorage.getItem('ipm-language');
-    return saved || 'en';
-  });
-
-  // Save language preference to localStorage whenever it changes
-  useEffect(() => {
-    localStorage.setItem('ipm-language', language);
-  }, [language]);
+  const [language, setLanguage] = useState('en');
 
   const toggleLanguage = (lang) => {
     setLanguage(lang);

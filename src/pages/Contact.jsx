@@ -28,6 +28,161 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
 
+  const translations = {
+    en: {
+      contactUs: 'Contact Us',
+      intro: 'Ready to maximize your property\'s potential? Get in touch with our expert team for personalized property management solutions.',
+      messageSent: 'Message Sent!',
+      thankYou: 'Thank you for contacting IPM. We\'ll get back to you within 24 hours.',
+      sendAnother: 'Send Another Message',
+      phoneSupport: '24/7 Phone Support',
+      phoneDesc: 'Call us anytime for immediate assistance',
+      emailUs: 'Email Us',
+      emailDesc: 'Send us a detailed message',
+      whatsapp: 'WhatsApp',
+      whatsappDesc: 'Quick messaging for instant responses',
+      chatWithUs: 'Chat with us',
+      sendMessage: 'Send Us a Message',
+      officeHours: 'Office Hours',
+      emergency: 'Emergency Support: Available 24/7 for urgent property issues',
+      ourLocations: 'Our Locations',
+      playaDelCarmen: 'Playa del Carmen',
+      playaAddress: 'Riviera Maya, Quintana Roo, Mexico',
+      playaDesc: 'Our primary office serving the Riviera Maya region',
+      tulum: 'Tulum',
+      tulumAddress: 'Tulum, Quintana Roo, Mexico',
+      tulumDesc: 'Local presence for Tulum properties',
+      lakeNorman: 'Lake Norman',
+      lakeAddress: 'North Carolina, USA',
+      lakeDesc: 'US operations for Lake Norman properties',
+      monFri: 'Monday - Friday: 8:00 AM - 8:00 PM',
+      sat: 'Saturday: 9:00 AM - 6:00 PM',
+      sun: 'Sunday: 10:00 AM - 4:00 PM',
+      fullName: 'Full Name *',
+      fullNamePlaceholder: 'Your full name',
+      emailAddress: 'Email Address *',
+      emailPlaceholder: 'your@email.com',
+      phoneNumber: 'Phone Number',
+      phonePlaceholder: '+1 (555) 123-4567',
+      inquiryType: 'Inquiry Type',
+      generalInquiry: 'General Inquiry',
+      propertyManagement: 'Property Management',
+      bookingQuestion: 'Booking Question',
+      propertyEvaluation: 'Property Evaluation',
+      support: 'Support',
+      subject: 'Subject *',
+      subjectPlaceholder: 'Brief subject of your message',
+      message: 'Message *',
+      messagePlaceholder: 'Tell us about your property or inquiry...',
+      sending: 'Sending...',
+      ready: 'Ready to Get Started?',
+      readyDesc: 'Join 30+ property owners who trust IPM to manage their vacation rentals. Schedule a consultation today and see how we can maximize your property\'s potential.',
+      scheduleConsultation: 'Schedule Consultation'
+    },
+    es: {
+      contactUs: 'Contáctenos',
+      intro: '¿Listo para maximizar el potencial de su propiedad? Comuníquese con nuestro equipo experto para soluciones personalizadas de gestión de propiedades.',
+      messageSent: '¡Mensaje Enviado!',
+      thankYou: 'Gracias por contactar a IPM. Nos comunicaremos con usted dentro de 24 horas.',
+      sendAnother: 'Enviar Otro Mensaje',
+      phoneSupport: 'Soporte Telefónico 24/7',
+      phoneDesc: 'Llámenos en cualquier momento para asistencia inmediata',
+      emailUs: 'Envíenos un Correo',
+      emailDesc: 'Envíenos un mensaje detallado',
+      whatsapp: 'WhatsApp',
+      whatsappDesc: 'Mensajería rápida para respuestas instantáneas',
+      chatWithUs: 'Chatea con nosotros',
+      sendMessage: 'Envíenos un Mensaje',
+      officeHours: 'Horario de Oficina',
+      emergency: 'Soporte de Emergencia: Disponible 24/7 para problemas urgentes de propiedades',
+      ourLocations: 'Nuestras Ubicaciones',
+      playaDelCarmen: 'Playa del Carmen',
+      playaAddress: 'Riviera Maya, Quintana Roo, México',
+      playaDesc: 'Nuestra oficina principal que sirve la región de Riviera Maya',
+      tulum: 'Tulum',
+      tulumAddress: 'Tulum, Quintana Roo, México',
+      tulumDesc: 'Presencia local para propiedades de Tulum',
+      lakeNorman: 'Lake Norman',
+      lakeAddress: 'Carolina del Norte, USA',
+      lakeDesc: 'Operaciones estadounidenses para propiedades de Lake Norman',
+      monFri: 'Lunes - Viernes: 8:00 AM - 8:00 PM',
+      sat: 'Sábado: 9:00 AM - 6:00 PM',
+      sun: 'Domingo: 10:00 AM - 4:00 PM',
+      fullName: 'Nombre Completo *',
+      fullNamePlaceholder: 'Su nombre completo',
+      emailAddress: 'Dirección de Correo Electrónico *',
+      emailPlaceholder: 'su@correo.com',
+      phoneNumber: 'Número de Teléfono',
+      phonePlaceholder: '+1 (555) 123-4567',
+      inquiryType: 'Tipo de Consulta',
+      generalInquiry: 'Consulta General',
+      propertyManagement: 'Gestión de Propiedad',
+      bookingQuestion: 'Pregunta de Reserva',
+      propertyEvaluation: 'Evaluación de Propiedad',
+      support: 'Soporte',
+      subject: 'Asunto *',
+      subjectPlaceholder: 'Breve descripción del asunto',
+      message: 'Mensaje *',
+      messagePlaceholder: 'Cuéntenos sobre su propiedad o consulta...',
+      sending: 'Enviando...',
+      ready: '¿Listo para Comenzar?',
+      readyDesc: 'Únase a 30+ propietarios que confían en IPM para gestionar sus alquileres vacacionales. Programe una consulta hoy y vea cómo podemos maximizar el potencial de su propiedad.',
+      scheduleConsultation: 'Agendar Consulta'
+    },
+    fr: {
+      contactUs: 'Nous Contacter',
+      intro: 'Prêt à maximiser le potentiel de votre propriété? Contactez notre équipe d\'experts pour des solutions de gestion de propriété personnalisées.',
+      messageSent: 'Message Envoyé!',
+      thankYou: 'Merci de contacter IPM. Nous vous répondrons dans les 24 heures.',
+      sendAnother: 'Envoyer un Autre Message',
+      phoneSupport: 'Support Téléphonique 24/7',
+      phoneDesc: 'Appelez-nous à tout moment pour une assistance immédiate',
+      emailUs: 'Nous Envoyer un Email',
+      emailDesc: 'Envoyez-nous un message détaillé',
+      whatsapp: 'WhatsApp',
+      whatsappDesc: 'Messagerie rapide pour des réponses instantanées',
+      chatWithUs: 'Chattez avec nous',
+      sendMessage: 'Envoyez-Nous un Message',
+      officeHours: 'Heures d\'Ouverture',
+      emergency: 'Support d\'Urgence: Disponible 24/7 pour les problèmes urgents de propriété',
+      ourLocations: 'Nos Emplacements',
+      playaDelCarmen: 'Playa del Carmen',
+      playaAddress: 'Riviera Maya, Quintana Roo, Mexique',
+      playaDesc: 'Notre bureau principal desservant la région de Riviera Maya',
+      tulum: 'Tulum',
+      tulumAddress: 'Tulum, Quintana Roo, Mexique',
+      tulumDesc: 'Présence locale pour les propriétés de Tulum',
+      lakeNorman: 'Lake Norman',
+      lakeAddress: 'Caroline du Nord, USA',
+      lakeDesc: 'Opérations américaines pour les propriétés du Lac Norman',
+      monFri: 'Lundi - Vendredi: 8:00 AM - 8:00 PM',
+      sat: 'Samedi: 9:00 AM - 6:00 PM',
+      sun: 'Dimanche: 10:00 AM - 4:00 PM',
+      fullName: 'Nom Complet *',
+      fullNamePlaceholder: 'Votre nom complet',
+      emailAddress: 'Adresse Email *',
+      emailPlaceholder: 'votre@email.com',
+      phoneNumber: 'Numéro de Téléphone',
+      phonePlaceholder: '+1 (555) 123-4567',
+      inquiryType: 'Type de Demande',
+      generalInquiry: 'Demande Générale',
+      propertyManagement: 'Gestion de Propriété',
+      bookingQuestion: 'Question de Réservation',
+      propertyEvaluation: 'Évaluation de Propriété',
+      support: 'Support',
+      subject: 'Sujet *',
+      subjectPlaceholder: 'Sujet court de votre message',
+      message: 'Message *',
+      messagePlaceholder: 'Parlez-nous de votre propriété ou de votre demande...',
+      sending: 'Envoi...',
+      ready: 'Prêt à Commencer?',
+      readyDesc: 'Rejoignez 30+ propriétaires qui font confiance à IPM pour gérer leurs locations de vacances. Planifiez une consultation aujourd\'hui et découvrez comment nous pouvons maximiser le potentiel de votre propriété.',
+      scheduleConsultation: 'Agendar une Consultation'
+    }
+  }
+
+  const t = translations[language] || translations.en
+
   const handleInputChange = (e) => {
     const { name, value } = e.target
     setFormData(prev => ({
@@ -41,7 +196,6 @@ const Contact = () => {
     setIsSubmitting(true)
 
     try {
-      // Submit to the contact API
       const response = await fetch('http://localhost:5000/api/contact', {
         method: 'POST',
         headers: {
@@ -78,42 +232,42 @@ const Contact = () => {
   const contactMethods = [
     {
       icon: Phone,
-      title: '24/7 Phone Support',
-      description: 'Call us anytime for immediate assistance',
+      title: t.phoneSupport,
+      description: t.phoneDesc,
       contact: '+1 310-400-0032',
       link: 'tel:+13104000032'
     },
     {
       icon: Mail,
-      title: 'Email Us',
-      description: 'Send us a detailed message',
+      title: t.emailUs,
+      description: t.emailDesc,
       contact: 'info@richaf.global',
       link: 'mailto:info@richaf.global'
     },
     {
       icon: MessageCircle,
-      title: 'WhatsApp',
-      description: 'Quick messaging for instant responses',
-      contact: 'Chat with us',
+      title: t.whatsapp,
+      description: t.whatsappDesc,
+      contact: t.chatWithUs,
       link: 'https://wa.me/13104000032'
     }
   ]
 
   const locations = [
     {
-      name: 'Playa del Carmen',
-      address: 'Riviera Maya, Quintana Roo, Mexico',
-      description: 'Our primary office serving the Riviera Maya region'
+      name: t.playaDelCarmen,
+      address: t.playaAddress,
+      description: t.playaDesc
     },
     {
-      name: 'Tulum',
-      address: 'Tulum, Quintana Roo, Mexico',
-      description: 'Local presence for Tulum properties'
+      name: t.tulum,
+      address: t.tulumAddress,
+      description: t.tulumDesc
     },
     {
-      name: 'Lake Norman',
-      address: 'North Carolina, USA',
-      description: 'US operations for Lake Norman properties'
+      name: t.lakeNorman,
+      address: t.lakeAddress,
+      description: t.lakeDesc
     }
   ]
 
@@ -125,15 +279,13 @@ const Contact = () => {
             <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
               <CheckCircle className="h-8 w-8 text-green-600" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Message Sent!</h2>
-            <p className="text-gray-600 mb-6">
-              Thank you for contacting IPM. We'll get back to you within 24 hours.
-            </p>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">{t.messageSent}</h2>
+            <p className="text-gray-600 mb-6">{t.thankYou}</p>
             <Button 
               onClick={() => setIsSubmitted(false)}
               className="w-full"
             >
-              Send Another Message
+              {t.sendAnother}
             </Button>
           </CardContent>
         </Card>
@@ -143,170 +295,95 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
       <section className="bg-gray-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-5xl font-bold text-gray-900 mb-6">Contact Us</h1>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Ready to maximize your property's potential? Get in touch with our expert team 
-              for personalized property management solutions.
-            </p>
+            <h1 className="text-5xl font-bold text-gray-900 mb-6">{t.contactUs}</h1>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">{t.intro}</p>
           </div>
         </div>
       </section>
 
-      {/* Contact Methods */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {contactMethods.map((method, index) => (
-              <Card key={index} className="text-center hover:shadow-lg transition-shadow">
-                <CardContent className="p-8">
-                  <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <method.icon className="h-8 w-8 text-blue-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    {method.title}
-                  </h3>
-                  <p className="text-gray-600 mb-4">
-                    {method.description}
-                  </p>
-                  <a 
-                    href={method.link}
-                    target={method.link.startsWith('http') ? '_blank' : undefined}
-                    rel={method.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    className="text-blue-600 hover:text-blue-700 font-medium"
-                  >
-                    {method.contact}
-                  </a>
-                </CardContent>
-              </Card>
-            ))}
+            {contactMethods.map((method, index) => {
+              const Icon = method.icon
+              return (
+                <Card key={index} className="text-center hover:shadow-lg transition-shadow">
+                  <CardContent className="p-8">
+                    <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Icon className="h-8 w-8 text-blue-600" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{method.title}</h3>
+                    <p className="text-gray-600 mb-4">{method.description}</p>
+                    <a 
+                      href={method.link}
+                      target={method.link.startsWith('http') ? '_blank' : undefined}
+                      rel={method.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      className="text-blue-600 hover:text-blue-700 font-medium"
+                    >
+                      {method.contact}
+                    </a>
+                  </CardContent>
+                </Card>
+              )
+            })}
           </div>
         </div>
       </section>
 
-      {/* Contact Form and Info */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
             <div>
               <Card>
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">{t.sendMessage}</h2>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                          Full Name *
-                        </label>
-                        <Input
-                          type="text"
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          required
-                          placeholder="Your full name"
-                        />
+                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">{t.fullName}</label>
+                        <Input type="text" id="name" name="name" value={formData.name} onChange={handleInputChange} required placeholder={t.fullNamePlaceholder} />
                       </div>
                       <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                          Email Address *
-                        </label>
-                        <Input
-                          type="email"
-                          id="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          required
-                          placeholder="your@email.com"
-                        />
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">{t.emailAddress}</label>
+                        <Input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange} required placeholder={t.emailPlaceholder} />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                          Phone Number
-                        </label>
-                        <Input
-                          type="tel"
-                          id="phone"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleInputChange}
-                          placeholder="+1 (555) 123-4567"
-                        />
+                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">{t.phoneNumber}</label>
+                        <Input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleInputChange} placeholder={t.phonePlaceholder} />
                       </div>
                       <div>
-                        <label htmlFor="propertyType" className="block text-sm font-medium text-gray-700 mb-2">
-                          Inquiry Type
-                        </label>
-                        <select
-                          id="propertyType"
-                          name="propertyType"
-                          value={formData.propertyType}
-                          onChange={handleInputChange}
-                          className="w-full border border-gray-300 rounded-md px-3 py-2 bg-white"
-                        >
-                          <option value="inquiry">General Inquiry</option>
-                          <option value="management">Property Management</option>
-                          <option value="booking">Booking Question</option>
-                          <option value="evaluation">Property Evaluation</option>
-                          <option value="support">Support</option>
+                        <label htmlFor="propertyType" className="block text-sm font-medium text-gray-700 mb-2">{t.inquiryType}</label>
+                        <select id="propertyType" name="propertyType" value={formData.propertyType} onChange={handleInputChange} className="w-full border border-gray-300 rounded-md px-3 py-2 bg-white">
+                          <option value="inquiry">{t.generalInquiry}</option>
+                          <option value="management">{t.propertyManagement}</option>
+                          <option value="booking">{t.bookingQuestion}</option>
+                          <option value="evaluation">{t.propertyEvaluation}</option>
+                          <option value="support">{t.support}</option>
                         </select>
                       </div>
                     </div>
 
                     <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                        Subject *
-                      </label>
-                      <Input
-                        type="text"
-                        id="subject"
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleInputChange}
-                        required
-                        placeholder="Brief subject of your message"
-                      />
+                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">{t.subject}</label>
+                      <Input type="text" id="subject" name="subject" value={formData.subject} onChange={handleInputChange} required placeholder={t.subjectPlaceholder} />
                     </div>
 
                     <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                        Message *
-                      </label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        required
-                        rows={6}
-                        placeholder="Tell us about your property or inquiry..."
-                      />
+                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">{t.message}</label>
+                      <Textarea id="message" name="message" value={formData.message} onChange={handleInputChange} required rows={6} placeholder={t.messagePlaceholder} />
                     </div>
 
-                    <Button 
-                      type="submit" 
-                      disabled={isSubmitting}
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-lg py-3"
-                    >
+                    <Button type="submit" disabled={isSubmitting} className="w-full bg-blue-600 hover:bg-blue-700 text-lg py-3">
                       {isSubmitting ? (
-                        <>
-                          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                          Sending...
-                        </>
+                        <><div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>{t.sending}</> 
                       ) : (
-                        <>
-                          <Send className="h-5 w-5 mr-2" />
-                          Send Message
-                        </>
+                        <><Send className="h-5 w-5 mr-2" />{t.sendMessage}</>
                       )}
                     </Button>
                   </form>
@@ -314,43 +391,29 @@ const Contact = () => {
               </Card>
             </div>
 
-            {/* Contact Information */}
             <div className="space-y-8">
-              {/* Office Hours */}
               <Card>
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
                     <Clock className="h-6 w-6 text-blue-600 mr-3" />
-                    <h3 className="text-xl font-semibold text-gray-900">Office Hours</h3>
+                    <h3 className="text-xl font-semibold text-gray-900">{t.officeHours}</h3>
                   </div>
                   <div className="space-y-2 text-gray-600">
-                    <div className="flex justify-between">
-                      <span>Monday - Friday:</span>
-                      <span>8:00 AM - 8:00 PM</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Saturday:</span>
-                      <span>9:00 AM - 6:00 PM</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Sunday:</span>
-                      <span>10:00 AM - 4:00 PM</span>
-                    </div>
+                    <div>{t.monFri}</div>
+                    <div>{t.sat}</div>
+                    <div>{t.sun}</div>
                     <div className="mt-4 p-3 bg-blue-50 rounded-lg">
-                      <p className="text-sm text-blue-800">
-                        <strong>Emergency Support:</strong> Available 24/7 for urgent property issues
-                      </p>
+                      <p className="text-sm text-blue-800">{t.emergency}</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Locations */}
               <Card>
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
                     <MapPin className="h-6 w-6 text-blue-600 mr-3" />
-                    <h3 className="text-xl font-semibold text-gray-900">Our Locations</h3>
+                    <h3 className="text-xl font-semibold text-gray-900">{t.ourLocations}</h3>
                   </div>
                   <div className="space-y-4">
                     {locations.map((location, index) => (
@@ -368,25 +431,14 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-20 bg-blue-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">
-            Ready to Get Started?
-          </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            Join 30+ property owners who trust IPM to manage their vacation rentals. 
-            Schedule a consultation today and see how we can maximize your property's potential.
-          </p>
+          <h2 className="text-4xl font-bold text-white mb-6">{t.ready}</h2>
+          <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">{t.readyDesc}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
               <Button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 text-lg">
-                Schedule Consultation
-              </Button>
-            </Link>
-            <Link to="/contact">
-              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 text-lg border-2 border-white">
-                Property Evaluation
+                {t.scheduleConsultation}
               </Button>
             </Link>
           </div>
@@ -397,4 +449,3 @@ const Contact = () => {
 }
 
 export default Contact
-
