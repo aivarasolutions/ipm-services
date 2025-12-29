@@ -57,6 +57,12 @@ const RealEstate = () => {
       ],
       readyToInvest: 'Ready to Start Investing?',
       freeAnalysis: 'Get your free investment analysis today',
+      desiredLocations: 'Desired Locations',
+      exploreDestinations: 'Explore Our Premium Destinations',
+      locationsDesc: 'Discover the most sought-after investment destinations in the Mexican Caribbean',
+      cancunDesc: 'World-renowned resort city with pristine beaches and vibrant nightlife',
+      tulumDesc: 'Bohemian paradise blending ancient Mayan history with modern luxury',
+      rivieraMayaDesc: 'Stunning coastal corridor with exclusive resorts and natural wonders',
       buyersCompanyTitle: 'Full-Service Real Estate Solutions',
       buyersCompanyDesc: 'IPM is a buyers company specializing in connecting international investors with premium real estate opportunities. While we feature our exclusive pre-sale and investment properties below, our professional real estate agents provide access to all properties available for sale throughout Quintana Roo, Mexico and the United States.',
       buyersCompanyNote: 'Whether you\'re interested in our curated investment opportunities or seeking other properties in our markets, our experienced team can help you find and secure the perfect real estate investment.'
@@ -108,6 +114,12 @@ const RealEstate = () => {
       ],
       readyToInvest: '¿Listo para Empezar a Invertir?',
       freeAnalysis: 'Obtenga su análisis de inversión gratuito hoy',
+      desiredLocations: 'Ubicaciones Deseadas',
+      exploreDestinations: 'Explore Nuestros Destinos Premium',
+      locationsDesc: 'Descubra los destinos de inversión más buscados en el Caribe Mexicano',
+      cancunDesc: 'Ciudad turística de renombre mundial con playas prístinas y vibrante vida nocturna',
+      tulumDesc: 'Paraíso bohemio que combina la antigua historia maya con el lujo moderno',
+      rivieraMayaDesc: 'Impresionante corredor costero con resorts exclusivos y maravillas naturales',
       buyersCompanyTitle: 'Soluciones Inmobiliarias de Servicio Completo',
       buyersCompanyDesc: 'IPM es una empresa compradora especializada en conectar inversores internacionales con oportunidades inmobiliarias premium. Mientras presentamos nuestras propiedades exclusivas de pre-venta e inversión a continuación, nuestros agentes inmobiliarios profesionales proporcionan acceso a todas las propiedades disponibles para la venta en Quintana Roo, México y Estados Unidos.',
       buyersCompanyNote: 'Ya sea que esté interesado en nuestras oportunidades de inversión seleccionadas o busque otras propiedades en nuestros mercados, nuestro equipo experimentado puede ayudarle a encontrar y asegurar la inversión inmobiliaria perfecta.'
@@ -159,6 +171,12 @@ const RealEstate = () => {
       ],
       readyToInvest: 'Prêt à Commencer à Investir?',
       freeAnalysis: 'Obtenez votre analyse d\'investissement gratuite aujourd\'hui',
+      desiredLocations: 'Destinations Prisées',
+      exploreDestinations: 'Explorez Nos Destinations Premium',
+      locationsDesc: 'Découvrez les destinations d\'investissement les plus recherchées des Caraïbes mexicaines',
+      cancunDesc: 'Ville balnéaire de renommée mondiale avec des plages immaculées et une vie nocturne animée',
+      tulumDesc: 'Paradis bohème mêlant l\'histoire maya ancienne au luxe moderne',
+      rivieraMayaDesc: 'Corridor côtier époustouflant avec des resorts exclusifs et des merveilles naturelles',
       buyersCompanyTitle: 'Solutions Immobilières de Service Complet',
       buyersCompanyDesc: 'IPM est une entreprise d\'acheteurs spécialisée dans la connexion d\'investisseurs internationaux avec des opportunités immobilières premium. Bien que nous présentions nos propriétés exclusives de pré-vente et d\'investissement ci-dessous, nos agents immobiliers professionnels donnent accès à toutes les propriétés disponibles à la vente dans tout Quintana Roo, Mexique et États-Unis.',
       buyersCompanyNote: 'Que vous soyez intéressé par nos opportunités d\'investissement sélectionnées ou que vous recherchiez d\'autres propriétés sur nos marchés, notre équipe expérimentée peut vous aider à trouver et sécuriser l\'investissement immobilier parfait.'
@@ -269,7 +287,73 @@ const RealEstate = () => {
         </div>
       </section>
 
-      {/* Schedule Private Consultation - RIGHT AFTER PROPERTIES */}
+      {/* Desired Locations Section */}
+      <section className="py-12 md:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-4">
+            <p className="text-amber-600 uppercase tracking-widest text-xs md:text-sm font-medium">{t.desiredLocations}</p>
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 md:mb-6 text-center">{t.exploreDestinations}</h2>
+          <p className="text-base md:text-xl text-slate-600 mb-10 md:mb-16 text-center max-w-3xl mx-auto">
+            {t.locationsDesc}
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            {/* Cancun */}
+            <div className="group relative rounded-2xl overflow-hidden h-72 md:h-96 cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500">
+              <img 
+                src="/cancun-luxury-beach.jpg" 
+                alt="Cancun"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">Cancun</h3>
+                <p className="text-slate-300 text-sm md:text-base">{t.cancunDesc}</p>
+              </div>
+              <div className="absolute top-4 right-4 bg-amber-500 text-slate-900 px-3 py-1 rounded-full text-xs font-bold">
+                HOT
+              </div>
+            </div>
+
+            {/* Tulum */}
+            <div className="group relative rounded-2xl overflow-hidden h-72 md:h-96 cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500">
+              <img 
+                src="/tulum-ruins-beach.jpg" 
+                alt="Tulum"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">Tulum</h3>
+                <p className="text-slate-300 text-sm md:text-base">{t.tulumDesc}</p>
+              </div>
+              <div className="absolute top-4 right-4 bg-emerald-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                TRENDING
+              </div>
+            </div>
+
+            {/* Riviera Maya */}
+            <div className="group relative rounded-2xl overflow-hidden h-72 md:h-96 cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500">
+              <img 
+                src="/riviera-maya-paradise.jpg" 
+                alt="Riviera Maya"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">Riviera Maya</h3>
+                <p className="text-slate-300 text-sm md:text-base">{t.rivieraMayaDesc}</p>
+              </div>
+              <div className="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                EXCLUSIVE
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Schedule Private Consultation - RIGHT AFTER LOCATIONS */}
       <section className="py-12 md:py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-amber-400 uppercase tracking-widest text-xs md:text-sm font-medium mb-4">{t.getInTouch}</p>
