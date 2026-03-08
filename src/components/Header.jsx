@@ -30,7 +30,8 @@ const Header = () => {
         { name: 'API Connections & Hidden Costs', path: '/insights/api-costs' },
         { name: 'How to Avoid the 15.5% Fee', path: '/insights/avoid-fees' },
         { name: 'Check-In System Design', path: '/insights/checkin-system' },
-        { name: 'IPM Video Library', path: '/insights/video-library' }
+        { name: 'IPM Video Library', path: '/insights/video-library' },
+        { name: '🏠 Charlotte Owner Proposal', path: '/proposal/charlotte-downhaul' }
       ]
     },
     { name: 'News', path: '/news', color: 'bg-indigo-600 text-white' },
