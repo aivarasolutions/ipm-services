@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- ============================================================
+       IPM – International Property Management
+       Private Owner Proposal Page
+       Route: /proposal/charlotte-downhaul
+       ============================================================
+       EDITABLE VARIABLES (search for these comments to update):
+       - [EDIT: CITY]         → City name
+       - [EDIT: ADDRESS]      → Property address
+       - [EDIT: PROJECTIONS]  → Revenue projection figures
+       - [EDIT: FEES]         → Management fee percentages and amounts
+       - [EDIT: CTA_LINKS]    → Calendly / CRM / contact form URLs
+       ============================================================ -->
+  <title>Owner Proposal – 5048 Downhaul Dr, Charlotte | IPM</title>
+  <meta name="description" content="Private property management proposal for 5048 Downhaul Dr, Charlotte, NC. Prepared by IPM – International Property Management." />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <style>
+    /* ============================================================
+       CSS CUSTOM PROPERTIES – Brand Colors & Typography
+       ============================================================ */
+    :root {
+      --navy:       #0E1A2B;
+      --slate:      #232A33;
+      --ivory:      #F8F7F4;
+      --gold:       #C6A66B;
+      --gold-light: #D9BC8A;
+      --white:      #FFFFFF;
+      --text-dark:  #1A2230;
+      --text-mid:   #4A5568;
+      --text-light: #718096;
+      --border:     #E2E8F0;
+      --shadow-sm:  0 2px 8px rgba(14,26,43,0.08);
+      --shadow-md:  0 8px 32px rgba(14,26,43,0.12);
+      --shadow-lg:  0 20px 60px rgba(14,26,43,0.18);
+      --radius:     12px;
+      --radius-lg:  20px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--ivory);
+      color: var(--text-dark);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ============================================================
+       TYPOGRAPHY
+       ============================================================ */
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', Georgia, serif;
+      line-height: 1.25;
+      color: var(--navy);
+    }
+
+    h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; }
+    h2 { font-size: clamp(1.6rem, 3.5vw, 2.6rem); font-weight: 600; }
+    h3 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-weight: 600; }
+    h4 { font-size: 1.1rem; font-weight: 600; }
+
+    p { color: var(--text-mid); font-size: 1rem; line-height: 1.8; }
+
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    /* ============================================================
+       LAYOUT UTILITIES
+       ============================================================ */
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section--dark {
+      background-color: var(--navy);
+    }
+
+    .section--slate {
+      background-color: var(--slate);
+    }
+
+    .section--ivory {
+      background-color: var(--ivory);
+    }
+
+    .section--white {
+      background-color: var(--white);
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .section-header h2 { margin-bottom: 1rem; }
+    .section-header p { font-size: 1.05rem; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .section { padding: 3.5rem 0; }
+    }
+
+    /* ============================================================
+       BUTTONS
+       ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: all var(--transition);
+      border: 2px solid transparent;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background-color: var(--gold);
+      color: var(--navy);
+      border-color: var(--gold);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--gold-light);
+      border-color: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(198,166,107,0.35);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,0.6);
+    }
+
+    .btn-outline:hover {
+      background-color: rgba(255,255,255,0.1);
+      border-color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline-gold {
+      background-color: transparent;
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .btn-outline-gold:hover {
+      background-color: var(--gold);
+      color: var(--navy);
+      transform: translateY(-2px);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ============================================================
+       GOLD DIVIDER
+       ============================================================ */
+    .gold-divider {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      border-radius: 2px;
+      margin: 1.25rem auto;
+    }
+
+    .gold-divider--left { margin-left: 0; }
+
+    /* ============================================================
+       CARD
+       ============================================================ */
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: 2rem;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* ============================================================
+       NAVIGATION
+       ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.25rem 0;
+      transition: background var(--transition), padding var(--transition), box-shadow var(--transition);
+    }
+
+    .nav.scrolled {
+      background: rgba(14, 26, 43, 0.97);
+      padding: 0.75rem 0;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-logo span { color: var(--gold); }
+
+    .nav-cta {
+      font-size: 0.82rem;
+      padding: 0.6rem 1.4rem;
+    }
+
+    /* ============================================================
+       HERO SECTION
+       ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background-color: var(--navy);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('hero-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.25;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(14, 26, 43, 0.92) 0%,
+        rgba(14, 26, 43, 0.75) 50%,
+        rgba(35, 42, 51, 0.85) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 8rem 0 5rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(198,166,107,0.15);
+      border: 1px solid rgba(198,166,107,0.4);
+      border-radius: 50px;
+      padding: 0.4rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      color: var(--white);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 em {
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 0.75rem;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      max-width: 580px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      flex-wrap: wrap;
+    }
+
+    .hero-stat-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .hero-stat-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.2rem;
+    }
+
+    /* ============================================================
+       PROPERTY OVERVIEW
+       ============================================================ */
+    .property-overview {
+      background: var(--white);
+    }
+
+    .property-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      .property-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    .address-card {
+      background: var(--navy);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .address-card::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(198,166,107,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .address-card .label {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .address-card h3 {
+      color: var(--white);
+      font-size: 1.5rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .address-card .city {
+      color: rgba(255,255,255,0.6);
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .map-placeholder {
+      background: var(--slate);
+      border-radius: var(--radius);
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-placeholder iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: var(--radius);
+    }
+
+    .demand-drivers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .demand-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      color: var(--text-mid);
+    }
+
+    .demand-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, rgba(198,166,107,0.15), rgba(198,166,107,0.05));
+      border: 1px solid rgba(198,166,107,0.3);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       MARKET OPPORTUNITY
+       ============================================================ */
+    .market-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .market-stat-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .market-stat-grid { grid-template-columns: 1fr; }
+    }
+
+    .market-stat-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(198,166,107,0.2);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      text-align: center;
+    }
+
+    .market-stat-card .value {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .market-stat-card .desc {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.5;
+    }
+
+    .chart-container {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(198,166,107,0.15);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .chart-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--white);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ============================================================
+       REVENUE PROJECTIONS
+       ============================================================ */
+    .projection-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    @media (max-width: 900px) {
+      .projection-cards { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
+    }
+
+    .projection-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      border-top: 4px solid transparent;
+      transition: transform var(--transition), box-shadow var(--transition);
+      position: relative;
+    }
+
+    .projection-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .projection-card.conservative { border-top-color: #8BA3C0; }
+    .projection-card.strong       { border-top-color: var(--gold); }
+    .projection-card.premium      { border-top-color: #2D6A4F; }
+
+    .projection-card.strong {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .projection-card.strong h3,
+    .projection-card.strong .proj-label,
+    .projection-card.strong .proj-annual-label {
+      color: var(--white);
+    }
+
+    .projection-card.strong p,
+    .projection-card.strong .proj-row-label {
+      color: rgba(255,255,255,0.65);
+    }
+
+    .projection-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      margin-bottom: 1rem;
+    }
+
+    .conservative .projection-badge { background: rgba(139,163,192,0.15); color: #5A7A9A; }
+    .strong .projection-badge       { background: rgba(198,166,107,0.2); color: var(--gold); }
+    .premium .projection-badge      { background: rgba(45,106,79,0.12); color: #2D6A4F; }
+
+    .proj-nightly {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .projection-card.strong .proj-nightly { color: var(--gold); }
+
+    .proj-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+    }
+
+    .proj-rows { border-top: 1px solid var(--border); padding-top: 1.25rem; }
+    .projection-card.strong .proj-rows { border-top-color: rgba(255,255,255,0.1); }
+
+    .proj-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      font-size: 0.88rem;
+    }
+
+    .proj-row-label { color: var(--text-light); }
+
+    .proj-row-value {
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .projection-card.strong .proj-row-value { color: var(--white); }
+
+    .proj-annual {
+      background: linear-gradient(135deg, rgba(198,166,107,0.12), rgba(198,166,107,0.05));
+      border: 1px solid rgba(198,166,107,0.3);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1.25rem;
+      text-align: center;
+    }
+
+    .proj-annual-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .proj-annual-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-light);
+      margin-top: 0.2rem;
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 1rem;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+
+    .disclaimer {
+      background: rgba(198,166,107,0.06);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.5rem;
+      font-size: 0.82rem;
+      color: var(--text-light);
+      margin-top: 2rem;
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       OWNER EARNINGS
+       ============================================================ */
+    .earnings-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    @media (max-width: 900px) {
+      .earnings-layout { grid-template-columns: 1fr; }
+    }
+
+    .earnings-table-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .earnings-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+      background: var(--white);
+    }
+
+    .earnings-table th {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 1rem 1.25rem;
+      text-align: left;
+    }
+
+    .earnings-table td {
+      padding: 0.9rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-mid);
+    }
+
+    .earnings-table td:last-child {
+      font-weight: 600;
+      color: var(--text-dark);
+      text-align: right;
+    }
+
+    .earnings-table tr.highlight td {
+      background: linear-gradient(90deg, rgba(198,166,107,0.08), rgba(198,166,107,0.04));
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .earnings-table tr.highlight td:last-child {
+      color: var(--gold);
+      font-size: 1.1rem;
+    }
+
+    .earnings-table td[contenteditable="true"] {
+      cursor: text;
+      outline: none;
+      transition: background var(--transition);
+    }
+
+    .earnings-table td[contenteditable="true"]:focus {
+      background: rgba(198,166,107,0.08);
+      outline: 2px solid var(--gold);
+      outline-offset: -2px;
+    }
+
+    .editable-note {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      margin-top: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .fee-structure {
+      background: var(--navy);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      color: var(--white);
+    }
+
+    .fee-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .fee-item:last-child { border-bottom: none; }
+
+    .fee-item-label {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .fee-item-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    /* ============================================================
+       SERVICES GRID
+       ============================================================ */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 500px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, rgba(198,166,107,0.15), rgba(198,166,107,0.05));
+      border: 1px solid rgba(198,166,107,0.3);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto 1rem;
+    }
+
+    .service-card h4 {
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.4;
+    }
+
+    /* ============================================================
+       WHY IPM
+       ============================================================ */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 500px) {
+      .why-grid { grid-template-columns: 1fr; }
+    }
+
+    .why-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      border-left: 3px solid var(--gold);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .why-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .why-card-icon {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .why-card h4 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--navy);
+    }
+
+    .why-card p {
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       DASHBOARD / REPORTING
+       ============================================================ */
+    .dashboard-features {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .dashboard-features { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 500px) {
+      .dashboard-features { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .dashboard-feature {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(198,166,107,0.15);
+      border-radius: var(--radius);
+    }
+
+    .dashboard-feature .icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .dashboard-feature p {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.4;
+    }
+
+    /* ============================================================
+       CTA SECTION
+       ============================================================ */
+    .cta-section {
+      background: linear-gradient(135deg, var(--navy) 0%, #1A2D47 50%, var(--slate) 100%);
+      text-align: center;
+      padding: 6rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(198,166,107,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .cta-section h2 { color: var(--white); margin-bottom: 1rem; }
+    .cta-section p { color: rgba(255,255,255,0.65); max-width: 560px; margin: 0 auto 2.5rem; font-size: 1.05rem; }
+
+    .cta-btn-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .footer {
+      background: #080F1A;
+      padding: 3rem 0 2rem;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 2rem;
+      flex-wrap: wrap;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-brand .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-brand .logo span { color: var(--gold); }
+
+    .footer-brand .tagline {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .footer-contact p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-contact a {
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .footer-contact a:hover { color: var(--gold-light); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-bottom p { font-size: 0.78rem; }
+
+    .footer-private {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      background: rgba(198,166,107,0.1);
+      border: 1px solid rgba(198,166,107,0.2);
+      color: var(--gold);
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+    }
+
+    /* ============================================================
+       SCROLL ANIMATIONS
+       ============================================================ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+    .fade-in-delay-4 { transition-delay: 0.4s; }
+    .fade-in-delay-5 { transition-delay: 0.5s; }
+
+    /* ============================================================
+       RESPONSIVE TWEAKS
+       ============================================================ */
+    @media (max-width: 768px) {
+      .hero-content { padding: 7rem 0 4rem; }
+      .hero-stats { gap: 1.5rem; }
+      .nav-logo { font-size: 1.1rem; }
+    }
+
+    @media (max-width: 480px) {
+      .btn { padding: 0.75rem 1.4rem; font-size: 0.85rem; }
+      .btn-group { flex-direction: column; }
+      .cta-btn-group { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <nav class="nav" id="mainNav">
+    <div class="container">
+      <div class="nav-inner">
+        <div class="nav-logo">IPM<span>.</span></div>
+        <!-- [EDIT: CTA_LINKS] – Replace href with Calendly or CRM link -->
+        <a href="#cta" class="btn btn-primary nav-cta">Schedule Consultation</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       SECTION 1: HERO
+       ============================================================ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          ✦ Private Owner Proposal
+        </div>
+        <!-- [EDIT: CITY] – Update city name below -->
+        <!-- [EDIT: ADDRESS] – Update property address below -->
+        <h1>Maximize the Revenue Potential of Your <em>Charlotte</em> Property</h1>
+        <p class="hero-sub">Custom Property Management Proposal for<br>5048 Downhaul Dr – Charlotte, NC</p>
+        <p class="hero-desc">
+          IPM – International Property Management specializes in professional short-term rental management, helping property owners like you maximize revenue while protecting your most valuable asset. This proposal was prepared exclusively for your property.
+        </p>
+        <div class="btn-group">
+          <!-- [EDIT: CTA_LINKS] – Replace href values with actual links -->
+          <a href="#revenue" class="btn btn-primary">View Revenue Projection</a>
+          <a href="#cta" class="btn btn-outline">Schedule Owner Consultation</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-value">$67K+</div>
+            <div class="hero-stat-label">Est. Annual Revenue</div>
+          </div>
+          <div>
+            <div class="hero-stat-value">72%</div>
+            <div class="hero-stat-label">Peak Occupancy Rate</div>
+          </div>
+          <div>
+            <div class="hero-stat-value">$265</div>
+            <div class="hero-stat-label">Optimized Nightly Rate</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 2: PROPERTY OVERVIEW
+       ============================================================ -->
+  <section class="section property-overview" id="property">
+    <div class="container">
+      <div class="property-grid">
+        <div class="fade-in">
+          <div class="section-label">Your Property</div>
+          <!-- [EDIT: ADDRESS] – Update address heading -->
+          <h2>5048 Downhaul Dr,<br>Charlotte, NC</h2>
+          <div class="gold-divider gold-divider--left"></div>
+          <!-- [EDIT: CITY] – Update city references in paragraph below -->
+          <p>
+            Your property sits within one of Charlotte's most strategically positioned residential corridors, benefiting from the city's robust and growing demand for short-term accommodations. Charlotte consistently ranks among the top-performing secondary markets for short-term rental investment, driven by a diverse mix of demand sources that sustain high occupancy throughout the year.
+          </p>
+          <p style="margin-top: 1rem;">
+            From corporate travelers and convention attendees to sports fans and weekend visitors, the demand profile for this location supports strong nightly rates and consistent bookings across all seasons.
+          </p>
+          <div class="demand-drivers" style="margin-top: 1.75rem;">
+            <div class="demand-item">
+              <div class="demand-icon">✈️</div>
+              <span>Airport Proximity</span>
+            </div>
+            <div class="demand-item">
+              <div class="demand-icon">💼</div>
+              <span>Business Travel</span>
+            </div>
+            <div class="demand-item">
+              <div class="demand-icon">🏈</div>
+              <span>Sports Events</span>
+            </div>
+            <div class="demand-item">
+              <div class="demand-icon">🎪</div>
+              <span>Conventions</span>
+            </div>
+            <div class="demand-item">
+              <div class="demand-icon">🏙️</div>
+              <span>Weekend Tourism</span>
+            </div>
+            <div class="demand-item">
+              <div class="demand-icon">🏢</div>
+              <span>Corporate Relocations</span>
+            </div>
+          </div>
+        </div>
+        <div class="fade-in fade-in-delay-2">
+          <div class="address-card">
+            <div class="label">Property Address</div>
+            <!-- [EDIT: ADDRESS] – Update address in card -->
+            <h3>5048 Downhaul Dr</h3>
+            <p class="city">Charlotte, NC 28214</p>
+            <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+              <div>
+                <div style="font-size:0.72rem; color:rgba(255,255,255,0.45); text-transform:uppercase; letter-spacing:0.1em;">Market</div>
+                <div style="color:var(--gold); font-weight:600; font-size:0.95rem;">Charlotte Metro</div>
+              </div>
+              <div>
+                <div style="font-size:0.72rem; color:rgba(255,255,255,0.45); text-transform:uppercase; letter-spacing:0.1em;">STR Status</div>
+                <div style="color:#6FCF97; font-weight:600; font-size:0.95rem;">Active Market</div>
+              </div>
+            </div>
+            <!-- Map placeholder showing Charlotte, NC -->
+            <div class="map-placeholder">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3259.2!2d-80.9799!3d35.2271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88541fc4fc381a81%3A0x884650e6bf43d164!2s5048%20Downhaul%20Dr%2C%20Charlotte%2C%20NC%2028214!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Property location map">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 3: CHARLOTTE MARKET OPPORTUNITY
+       ============================================================ -->
+  <section class="section section--dark" id="market">
+    <div class="container">
+      <div class="section-header fade-in">
+        <!-- [EDIT: CITY] – Update city name in section header -->
+        <div class="section-label">Market Intelligence</div>
+        <h2 style="color:var(--white);">The Charlotte Short-Term Rental Opportunity</h2>
+        <div class="gold-divider"></div>
+        <p style="color:rgba(255,255,255,0.6);">
+          Charlotte's short-term rental market has experienced sustained growth, fueled by the city's expanding corporate base, major sports franchises, and a thriving convention calendar. Understanding this market is the foundation of a successful revenue strategy.
+        </p>
+      </div>
+
+      <div class="market-stat-grid fade-in">
+        <div class="market-stat-card">
+          <div class="value">57M+</div>
+          <div class="desc">Annual passengers through Charlotte Douglas International Airport</div>
+        </div>
+        <div class="market-stat-card">
+          <div class="value">$4.2B</div>
+          <div class="desc">Annual visitor spending in the Charlotte metro area</div>
+        </div>
+        <div class="market-stat-card">
+          <div class="value">300+</div>
+          <div class="desc">Major conventions and events hosted in Charlotte each year</div>
+        </div>
+        <div class="market-stat-card">
+          <div class="value">28%</div>
+          <div class="desc">STR demand growth in Charlotte over the past three years</div>
+        </div>
+        <div class="market-stat-card">
+          <div class="value">Top 15</div>
+          <div class="desc">Charlotte ranked among top U.S. cities for short-term rental ROI</div>
+        </div>
+        <div class="market-stat-card">
+          <div class="value">65%+</div>
+          <div class="desc">Average annual occupancy rate for well-managed STR properties</div>
+        </div>
+      </div>
+
+      <div class="chart-container fade-in">
+        <div class="chart-title">Estimated Nightly Rates by Property Type – Charlotte Area</div>
+        <canvas id="nightlyRatesChart" height="280"></canvas>
+      </div>
+
+      <div style="margin-top: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto;" class="fade-in">
+        <p style="color:rgba(255,255,255,0.55); font-size:0.88rem; text-align:center;">
+          Charlotte's demand drivers — including Bank of America Stadium events, the Charlotte Convention Center, and the growing Uptown district — create consistent year-round booking opportunities. Corporate relocations and the city's Fortune 500 presence further sustain demand during traditionally slower leisure travel periods.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 4: REVENUE PROJECTIONS
+       ============================================================ -->
+  <section class="section section--ivory" id="revenue">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-label">Financial Projections</div>
+        <!-- [EDIT: ADDRESS] – Update address in heading -->
+        <h2>Revenue Projection for 5048 Downhaul Dr</h2>
+        <div class="gold-divider"></div>
+        <p>
+          Based on comparable short-term rental performance in the Charlotte market, we have modeled three realistic revenue scenarios for your property. These projections reflect current market conditions and IPM's dynamic pricing approach.
+        </p>
+      </div>
+
+      <!-- [EDIT: PROJECTIONS] – Update all revenue figures in the cards below -->
+      <div class="projection-cards fade-in">
+
+        <!-- Conservative -->
+        <div class="projection-card conservative">
+          <div class="projection-badge">Conservative</div>
+          <div class="proj-nightly">$165</div>
+          <div class="proj-label">Estimated Nightly Rate</div>
+          <div class="proj-rows">
+            <div class="proj-row">
+              <span class="proj-row-label">Occupancy Rate</span>
+              <span class="proj-row-value">~55%</span>
+            </div>
+            <div class="proj-row">
+              <span class="proj-row-label">Booked Nights / Month</span>
+              <span class="proj-row-value">16–17 nights</span>
+            </div>
+            <div class="proj-row">
+              <span class="proj-row-label">Monthly Gross Revenue</span>
+              <span class="proj-row-value">$2,700–$2,900</span>
+            </div>
+          </div>
+          <div class="proj-annual">
+            <div class="proj-annual-value">$32K–$35K</div>
+            <div class="proj-annual-label">Estimated Annual Gross Revenue</div>
+          </div>
+        </div>
+
+        <!-- Strong (Featured) -->
+        <div class="projection-card strong" style="position:relative;">
+          <div class="popular-badge">Most Likely</div>
+          <div class="projection-badge">Strong Performance</div>
+          <div class="proj-nightly">$210</div>
+          <div class="proj-label">Estimated Nightly Rate</div>
+          <div class="proj-rows">
+            <div class="proj-row">
+              <span class="proj-row-label">Occupancy Rate</span>
+              <span class="proj-row-value">~65%</span>
+            </div>
+            <div class="proj-row">
+              <span class="proj-row-label">Booked Nights / Month</span>
+              <span class="proj-row-value">19–20 nights</span>
+            </div>
+            <div class="proj-row">
+              <span class="proj-row-label">Monthly Gross Revenue</span>
+              <span class="proj-row-value">$4,000–$4,300</span>
+            </div>
+          </div>
+          <div class="proj-annual">
+            <div class="proj-annual-value">$48K–$52K</div>
+            <div class="proj-annual-label">Estimated Annual Gross Revenue</div>
+          </div>
+        </div>
+
+        <!-- Premium -->
+        <div class="projection-card premium">
+          <div class="projection-badge">Premium Optimized</div>
+          <div class="proj-nightly">$265</div>
+          <div class="proj-label">Estimated Nightly Rate</div>
+          <div class="proj-rows">
+            <div class="proj-row">
+              <span class="proj-row-label">Occupancy Rate</span>
+              <span class="proj-row-value">~72%</span>
+            </div>
+            <div class="proj-row">
+              <span class="proj-row-label">Booked Nights / Month</span>
+              <span class="proj-row-value">21–22 nights</span>
+            </div>
+            <div class="proj-row">
+              <span class="proj-row-label">Monthly Gross Revenue</span>
+              <span class="proj-row-value">$5,600–$6,000</span>
+            </div>
+          </div>
+          <div class="proj-annual">
+            <div class="proj-annual-value">$67K–$72K</div>
+            <div class="proj-annual-label">Estimated Annual Gross Revenue</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bar Chart Comparison -->
+      <div class="chart-container fade-in" style="background:var(--white); border:1px solid var(--border); max-width:750px;">
+        <div class="chart-title" style="color:var(--navy);">Annual Revenue Comparison – Three Scenarios</div>
+        <canvas id="revenueComparisonChart" height="260"></canvas>
+      </div>
+
+      <!-- Disclaimer -->
+      <div class="disclaimer fade-in">
+        <strong>Disclaimer:</strong> Revenue projections are estimates based on market data and comparable listings in Charlotte. Actual performance depends on property condition, amenities, pricing strategy, guest demand, and seasonality.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 5: OWNER EARNINGS EXAMPLE
+       ============================================================ -->
+  <section class="section section--white" id="earnings">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-label">Owner Economics</div>
+        <h2>Your Estimated Owner Earnings</h2>
+        <div class="gold-divider"></div>
+        <p>
+          IPM's pricing model is built around transparency and alignment with owner success. Our fee structure is straightforward — a low monthly platform fee plus a performance-based management fee calculated on net profit, not gross revenue.
+        </p>
+      </div>
+
+      <div class="earnings-layout fade-in">
+        <!-- Fee Structure Card -->
+        <div>
+          <div class="fee-structure">
+            <div class="section-label" style="color:var(--gold);">IPM Fee Structure</div>
+            <h3 style="color:var(--white); margin-bottom:1.5rem;">Simple. Transparent. Aligned.</h3>
+            <!-- [EDIT: FEES] – Update fee percentages and amounts below -->
+            <div class="fee-item">
+              <div>
+                <div class="fee-item-label">Monthly Platform & Software Fee</div>
+                <div style="font-size:0.78rem; color:rgba(255,255,255,0.4); margin-top:0.2rem;">Flat monthly fee regardless of bookings</div>
+              </div>
+              <div class="fee-item-value">$200/mo</div>
+            </div>
+            <div class="fee-item">
+              <div>
+                <div class="fee-item-label">Management Fee</div>
+                <div style="font-size:0.78rem; color:rgba(255,255,255,0.4); margin-top:0.2rem;">Applied to net profit after platform commissions</div>
+              </div>
+              <div class="fee-item-value">20%</div>
+            </div>
+            <div style="margin-top:1.5rem; padding:1rem; background:rgba(198,166,107,0.1); border-radius:8px; border:1px solid rgba(198,166,107,0.2);">
+              <p style="font-size:0.82rem; color:rgba(255,255,255,0.6); line-height:1.6;">
+                <strong style="color:var(--gold);">Net Profit Definition:</strong> Revenue after platform commissions (e.g., Airbnb, Booking.com). IPM's management fee is never applied to gross revenue — only to what you actually earn.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Earnings Table -->
+        <div>
+          <div style="margin-bottom:1rem;">
+            <div class="section-label">Sample Calculation</div>
+            <h3 style="margin-bottom:0.5rem;">Strong Performance Scenario</h3>
+            <p style="font-size:0.88rem;">Based on $4,200 monthly gross booking revenue. Click any value to edit.</p>
+          </div>
+          <div class="earnings-table-wrap">
+            <!-- [EDIT: FEES] – All values in this table are editable by the user on-page, and can also be updated in the HTML -->
+            <table class="earnings-table" id="earningsTable">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th style="text-align:right;">Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Monthly Gross Booking Revenue</td>
+                  <td contenteditable="true" data-type="currency">$4,200</td>
+                </tr>
+                <tr>
+                  <td>Platform Commission (est. 15%)</td>
+                  <td contenteditable="true" data-type="currency" style="color:#E53E3E;">– $630</td>
+                </tr>
+                <tr>
+                  <td><strong>Net Booking Revenue</strong></td>
+                  <td contenteditable="true" data-type="currency"><strong>$3,570</strong></td>
+                </tr>
+                <tr>
+                  <td>IPM Management Fee (20% of Net)</td>
+                  <td contenteditable="true" data-type="currency" style="color:#E53E3E;">– $714</td>
+                </tr>
+                <tr>
+                  <td>Monthly Platform / Software Fee</td>
+                  <td contenteditable="true" data-type="currency" style="color:#E53E3E;">– $200</td>
+                </tr>
+                <tr class="highlight">
+                  <td><strong>Estimated Owner Payout</strong><br><span style="font-size:0.75rem; font-weight:400; color:var(--text-light);">Before taxes &amp; maintenance reserve</span></td>
+                  <td><strong>$2,656</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="editable-note">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            Values are editable — click any cell to update figures for your scenario.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 6: WHAT IPM HANDLES
+       ============================================================ -->
+  <section class="section section--ivory" id="services">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-label">Full-Service Management</div>
+        <h2>What IPM Handles for You</h2>
+        <div class="gold-divider"></div>
+        <p>
+          From the moment your listing goes live to the day your guest checks out, IPM manages every detail of the short-term rental operation — so you never have to. Owners enjoy a completely hands-off experience while IPM handles all aspects of day-to-day management.
+        </p>
+      </div>
+
+      <div class="services-grid fade-in">
+        <div class="service-card">
+          <div class="service-icon">📸</div>
+          <h4>Listing Creation &amp; Optimization</h4>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🎨</div>
+          <h4>Professional Photography Coordination</h4>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📊</div>
+          <h4>Dynamic Pricing Strategy</h4>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">💬</div>
+          <h4>Guest Messaging &amp; Booking Management</h4>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🧹</div>
+          <h4>Cleaning Coordination</h4>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🔧</div>
+          <h4>Maintenance Coordination</h4>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">⭐</div>
+          <h4>Review Management</h4>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🌐</div>
+          <h4>Multi-Platform Listing Distribution</h4>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top:3rem;" class="fade-in">
+        <div style="max-width:580px; margin:0 auto; background:var(--white); border-radius:var(--radius-lg); padding:2rem; box-shadow:var(--shadow-sm); border-top:3px solid var(--gold);">
+          <p style="font-size:1rem; color:var(--text-dark); font-weight:500; line-height:1.7;">
+            "Owners receive a <strong>completely hands-off experience</strong> while IPM handles every aspect of operations — from the first booking inquiry to the final guest review."
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 7: WHY OWNERS CHOOSE IPM
+       ============================================================ -->
+  <section class="section section--white" id="why-ipm">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-label">The IPM Advantage</div>
+        <h2>Why Owners Choose IPM</h2>
+        <div class="gold-divider"></div>
+        <p>
+          IPM was built specifically for property owners who want to unlock the revenue potential of short-term rentals without sacrificing their time, peace of mind, or property condition.
+        </p>
+      </div>
+
+      <div class="why-grid fade-in">
+        <div class="why-card">
+          <div class="why-card-icon">📈</div>
+          <h4>Revenue Optimization Strategy</h4>
+          <p>IPM uses data-driven dynamic pricing tools to ensure your property captures peak demand pricing during high-traffic periods while maintaining strong occupancy during slower seasons.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card-icon">🤝</div>
+          <h4>Professional Guest Communication</h4>
+          <p>From inquiry to checkout, every guest interaction is handled promptly and professionally by our team — protecting your reviews and ensuring a 5-star guest experience every time.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card-icon">🛡️</div>
+          <h4>Property Protection &amp; Oversight</h4>
+          <p>IPM implements rigorous guest screening, security deposit management, and property inspection protocols to safeguard your investment between every stay.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card-icon">📋</div>
+          <h4>Transparent Monthly Reporting</h4>
+          <p>Receive detailed monthly financial statements showing every booking, every fee, and your net earnings — with no hidden charges or surprises on your statement.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card-icon">🏖️</div>
+          <h4>Hands-Off Management for Owners</h4>
+          <p>You own the asset and receive the income. IPM handles everything else — giving you the lifestyle benefits of rental income without the operational burden.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card-icon">🌍</div>
+          <h4>Multi-Platform Marketing</h4>
+          <p>Your property is listed and optimized across Airbnb, Vrbo, Booking.com, and other platforms simultaneously — maximizing your visibility and booking potential.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 8: OWNER DASHBOARD & REPORTING
+       ============================================================ -->
+  <section class="section section--dark" id="dashboard">
+    <div class="container">
+      <div class="section-header fade-in">
+        <div class="section-label">Owner Portal</div>
+        <h2 style="color:var(--white);">Complete Visibility. Zero Guesswork.</h2>
+        <div class="gold-divider"></div>
+        <p style="color:rgba(255,255,255,0.6);">
+          Every IPM owner receives access to a dedicated reporting dashboard that provides real-time visibility into their property's performance. You stay informed without being involved in day-to-day operations.
+        </p>
+      </div>
+
+      <div class="dashboard-features fade-in">
+        <div class="dashboard-feature">
+          <div class="icon">📅</div>
+          <p>Booking Visibility &amp; Calendar Transparency</p>
+        </div>
+        <div class="dashboard-feature">
+          <div class="icon">💰</div>
+          <p>Monthly Financial Reports</p>
+        </div>
+        <div class="dashboard-feature">
+          <div class="icon">📊</div>
+          <p>Revenue Tracking &amp; Analytics</p>
+        </div>
+        <div class="dashboard-feature">
+          <div class="icon">⭐</div>
+          <p>Guest Review Insights</p>
+        </div>
+        <div class="dashboard-feature">
+          <div class="icon">🔔</div>
+          <p>Real-Time Booking Notifications</p>
+        </div>
+      </div>
+
+      <div style="margin-top:3rem; max-width:700px; margin-left:auto; margin-right:auto;" class="fade-in">
+        <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(198,166,107,0.2); border-radius:var(--radius-lg); padding:2rem; text-align:center;">
+          <p style="color:rgba(255,255,255,0.7); font-size:0.95rem; line-height:1.8;">
+            Your owner dashboard is updated in real time with every booking confirmation, cancellation, and payout. Monthly reports are delivered directly to your inbox — giving you a complete financial picture of your property's performance without lifting a finger.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 9: CALL TO ACTION
+       ============================================================ -->
+  <section class="cta-section" id="cta">
+    <div class="container" style="position:relative; z-index:2;">
+      <div class="fade-in">
+        <div class="section-label" style="text-align:center;">Ready to Move Forward?</div>
+        <h2>Turn Your Property Into a<br><em style="color:var(--gold); font-style:normal;">High-Performing Asset</em></h2>
+        <div class="gold-divider"></div>
+        <p>
+          Join the growing number of Charlotte property owners who trust IPM to manage their short-term rental investment. Let's discuss how we can maximize the revenue potential of your property.
+        </p>
+        <div class="cta-btn-group">
+          <!-- [EDIT: CTA_LINKS] – Replace # with actual Calendly, CRM, or contact form URL -->
+          <a href="#" class="btn btn-primary" onclick="alert('Connect your Calendly link here'); return false;">
+            📅 Schedule Owner Consultation
+          </a>
+          <a href="#" class="btn btn-outline" onclick="alert('Connect your CRM or contact form here'); return false;">
+            📊 Request Detailed Revenue Analysis
+          </a>
+        </div>
+        <p style="margin-top:2rem; font-size:0.82rem; color:rgba(255,255,255,0.35);">
+          No commitment required. This consultation is complimentary for property owners.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 10: FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="logo">IPM<span>.</span></div>
+          <div class="tagline">International Property Management</div>
+          <div class="tagline" style="margin-top:0.25rem;">Charlotte Property Management Division</div>
+        </div>
+        <div class="footer-contact">
+          <p>Website</p>
+          <!-- [EDIT: CTA_LINKS] – Update website URL if needed -->
+          <p><a href="https://ipm.services" target="_blank" rel="noopener">ipm.services</a></p>
+          <p style="margin-top:0.75rem;">Contact</p>
+          <!-- [EDIT: CTA_LINKS] – Replace with actual contact email or form link -->
+          <p><a href="mailto:hello@ipm.services">hello@ipm.services</a></p>
+        </div>
+        <div>
+          <div class="footer-private">
+            🔒 Private Owner Proposal
+          </div>
+          <p style="font-size:0.78rem; margin-top:0.75rem; max-width:220px; line-height:1.5;">
+            This proposal was prepared exclusively for the owner of 5048 Downhaul Dr, Charlotte, NC.
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 IPM – International Property Management. All rights reserved.</p>
+        <p><a href="https://ipm.services" style="color:var(--gold);">ipm.services</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT – Charts, Animations, Nav Scroll
+       ============================================================ -->
+  <script>
+    // ============================================================
+    // NAVIGATION SCROLL EFFECT
+    // ============================================================
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // ============================================================
+    // SCROLL ANIMATION (Intersection Observer)
+    // ============================================================
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    fadeEls.forEach(el => observer.observe(el));
+
+    // ============================================================
+    // CHART 1: Nightly Rates by Property Type (Market Section)
+    // [EDIT: PROJECTIONS] – Update chart data values below
+    // ============================================================
+    const nightlyCtx = document.getElementById('nightlyRatesChart').getContext('2d');
+    new Chart(nightlyCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Studio / 1BR', '2 Bedroom', '3 Bedroom', '4 Bedroom', 'Luxury / 5BR+'],
+        datasets: [{
+          label: 'Avg. Nightly Rate ($)',
+          data: [110, 155, 210, 285, 380],
+          backgroundColor: [
+            'rgba(198,166,107,0.5)',
+            'rgba(198,166,107,0.6)',
+            'rgba(198,166,107,0.8)',
+            'rgba(198,166,107,0.9)',
+            'rgba(198,166,107,1.0)'
+          ],
+          borderColor: 'rgba(198,166,107,1)',
+          borderWidth: 1,
+          borderRadius: 6,
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => ` $${ctx.parsed.y} / night`
+            }
+          }
+        },
+        scales: {
+          x: {
+            ticks: { color: 'rgba(255,255,255,0.6)', font: { family: 'Inter', size: 12 } },
+            grid: { color: 'rgba(255,255,255,0.06)' }
+          },
+          y: {
+            ticks: {
+              color: 'rgba(255,255,255,0.6)',
+              font: { family: 'Inter', size: 12 },
+              callback: v => '$' + v
+            },
+            grid: { color: 'rgba(255,255,255,0.06)' }
+          }
+        }
+      }
+    });
+
+    // ============================================================
+    // CHART 2: Annual Revenue Comparison Bar Chart
+    // [EDIT: PROJECTIONS] – Update annual revenue midpoints below
+    // ============================================================
+    const revenueCtx = document.getElementById('revenueComparisonChart').getContext('2d');
+    new Chart(revenueCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Conservative', 'Strong Performance', 'Premium Optimized'],
+        datasets: [
+          {
+            label: 'Annual Revenue Low ($)',
+            data: [32000, 48000, 67000],
+            backgroundColor: 'rgba(139,163,192,0.55)',
+            borderColor: 'rgba(139,163,192,0.9)',
+            borderWidth: 1,
+            borderRadius: 6,
+          },
+          {
+            label: 'Annual Revenue High ($)',
+            data: [35000, 52000, 72000],
+            backgroundColor: 'rgba(198,166,107,0.75)',
+            borderColor: 'rgba(198,166,107,1)',
+            borderWidth: 1,
+            borderRadius: 6,
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            labels: {
+              color: '#4A5568',
+              font: { family: 'Inter', size: 12 }
+            }
+          },
+          tooltip: {
+            callbacks: {
+              label: ctx => ` $${ctx.parsed.y.toLocaleString()}`
+            }
+          }
+        },
+        scales: {
+          x: {
+            ticks: { color: '#4A5568', font: { family: 'Inter', size: 12 } },
+            grid: { color: 'rgba(0,0,0,0.05)' }
+          },
+          y: {
+            ticks: {
+              color: '#4A5568',
+              font: { family: 'Inter', size: 12 },
+              callback: v => '$' + (v/1000) + 'K'
+            },
+            grid: { color: 'rgba(0,0,0,0.05)' }
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

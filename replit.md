@@ -33,7 +33,24 @@ This is a React-based Single Page Application (SPA) for International Property M
 - **Start Command**: npm run preview
 - **Production Port**: 5000 with 0.0.0.0 host binding
 
+## Standalone Proposal Pages
+Proposal pages render without the IPM Header/Footer — they have their own navigation and footer.
+- Route: `/proposal/charlotte-downhaul` → `src/pages/CharloetteProposal.jsx`
+- Add future standalone routes to the `STANDALONE_ROUTES` array in `src/App.jsx`
+- Hero background image served from `/public/charlotte-hero-bg.jpg`
+
 ## Recent Changes
+### 2026-03-08
+- **Added Charlotte Owner Proposal page** at `/proposal/charlotte-downhaul`
+  - Standalone page (no IPM header/footer) with own navigation
+  - Sections: Hero, Property Overview, Photo Gallery Placeholder, Market Intelligence, Revenue Projections, Owner Earnings, Services, Why IPM, Dashboard, CTA, Footer
+  - Two Chart.js charts: nightly rates by property type and annual revenue comparison
+  - Editable earnings table (click any cell to update figures)
+  - Google Maps embed for 5048 Downhaul Dr, Charlotte NC 28214
+  - Photo gallery placeholder (6 slots) ready for house photos
+  - Refactored App.jsx with `AppLayout` + `STANDALONE_ROUTES` pattern for future standalone pages
+  - chart.js installed as npm dependency
+
 ### 2025-11-22
 - **Added comprehensive Insights section** - Educational content hub for short-term rental hosts
   - Created main Insights hub page with overview and 5 topic cards
