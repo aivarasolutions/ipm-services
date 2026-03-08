@@ -141,7 +141,7 @@ const CharlotteProposal = () => {
         .cp-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.25rem 0; transition: background 0.3s, padding 0.3s, box-shadow 0.3s; }
         .cp-nav-scrolled { background: rgba(14,26,43,0.97); padding: 0.75rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
         .cp-nav-inner { display: flex; align-items: center; justify-content: space-between; }
-        .cp-nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: #FFFFFF; letter-spacing: 0.05em; }
+        .cp-nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: #FFFFFF !important; letter-spacing: 0.05em; text-decoration: none; }
         .cp-nav-logo span { color: #C6A66B; }
         .cp-hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; background-color: #0E1A2B; }
         .cp-hero-bg { position: absolute; inset: 0; background-image: url('/charlotte-hero-bg.jpg'); background-size: cover; background-position: center; opacity: 0.25; }
@@ -286,7 +286,7 @@ const CharlotteProposal = () => {
         <nav className="cp-nav" id="cpMainNav">
           <div className="cp-container">
             <div className="cp-nav-inner">
-              <div className="cp-nav-logo">IPM<span>.</span></div>
+              <a href="/" className="cp-nav-logo">IPM<span>.</span></a>
               <a href="#cp-cta" className="cp-btn cp-btn-primary" style={{fontSize:'0.82rem', padding:'0.6rem 1.4rem'}}>Schedule Consultation</a>
             </div>
           </div>
