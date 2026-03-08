@@ -228,11 +228,15 @@ const CharlotteProposal = () => {
         .cp-dashboard-feature .cp-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
         .cp-dashboard-feature p { font-size: 0.82rem; color: rgba(255,255,255,0.65); line-height: 1.4; }
         .cp-gallery-section { background: #FFFFFF; }
-        .cp-gallery-placeholder { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-        .cp-gallery-slot { background: linear-gradient(135deg, #F0EDE6, #E8E3D8); border: 2px dashed #C6A66B; border-radius: 12px; height: 220px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #C6A66B; text-align: center; padding: 1.5rem; }
-        .cp-gallery-slot-icon { font-size: 2.5rem; margin-bottom: 0.75rem; opacity: 0.7; }
-        .cp-gallery-slot p { color: #8B7355; font-size: 0.85rem; line-height: 1.5; }
-        .cp-gallery-main { grid-column: span 2; height: 300px; }
+        .cp-gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+        .cp-gallery-item { border-radius: 10px; overflow: hidden; position: relative; cursor: pointer; }
+        .cp-gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+        .cp-gallery-item:hover img { transform: scale(1.04); }
+        .cp-gallery-item-label { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(14,26,43,0.75)); color: #FFFFFF; font-size: 0.78rem; font-weight: 500; padding: 1.5rem 0.85rem 0.65rem; opacity: 0; transition: opacity 0.3s ease; }
+        .cp-gallery-item:hover .cp-gallery-item-label { opacity: 1; }
+        .cp-gallery-hero { grid-column: span 2; height: 340px; }
+        .cp-gallery-tall { height: 340px; }
+        .cp-gallery-regular { height: 220px; }
         .cp-cta-section { background: linear-gradient(135deg, #0E1A2B 0%, #1A2D47 50%, #232A33 100%); text-align: center; padding: 6rem 0; position: relative; overflow: hidden; }
         .cp-cta-section::before { content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(198,166,107,0.08) 0%, transparent 70%); border-radius: 50%; }
         .cp-cta-section h2 { color: #FFFFFF; margin-bottom: 1rem; }
@@ -257,8 +261,8 @@ const CharlotteProposal = () => {
           .cp-proj-cards, .cp-services-grid, .cp-why-grid { grid-template-columns: repeat(2, 1fr); }
           .cp-dashboard-features { grid-template-columns: repeat(3, 1fr); }
           .cp-earnings-layout { grid-template-columns: 1fr; }
-          .cp-gallery-placeholder { grid-template-columns: 1fr 1fr; }
-          .cp-gallery-main { grid-column: span 2; }
+          .cp-gallery-grid { grid-template-columns: 1fr 1fr; }
+          .cp-gallery-hero { grid-column: span 2; }
           .cp-market-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 768px) {
@@ -270,8 +274,8 @@ const CharlotteProposal = () => {
         @media (max-width: 600px) {
           .cp-proj-cards, .cp-services-grid, .cp-why-grid, .cp-earnings-layout { grid-template-columns: 1fr; }
           .cp-dashboard-features { grid-template-columns: repeat(2, 1fr); }
-          .cp-gallery-placeholder { grid-template-columns: 1fr; }
-          .cp-gallery-main { grid-column: span 1; height: 220px; }
+          .cp-gallery-grid { grid-template-columns: 1fr; }
+          .cp-gallery-hero, .cp-gallery-tall { grid-column: span 1; height: 240px; }
           .cp-market-grid { grid-template-columns: 1fr; }
           .cp-btn-group, .cp-cta-btn-group { flex-direction: column; }
         }
@@ -371,43 +375,71 @@ const CharlotteProposal = () => {
           </div>
         </section>
 
-        {/* PHOTO GALLERY PLACEHOLDER */}
+        {/* PHOTO GALLERY */}
         <section className="cp-section cp-section-ivory cp-gallery-section" id="cp-gallery">
           <div className="cp-container">
             <div className="cp-section-header cp-fade-in">
               <div className="cp-section-label">Property Gallery</div>
-              <h2>Your Property, Showcased</h2>
+              <h2>5048 Downhaul Dr — Inside & Out</h2>
               <div className="cp-gold-divider"></div>
-              <p>Professional photography is included with every IPM listing. Photos will be added here once available — showcasing the unique character and appeal of your property to maximize guest interest and booking conversions.</p>
+              <p>A spacious two-story home featuring an open-concept main floor, modern kitchen with granite countertops, multiple bedrooms, and generous living spaces — ready to welcome guests from day one.</p>
             </div>
-            <div className="cp-gallery-placeholder cp-fade-in">
-              <div className="cp-gallery-slot cp-gallery-main">
-                <div className="cp-gallery-slot-icon">🏠</div>
-                <p><strong style={{color:'#8B7355'}}>Main Feature Photo</strong><br/>Hero image will appear here</p>
+            <div className="cp-gallery-grid cp-fade-in">
+              <div className="cp-gallery-item cp-gallery-hero">
+                <img src="/charlotte-1-exterior.jpg" alt="Exterior — 5048 Downhaul Dr" />
+                <div className="cp-gallery-item-label">Exterior</div>
               </div>
-              <div className="cp-gallery-slot">
-                <div className="cp-gallery-slot-icon">📸</div>
-                <p>Exterior View</p>
+              <div className="cp-gallery-item cp-gallery-tall">
+                <img src="/charlotte-5-kitchen.jpg" alt="Kitchen" />
+                <div className="cp-gallery-item-label">Kitchen</div>
               </div>
-              <div className="cp-gallery-slot">
-                <div className="cp-gallery-slot-icon">🛋️</div>
-                <p>Living Area</p>
+              <div className="cp-gallery-item cp-gallery-regular">
+                <img src="/charlotte-3-living.jpg" alt="Living Room" />
+                <div className="cp-gallery-item-label">Living Room</div>
               </div>
-              <div className="cp-gallery-slot">
-                <div className="cp-gallery-slot-icon">🍳</div>
-                <p>Kitchen</p>
+              <div className="cp-gallery-item cp-gallery-regular">
+                <img src="/charlotte-9-openplan.jpg" alt="Open Floor Plan" />
+                <div className="cp-gallery-item-label">Open Floor Plan</div>
               </div>
-              <div className="cp-gallery-slot">
-                <div className="cp-gallery-slot-icon">🛏️</div>
-                <p>Primary Bedroom</p>
+              <div className="cp-gallery-item cp-gallery-regular">
+                <img src="/charlotte-11-kitchen2.jpg" alt="Kitchen & Living Area" />
+                <div className="cp-gallery-item-label">Kitchen & Living</div>
               </div>
-              <div className="cp-gallery-slot">
-                <div className="cp-gallery-slot-icon">🚿</div>
-                <p>Bathroom</p>
+              <div className="cp-gallery-item cp-gallery-regular">
+                <img src="/charlotte-4-dining.jpg" alt="Dining Area" />
+                <div className="cp-gallery-item-label">Dining Area</div>
+              </div>
+              <div className="cp-gallery-item cp-gallery-regular">
+                <img src="/charlotte-2-primary-bed.jpg" alt="Primary Bedroom" />
+                <div className="cp-gallery-item-label">Primary Bedroom</div>
+              </div>
+              <div className="cp-gallery-item cp-gallery-regular">
+                <img src="/charlotte-6-bedroom2.jpg" alt="Bedroom 2" />
+                <div className="cp-gallery-item-label">Bedroom 2</div>
+              </div>
+              <div className="cp-gallery-item cp-gallery-regular">
+                <img src="/charlotte-10-loft.jpg" alt="Upstairs Lounge" />
+                <div className="cp-gallery-item-label">Upstairs Lounge</div>
+              </div>
+              <div className="cp-gallery-item cp-gallery-regular">
+                <img src="/charlotte-12-room1.jpg" alt="Bonus Room" />
+                <div className="cp-gallery-item-label">Bonus Room</div>
+              </div>
+              <div className="cp-gallery-item cp-gallery-regular">
+                <img src="/charlotte-13-room2.jpg" alt="Bonus Room — View 2" />
+                <div className="cp-gallery-item-label">Bonus Room</div>
+              </div>
+              <div className="cp-gallery-item cp-gallery-regular">
+                <img src="/charlotte-8-bath2.jpg" alt="Primary Bathroom" />
+                <div className="cp-gallery-item-label">Primary Bathroom</div>
+              </div>
+              <div className="cp-gallery-item cp-gallery-regular">
+                <img src="/charlotte-7-bath1.jpg" alt="Bathroom 2" />
+                <div className="cp-gallery-item-label">Bathroom 2</div>
               </div>
             </div>
-            <div className="cp-fade-in" style={{textAlign:'center', marginTop:'2rem'}}>
-              <p style={{fontSize:'0.85rem', color:'#8B7355', fontStyle:'italic'}}>📌 Photos to be added once provided. IPM will coordinate professional photography upon listing setup.</p>
+            <div className="cp-fade-in" style={{textAlign:'center', marginTop:'0rem'}}>
+              <p style={{fontSize:'0rem'}}></p>
             </div>
           </div>
         </section>
