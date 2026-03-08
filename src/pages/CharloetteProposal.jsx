@@ -133,9 +133,9 @@ const CharlotteProposal = () => {
         .cp-gold-divider { width: 60px; height: 3px; background: linear-gradient(90deg, #C6A66B, #D9BC8A); border-radius: 2px; margin: 1.25rem auto; }
         .cp-gold-divider-left { margin-left: 0; }
         .cp-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2rem; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); border: 2px solid transparent; white-space: nowrap; text-decoration: none; }
-        .cp-btn-primary { background-color: #C6A66B; color: #0E1A2B; border-color: #C6A66B; }
+        .cp-btn-primary { background-color: #C6A66B; color: #0E1A2B !important; border-color: #C6A66B; }
         .cp-btn-primary:hover { background-color: #D9BC8A; border-color: #D9BC8A; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(198,166,107,0.35); }
-        .cp-btn-outline { background-color: transparent; color: #FFFFFF; border-color: rgba(255,255,255,0.6); }
+        .cp-btn-outline { background-color: transparent; color: #FFFFFF !important; border-color: rgba(255,255,255,0.6); }
         .cp-btn-outline:hover { background-color: rgba(255,255,255,0.1); border-color: #FFFFFF; transform: translateY(-2px); }
         .cp-btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
         .cp-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.25rem 0; transition: background 0.3s, padding 0.3s, box-shadow 0.3s; }
@@ -149,8 +149,8 @@ const CharlotteProposal = () => {
         .cp-hero-content { position: relative; z-index: 2; max-width: 800px; padding: 8rem 0 5rem; }
         .cp-hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(198,166,107,0.15); border: 1px solid rgba(198,166,107,0.4); border-radius: 50px; padding: 0.4rem 1rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #C6A66B; margin-bottom: 1.5rem; }
         .cp-hero h1 { color: #FFFFFF; margin-bottom: 1.25rem; }
-        .cp-hero-sub { font-size: 1.15rem; color: rgba(255,255,255,0.75); margin-bottom: 0.75rem; font-family: 'Playfair Display', serif; font-style: italic; }
-        .cp-hero-desc { font-size: 1rem; color: rgba(255,255,255,0.65); max-width: 580px; margin-bottom: 2.5rem; line-height: 1.8; }
+        .cp-hero-sub { font-size: 1.15rem; color: rgba(255,255,255,0.85) !important; margin-bottom: 0.75rem; font-family: 'Playfair Display', serif; font-style: italic; }
+        .cp-hero-desc { font-size: 1rem; color: rgba(255,255,255,0.8) !important; max-width: 580px; margin-bottom: 2.5rem; line-height: 1.8; }
         .cp-hero-stats { display: flex; gap: 2.5rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.12); flex-wrap: wrap; }
         .cp-hero-stat-value { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: #C6A66B; }
         .cp-hero-stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem; }
