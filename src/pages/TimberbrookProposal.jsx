@@ -52,6 +52,7 @@ const TimberbrookProposal = () => {
     { src: '/timberbrook-9-bedroom4.jpg',  label: 'Bedroom 4 – Queen' },
     { src: '/timberbrook-10-bathroom.jpg', label: 'Double Vanity Bathroom' },
     { src: '/timberbrook-11-shower.jpg',   label: 'Shower' },
+    { src: '/timberbrook-12-living2.jpg',  label: 'Second Living Area' },
   ];
 
   useEffect(() => {
