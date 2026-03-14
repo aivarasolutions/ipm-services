@@ -22,6 +22,7 @@ import AvoidFees from './pages/insights/AvoidFees'
 import CheckinSystem from './pages/insights/CheckinSystem'
 import VideoLibrary from './pages/insights/VideoLibrary'
 import CharlotteProposal from './pages/CharloetteProposal'
+import TampaProposal from './pages/TampaProposal'
 
 // Import components
 import Header from './components/Header'
@@ -29,7 +30,7 @@ import Footer from './components/Footer'
 import { AudioProvider } from './contexts/AudioContext'
 import { LanguageProvider } from './contexts/LanguageContext'
 
-const STANDALONE_ROUTES = ['/proposal/charlotte-downhaul'];
+const STANDALONE_ROUTES = ['/proposal/charlotte-downhaul', '/proposal/tampa-audrey'];
 
 function AppLayout() {
   const location = useLocation();
@@ -39,6 +40,7 @@ function AppLayout() {
     return (
       <Routes>
         <Route path="/proposal/charlotte-downhaul" element={<CharlotteProposal />} />
+        <Route path="/proposal/tampa-audrey" element={<TampaProposal />} />
       </Routes>
     );
   }

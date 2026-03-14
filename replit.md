@@ -36,8 +36,9 @@ This is a React-based Single Page Application (SPA) for International Property M
 ## Standalone Proposal Pages
 Proposal pages render without the IPM Header/Footer — they have their own navigation and footer.
 - Route: `/proposal/charlotte-downhaul` → `src/pages/CharloetteProposal.jsx`
+- Route: `/proposal/tampa-audrey` → `src/pages/TampaProposal.jsx`
 - Add future standalone routes to the `STANDALONE_ROUTES` array in `src/App.jsx`
-- Hero background image served from `/public/charlotte-hero-bg.jpg`
+- Hero images served from `/public/` (charlotte-hero-bg.jpg, tampa-hero-bg.jpg, tampa-waterfront.jpg)
 
 ## Recent Changes
 ### 2026-03-08
