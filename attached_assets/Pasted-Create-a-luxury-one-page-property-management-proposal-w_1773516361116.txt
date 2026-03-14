@@ -1,0 +1,366 @@
+Create a **luxury one-page property management proposal website** for a homeowner considering professional short-term rental management.
+
+Company name:
+
+**IPM – International Property Management**
+
+Official website:
+
+**ipm.services**
+
+This page is a **custom proposal for a property located at**
+
+**2804 Timberbrook Dr, Charlotte, NC 28208**
+
+The page should look like a **professional investment presentation for the property owner**, explaining how IPM can manage the home as a high-performing short-term rental.
+
+Use the following sources to analyze the property:
+
+Zillow listing:
+https://www.zillow.com/homedetails/2804-Timberbrook-Dr-Charlotte-NC-28208/125717541_zpid/
+
+Comparable Airbnb listing:
+https://www.airbnb.com/rooms/1589939790014782274
+
+Use the Zillow and Airbnb information to estimate the property's potential short-term rental performance in Charlotte.
+
+The page must be **mobile responsive**, modern, and structured so the code can later be **embedded into the main IPM website hosted on Replit.**
+
+---
+
+# Property Information
+
+Address
+2804 Timberbrook Dr
+Charlotte, NC 28208
+
+Property details (use Zillow data if available):
+
+single-family home
+3 bedrooms
+2 bathrooms
+approximately 1,200–1,400 sq ft range
+quiet residential neighborhood
+
+The proposal should explain that the property could perform well as a short-term rental due to:
+
+proximity to Charlotte Douglas International Airport
+access to Uptown Charlotte
+proximity to Bank of America Stadium and events
+business travel demand
+weekend tourism and concerts
+corporate relocations
+
+---
+
+# Branding
+
+Use the IPM brand style:
+
+Primary colors
+
+Midnight Navy #0E1A2B
+Charcoal Slate #232A33
+Ivory White #F8F7F4
+
+Accent color
+
+Soft Gold #C6A66B
+
+Typography
+
+Headings: Playfair Display
+Body text: Inter
+
+Design style
+
+Luxury real estate
+clean modern layout
+soft shadows
+card-based UI
+smooth scrolling animations
+minimalist design
+
+The page should look like a **boutique investment management company website**, not a generic Airbnb template.
+
+---
+
+# Page Sections
+
+Create these sections in this order.
+
+---
+
+# 1 Hero Section
+
+Headline:
+
+"Maximize the Revenue Potential of Your Charlotte Property"
+
+Subheadline:
+
+"Custom Property Management Proposal for
+2804 Timberbrook Dr – Charlotte, NC"
+
+Short text explaining that IPM specializes in professional short-term rental management and revenue optimization.
+
+Buttons:
+
+View Revenue Projection
+Schedule Owner Consultation
+
+Background image should represent **Charlotte upscale residential homes or modern interiors.**
+
+---
+
+# 2 Property Overview
+
+Display the property address and summary.
+
+2804 Timberbrook Dr
+Charlotte, NC 28208
+
+Explain key features such as:
+
+three-bedroom layout ideal for group travelers
+proximity to the airport and downtown
+comfortable residential neighborhood
+appealing layout for families, business travelers, and event visitors
+
+Include a map showing Charlotte location.
+
+---
+
+# 3 Charlotte Short-Term Rental Market
+
+Explain the strength of the Charlotte vacation rental market.
+
+Include facts such as:
+
+average nightly rate around $170–$220
+average occupancy about 60–68%
+average annual revenue about $35K–$55K depending on property quality
+
+Explain key demand drivers:
+
+Charlotte Douglas International Airport
+Bank of America Stadium events
+conventions and conferences
+business travel
+weekend tourism
+
+Include a simple chart showing Charlotte nightly rates and occupancy trends.
+
+---
+
+# 4 Revenue Projection for This Property
+
+Create three revenue scenarios based on the comparable Airbnb listing.
+
+---
+
+Conservative Scenario
+
+Estimated nightly rate $170
+Occupancy about 55%
+Booked nights about 16–17 per month
+
+Estimated monthly gross revenue
+
+$2,800 – $3,100
+
+Estimated annual revenue
+
+$33,000 – $37,000
+
+---
+
+Strong Performance Scenario
+
+Estimated nightly rate $215
+Occupancy about 65%
+Booked nights about 19–20 per month
+
+Estimated monthly gross revenue
+
+$4,000 – $4,400
+
+Estimated annual revenue
+
+$48,000 – $53,000
+
+---
+
+Premium Optimized Scenario
+
+Estimated nightly rate $265
+Occupancy about 72%
+
+Booked nights about 21–22 per month
+
+Estimated monthly gross revenue
+
+$5,500 – $6,100
+
+Estimated annual revenue
+
+$65,000 – $73,000
+
+Display these projections as **modern cards and a bar chart.**
+
+---
+
+# 5 Owner Earnings Example
+
+Explain IPM pricing.
+
+IPM pricing structure:
+
+Monthly platform and management software fee
+
+$200 per month
+
+Management fee
+
+20 percent of **net profit**
+
+Net profit means revenue after platform commissions such as Airbnb or Booking.com.
+
+Example calculation
+
+Monthly gross revenue
+$4,200
+
+Platform commission estimate (15%)
+
+$630
+
+Net revenue
+$3,570
+
+IPM management fee (20%)
+
+$714
+
+Monthly software fee
+
+$200
+
+Estimated owner payout before taxes and maintenance reserve
+
+$2,656
+
+Create a clean breakdown table.
+
+---
+
+# 6 What IPM Handles
+
+Create a grid of services.
+
+Listing creation and optimization
+Professional photography coordination
+Dynamic pricing strategy
+Guest messaging
+Cleaning coordination
+Maintenance management
+Review management
+Multi-platform distribution
+
+Explain that owners get a **fully hands-off management experience**.
+
+---
+
+# 7 Why Owners Choose IPM
+
+Explain advantages such as:
+
+revenue optimization
+professional guest communication
+property protection
+transparent reporting
+hospitality-focused operations
+multi-platform exposure
+
+Use card-based design.
+
+---
+
+# 8 Owner Dashboard and Reporting
+
+Explain that owners receive:
+
+booking calendar access
+monthly financial reports
+revenue tracking
+guest feedback and reviews
+performance insights
+
+---
+
+# 9 Call to Action
+
+Headline:
+
+"Turn Your Property Into a High-Performing Asset"
+
+Buttons
+
+Schedule Owner Consultation
+Request Revenue Analysis
+
+Use placeholder links so they can later connect to:
+
+Calendly
+CRM
+lead forms
+
+---
+
+# 10 Footer
+
+Include:
+
+IPM – International Property Management
+Charlotte Property Management Division
+
+Website
+ipm.services
+
+Add a contact placeholder.
+
+---
+
+# Technical Requirements
+
+Generate clean production-ready code including:
+
+HTML
+CSS
+lightweight JavaScript
+
+Requirements
+
+fully responsive
+optimized for fast loading
+modular structure
+easy to embed into a Replit website
+
+Structure the page so it can later live at a URL such as:
+
+/proposal/charlotte-timberbrook
+
+Add comments in the code explaining where to change:
+
+address
+city
+revenue projections
+CTA links
+
+---
+
+# Disclaimer
+
+At the bottom of the revenue section include:
+
+"Revenue projections are estimates based on market data and comparable Charlotte listings. Actual performance depends on property condition, amenities, pricing strategy, seasonality, and guest demand."
