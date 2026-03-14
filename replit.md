@@ -40,6 +40,12 @@ Proposal pages render without the IPM Header/Footer — they have their own navi
 - Add future standalone routes to the `STANDALONE_ROUTES` array in `src/App.jsx`
 - Hero images served from `/public/` (charlotte-hero-bg.jpg, tampa-hero-bg.jpg, tampa-waterfront.jpg)
 
+### Standard Proposal Page Pattern (apply to every new proposal)
+1. **CSS prefix**: Each page uses a unique 2-3 letter prefix (e.g. `cp-` Charlotte, `tp-` Tampa) to prevent class collisions. All CSS lives in a scoped `<style>` tag inside the component.
+2. **Interactive tier selection**: Define a `TIERS` object outside the component with keys `conservative`, `strong`, `premium`. Each tier has: `{ label, gross, commission, net, mgmtFee, platformFee, payout }`. Use `useState('strong')` for default. Wire each projection card's `onClick` to `setSelectedTier`. Apply `{prefix}-selected` class (gold outline + "✓ Selected" badge) to the active card. The earnings table reads all values from `TIERS[selectedTier]` — no `contentEditable`.
+3. **Currency helper**: Define `const fmt = (n) => '$' + n.toLocaleString('en-US');` above the component.
+4. **Imports**: `import { useEffect, useRef, useState } from 'react';`
+
 ## Recent Changes
 ### 2026-03-08
 - **Added Charlotte Owner Proposal page** at `/proposal/charlotte-downhaul`

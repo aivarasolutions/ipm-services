@@ -1,10 +1,43 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
+const TIERS = {
+  conservative: {
+    label: 'Conservative Scenario',
+    gross: 2800,
+    commission: 420,
+    net: 2380,
+    mgmtFee: 476,
+    platformFee: 200,
+    payout: 1704,
+  },
+  strong: {
+    label: 'Strong Performance Scenario',
+    gross: 4200,
+    commission: 630,
+    net: 3570,
+    mgmtFee: 714,
+    platformFee: 200,
+    payout: 2656,
+  },
+  premium: {
+    label: 'Premium Optimized Scenario',
+    gross: 5800,
+    commission: 870,
+    net: 4930,
+    mgmtFee: 986,
+    platformFee: 200,
+    payout: 3744,
+  },
+};
+
+const fmt = (n) => '$' + n.toLocaleString('en-US');
 
 const CharlotteProposal = () => {
   const nightlyChartRef = useRef(null);
   const revenueChartRef = useRef(null);
   const nightlyChartInstance = useRef(null);
   const revenueChartInstance = useRef(null);
+  const [selectedTier, setSelectedTier] = useState('strong');
 
   useEffect(() => {
     document.title = 'Owner Proposal – 5048 Downhaul Dr, Charlotte | IPM';
@@ -172,8 +205,10 @@ const CharlotteProposal = () => {
         .cp-chart-container { background: rgba(255,255,255,0.04); border: 1px solid rgba(198,166,107,0.15); border-radius: 20px; padding: 2rem; max-width: 700px; margin: 0 auto; }
         .cp-chart-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #FFFFFF; text-align: center; margin-bottom: 1.5rem; }
         .cp-proj-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 3rem; }
-        .cp-proj-card { background: #FFFFFF; border-radius: 20px; padding: 2rem; box-shadow: 0 2px 8px rgba(14,26,43,0.08); border-top: 4px solid transparent; transition: transform 0.3s, box-shadow 0.3s; position: relative; }
+        .cp-proj-card { background: #FFFFFF; border-radius: 20px; padding: 2rem; box-shadow: 0 2px 8px rgba(14,26,43,0.08); border-top: 4px solid transparent; transition: transform 0.3s, box-shadow 0.3s; position: relative; cursor: pointer; }
         .cp-proj-card:hover { transform: translateY(-6px); box-shadow: 0 8px 32px rgba(14,26,43,0.12); }
+        .cp-proj-card.cp-selected { outline: 3px solid #C6A66B; outline-offset: 2px; transform: translateY(-6px); box-shadow: 0 8px 32px rgba(198,166,107,0.25); }
+        .cp-proj-card.cp-selected::after { content: '✓ Selected'; position: absolute; bottom: 1rem; right: 1rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #C6A66B; }
         .cp-proj-conservative { border-top-color: #8BA3C0; }
         .cp-proj-strong { border-top-color: #C6A66B; background: #0E1A2B; }
         .cp-proj-premium { border-top-color: #2D6A4F; }
@@ -488,7 +523,7 @@ const CharlotteProposal = () => {
               <p>Based on comparable short-term rental performance in the Charlotte market, we have modeled three realistic revenue scenarios for your property. These projections reflect current market conditions and IPM's dynamic pricing approach.</p>
             </div>
             <div className="cp-proj-cards cp-fade-in">
-              <div className="cp-proj-card cp-proj-conservative">
+              <div className={`cp-proj-card cp-proj-conservative${selectedTier === 'conservative' ? ' cp-selected' : ''}`} onClick={() => setSelectedTier('conservative')}>
                 <div className="cp-proj-badge">Conservative</div>
                 <div className="cp-proj-nightly">$165</div>
                 <div className="cp-proj-label">Estimated Nightly Rate</div>
@@ -499,7 +534,7 @@ const CharlotteProposal = () => {
                 </div>
                 <div className="cp-proj-annual"><div className="cp-proj-annual-value">$32K–$35K</div><div className="cp-proj-annual-label">Estimated Annual Gross Revenue</div></div>
               </div>
-              <div className="cp-proj-card cp-proj-strong" style={{position:'relative'}}>
+              <div className={`cp-proj-card cp-proj-strong${selectedTier === 'strong' ? ' cp-selected' : ''}`} style={{position:'relative'}} onClick={() => setSelectedTier('strong')}>
                 <div className="cp-popular-badge">Most Likely</div>
                 <div className="cp-proj-badge">Strong Performance</div>
                 <div className="cp-proj-nightly">$210</div>
@@ -511,7 +546,7 @@ const CharlotteProposal = () => {
                 </div>
                 <div className="cp-proj-annual"><div className="cp-proj-annual-value">$48K–$52K</div><div className="cp-proj-annual-label">Estimated Annual Gross Revenue</div></div>
               </div>
-              <div className="cp-proj-card cp-proj-premium">
+              <div className={`cp-proj-card cp-proj-premium${selectedTier === 'premium' ? ' cp-selected' : ''}`} onClick={() => setSelectedTier('premium')}>
                 <div className="cp-proj-badge">Premium Optimized</div>
                 <div className="cp-proj-nightly">$265</div>
                 <div className="cp-proj-label">Estimated Nightly Rate</div>
@@ -567,8 +602,8 @@ const CharlotteProposal = () => {
               <div>
                 <div style={{marginBottom:'1rem'}}>
                   <div className="cp-section-label">Sample Calculation</div>
-                  <h3 style={{marginBottom:'0.5rem'}}>Strong Performance Scenario</h3>
-                  <p style={{fontSize:'0.88rem'}}>Based on $4,200 monthly gross booking revenue. Click any value to edit.</p>
+                  <h3 style={{marginBottom:'0.5rem'}}>{TIERS[selectedTier].label}</h3>
+                  <p style={{fontSize:'0.88rem'}}>Based on {fmt(TIERS[selectedTier].gross)} monthly gross booking revenue. Click a scenario above to compare.</p>
                 </div>
                 <div className="cp-earnings-table-wrap">
                   <table className="cp-earnings-table">
@@ -576,21 +611,21 @@ const CharlotteProposal = () => {
                       <tr><th>Item</th><th style={{textAlign:'right'}}>Amount</th></tr>
                     </thead>
                     <tbody>
-                      <tr><td>Monthly Gross Booking Revenue</td><td contentEditable="true">$4,200</td></tr>
-                      <tr><td>Platform Commission (est. 15%)</td><td contentEditable="true" style={{color:'#E53E3E'}}>– $630</td></tr>
-                      <tr><td><strong>Net Booking Revenue</strong></td><td contentEditable="true"><strong>$3,570</strong></td></tr>
-                      <tr><td>IPM Management Fee (20% of Net)</td><td contentEditable="true" style={{color:'#E53E3E'}}>– $714</td></tr>
-                      <tr><td>Monthly Platform / Software Fee</td><td contentEditable="true" style={{color:'#E53E3E'}}>– $200</td></tr>
+                      <tr><td>Monthly Gross Booking Revenue</td><td>{fmt(TIERS[selectedTier].gross)}</td></tr>
+                      <tr><td>Platform Commission (est. 15%)</td><td style={{color:'#E53E3E'}}>– {fmt(TIERS[selectedTier].commission)}</td></tr>
+                      <tr><td><strong>Net Booking Revenue</strong></td><td><strong>{fmt(TIERS[selectedTier].net)}</strong></td></tr>
+                      <tr><td>IPM Management Fee (20% of Net)</td><td style={{color:'#E53E3E'}}>– {fmt(TIERS[selectedTier].mgmtFee)}</td></tr>
+                      <tr><td>Monthly Platform / Software Fee</td><td style={{color:'#E53E3E'}}>– {fmt(TIERS[selectedTier].platformFee)}</td></tr>
                       <tr className="cp-highlight">
                         <td><strong>Estimated Owner Payout</strong><br/><span style={{fontSize:'0.75rem', fontWeight:'400', color:'#718096'}}>Before taxes &amp; maintenance reserve</span></td>
-                        <td><strong>$2,656</strong></td>
+                        <td><strong>{fmt(TIERS[selectedTier].payout)}</strong></td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
                 <div className="cp-editable-note">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-                  Values are editable — click any cell to update figures for your scenario.
+                  Click any projection card above to update this breakdown instantly.
                 </div>
               </div>
             </div>
