@@ -38,6 +38,21 @@ const TimberbrookProposal = () => {
   const nightlyChartInstance = useRef(null);
   const revenueChartInstance = useRef(null);
   const [selectedTier, setSelectedTier] = useState('strong');
+  const [lightboxIdx, setLightboxIdx] = useState(null);
+
+  const PHOTOS = [
+    { src: '/timberbrook-1-exterior.jpg',  label: 'Exterior – Front View' },
+    { src: '/timberbrook-2-kitchen.jpg',   label: 'Kitchen' },
+    { src: '/timberbrook-3-kitchen2.jpg',  label: 'Kitchen Detail' },
+    { src: '/timberbrook-4-kitchen3.jpg',  label: 'Kitchen & Dining' },
+    { src: '/timberbrook-5-living.jpg',    label: 'Living Room' },
+    { src: '/timberbrook-6-master.jpg',    label: 'Master Bedroom' },
+    { src: '/timberbrook-7-bedroom2.jpg',  label: 'Bedroom 2 – Bunk & Full' },
+    { src: '/timberbrook-8-bedroom3.jpg',  label: 'Bedroom 3 – Bunk & Twin' },
+    { src: '/timberbrook-9-bedroom4.jpg',  label: 'Bedroom 4 – Queen' },
+    { src: '/timberbrook-10-bathroom.jpg', label: 'Double Vanity Bathroom' },
+    { src: '/timberbrook-11-shower.jpg',   label: 'Shower' },
+  ];
 
   useEffect(() => {
     document.title = 'Owner Proposal – 2804 Timberbrook Dr, Charlotte | IPM';
@@ -227,6 +242,28 @@ const TimberbrookProposal = () => {
         .tt-demand-list li { display:flex; align-items:flex-start; gap:0.75rem; padding:0.85rem 0; border-bottom:1px solid #E2E8F0; font-size:0.95rem; color:#4A5568; }
         .tt-demand-list li:last-child { border-bottom:none; }
         .tt-demand-list li::before { content:'✓'; color:#C6A66B; font-weight:700; font-size:0.9rem; flex-shrink:0; margin-top:0.15rem; }
+
+        /* GALLERY */
+        .tt-gallery-section { background:#F8F7F4; padding:5rem 0; }
+        .tt-gallery-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0.75rem; }
+        .tt-gallery-grid .tt-gallery-featured { grid-column:span 2; grid-row:span 2; }
+        .tt-gallery-item { overflow:hidden; border-radius:12px; position:relative; background:#E2E8F0; aspect-ratio:4/3; cursor:pointer; }
+        .tt-gallery-item img { width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease; display:block; }
+        .tt-gallery-item:hover img { transform:scale(1.05); }
+        .tt-gallery-featured { aspect-ratio:unset; }
+        .tt-gallery-label { position:absolute; bottom:0; left:0; right:0; padding:0.6rem 0.85rem; background:linear-gradient(transparent,rgba(14,26,43,0.7)); font-size:0.72rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.85); opacity:0; transition:opacity 0.3s; }
+        .tt-gallery-item:hover .tt-gallery-label { opacity:1; }
+        .tt-lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:9999; align-items:center; justify-content:center; }
+        .tt-lightbox.tt-lx-open { display:flex; }
+        .tt-lightbox img { max-width:90vw; max-height:85vh; border-radius:8px; object-fit:contain; }
+        .tt-lx-close { position:absolute; top:1.5rem; right:1.5rem; width:42px; height:42px; border-radius:50%; background:rgba(255,255,255,0.15); border:none; color:#fff; font-size:1.4rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.2s; }
+        .tt-lx-close:hover { background:rgba(255,255,255,0.3); }
+        .tt-lx-nav { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.15); border:none; color:#fff; font-size:1.6rem; width:48px; height:48px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.2s; }
+        .tt-lx-nav:hover { background:rgba(255,255,255,0.3); }
+        .tt-lx-prev { left:1.5rem; }
+        .tt-lx-next { right:1.5rem; }
+        @media (max-width:900px) { .tt-gallery-grid { grid-template-columns:repeat(2,1fr); } .tt-gallery-grid .tt-gallery-featured { grid-column:span 2; } }
+        @media (max-width:500px) { .tt-gallery-grid { grid-template-columns:1fr; } .tt-gallery-grid .tt-gallery-featured { grid-column:span 1; } }
 
         /* MARKET */
         .tt-market-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-bottom:3rem; }
@@ -451,6 +488,44 @@ const TimberbrookProposal = () => {
           </div>
         </div>
       </section>
+
+      {/* PHOTO GALLERY */}
+      <section className="tt-gallery-section" id="tt-gallery">
+        <div className="tt-container">
+          <div className="tt-section-header tt-fade-in" style={{marginBottom:'2.5rem'}}>
+            <div className="tt-section-label">Property Photos</div>
+            <h2>Inside 2804 Timberbrook Dr</h2>
+            <div className="tt-gold-divider"></div>
+            <p>A well-maintained 3-bedroom home with spacious rooms, updated kitchen, and comfortable living spaces ready for short-term rental guests.</p>
+          </div>
+          <div className="tt-gallery-grid tt-fade-in">
+            {PHOTOS.map((photo, idx) => (
+              <div
+                key={idx}
+                className={`tt-gallery-item${idx === 0 ? ' tt-gallery-featured' : ''}`}
+                onClick={() => setLightboxIdx(idx)}
+              >
+                <img src={photo.src} alt={photo.label} loading={idx < 3 ? 'eager' : 'lazy'} />
+                <div className="tt-gallery-label">{photo.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* LIGHTBOX */}
+      {lightboxIdx !== null && (
+        <div className="tt-lightbox tt-lx-open" onClick={() => setLightboxIdx(null)}>
+          <button className="tt-lx-close" onClick={() => setLightboxIdx(null)}>✕</button>
+          <button className="tt-lx-nav tt-lx-prev" onClick={(e) => { e.stopPropagation(); setLightboxIdx((lightboxIdx - 1 + PHOTOS.length) % PHOTOS.length); }}>‹</button>
+          <img
+            src={PHOTOS[lightboxIdx].src}
+            alt={PHOTOS[lightboxIdx].label}
+            onClick={(e) => e.stopPropagation()}
+          />
+          <button className="tt-lx-nav tt-lx-next" onClick={(e) => { e.stopPropagation(); setLightboxIdx((lightboxIdx + 1) % PHOTOS.length); }}>›</button>
+        </div>
+      )}
 
       {/* CHARLOTTE MARKET */}
       <section className="tt-section tt-section-dark" id="tt-market">
