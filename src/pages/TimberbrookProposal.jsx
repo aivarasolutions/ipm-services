@@ -190,8 +190,8 @@ const TimberbrookProposal = () => {
         .tt-btn { display:inline-flex; align-items:center; gap:0.5rem; padding:0.85rem 2rem; border-radius:6px; font-family:'Inter',sans-serif; font-size:0.9rem; font-weight:600; letter-spacing:0.04em; cursor:pointer; transition:all 0.3s; border:2px solid transparent; white-space:nowrap; }
         .tt-btn-primary { background:#C6A66B; color:#0E1A2B; border-color:#C6A66B; }
         .tt-btn-primary:hover { background:#D9BC8A; border-color:#D9BC8A; transform:translateY(-2px); box-shadow:0 8px 24px rgba(198,166,107,0.35); }
-        .tt-btn-outline { background:transparent; color:#fff; border-color:rgba(255,255,255,0.6); }
-        .tt-btn-outline:hover { background:rgba(255,255,255,0.1); border-color:#fff; transform:translateY(-2px); }
+        .tt-btn-outline { background:rgba(0,0,0,0.35); color:#fff !important; border-color:#fff; }
+        .tt-btn-outline:hover { background:rgba(0,0,0,0.55); border-color:#fff; transform:translateY(-2px); }
         .tt-btn-dark { background:transparent; color:#0E1A2B; border-color:#0E1A2B; }
         .tt-btn-dark:hover { background:#0E1A2B; color:#fff; transform:translateY(-2px); }
 

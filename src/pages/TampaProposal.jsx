@@ -167,8 +167,8 @@ const TampaProposal = () => {
         .tp-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2rem; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); border: 2px solid transparent; white-space: nowrap; }
         .tp-btn-primary { background: #C6A66B !important; color: #0E1A2B !important; border-color: #C6A66B; }
         .tp-btn-primary:hover { background: #D9BC8A !important; border-color: #D9BC8A; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(198,166,107,0.35); }
-        .tp-btn-outline { background: transparent !important; color: #FFFFFF !important; border-color: rgba(255,255,255,0.6); }
-        .tp-btn-outline:hover { background: rgba(255,255,255,0.1) !important; border-color: #FFFFFF; transform: translateY(-2px); }
+        .tp-btn-outline { background: rgba(0,0,0,0.35) !important; color: #FFFFFF !important; border-color: #FFFFFF; }
+        .tp-btn-outline:hover { background: rgba(0,0,0,0.55) !important; border-color: #FFFFFF; transform: translateY(-2px); }
         .tp-btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
 
         .tp-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.25rem 0; transition: background 0.3s, padding 0.3s, box-shadow 0.3s; }
