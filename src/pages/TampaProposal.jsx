@@ -151,8 +151,8 @@ const TampaProposal = () => {
         .tp-hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(198,166,107,0.15); border: 1px solid rgba(198,166,107,0.4); border-radius: 50px; padding: 0.4rem 1rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #C6A66B; margin-bottom: 1.5rem; }
         .tp-hero h1 { color: #FFFFFF; margin-bottom: 1.25rem; }
         .tp-hero h1 em { color: #C6A66B; font-style: normal; }
-        .tp-hero-sub { font-size: 1.15rem; color: rgba(255,255,255,0.8); margin-bottom: 0.75rem; font-family: 'Playfair Display', serif; font-style: italic; }
-        .tp-hero-desc { font-size: 1rem; color: rgba(255,255,255,0.65); max-width: 580px; margin-bottom: 2.5rem; line-height: 1.8; }
+        .tp-hero-sub { font-size: 1.15rem; color: #FFFFFF !important; margin-bottom: 0.75rem; font-family: 'Playfair Display', serif; font-style: italic; }
+        .tp-hero-desc { font-size: 1rem; color: #FFFFFF !important; max-width: 580px; margin-bottom: 2.5rem; line-height: 1.8; }
         .tp-hero-stats { display: flex; gap: 2.5rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.12); flex-wrap: wrap; }
         .tp-hero-stat-value { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: #C6A66B; }
         .tp-hero-stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem; }
@@ -402,17 +402,51 @@ const TampaProposal = () => {
           </div>
           <div className="tp-gallery-grid tp-fade-in">
             <div className="tp-gallery-item tp-gallery-hero">
-              <img src="/tampa-hero-bg.jpg" alt="Tampa waterfront aerial — Tampa Bay Area" />
-              <div className="tp-gallery-item-label">Tampa Bay Waterfront</div>
+              <img src="/tampa-1-exterior.jpg" alt="Exterior — 8817 Audrey Ln" />
+              <div className="tp-gallery-item-label">Exterior</div>
             </div>
             <div className="tp-gallery-item tp-gallery-tall">
-              <img src="/tampa-waterfront.jpg" alt="Luxury waterfront pool at dusk" />
-              <div className="tp-gallery-item-label">Waterfront Lifestyle</div>
+              <img src="/tampa-4-living-dining.jpg" alt="Open-plan living, dining & kitchen" />
+              <div className="tp-gallery-item-label">Living, Dining & Kitchen</div>
+            </div>
+            <div className="tp-gallery-item tp-gallery-regular">
+              <img src="/tampa-2-kitchen1.jpg" alt="Chef's kitchen with marble counters" />
+              <div className="tp-gallery-item-label">Chef's Kitchen</div>
+            </div>
+            <div className="tp-gallery-item tp-gallery-regular">
+              <img src="/tampa-3-kitchen2.jpg" alt="Kitchen island & marble backsplash" />
+              <div className="tp-gallery-item-label">Kitchen Island</div>
+            </div>
+            <div className="tp-gallery-item tp-gallery-regular">
+              <img src="/tampa-5-openplan.jpg" alt="Open floor plan — living to kitchen" />
+              <div className="tp-gallery-item-label">Open Floor Plan</div>
+            </div>
+            <div className="tp-gallery-item tp-gallery-regular">
+              <img src="/tampa-6-kitchen-open.jpg" alt="Kitchen open to living area" />
+              <div className="tp-gallery-item-label">Kitchen & Living</div>
+            </div>
+            <div className="tp-gallery-item tp-gallery-regular">
+              <img src="/tampa-7-living-doors.jpg" alt="Living area with French doors to yard" />
+              <div className="tp-gallery-item-label">Living Room & French Doors</div>
+            </div>
+            <div className="tp-gallery-item tp-gallery-regular">
+              <img src="/tampa-8-primary-bed.jpg" alt="Primary bedroom" />
+              <div className="tp-gallery-item-label">Primary Bedroom</div>
+            </div>
+            <div className="tp-gallery-item tp-gallery-regular">
+              <img src="/tampa-9-bedroom2.jpg" alt="Second bedroom" />
+              <div className="tp-gallery-item-label">Bedroom 2</div>
+            </div>
+            <div className="tp-gallery-item tp-gallery-regular">
+              <img src="/tampa-10-bath1.jpg" alt="Bathroom with tub and marble tile" />
+              <div className="tp-gallery-item-label">Bathroom 1</div>
+            </div>
+            <div className="tp-gallery-item tp-gallery-regular">
+              <img src="/tampa-11-bath2.jpg" alt="Bathroom 2 with marble finishes" />
+              <div className="tp-gallery-item-label">Bathroom 2</div>
             </div>
           </div>
-          <div className="tp-fade-in" style={{textAlign:'center', marginTop:'1.5rem'}}>
-            <p style={{fontSize:'0.85rem', color:'#8B7355', fontStyle:'italic'}}>Professional property photography will be coordinated by IPM upon listing setup.</p>
-          </div>
+          <div style={{marginTop:'0'}}></div>
         </div>
       </section>
 
