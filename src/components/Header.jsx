@@ -32,7 +32,8 @@ const Header = () => {
         { name: 'Check-In System Design', path: '/insights/checkin-system' },
         { name: 'IPM Video Library', path: '/insights/video-library' },
         { name: '🏠 Charlotte Owner Proposal', path: '/proposal/charlotte-downhaul' },
-        { name: '🌊 Tampa Owner Proposal', path: '/proposal/tampa-audrey' }
+        { name: '🌊 Tampa Owner Proposal', path: '/proposal/tampa-audrey' },
+        { name: '🏡 Charlotte Timberbrook Proposal', path: '/proposal/charlotte-timberbrook' }
       ]
     },
     { name: 'News', path: '/news', color: 'bg-indigo-600 text-white' },

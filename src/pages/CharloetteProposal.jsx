@@ -763,7 +763,7 @@ const CharlotteProposal = () => {
               </div>
             </div>
             <div className="cp-footer-bottom">
-              <p>© 2025 IPM – International Property Management. All rights reserved.</p>
+              <p>© {new Date().getFullYear()} IPM – International Property Management. All rights reserved.</p>
               <p><a href="https://ipm.services" style={{color:'#C6A66B'}}>ipm.services</a></p>
             </div>
           </div>
