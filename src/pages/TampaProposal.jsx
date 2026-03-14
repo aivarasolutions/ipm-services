@@ -1,10 +1,43 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
+const TIERS = {
+  conservative: {
+    label: 'Conservative Scenario',
+    gross: 2850,
+    commission: 428,
+    net: 2423,
+    mgmtFee: 485,
+    platformFee: 200,
+    payout: 1738,
+  },
+  strong: {
+    label: 'Strong Performance Scenario',
+    gross: 4200,
+    commission: 630,
+    net: 3570,
+    mgmtFee: 714,
+    platformFee: 200,
+    payout: 2656,
+  },
+  premium: {
+    label: 'Premium Optimized Scenario',
+    gross: 5600,
+    commission: 840,
+    net: 4760,
+    mgmtFee: 952,
+    platformFee: 200,
+    payout: 3608,
+  },
+};
+
+const fmt = (n) => '$' + n.toLocaleString('en-US');
 
 const TampaProposal = () => {
   const nightlyChartRef = useRef(null);
   const revenueChartRef = useRef(null);
   const nightlyChartInstance = useRef(null);
   const revenueChartInstance = useRef(null);
+  const [selectedTier, setSelectedTier] = useState('strong');
 
   useEffect(() => {
     document.title = 'Owner Proposal – 8817 Audrey Ln, Tampa | IPM';
@@ -180,8 +213,10 @@ const TampaProposal = () => {
         .tp-chart-title-dark { color: #0E1A2B; }
 
         .tp-proj-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 3rem; }
-        .tp-proj-card { background: #FFFFFF; border-radius: 20px; padding: 2rem; box-shadow: 0 2px 8px rgba(14,26,43,0.08); border-top: 4px solid transparent; transition: transform 0.3s, box-shadow 0.3s; position: relative; }
+        .tp-proj-card { background: #FFFFFF; border-radius: 20px; padding: 2rem; box-shadow: 0 2px 8px rgba(14,26,43,0.08); border-top: 4px solid transparent; transition: transform 0.3s, box-shadow 0.3s; position: relative; cursor: pointer; }
         .tp-proj-card:hover { transform: translateY(-6px); box-shadow: 0 8px 32px rgba(14,26,43,0.12); }
+        .tp-proj-card.tp-selected { outline: 3px solid #C6A66B; outline-offset: 2px; transform: translateY(-6px); box-shadow: 0 8px 32px rgba(198,166,107,0.25); }
+        .tp-proj-card.tp-selected::after { content: '✓ Selected'; position: absolute; bottom: 1rem; right: 1rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #C6A66B; }
         .tp-proj-card.tp-conservative { border-top-color: #8BA3C0; }
         .tp-proj-card.tp-strong { border-top-color: #C6A66B; background: #0E1A2B; }
         .tp-proj-card.tp-premium { border-top-color: #2D6A4F; }
@@ -509,7 +544,7 @@ const TampaProposal = () => {
             <p>Based on comparable short-term rental performance in the Tampa waterfront market, we have modeled three realistic revenue scenarios for your property, reflecting current market conditions and IPM's dynamic pricing approach.</p>
           </div>
           <div className="tp-proj-cards tp-fade-in">
-            <div className="tp-proj-card tp-conservative">
+            <div className={`tp-proj-card tp-conservative${selectedTier === 'conservative' ? ' tp-selected' : ''}`} onClick={() => setSelectedTier('conservative')}>
               <div className="tp-proj-badge">Conservative</div>
               <div className="tp-proj-nightly">$165</div>
               <div className="tp-proj-label">Estimated Nightly Rate</div>
@@ -523,7 +558,7 @@ const TampaProposal = () => {
                 <div className="tp-proj-annual-label">Estimated Annual Gross Revenue</div>
               </div>
             </div>
-            <div className="tp-proj-card tp-strong">
+            <div className={`tp-proj-card tp-strong${selectedTier === 'strong' ? ' tp-selected' : ''}`} onClick={() => setSelectedTier('strong')}>
               <div className="tp-popular-badge">Most Likely</div>
               <div className="tp-proj-badge">Strong Performance</div>
               <div className="tp-proj-nightly">$210</div>
@@ -538,7 +573,7 @@ const TampaProposal = () => {
                 <div className="tp-proj-annual-label">Estimated Annual Gross Revenue</div>
               </div>
             </div>
-            <div className="tp-proj-card tp-premium">
+            <div className={`tp-proj-card tp-premium${selectedTier === 'premium' ? ' tp-selected' : ''}`} onClick={() => setSelectedTier('premium')}>
               <div className="tp-proj-badge">Premium Optimized</div>
               <div className="tp-proj-nightly">$255</div>
               <div className="tp-proj-label">Estimated Nightly Rate</div>
@@ -601,8 +636,8 @@ const TampaProposal = () => {
             <div>
               <div style={{marginBottom:'1rem'}}>
                 <div className="tp-section-label">Sample Calculation</div>
-                <h3 style={{marginBottom:'0.5rem'}}>Strong Performance Scenario</h3>
-                <p style={{fontSize:'0.88rem'}}>Based on $4,200 monthly gross booking revenue. Click any value to edit.</p>
+                <h3 style={{marginBottom:'0.5rem'}}>{TIERS[selectedTier].label}</h3>
+                <p style={{fontSize:'0.88rem'}}>Based on {fmt(TIERS[selectedTier].gross)} monthly gross booking revenue. Click a scenario above to compare.</p>
               </div>
               <div className="tp-earnings-table-wrap">
                 <table className="tp-earnings-table">
@@ -615,34 +650,34 @@ const TampaProposal = () => {
                   <tbody>
                     <tr>
                       <td>Monthly Gross Booking Revenue</td>
-                      <td contentEditable="true">$4,200</td>
+                      <td>{fmt(TIERS[selectedTier].gross)}</td>
                     </tr>
                     <tr>
                       <td>Platform Commission (est. 15%)</td>
-                      <td contentEditable="true" style={{color:'#E53E3E'}}>– $630</td>
+                      <td style={{color:'#E53E3E'}}>– {fmt(TIERS[selectedTier].commission)}</td>
                     </tr>
                     <tr>
                       <td><strong>Net Booking Revenue</strong></td>
-                      <td contentEditable="true"><strong>$3,570</strong></td>
+                      <td><strong>{fmt(TIERS[selectedTier].net)}</strong></td>
                     </tr>
                     <tr>
                       <td>IPM Management Fee (20% of Net)</td>
-                      <td contentEditable="true" style={{color:'#E53E3E'}}>– $714</td>
+                      <td style={{color:'#E53E3E'}}>– {fmt(TIERS[selectedTier].mgmtFee)}</td>
                     </tr>
                     <tr>
                       <td>Monthly Platform / Software Fee</td>
-                      <td contentEditable="true" style={{color:'#E53E3E'}}>– $200</td>
+                      <td style={{color:'#E53E3E'}}>– {fmt(TIERS[selectedTier].platformFee)}</td>
                     </tr>
                     <tr className="tp-highlight">
                       <td><strong>Estimated Owner Payout</strong><br/><span style={{fontSize:'0.75rem', fontWeight:'400', color:'#718096'}}>Before taxes &amp; maintenance reserve</span></td>
-                      <td contentEditable="true"><strong>$2,656</strong></td>
+                      <td><strong>{fmt(TIERS[selectedTier].payout)}</strong></td>
                     </tr>
                   </tbody>
                 </table>
               </div>
               <div className="tp-editable-note">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-                Values are editable — click any cell to update figures for your scenario.
+                Click any projection card above to update this breakdown instantly.
               </div>
             </div>
           </div>
