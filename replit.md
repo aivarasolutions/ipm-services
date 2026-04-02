@@ -37,8 +37,10 @@ This is a React-based Single Page Application (SPA) for International Property M
 Proposal pages render without the IPM Header/Footer — they have their own navigation and footer.
 - Route: `/proposal/charlotte-downhaul` → `src/pages/CharloetteProposal.jsx`
 - Route: `/proposal/tampa-audrey` → `src/pages/TampaProposal.jsx`
+- Route: `/proposal/charlotte-timberbrook` → `src/pages/TimberbrookProposal.jsx`
+- Route: `/proposal/staugustine-crossroad` → `src/pages/StAugustineProposal.jsx`
 - Add future standalone routes to the `STANDALONE_ROUTES` array in `src/App.jsx`
-- Hero images served from `/public/` (charlotte-hero-bg.jpg, tampa-hero-bg.jpg, tampa-waterfront.jpg)
+- Hero images served from `/public/` (charlotte-hero-bg.jpg, tampa-hero-bg.jpg, tampa-waterfront.jpg, staugustine-hero-bg.jpg)
 
 ### Standard Proposal Page Pattern (apply to every new proposal)
 1. **CSS prefix**: Each page uses a unique 2-3 letter prefix (e.g. `cp-` Charlotte, `tp-` Tampa) to prevent class collisions. All CSS lives in a scoped `<style>` tag inside the component.

@@ -24,6 +24,7 @@ import VideoLibrary from './pages/insights/VideoLibrary'
 import CharlotteProposal from './pages/CharloetteProposal'
 import TampaProposal from './pages/TampaProposal'
 import TimberbrookProposal from './pages/TimberbrookProposal'
+import StAugustineProposal from './pages/StAugustineProposal'
 
 // Import components
 import Header from './components/Header'
@@ -31,7 +32,7 @@ import Footer from './components/Footer'
 import { AudioProvider } from './contexts/AudioContext'
 import { LanguageProvider } from './contexts/LanguageContext'
 
-const STANDALONE_ROUTES = ['/proposal/charlotte-downhaul', '/proposal/tampa-audrey', '/proposal/charlotte-timberbrook'];
+const STANDALONE_ROUTES = ['/proposal/charlotte-downhaul', '/proposal/tampa-audrey', '/proposal/charlotte-timberbrook', '/proposal/staugustine-crossroad'];
 
 function AppLayout() {
   const location = useLocation();
@@ -43,6 +44,7 @@ function AppLayout() {
         <Route path="/proposal/charlotte-downhaul" element={<CharlotteProposal />} />
         <Route path="/proposal/tampa-audrey" element={<TampaProposal />} />
         <Route path="/proposal/charlotte-timberbrook" element={<TimberbrookProposal />} />
+        <Route path="/proposal/staugustine-crossroad" element={<StAugustineProposal />} />
       </Routes>
     );
   }
