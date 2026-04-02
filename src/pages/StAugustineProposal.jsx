@@ -218,9 +218,6 @@ const StAugustineProposal = () => {
         .sa-gallery-featured { aspect-ratio:unset; min-height:320px; }
         .sa-gallery-label { position:absolute; bottom:0; left:0; right:0; padding:0.6rem 0.85rem; background:linear-gradient(transparent,rgba(14,26,43,0.7)); font-size:0.72rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.9); opacity:0; transition:opacity 0.3s; }
         .sa-gallery-item:hover .sa-gallery-label { opacity:1; }
-        .sa-gallery-placeholder { background:#E8ECF0; border-radius:12px; aspect-ratio:4/3; display:flex; flex-direction:column; align-items:center; justify-content:center; border:2px dashed #C6A66B; }
-        .sa-gallery-placeholder-icon { font-size:1.5rem; margin-bottom:0.4rem; opacity:0.5; }
-        .sa-gallery-placeholder-text { font-size:0.72rem; color:#718096; text-transform:uppercase; letter-spacing:0.08em; }
         .sa-lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:9999; align-items:center; justify-content:center; }
         .sa-lightbox.sa-lx-open { display:flex; }
         .sa-lightbox img { max-width:90vw; max-height:85vh; border-radius:8px; object-fit:contain; }
