@@ -461,14 +461,8 @@ const StAugustineProposal = () => {
               <img src="/staugustine-hero-bg.jpg" alt="Exterior – Sunset View" />
               <div className="sa-gallery-label">Exterior – Sunset View</div>
             </div>
-            {[...Array(7)].map((_, i) => (
-              <div key={i} className="sa-gallery-placeholder">
-                <div className="sa-gallery-placeholder-icon">📷</div>
-                <div className="sa-gallery-placeholder-text">Photo Coming Soon</div>
-              </div>
-            ))}
           </div>
-          <p className="sa-gallery-note">Additional interior photos will be added as they become available. Click the exterior photo to view full screen.</p>
+          <p className="sa-gallery-note">Additional interior photos will be added as they become available. Click the photo to view full screen.</p>
         </div>
       </section>
 
