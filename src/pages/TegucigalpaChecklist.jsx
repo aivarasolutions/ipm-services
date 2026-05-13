@@ -347,21 +347,29 @@ const TegucigalpaChecklist = () => {
     const name = window.prompt(language === 'es' ? 'Nombre del artículo:' : 'Item name:');
     if (!name || !name.trim()) return;
     const qty = window.prompt(language === 'es' ? 'Cantidad:' : 'Quantity:', '1') || '1';
+    const note = window.prompt(language === 'es' ? 'Nota (opcional):' : 'Note (optional):', '') || '';
+    const statusList = STATUS_OPTIONS.map((opt, i) => `${i + 1}. ${opt.labels[language]}`).join('\n');
+    const statusInput = window.prompt(
+      (language === 'es' ? 'Estado (1-' : 'Status (1-') + STATUS_OPTIONS.length + '):\n\n' + statusList,
+      '2'
+    );
+    const statusIdx = parseInt(statusInput, 10) - 1;
+    const status = (!isNaN(statusIdx) && statusIdx >= 0 && statusIdx < STATUS_OPTIONS.length)
+      ? STATUS_OPTIONS[statusIdx].value
+      : 'pending';
     const newId = Math.max(1000, ...items.map(i => i.id)) + 1;
-    const sectionLabel = SECTION_LABELS[section][language];
     const newItem = {
       id: newId,
       section,
       name: { en: name.trim(), es: name.trim() },
       qty: qty.trim(),
       area: { en: SECTION_LABELS[section].en, es: SECTION_LABELS[section].es },
-      status: 'pending',
+      status,
       priority: 'medium',
       notes: { en: '', es: '' },
-      userNotes: '',
+      userNotes: note.trim(),
     };
     setItems(prev => [...prev, newItem]);
-    setEditingId(newId);
   };
 
   const stats = useMemo(() => {
@@ -489,6 +497,7 @@ const TegucigalpaChecklist = () => {
         .tg-footer { background: #0f172a; text-align: center; padding: 2rem 1.5rem; color: rgba(255,255,255,0.4); font-size: 0.82rem; }
         .tg-footer span { color: #4ade80; }
 
+        .tg-status-select { min-width: 110px; }
         @media (max-width: 900px) {
           .tg-stats-grid { grid-template-columns: repeat(3, 1fr); }
           .tg-table th:nth-child(4), .tg-table td:nth-child(4) { display: none; }
@@ -496,8 +505,10 @@ const TegucigalpaChecklist = () => {
         @media (max-width: 640px) {
           .tg-stats-grid { grid-template-columns: repeat(2, 1fr); }
           .tg-controls-row { flex-direction: column; align-items: stretch; }
-          .tg-table th:nth-child(3), .tg-table td:nth-child(3),
-          .tg-table th:nth-child(5), .tg-table td:nth-child(5) { display: none; }
+          .tg-table th:nth-child(3), .tg-table td:nth-child(3) { display: none; }
+          .tg-table th, .tg-table td { padding: 0.55rem 0.5rem; }
+          .tg-status-select { min-width: 95px; font-size: 0.72rem; padding: 0.3rem 1.3rem 0.3rem 0.45rem; }
+          .tg-notes-input { min-width: 100px; font-size: 0.72rem; }
         }
       `}</style>
 
@@ -608,53 +619,13 @@ const TegucigalpaChecklist = () => {
                       return (
                         <tr key={item.id}>
                           <td>
-                            {isEditing ? (
-                              <input
-                                className="tg-edit-input tg-edit-name"
-                                type="text"
-                                value={item.name[language]}
-                                autoFocus
-                                onChange={e => updateItemLang(item.id, 'name', e.target.value)}
-                                onBlur={() => setEditingId(null)}
-                                onKeyDown={e => { if (e.key === 'Enter' || e.key === 'Escape') setEditingId(null); }}
-                              />
-                            ) : (
-                              <div className="tg-item-name tg-clickable" onClick={() => setEditingId(item.id)} title={language === 'es' ? 'Click para editar' : 'Click to edit'}>
-                                {item.name[language]}
-                              </div>
-                            )}
+                            <div className="tg-item-name">{item.name[language]}</div>
                             {defaultNote && <div className="tg-item-area" style={{fontStyle:'italic'}}>{defaultNote}</div>}
                           </td>
+                          <td><span className="tg-qty">{item.qty}</span></td>
+                          <td><span style={{fontSize:'0.78rem',color:'#64748b'}}>{item.area[language]}</span></td>
                           <td>
-                            <input
-                              className="tg-edit-input tg-edit-qty"
-                              type="text"
-                              value={item.qty}
-                              onChange={e => updateItem(item.id, 'qty', e.target.value)}
-                            />
-                          </td>
-                          <td>
-                            <input
-                              className="tg-edit-input tg-edit-area"
-                              type="text"
-                              value={item.area[language]}
-                              onChange={e => updateItemLang(item.id, 'area', e.target.value)}
-                            />
-                          </td>
-                          <td>
-                            <div className="tg-status-wrap">
-                              <select
-                                className="tg-status-select"
-                                value={item.priority}
-                                style={{color:p.color,borderColor:p.bg,background:p.bg}}
-                                onChange={e => updateItem(item.id, 'priority', e.target.value)}
-                              >
-                                {Object.entries(PRIORITY).map(([key, pr]) => (
-                                  <option key={key} value={key}>{pr.labels[language]}</option>
-                                ))}
-                              </select>
-                              <span className="tg-status-arrow" style={{color:p.color}}>▼</span>
-                            </div>
+                            <span className="tg-priority-badge" style={{color:p.color,background:p.bg}}>{p.labels[language]}</span>
                           </td>
                           <td>
                             <div className="tg-status-wrap">
@@ -681,7 +652,9 @@ const TegucigalpaChecklist = () => {
                             />
                           </td>
                           <td>
-                            <button className="tg-delete-btn" onClick={() => deleteItem(item.id)} title={language === 'es' ? 'Eliminar' : 'Delete'} aria-label="delete">×</button>
+                            {item.id >= 1000 && (
+                              <button className="tg-delete-btn" onClick={() => deleteItem(item.id)} title={language === 'es' ? 'Eliminar' : 'Delete'} aria-label="delete">×</button>
+                            )}
                           </td>
                         </tr>
                       );
