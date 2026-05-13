@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 
-const STORAGE_KEY = 'ipm_teg_checklist_v2';
+const STORAGE_KEY = 'ipm_teg_checklist_v3';
 
 const STATUS_OPTIONS = [
   { value: 'purchased',   labels: { en: 'Purchased',          es: 'Comprado' },             color: '#22863a', bg: '#dcfce7', border: '#86efac' },
@@ -57,8 +57,9 @@ const INITIAL_ITEMS = [
   it(2,  'Master Bedroom', 'Mattress protector',         'Protector de colchón',            '1',           'Master Bedroom', 'Recámara Principal', 'pending',   'high'),
   it(3,  'Master Bedroom', 'Sheet sets',                 'Juegos de sábanas',               '2',           'Master Bedroom', 'Recámara Principal', 'pending',   'high', '2 sets for turnover', '2 juegos para rotación'),
   it(4,  'Master Bedroom', 'Comforter or duvet',         'Edredón o duvet',                 '1',           'Master Bedroom', 'Recámara Principal', 'pending',   'medium'),
-  it(5,  'Master Bedroom', 'Pillows',                    'Almohadas',                       '6',           'Master Bedroom', 'Recámara Principal', 'pending',   'high'),
-  it(6,  'Master Bedroom', 'Pillow protectors',          'Protectores de almohada',         '6',           'Master Bedroom', 'Recámara Principal', 'pending',   'medium'),
+  it(5,  'Master Bedroom', 'Sleep pillows',              'Almohadas para dormir',           '2',           'Master Bedroom', 'Recámara Principal', 'pending',   'high'),
+  it(6,  'Master Bedroom', 'Pillow protectors',          'Protectores de almohada',         '2',           'Master Bedroom', 'Recámara Principal', 'pending',   'medium'),
+  it(126,'Master Bedroom', 'Decorative pillows',         'Almohadas decorativas',           '2',           'Master Bedroom', 'Recámara Principal', 'pending',   'low'),
   it(7,  'Master Bedroom', 'Nightstand lamps',           'Lámparas de mesa de noche',       '2',           'Master Bedroom', 'Recámara Principal', 'pending',   'medium'),
   it(8,  'Master Bedroom', 'Hangers',                    'Ganchos / colgadores',            '12–15',       'Master Bedroom', 'Recámara Principal', 'pending',   'medium'),
   it(9,  'Master Bedroom', 'Curtains',                   'Cortinas',                        'Per windows', 'Master Bedroom', 'Recámara Principal', 'pending',   'medium'),
@@ -71,8 +72,9 @@ const INITIAL_ITEMS = [
   it(14, '2nd Bedroom (Upstairs · Balcony)', 'Mattress protector',      'Protector de colchón',            '1',           '2nd Bedroom', '2.ª Recámara', 'pending',   'high'),
   it(15, '2nd Bedroom (Upstairs · Balcony)', 'Sheet sets',              'Juegos de sábanas',               '2',           '2nd Bedroom', '2.ª Recámara', 'pending',   'high', '2 sets for turnover', '2 juegos para rotación'),
   it(16, '2nd Bedroom (Upstairs · Balcony)', 'Comforter or duvet',      'Edredón o duvet',                 '1',           '2nd Bedroom', '2.ª Recámara', 'pending',   'medium'),
-  it(17, '2nd Bedroom (Upstairs · Balcony)', 'Pillows',                 'Almohadas',                       '4',           '2nd Bedroom', '2.ª Recámara', 'pending',   'high'),
-  it(18, '2nd Bedroom (Upstairs · Balcony)', 'Pillow protectors',       'Protectores de almohada',         '4',           '2nd Bedroom', '2.ª Recámara', 'pending',   'medium'),
+  it(17, '2nd Bedroom (Upstairs · Balcony)', 'Sleep pillows',           'Almohadas para dormir',           '2',           '2nd Bedroom', '2.ª Recámara', 'pending',   'high'),
+  it(18, '2nd Bedroom (Upstairs · Balcony)', 'Pillow protectors',       'Protectores de almohada',         '2',           '2nd Bedroom', '2.ª Recámara', 'pending',   'medium'),
+  it(127,'2nd Bedroom (Upstairs · Balcony)', 'Decorative pillows',      'Almohadas decorativas',           '2',           '2nd Bedroom', '2.ª Recámara', 'pending',   'low'),
   it(19, '2nd Bedroom (Upstairs · Balcony)', 'Nightstand lamps',        'Lámparas de mesa de noche',       '2',           '2nd Bedroom', '2.ª Recámara', 'pending',   'medium'),
   it(20, '2nd Bedroom (Upstairs · Balcony)', 'Hangers',                 'Ganchos / colgadores',            '10–12',       '2nd Bedroom', '2.ª Recámara', 'pending',   'medium'),
   it(21, '2nd Bedroom (Upstairs · Balcony)', 'Curtains',                'Cortinas',                        'Per windows', '2nd Bedroom', '2.ª Recámara', 'pending',   'medium'),
@@ -85,8 +87,9 @@ const INITIAL_ITEMS = [
   it(26, '3rd Bedroom (Upstairs)', 'Mattress protector',      'Protector de colchón',            '1',           '3rd Bedroom', '3.ª Recámara', 'pending',   'high'),
   it(27, '3rd Bedroom (Upstairs)', 'Sheet sets',              'Juegos de sábanas',               '2',           '3rd Bedroom', '3.ª Recámara', 'pending',   'high', '2 sets for turnover', '2 juegos para rotación'),
   it(28, '3rd Bedroom (Upstairs)', 'Comforter or duvet',      'Edredón o duvet',                 '1',           '3rd Bedroom', '3.ª Recámara', 'pending',   'medium'),
-  it(29, '3rd Bedroom (Upstairs)', 'Pillows',                 'Almohadas',                       '4',           '3rd Bedroom', '3.ª Recámara', 'pending',   'high'),
-  it(30, '3rd Bedroom (Upstairs)', 'Pillow protectors',       'Protectores de almohada',         '4',           '3rd Bedroom', '3.ª Recámara', 'pending',   'medium'),
+  it(29, '3rd Bedroom (Upstairs)', 'Sleep pillows',           'Almohadas para dormir',           '2',           '3rd Bedroom', '3.ª Recámara', 'pending',   'high'),
+  it(30, '3rd Bedroom (Upstairs)', 'Pillow protectors',       'Protectores de almohada',         '2',           '3rd Bedroom', '3.ª Recámara', 'pending',   'medium'),
+  it(128,'3rd Bedroom (Upstairs)', 'Decorative pillows',      'Almohadas decorativas',           '2',           '3rd Bedroom', '3.ª Recámara', 'pending',   'low'),
   it(31, '3rd Bedroom (Upstairs)', 'Nightstand lamps',        'Lámparas de mesa de noche',       '2',           '3rd Bedroom', '3.ª Recámara', 'pending',   'medium'),
   it(32, '3rd Bedroom (Upstairs)', 'Hangers',                 'Ganchos / colgadores',            '10–12',       '3rd Bedroom', '3.ª Recámara', 'pending',   'medium'),
   it(33, '3rd Bedroom (Upstairs)', 'Curtains',                'Cortinas',                        'Per windows', '3rd Bedroom', '3.ª Recámara', 'pending',   'medium'),
@@ -99,8 +102,9 @@ const INITIAL_ITEMS = [
   it(38, '4th Bedroom (Downstairs)', 'Mattress protectors',     'Protectores de colchón',          '4',           '4th Bedroom', '4.ª Recámara', 'pending', 'high'),
   it(39, '4th Bedroom (Downstairs)', 'Sheet sets',              'Juegos de sábanas',               '8',           '4th Bedroom', '4.ª Recámara', 'pending', 'high', '2 sets per bunk for turnover', '2 juegos por litera para rotación'),
   it(40, '4th Bedroom (Downstairs)', 'Comforters or duvets',    'Edredones o duvets',              '4',           '4th Bedroom', '4.ª Recámara', 'pending', 'medium'),
-  it(41, '4th Bedroom (Downstairs)', 'Pillows',                 'Almohadas',                       '8',           '4th Bedroom', '4.ª Recámara', 'pending', 'high'),
+  it(41, '4th Bedroom (Downstairs)', 'Sleep pillows',           'Almohadas para dormir',           '8',           '4th Bedroom', '4.ª Recámara', 'pending', 'high', '2 per sleep spot (4 bunks)', '2 por plaza (4 literas)'),
   it(42, '4th Bedroom (Downstairs)', 'Pillow protectors',       'Protectores de almohada',         '8',           '4th Bedroom', '4.ª Recámara', 'pending', 'medium'),
+  it(129,'4th Bedroom (Downstairs)', 'Decorative pillows',      'Almohadas decorativas',           '2',           '4th Bedroom', '4.ª Recámara', 'pending', 'low'),
   it(43, '4th Bedroom (Downstairs)', 'Nightstand lamps',        'Lámparas de mesa de noche',       '1–2',         '4th Bedroom', '4.ª Recámara', 'pending', 'medium'),
   it(44, '4th Bedroom (Downstairs)', 'Hangers',                 'Ganchos / colgadores',            '10–12',       '4th Bedroom', '4.ª Recámara', 'pending', 'medium'),
   it(45, '4th Bedroom (Downstairs)', 'Curtains',                'Cortinas',                        'Per windows', '4th Bedroom', '4.ª Recámara', 'pending', 'medium'),
@@ -262,11 +266,23 @@ const TegucigalpaChecklist = () => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
-        const savedData = JSON.parse(saved);
-        return INITIAL_ITEMS.map(item => ({
-          ...item,
-          ...(savedData[item.id] ? { status: savedData[item.id].status || item.status, userNotes: savedData[item.id].userNotes || '' } : {}),
-        }));
+        const data = JSON.parse(saved);
+        const byId = data.byId || {};
+        const customItems = data.customItems || [];
+        const merged = INITIAL_ITEMS
+          .filter(item => !byId[item.id]?.deleted)
+          .map(item => {
+            const o = byId[item.id] || {};
+            return {
+              ...item,
+              status: o.status || item.status,
+              userNotes: o.userNotes || '',
+              name: { en: o.nameEn ?? item.name.en, es: o.nameEs ?? item.name.es },
+              area: { en: o.areaEn ?? item.area.en, es: o.areaEs ?? item.area.es },
+              qty: o.qty ?? item.qty,
+            };
+          });
+        return [...merged, ...customItems];
       }
     } catch {}
     return INITIAL_ITEMS;
@@ -275,16 +291,81 @@ const TegucigalpaChecklist = () => {
   const [filter, setFilter] = useState('all');
   const [search, setSearch] = useState('');
   const [language, setLanguage] = useState('en');
+  const [editingId, setEditingId] = useState(null);
   const t = UI[language];
 
   useEffect(() => {
-    const toSave = {};
-    items.forEach(item => { toSave[item.id] = { status: item.status, userNotes: item.userNotes || '' }; });
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
+    const initialIds = new Set(INITIAL_ITEMS.map(i => i.id));
+    const initialMap = new Map(INITIAL_ITEMS.map(i => [i.id, i]));
+    const presentIds = new Set(items.map(i => i.id));
+    const byId = {};
+    const customItems = [];
+    items.forEach(item => {
+      if (initialIds.has(item.id)) {
+        const orig = initialMap.get(item.id);
+        const o = {};
+        if (item.status !== orig.status) o.status = item.status;
+        if (item.userNotes) o.userNotes = item.userNotes;
+        if (item.name.en !== orig.name.en) o.nameEn = item.name.en;
+        if (item.name.es !== orig.name.es) o.nameEs = item.name.es;
+        if (item.area.en !== orig.area.en) o.areaEn = item.area.en;
+        if (item.area.es !== orig.area.es) o.areaEs = item.area.es;
+        if (item.qty !== orig.qty) o.qty = item.qty;
+        if (Object.keys(o).length > 0) byId[item.id] = o;
+      } else {
+        customItems.push(item);
+      }
+    });
+    INITIAL_ITEMS.forEach(item => {
+      if (!presentIds.has(item.id)) {
+        byId[item.id] = { ...(byId[item.id] || {}), deleted: true };
+      }
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ byId, customItems }));
   }, [items]);
 
   const updateItem = (id, field, value) => {
     setItems(prev => prev.map(item => item.id === id ? { ...item, [field]: value } : item));
+  };
+
+  const updateItemLang = (id, field, value) => {
+    setItems(prev => prev.map(item => item.id === id ? { ...item, [field]: { ...item[field], [language]: value } } : item));
+  };
+
+  const deleteItem = (id) => {
+    if (!window.confirm(language === 'es' ? '¿Eliminar este artículo?' : 'Delete this item?')) return;
+    setItems(prev => prev.filter(item => item.id !== id));
+  };
+
+  const addItem = () => {
+    const sectionKeys = Object.keys(SECTION_LABELS);
+    const sectionList = sectionKeys.map((s, i) => `${i + 1}. ${SECTION_LABELS[s][language]}`).join('\n');
+    const sectionInput = window.prompt(
+      (language === 'es' ? 'Selecciona la sección (1-' : 'Select section (1-') + sectionKeys.length + '):\n\n' + sectionList,
+      '1'
+    );
+    if (!sectionInput) return;
+    const sectionIdx = parseInt(sectionInput, 10) - 1;
+    if (isNaN(sectionIdx) || sectionIdx < 0 || sectionIdx >= sectionKeys.length) return;
+    const section = sectionKeys[sectionIdx];
+    const name = window.prompt(language === 'es' ? 'Nombre del artículo:' : 'Item name:');
+    if (!name || !name.trim()) return;
+    const qty = window.prompt(language === 'es' ? 'Cantidad:' : 'Quantity:', '1') || '1';
+    const newId = Math.max(1000, ...items.map(i => i.id)) + 1;
+    const sectionLabel = SECTION_LABELS[section][language];
+    const newItem = {
+      id: newId,
+      section,
+      name: { en: name.trim(), es: name.trim() },
+      qty: qty.trim(),
+      area: { en: SECTION_LABELS[section].en, es: SECTION_LABELS[section].es },
+      status: 'pending',
+      priority: 'medium',
+      notes: { en: '', es: '' },
+      userNotes: '',
+    };
+    setItems(prev => [...prev, newItem]);
+    setEditingId(newId);
   };
 
   const stats = useMemo(() => {
@@ -396,6 +477,19 @@ const TegucigalpaChecklist = () => {
         .tg-notes-input:focus { border-color: #4ade80; background: #fff; }
         .tg-empty { text-align: center; padding: 3rem 1rem; color: #94a3b8; font-size: 0.9rem; }
 
+        .tg-clickable { cursor: pointer; border-bottom: 1px dashed transparent; transition: border-color 0.15s; }
+        .tg-clickable:hover { border-bottom-color: #4ade80; }
+        .tg-edit-input { border: 1.5px solid transparent; border-radius: 6px; padding: 0.3rem 0.5rem; font-size: 0.88rem; color: #1e293b; outline: none; background: transparent; transition: all 0.15s; width: 100%; }
+        .tg-edit-input:hover { background: #f8fafc; border-color: #e2e8f0; }
+        .tg-edit-input:focus { background: #fff; border-color: #4ade80; }
+        .tg-edit-name { font-weight: 600; }
+        .tg-edit-qty { min-width: 70px; max-width: 100px; font-size: 0.82rem; color: #64748b; }
+        .tg-edit-area { font-size: 0.78rem; color: #64748b; min-width: 110px; }
+        .tg-delete-btn { background: transparent; border: none; color: #cbd5e1; font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 0.2rem 0.5rem; border-radius: 6px; transition: all 0.15s; font-weight: 700; }
+        .tg-delete-btn:hover { color: #dc2626; background: #fee2e2; }
+        .tg-action-btn.tg-action-add { background: #4ade80; color: #0f172a; border-color: #4ade80; }
+        .tg-action-btn.tg-action-add:hover { background: #22c55e; border-color: #22c55e; color: #fff; }
+
         .tg-footer { background: #0f172a; text-align: center; padding: 2rem 1.5rem; color: rgba(255,255,255,0.4); font-size: 0.82rem; }
         .tg-footer span { color: #4ade80; }
 
@@ -477,7 +571,7 @@ const TegucigalpaChecklist = () => {
           </div>
           <div className="tg-action-btns">
             <button className="tg-action-btn" onClick={() => alert(t.soonExport)}>{t.btnExport}</button>
-            <button className="tg-action-btn" onClick={() => alert(t.soonAdd)}>{t.btnAdd}</button>
+            <button className="tg-action-btn tg-action-add" onClick={addItem}>{t.btnAdd}</button>
           </div>
         </div>
       </div>
@@ -505,6 +599,7 @@ const TegucigalpaChecklist = () => {
                       <th>{t.thPriority}</th>
                       <th>{t.thStatus}</th>
                       <th>{t.thNotes}</th>
+                      <th style={{width:'1%'}}></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -513,16 +608,57 @@ const TegucigalpaChecklist = () => {
                       const p = PRIORITY[item.priority] || PRIORITY.low;
                       const defaultNote = item.notes?.[language] || '';
                       const userNote = item.userNotes ?? '';
+                      const isEditing = editingId === item.id;
                       return (
                         <tr key={item.id}>
                           <td>
-                            <div className="tg-item-name">{item.name[language]}</div>
+                            {isEditing ? (
+                              <input
+                                className="tg-edit-input tg-edit-name"
+                                type="text"
+                                value={item.name[language]}
+                                autoFocus
+                                onChange={e => updateItemLang(item.id, 'name', e.target.value)}
+                                onBlur={() => setEditingId(null)}
+                                onKeyDown={e => { if (e.key === 'Enter' || e.key === 'Escape') setEditingId(null); }}
+                              />
+                            ) : (
+                              <div className="tg-item-name tg-clickable" onClick={() => setEditingId(item.id)} title={language === 'es' ? 'Click para editar' : 'Click to edit'}>
+                                {item.name[language]}
+                              </div>
+                            )}
                             {defaultNote && <div className="tg-item-area" style={{fontStyle:'italic'}}>{defaultNote}</div>}
                           </td>
-                          <td><span className="tg-qty">{item.qty}</span></td>
-                          <td><span style={{fontSize:'0.78rem',color:'#64748b'}}>{item.area[language]}</span></td>
                           <td>
-                            <span className="tg-priority-badge" style={{color:p.color,background:p.bg}}>{p.labels[language]}</span>
+                            <input
+                              className="tg-edit-input tg-edit-qty"
+                              type="text"
+                              value={item.qty}
+                              onChange={e => updateItem(item.id, 'qty', e.target.value)}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              className="tg-edit-input tg-edit-area"
+                              type="text"
+                              value={item.area[language]}
+                              onChange={e => updateItemLang(item.id, 'area', e.target.value)}
+                            />
+                          </td>
+                          <td>
+                            <div className="tg-status-wrap">
+                              <select
+                                className="tg-status-select"
+                                value={item.priority}
+                                style={{color:p.color,borderColor:p.bg,background:p.bg}}
+                                onChange={e => updateItem(item.id, 'priority', e.target.value)}
+                              >
+                                {Object.entries(PRIORITY).map(([key, pr]) => (
+                                  <option key={key} value={key}>{pr.labels[language]}</option>
+                                ))}
+                              </select>
+                              <span className="tg-status-arrow" style={{color:p.color}}>▼</span>
+                            </div>
                           </td>
                           <td>
                             <div className="tg-status-wrap">
@@ -547,6 +683,9 @@ const TegucigalpaChecklist = () => {
                               value={userNote}
                               onChange={e => updateItem(item.id, 'userNotes', e.target.value)}
                             />
+                          </td>
+                          <td>
+                            <button className="tg-delete-btn" onClick={() => deleteItem(item.id)} title={language === 'es' ? 'Eliminar' : 'Delete'} aria-label="delete">×</button>
                           </td>
                         </tr>
                       );
