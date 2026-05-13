@@ -1,0 +1,13 @@
+uploads = []
+
+[[generated]]
+id = "nlztSPN3BrFwgvLSBIk1F"
+uri = "file://public/og-waterfront-base.png"
+type = "image"
+title = "luxury waterfront mansion"
+
+[[outputs]]
+id = "eK1f9iRX0rQVrrAkCsDUe"
+uri = "file://public/og-image.jpg"
+type = "image"
+title = "New SEO / Link Preview Image"
