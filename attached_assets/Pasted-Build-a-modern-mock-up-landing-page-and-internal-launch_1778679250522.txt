@@ -1,0 +1,187 @@
+Build a modern mock-up landing page and internal launch checklist page for a new IPM property launching in Tegucigalpa, Honduras.
+
+The website this will eventually connect to is ipm.services. Match a clean property-management style: professional, modern, trustworthy, mobile-friendly, and polished. Use neutral luxury colors, white space, soft shadows, rounded cards, and subtle green/blue accent colors that feel compatible with International Property Management.
+
+Page title:
+New Property Launch Checklist — Tegucigalpa, Honduras
+
+Property Overview Section:
+- Property location: Tegucigalpa, Honduras
+- Launch type: New Airbnb / short-term rental property
+- Target occupancy: 10 guests
+- Bedrooms: 4
+- Upstairs: Master bedroom with 1 king bed already purchased, Bedroom 2 with 1 full bed already purchased, Bedroom 3 with 1 full bed already purchased
+- Downstairs: 1 bedroom planned with 2 full-size bunk beds for higher occupancy
+- Outside room by laundry room will be used as storage/headquarters for now and should not be guest-facing yet
+
+Build a dashboard-style checklist where each item can be marked as:
+1. Approved / Already Got It
+2. Pending Purchase
+3. Optional Later
+4. Recommended Add-On
+
+Each checklist item should have:
+- Item name
+- Quantity needed
+- Category
+- Room/area
+- Status dropdown or clickable status button
+- Notes field
+- Priority level: High, Medium, Low
+
+Add filter buttons at the top:
+- All
+- Approved
+- Pending Purchase
+- Optional Later
+- Recommended
+- High Priority
+
+Add progress cards at the top:
+- Total Items
+- Approved Items
+- Pending Purchase
+- Optional Later
+- Completion Percentage
+
+Make the checklist grouped into these sections:
+1. Bedroom Setup
+2. Bathroom Supplies
+3. Kitchen Setup
+4. Living & Dining Room
+5. Safety, Entry & Guest Access
+6. Cleaning & Maintenance
+7. Storage / Headquarters Room
+
+Use this checklist data:
+
+Bedroom Setup:
+- King bed, qty 1, Master bedroom, Approved
+- Full bed, qty 1, Upstairs Bedroom 2, Approved
+- Full bed, qty 1, Upstairs Bedroom 3, Approved
+- Full-size bunk beds, qty 2, Downstairs bedroom, Pending Purchase, High Priority
+- Mattress protectors, qty 7, All beds, Pending Purchase, High Priority
+- Sheet sets, qty 14, All beds, Pending Purchase, High Priority, notes: 2 sets per bed for turnover
+- Comforters or duvets, qty 7, All beds, Pending Purchase
+- Extra blankets, qty 4-6, Shared closets, Pending Purchase
+- Pillows, qty 20-24, All rooms, Pending Purchase, High Priority
+- Pillow protectors, qty 20-24, All rooms, Pending Purchase
+- Nightstand lamps, qty 8, 2 per bedroom, Pending Purchase
+- Hangers, qty 40-50, Bedrooms/closets, Pending Purchase
+- Curtains, qty based on windows, Bedrooms/living areas, Pending Purchase
+- Fake plants, qty 6-10, Bedrooms/common areas, Pending Purchase
+- TV, qty 1, Master bedroom, Pending Purchase
+- TV mount, qty 1, Master bedroom, Pending Purchase
+- TV, qty 1, Downstairs bunk room, Pending Purchase
+- TV mount, qty 1, Downstairs bunk room, Pending Purchase
+- Optional TVs, qty 2, Upstairs Bedrooms 2 and 3, Optional Later
+- Optional TV mounts, qty 2, Upstairs Bedrooms 2 and 3, Optional Later
+
+Bathroom Supplies:
+- Bath towels, qty 20, Bathrooms/linen closet, Pending Purchase, High Priority
+- Washcloths, qty 20, Bathrooms/linen closet, Pending Purchase
+- Hand towels, qty 10, Bathrooms, Pending Purchase
+- Bathroom mats, qty 2-4, Bathrooms, Pending Purchase
+- Soap dispensers, qty 2-3, Bathrooms, Pending Purchase
+- Shampoo dispensers, qty 2-3, Bathrooms, Pending Purchase
+- Conditioner dispensers, qty 2-3, Bathrooms, Pending Purchase
+- Body wash and hand soap refill liquid, bulk supply, Bathrooms, Pending Purchase
+- Hair dryers, qty 2, Upstairs bathrooms, Pending Purchase
+- Toothbrush/toiletry holders, qty 2-3, Bathrooms, Pending Purchase
+- Shower curtain, qty 1, Upstairs non-master bathroom, Pending Purchase
+- Shower rod, qty 1, Upstairs non-master bathroom, Pending Purchase
+- Toilet brushes, qty 2-3, Bathrooms, Pending Purchase
+- Toilet plungers, qty 2, Bathrooms, Pending Purchase
+- Bathroom trash cans, qty 2-3, Bathrooms, Pending Purchase
+- Toilet paper starter supply, bulk, Bathrooms, Pending Purchase
+
+Kitchen Setup:
+- Plates, qty 12-16, Kitchen, Pending Purchase
+- Bowls, qty 12-16, Kitchen, Pending Purchase
+- Cups/glasses, qty 12-16, Kitchen, Pending Purchase
+- Coffee mugs, qty 10-12, Kitchen, Pending Purchase
+- Silverware sets, qty 12-16, Kitchen, Pending Purchase
+- Pots and pans set, qty 1 full set, Kitchen, Pending Purchase
+- Cooking utensils, qty 1 set, Kitchen, Pending Purchase
+- Knife set, qty 1, Kitchen, Pending Purchase
+- Cutting boards, qty 2, Kitchen, Pending Purchase
+- Dish drying rack, qty 1, Kitchen, Pending Purchase
+- Dish towels, qty 8-10, Kitchen, Pending Purchase
+- Oven mitts, qty 2-4, Kitchen, Pending Purchase
+- Sponges, bulk, Kitchen, Pending Purchase
+- Dish soap, bulk, Kitchen, Pending Purchase
+- Paper towels, bulk, Kitchen, Approved / Verify
+- Trash bags, bulk, Kitchen, Pending Purchase
+- Hot water kettle, qty 1, Kitchen, Pending Purchase
+- Coffee maker, qty 1, Kitchen, Recommended Add-On
+- Blender, qty 1, Kitchen, Optional Later
+- Can opener, qty 1, Kitchen, Recommended Add-On
+- Bottle opener, qty 1, Kitchen, Recommended Add-On
+- Food storage containers, qty 1 set, Kitchen, Recommended Add-On
+
+Living & Dining Room:
+- Coffee table, qty 1, Living room, Pending Purchase
+- Coasters, qty 8-12, Living room/dining room, Pending Purchase
+- Dining table coasters or placemats, qty 10-12, Dining room, Pending Purchase
+- Tablecloth, qty 1-2, Dining room, Pending Purchase
+- Vase, qty 1, Dining room, Pending Purchase
+- Fake flowers or centerpiece, qty 1, Dining room, Pending Purchase
+- Books, qty 3-5, Living room, Recommended Add-On
+- Board games, qty 3-5, Living room, Recommended Add-On
+- Welcome book / house manual, qty 1, Living room, Recommended Add-On
+
+Safety, Entry & Guest Access:
+- Key lockbox, qty 1, Front door, Pending Purchase
+- Keypad smart lock, qty 1, Front door, Recommended Add-On
+- Extra keys, qty 2-3 sets, Storage/admin, Pending Purchase
+- Smoke detectors, verify all areas, Whole house, Recommended Add-On
+- Carbon monoxide detector, qty 1-2, Whole house, Recommended Add-On
+- Fire extinguisher, qty 1-2, Kitchen/common area, Recommended Add-On
+- First aid kit, qty 1, Kitchen/common area, Recommended Add-On
+- High-speed Wi-Fi, qty 1 setup, Whole house, Pending Setup, High Priority, notes: should support international remote workers
+- Wi-Fi info display card, qty 1-2, Living room/bedrooms, Recommended Add-On
+
+Cleaning & Maintenance:
+- All-purpose cleaner, bulk, Cleaning storage, Pending Purchase
+- Bathroom cleaner, bulk, Cleaning storage, Pending Purchase
+- Glass cleaner, bulk, Cleaning storage, Pending Purchase
+- Floor cleaner, bulk, Cleaning storage, Pending Purchase
+- Disinfectant wipes or spray, bulk, Cleaning storage, Pending Purchase
+- Broom, qty 1, Cleaning storage, Pending Purchase
+- Mop and bucket, qty 1, Cleaning storage, Pending Purchase
+- Vacuum, qty 1, Cleaning storage, Recommended Add-On
+- Duster for fans and cobwebs, qty 1-2, Cleaning storage, Pending Purchase
+- Laundry detergent, bulk, Laundry area, Pending Purchase
+- Clothes drying rack, qty 1-2, Laundry area, Pending Purchase
+- Glade plug-ins or safe scent options, qty 4-6, Whole house, Pending Purchase
+- Extra batteries, assorted, Storage, Recommended Add-On
+- Light bulbs, assorted, Storage, Recommended Add-On
+
+Storage / Headquarters Room:
+- Use outside room by laundry as storage/headquarters, Approved
+- Storage shelving, qty 1-2, Storage room, Recommended Add-On
+- Storage bins, qty 6-10, Storage room, Recommended Add-On
+- Cleaning supply labels, qty 1 set, Storage room, Recommended Add-On
+- Keep storage room locked from guests, High Priority
+
+Functionality:
+- The checklist should be interactive.
+- Users should be able to click or change each item status.
+- Progress cards should update when statuses change.
+- Add a search bar to find items quickly.
+- Add a notes field for each item.
+- Add a button that says “Export Checklist” as a mock button for now.
+- Add a button that says “Add New Item” as a mock button for now.
+- Save status changes in localStorage so if the page refreshes, the selected statuses remain.
+- Make it responsive for mobile and desktop.
+
+Design:
+- Use IPM-style branding.
+- Header should say “International Property Management”.
+- Add subtitle: “Tegucigalpa Airbnb Launch Tracker”.
+- Add CTA button: “Back to IPM Services”
+- Use cards, tables, progress bars, and clean dashboard UI.
+- Keep the page easy for property managers, cleaners, and owners to understand.
+
+Important:
+This is a mock-up landing/checklist page for now. Build it so it can later be added as an add-on page to ipm.services.

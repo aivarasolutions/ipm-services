@@ -34,7 +34,8 @@ const Header = () => {
         { name: '🏠 Charlotte Owner Proposal', path: '/proposal/charlotte-downhaul' },
         { name: '🌊 Tampa Owner Proposal', path: '/proposal/tampa-audrey' },
         { name: '🏡 Charlotte Timberbrook Proposal', path: '/proposal/charlotte-timberbrook' },
-        { name: '🌊 St. Augustine Proposal', path: '/proposal/staugustine-crossroad' }
+        { name: '🌊 St. Augustine Proposal', path: '/proposal/staugustine-crossroad' },
+        { name: '🏠 Tegucigalpa Launch Checklist', path: '/insights/tegucigalpa-checklist' }
       ]
     },
     { name: 'News', path: '/news', color: 'bg-indigo-600 text-white' },
