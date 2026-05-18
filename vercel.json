@@ -1,12 +1,5 @@
 {
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ],
-  "buildCommand": "npm run build",
-  "devCommand": "npm run dev",
-  "installCommand": "npm install --legacy-peer-deps"
+    { "source": "/api/:path*", "destination": "https://ipm-services-kevinajackson21.replit.app/api/:path*" }
+  ]
 }
-

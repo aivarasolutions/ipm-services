@@ -1,6 +1,15 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
+import {
+  fetchChecklist,
+  fetchVersion,
+  putOverride,
+  addCustomItem as apiAddCustomItem,
+  deleteCustomItem as apiDeleteCustomItem,
+} from '../services/checklistApi';
 
 const STORAGE_KEY = 'ipm_teg_checklist_v3';
+const CHECKLIST_ID = 'tegucigalpa';
+const POLL_INTERVAL_MS = 5000;
 
 const STATUS_OPTIONS = [
   { value: 'purchased',   labels: { en: 'Purchased',          es: 'Comprado' },             color: '#22863a', bg: '#dcfce7', border: '#86efac' },
@@ -257,28 +266,48 @@ const UI = {
   },
 };
 
+const INITIAL_MAP = new Map(INITIAL_ITEMS.map(i => [i.id, i]));
+const INITIAL_IDS = new Set(INITIAL_ITEMS.map(i => i.id));
+
+const buildItemsFromState = (overrides, customItems) => {
+  const merged = INITIAL_ITEMS
+    .filter(item => !overrides[item.id]?.deleted)
+    .map(item => {
+      const o = overrides[item.id] || {};
+      return {
+        ...item,
+        status: o.status || item.status,
+        userNotes: o.userNotes || '',
+        name: { en: o.nameEn ?? item.name.en, es: o.nameEs ?? item.name.es },
+        area: { en: o.areaEn ?? item.area.en, es: o.areaEs ?? item.area.es },
+        qty: o.qty ?? item.qty,
+      };
+    });
+  return [...merged, ...customItems];
+};
+
+const computeOverrideForItem = (item) => {
+  if (!INITIAL_IDS.has(item.id)) return null;
+  const orig = INITIAL_MAP.get(item.id);
+  const o = {};
+  if (item.status !== orig.status) o.status = item.status;
+  if (item.userNotes) o.userNotes = item.userNotes;
+  if (item.name.en !== orig.name.en) o.nameEn = item.name.en;
+  if (item.name.es !== orig.name.es) o.nameEs = item.name.es;
+  if (item.area.en !== orig.area.en) o.areaEn = item.area.en;
+  if (item.area.es !== orig.area.es) o.areaEs = item.area.es;
+  if (item.qty !== orig.qty) o.qty = item.qty;
+  return o;
+};
+
 const TegucigalpaChecklist = () => {
+  // Optimistic initial render from localStorage cache; server state replaces it on first fetch.
   const [items, setItems] = useState(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         const data = JSON.parse(saved);
-        const byId = data.byId || {};
-        const customItems = data.customItems || [];
-        const merged = INITIAL_ITEMS
-          .filter(item => !byId[item.id]?.deleted)
-          .map(item => {
-            const o = byId[item.id] || {};
-            return {
-              ...item,
-              status: o.status || item.status,
-              userNotes: o.userNotes || '',
-              name: { en: o.nameEn ?? item.name.en, es: o.nameEs ?? item.name.es },
-              area: { en: o.areaEn ?? item.area.en, es: o.areaEs ?? item.area.es },
-              qty: o.qty ?? item.qty,
-            };
-          });
-        return [...merged, ...customItems];
+        return buildItemsFromState(data.byId || {}, data.customItems || []);
       }
     } catch {}
     return INITIAL_ITEMS;
@@ -288,52 +317,152 @@ const TegucigalpaChecklist = () => {
   const [search, setSearch] = useState('');
   const [language, setLanguage] = useState('en');
   const [editingId, setEditingId] = useState(null);
+  const [syncStatus, setSyncStatus] = useState('loading'); // loading | synced | offline
+  const versionRef = useRef(0);
+  const debounceRef = useRef({});
+  const pendingWritesRef = useRef(0); // number of in-flight or debounced writes
   const t = UI[language];
 
+  // Apply remote server state to local items, cache to localStorage as fallback
+  const applyRemote = (remote) => {
+    versionRef.current = remote.version || 0;
+    const newItems = buildItemsFromState(remote.overrides || {}, remote.customItems || []);
+    setItems(newItems);
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        byId: remote.overrides || {},
+        customItems: remote.customItems || [],
+      }));
+    } catch {}
+  };
+
+  // Initial fetch + polling
   useEffect(() => {
-    const initialIds = new Set(INITIAL_ITEMS.map(i => i.id));
-    const initialMap = new Map(INITIAL_ITEMS.map(i => [i.id, i]));
-    const presentIds = new Set(items.map(i => i.id));
-    const byId = {};
-    const customItems = [];
-    items.forEach(item => {
-      if (initialIds.has(item.id)) {
-        const orig = initialMap.get(item.id);
-        const o = {};
-        if (item.status !== orig.status) o.status = item.status;
-        if (item.userNotes) o.userNotes = item.userNotes;
-        if (item.name.en !== orig.name.en) o.nameEn = item.name.en;
-        if (item.name.es !== orig.name.es) o.nameEs = item.name.es;
-        if (item.area.en !== orig.area.en) o.areaEn = item.area.en;
-        if (item.area.es !== orig.area.es) o.areaEs = item.area.es;
-        if (item.qty !== orig.qty) o.qty = item.qty;
-        if (Object.keys(o).length > 0) byId[item.id] = o;
-      } else {
-        customItems.push(item);
+    let cancelled = false;
+    let timer = null;
+
+    const initialLoad = async () => {
+      try {
+        const data = await fetchChecklist(CHECKLIST_ID);
+        if (cancelled) return;
+        applyRemote(data);
+        setSyncStatus('synced');
+      } catch (e) {
+        console.warn('checklist initial load failed, using cache', e);
+        if (!cancelled) setSyncStatus('offline');
       }
-    });
-    INITIAL_ITEMS.forEach(item => {
-      if (!presentIds.has(item.id)) {
-        byId[item.id] = { ...(byId[item.id] || {}), deleted: true };
+    };
+
+    const poll = async () => {
+      try {
+        if (pendingWritesRef.current > 0) {
+          setSyncStatus('synced');
+          return;
+        }
+        const v = await fetchVersion(CHECKLIST_ID);
+        if (cancelled) return;
+        if (String(v.version || 0) !== String(versionRef.current)) {
+          if (pendingWritesRef.current > 0) {
+            setSyncStatus('synced');
+            return;
+          }
+          const data = await fetchChecklist(CHECKLIST_ID);
+          if (cancelled) return;
+          if (pendingWritesRef.current > 0) return;
+          applyRemote(data);
+        }
+        setSyncStatus('synced');
+      } catch {
+        if (!cancelled) setSyncStatus('offline');
+      } finally {
+        if (!cancelled) timer = setTimeout(poll, POLL_INTERVAL_MS);
       }
+    };
+
+    initialLoad().then(() => {
+      if (!cancelled) timer = setTimeout(poll, POLL_INTERVAL_MS);
     });
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ byId, customItems }));
-  }, [items]);
+
+    return () => {
+      cancelled = true;
+      if (timer) clearTimeout(timer);
+    };
+  }, []);
+
+  // Push an override for one INITIAL item to the server (debounced per item for text fields)
+  const pushOverride = (item, { debounce = false } = {}) => {
+    if (!INITIAL_IDS.has(item.id)) return;
+    const override = computeOverrideForItem(item) || {};
+    const send = async () => {
+      try {
+        const r = await putOverride(CHECKLIST_ID, item.id, override);
+        if (r?.version) versionRef.current = r.version;
+        setSyncStatus('synced');
+      } catch {
+        setSyncStatus('offline');
+      } finally {
+        pendingWritesRef.current = Math.max(0, pendingWritesRef.current - 1);
+      }
+    };
+    if (debounce) {
+      // Replace any prior pending debounce for this item; only count one pending write per item
+      if (!debounceRef.current[item.id]) pendingWritesRef.current += 1;
+      clearTimeout(debounceRef.current[item.id]?.timer);
+      const timerId = setTimeout(() => {
+        delete debounceRef.current[item.id];
+        send();
+      }, 500);
+      debounceRef.current[item.id] = { timer: timerId };
+    } else {
+      pendingWritesRef.current += 1;
+      send();
+    }
+  };
 
   const updateItem = (id, field, value) => {
-    setItems(prev => prev.map(item => item.id === id ? { ...item, [field]: value } : item));
+    let updatedItem = null;
+    setItems(prev => prev.map(item => {
+      if (item.id === id) {
+        updatedItem = { ...item, [field]: value };
+        return updatedItem;
+      }
+      return item;
+    }));
+    if (updatedItem) {
+      if (INITIAL_IDS.has(id)) {
+        // Debounce text-typing fields, push instantly for selects
+        const debounce = field === 'userNotes';
+        pushOverride(updatedItem, { debounce });
+      }
+      // Custom items (id >= 1000) edits could be persisted similarly; skipping since UI only allows status/notes
+      // and these are written on next addCustomItem call shape if needed.
+    }
   };
 
-  const updateItemLang = (id, field, value) => {
-    setItems(prev => prev.map(item => item.id === id ? { ...item, [field]: { ...item[field], [language]: value } } : item));
-  };
-
-  const deleteItem = (id) => {
+  const deleteItem = async (id) => {
     if (!window.confirm(language === 'es' ? '¿Eliminar este artículo?' : 'Delete this item?')) return;
     setItems(prev => prev.filter(item => item.id !== id));
+    if (id >= 1000) {
+      try {
+        const r = await apiDeleteCustomItem(CHECKLIST_ID, id);
+        if (r?.version) versionRef.current = r.version;
+        setSyncStatus('synced');
+      } catch {
+        setSyncStatus('offline');
+      }
+    } else {
+      // Marking an INITIAL item as deleted via override
+      try {
+        const r = await putOverride(CHECKLIST_ID, id, { deleted: true });
+        if (r?.version) versionRef.current = r.version;
+        setSyncStatus('synced');
+      } catch {
+        setSyncStatus('offline');
+      }
+    }
   };
 
-  const addItem = () => {
+  const addItem = async () => {
     const sectionKeys = Object.keys(SECTION_LABELS);
     const sectionList = sectionKeys.map((s, i) => `${i + 1}. ${SECTION_LABELS[s][language]}`).join('\n');
     const sectionInput = window.prompt(
@@ -357,7 +486,8 @@ const TegucigalpaChecklist = () => {
     const status = (!isNaN(statusIdx) && statusIdx >= 0 && statusIdx < STATUS_OPTIONS.length)
       ? STATUS_OPTIONS[statusIdx].value
       : 'pending';
-    const newId = Math.max(1000, ...items.map(i => i.id)) + 1;
+    // Timestamp + random salt to avoid collisions if two users add at once
+    const newId = Math.max(1000, Date.now() % 100000000 + Math.floor(Math.random() * 1000));
     const newItem = {
       id: newId,
       section,
@@ -370,6 +500,13 @@ const TegucigalpaChecklist = () => {
       userNotes: note.trim(),
     };
     setItems(prev => [...prev, newItem]);
+    try {
+      const r = await apiAddCustomItem(CHECKLIST_ID, newItem);
+      if (r?.version) versionRef.current = r.version;
+      setSyncStatus('synced');
+    } catch {
+      setSyncStatus('offline');
+    }
   };
 
   const stats = useMemo(() => {

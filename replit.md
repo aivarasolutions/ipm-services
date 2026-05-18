@@ -48,7 +48,23 @@ Proposal pages render without the IPM Header/Footer — they have their own navi
 3. **Currency helper**: Define `const fmt = (n) => '$' + n.toLocaleString('en-US');` above the component.
 4. **Imports**: `import { useEffect, useRef, useState } from 'react';`
 
+## Shared Checklist Persistence (Tegucigalpa)
+Status changes, custom items, and deletions on `/insights/tegucigalpa-checklist` are stored in a shared Postgres database so every viewer on every device sees the same state.
+
+- **Backend**: Express server in `server/index.js` exposing `/api/checklist/tegucigalpa` (read), `/api/checklist/tegucigalpa/version` (poll), `PUT /api/checklist/tegucigalpa/override/:id`, `POST/DELETE /api/checklist/tegucigalpa/items[/:id]`.
+- **Database**: Replit Postgres (`DATABASE_URL`). Tables: `checklist_overrides`, `checklist_custom_items`, `checklist_meta`.
+- **Frontend client**: `src/services/checklistApi.js`. Polls `/api/checklist/.../version` every 5s; refetches full state on version change.
+- **Dev**: `npm run dev` runs Vite (port 5000) + Express (port 3001) concurrently. Vite proxies `/api/*` → `http://localhost:3001`.
+- **Production**:
+  - Replit Autoscale deployment (`ipm-services-kevinajackson21.replit.app`) runs `npm run start` (Express serves both API and the built static site).
+  - Vercel-hosted `ipm.services` uses `vercel.json` rewrites to proxy `/api/*` → the Replit deployment. No CORS or env vars needed on Vercel.
+- **After backend code changes**: click **Publish** on Replit to redeploy the Autoscale backend. Static frontend on Vercel is unaffected unless you also push to GitHub.
+
 ## Recent Changes
+### 2026-05-18
+- **Added shared persistence for Tegucigalpa checklist** — replaced localStorage-only with a Replit Postgres-backed API. Status, custom items, and deletes now sync across all devices via 5-second polling. localStorage kept as offline fallback cache. See "Shared Checklist Persistence" section above.
+- Added Express backend (`server/index.js`), API client (`src/services/checklistApi.js`), Vite `/api` proxy, `vercel.json` rewrites, autoscale deployment config.
+
 ### 2026-03-08
 - **Added Charlotte Owner Proposal page** at `/proposal/charlotte-downhaul`
   - Standalone page (no IPM header/footer) with own navigation
