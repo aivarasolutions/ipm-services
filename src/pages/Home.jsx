@@ -234,12 +234,13 @@ const Home = () => {
             {t.maxROI}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/owner-portal">
+            <a href="https://portal.ipm.services/" target="_blank" rel="noopener noreferrer">
               <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg">
                 <Users className="mr-2 h-5 w-5" />
                 {t.ownerPortal}
               </Button>
-            </Link>
+            </a>
+
             <Link to="/properties">
               <Button variant="outline" className="border-2 border-gray-300 px-8 py-3 text-lg">
                 {t.viewProperties}

@@ -39,7 +39,7 @@ const Header = () => {
     { name: 'News', path: '/news', color: 'bg-indigo-600 text-white' },
     { name: 'Relocation Guide', path: '/location-guide', color: 'bg-teal-600 text-white' },
     { name: 'Contact', path: '/contact', color: 'bg-gray-600 text-white' },
-    { name: 'Owner Portal', path: '/owner-portal', color: 'bg-purple-600 text-white' }
+    { name: 'Owner Portal', path: 'https://portal.ipm.services/', color: 'bg-purple-600 text-white', external: true }
   ]
 
   return (
@@ -93,6 +93,18 @@ const Header = () => {
                       </div>
                     )}
                   </div>
+                )
+              }
+              if (item.external) {
+                return (
+                  <a key={item.name} href={item.path} target="_blank" rel="noopener noreferrer">
+                    <Button
+                      variant="ghost"
+                      className="px-4 py-2 rounded-md text-sm font-medium transition-colors text-gray-700 hover:text-gray-900 hover:bg-gray-100"
+                    >
+                      {item.name}
+                    </Button>
+                  </a>
                 )
               }
               return (
@@ -215,6 +227,20 @@ const Header = () => {
                 )
               }
               
+              if (item.external) {
+                return (
+                  <a
+                    key={item.name}
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block px-3 py-2 rounded-md text-base font-medium transition-colors text-gray-700 hover:text-gray-900 hover:bg-gray-100"
+                  >
+                    {item.name}
+                  </a>
+                )
+              }
               return (
                 <Link
                   key={item.name}
