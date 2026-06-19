@@ -17,12 +17,12 @@ const Footer = () => {
   ]
 
   return (
-    <footer className="bg-[#050505] text-white">
+    <footer className="bg-[#06121F] text-white border-t border-[#D4AF37]/15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and Description */}
           <div className="col-span-1">
-            <Link to="/" className="inline-flex items-center rounded bg-black px-2 py-1 mb-4">
+            <Link to="/" className="inline-flex items-center rounded bg-[#0A1A30] px-2 py-1 mb-4">
               <img
                 src="/images/ipm-logo-new.png"
                 alt="IPM International Property Management"
@@ -67,7 +67,7 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h3 className="text-lg font-semibold text-[#D4AF37] mb-4">Services</h3>
+            <h3 className="font-display text-lg font-semibold text-[#D4AF37] mb-4">Services</h3>
             <ul className="space-y-2">
               {services.map((service, index) => (
                 <li key={index}>
@@ -84,7 +84,7 @@ const Footer = () => {
 
           {/* Locations */}
           <div>
-            <h3 className="text-lg font-semibold text-[#D4AF37] mb-4">Locations</h3>
+            <h3 className="font-display text-lg font-semibold text-[#D4AF37] mb-4">Locations</h3>
             <ul className="space-y-2">
               {locations.map((location, index) => (
                 <li key={index}>
@@ -101,7 +101,7 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h3 className="text-lg font-semibold text-[#D4AF37] mb-4">Contact</h3>
+            <h3 className="font-display text-lg font-semibold text-[#D4AF37] mb-4">Contact</h3>
             <ul className="space-y-2">
               <li>
                 <a 

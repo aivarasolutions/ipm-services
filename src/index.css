@@ -1,8 +1,38 @@
 @import "tailwindcss";
 
-/* ── IPM Brand CSS ─────────────────────────────────────────── */
+/* ── IPM Brand System ──────────────────────────────────────── */
+:root {
+  --navy-deep:  #06121F;  /* deepest navy (page base) */
+  --navy:       #0A1A30;  /* primary navy */
+  --navy-soft:  #0F2440;  /* lighter navy panels */
+  --gold:       #D4AF37;
+  --champagne:  #F2D98D;
+  --muted:      #C9D2DE;
+}
 
-/* Gold gradient text utility */
+/* ── Typography ────────────────────────────────────────────── */
+body {
+  font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+  background: var(--navy-deep);
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.font-body {
+  font-family: 'Montserrat', system-ui, sans-serif;
+}
+
+/* Heavy uppercase ad-style headline */
+.font-hero {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+/* ── Gold gradient text ────────────────────────────────────── */
 .text-gold-gradient {
   background: linear-gradient(135deg, #D4AF37 0%, #F2D98D 50%, #D4AF37 100%);
   -webkit-background-clip: text;
@@ -10,7 +40,7 @@
   background-clip: text;
 }
 
-/* Subtle gold shimmer animation */
+/* ── Animations ────────────────────────────────────────────── */
 @keyframes gold-shimmer {
   0%   { background-position: -200% center; }
   100% { background-position:  200% center; }
@@ -24,7 +54,6 @@
   animation: gold-shimmer 4s linear infinite;
 }
 
-/* Glow pulse for gold accents */
 @keyframes gold-glow-pulse {
   0%, 100% { box-shadow: 0 0 8px rgba(212, 175, 55, 0.3); }
   50%       { box-shadow: 0 0 20px rgba(212, 175, 55, 0.6); }
@@ -33,16 +62,67 @@
   animation: gold-glow-pulse 2.5s ease-in-out infinite;
 }
 
-/* Glass card */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fade-up 0.8s ease-out both;
+}
+
+/* ── Glass card ────────────────────────────────────────────── */
 .glass-card {
   background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(212, 175, 55, 0.25);
+  border: 1px solid rgba(212, 175, 55, 0.22);
 }
 
-/* Gold divider line */
+/* ── Gold divider line ─────────────────────────────────────── */
 .gold-divider {
   height: 1px;
   background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+}
+
+/* ── Platform pill (hero) ──────────────────────────────────── */
+.platform-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  background: rgba(10, 26, 48, 0.55);
+  border: 1px solid rgba(212, 175, 55, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: all 0.25s ease;
+}
+.platform-pill:hover {
+  border-color: rgba(212, 175, 55, 0.9);
+  background: rgba(212, 175, 55, 0.12);
+}
+.platform-pill img {
+  height: 18px;
+  width: auto;
+}
+.platform-pill span {
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Gold crown divider ornament */
+.gold-rule {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--gold);
+}
+.gold-rule::before,
+.gold-rule::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.6), transparent);
 }

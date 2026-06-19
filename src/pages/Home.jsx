@@ -4,9 +4,26 @@ import { Button } from '@/components/ui/button'
 import { useLanguage } from '../contexts/LanguageContext'
 import {
   Building2, TrendingUp, Shield, DollarSign,
-  BarChart3, Star, Clock, Users,
-  CheckCircle, Globe, Calendar, Award, Zap, HeartHandshake, ArrowRight
+  BarChart3, Globe, Calendar, Zap, HeartHandshake,
+  CheckCircle, ArrowRight, Check
 } from 'lucide-react'
+
+/* ── Platform list (logos in /public/images/platforms) ─────── */
+const PLATFORMS = [
+  { name: 'Airbnb',      logo: '/images/platforms/airbnb.svg' },
+  { name: 'Booking.com', logo: '/images/platforms/booking.svg' },
+  { name: 'VRBO',        logo: null },
+  { name: 'Expedia',     logo: '/images/platforms/expedia.svg' },
+  { name: 'Hotels.com',  logo: '/images/platforms/hotels.svg' },
+  { name: 'Google',      logo: '/images/platforms/google.svg' },
+]
+
+/* ── Gold crown ornament ───────────────────────────────────── */
+const Crown = ({ className = '' }) => (
+  <svg viewBox="0 0 24 18" className={className} fill="currentColor" aria-hidden="true">
+    <path d="M2 16h20l-1.6-9-5 4L12 3 8.6 11l-5-4L2 16z" />
+  </svg>
+)
 
 /* ── Airbnb Embed ──────────────────────────────────────────── */
 const AirbnbWidget = ({ id, href, description }) => (
@@ -44,7 +61,7 @@ const AirbnbSection = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
       {properties.map(p => (
-        <div key={p.id} className="flex justify-center rounded-xl overflow-hidden border border-[#D4AF37]/20 shadow-lg shadow-black/40">
+        <div key={p.id} className="flex justify-center rounded-xl overflow-hidden border border-slate-200 shadow-md">
           <AirbnbWidget {...p} />
         </div>
       ))}
@@ -52,27 +69,24 @@ const AirbnbSection = () => {
   )
 }
 
-/* ── Platform badge list ───────────────────────────────────── */
-const PLATFORMS = [
-  'Airbnb', 'Booking.com', 'VRBO', 'Expedia', 'Hotels.com', 'Google Vacation Rentals'
-]
-
 /* ── Main component ────────────────────────────────────────── */
 const Home = () => {
   const { language } = useLanguage()
 
   const translations = {
     en: {
-      heroHeadline:    'More Bookings.\nLess Vacancy.',
-      heroSub:         'IPM helps property owners increase exposure, fill empty dates, and grow revenue through multi-platform listing promotion and full-service vacation rental management.',
+      heroLine1:       'More Bookings.',
+      heroLine2:       'Less Vacancy.',
+      heroSub:         'Get your property listed where travelers are searching. IPM promotes your home across every major booking platform and manages the details — so you earn more with less work.',
+      heroBullets:     ['More Exposure', 'More Reservations', 'Higher Occupancy', 'Calendar Sync', 'No Double Bookings'],
       cta1:            'Get Listed Worldwide',
       cta2:            'Request Full Management',
-      listingBadge:    'Listing Promotion — Only 10% Commission',
-      mgmtBadge:       'Full Management — 20% + Competitive Monthly Fee',
-      statsLabel:      ['Properties Managed', 'Average Occupancy', 'Years Experience', '24/7 Support'],
-      statsNum:        ['30+', '75–85%', '10+', 'Always'],
+      commissionNote:  'Only 10% Commission',
+      statsLabel:      ['Properties Managed', 'Average Occupancy', 'Years Experience', 'Owner Support'],
+      statsNum:        ['30+', '75–85%', '10+', '24/7'],
       platformHeading: 'Global Exposure for Your Property',
       platformSub:     'We list and promote your property across every major booking platform — one setup, maximum reach.',
+      platformTag:     'More Exposure · More Reservations · Higher Occupancy · No Double Bookings',
       pricingHeading:  'Simple, Transparent Pricing',
       pricingSub:      'Two ways to work with IPM — choose the level of support that fits your needs.',
       plan1Title:      'Multi-Platform Listing Promotion',
@@ -103,9 +117,9 @@ const Home = () => {
       servicesHeading: 'What We Handle For You',
       servicesSub:     'From listing setup to guest checkout — we manage every detail so you don\'t have to.',
       services: [
-        { title: 'Multi-Platform Listing',   desc: 'Your property promoted on Airbnb, Booking.com, VRBO, Expedia, Hotels.com, and Google Vacation Rentals from day one.' },
-        { title: 'Revenue Optimization',     desc: 'Dynamic pricing, seasonal rate strategy, and occupancy analytics to maximize your monthly payout.' },
-        { title: 'Guest Verification',       desc: 'We screen every reservation to verify guests, reduce chargebacks, and protect your property.' },
+        { title: 'Multi-Platform Listing',    desc: 'Your property promoted on Airbnb, Booking.com, VRBO, Expedia, Hotels.com, and Google Vacation Rentals from day one.' },
+        { title: 'Revenue Optimization',      desc: 'Dynamic pricing, seasonal rate strategy, and occupancy analytics to maximize your monthly payout.' },
+        { title: 'Guest Verification',        desc: 'We screen every reservation to verify guests, reduce chargebacks, and protect your property.' },
         { title: 'Owner Dashboard & Reports', desc: 'Real-time visibility into your bookings, revenue, and occupancy — available anytime via the owner portal.' },
       ],
       benefitsHeading: 'Why Owners Choose IPM',
@@ -128,16 +142,18 @@ const Home = () => {
       ctaBtn2:         'Get a Property Evaluation',
     },
     es: {
-      heroHeadline:    'Más Reservas.\nMenos Vacantes.',
-      heroSub:         'IPM ayuda a propietarios a aumentar la exposición, llenar fechas vacías y crecer sus ingresos a través de la promoción en múltiples plataformas y gestión completa de alquiler vacacional.',
+      heroLine1:       'Más Reservas.',
+      heroLine2:       'Menos Vacantes.',
+      heroSub:         'Publique su propiedad donde los viajeros están buscando. IPM la promueve en todas las plataformas principales y gestiona los detalles — gana más con menos trabajo.',
+      heroBullets:     ['Más Exposición', 'Más Reservas', 'Mayor Ocupación', 'Sincronización', 'Sin Dobles Reservas'],
       cta1:            'Publique su Propiedad',
       cta2:            'Solicitar Gestión Completa',
-      listingBadge:    'Promoción — Solo 10% de Comisión',
-      mgmtBadge:       'Gestión Completa — 20% + Cuota Mensual',
-      statsLabel:      ['Propiedades Gestionadas', 'Ocupación Promedio', 'Años de Experiencia', 'Soporte 24/7'],
-      statsNum:        ['30+', '75–85%', '10+', 'Siempre'],
+      commissionNote:  'Solo 10% de Comisión',
+      statsLabel:      ['Propiedades Gestionadas', 'Ocupación Promedio', 'Años de Experiencia', 'Soporte al Propietario'],
+      statsNum:        ['30+', '75–85%', '10+', '24/7'],
       platformHeading: 'Exposición Global para su Propiedad',
       platformSub:     'Publicamos y promovemos su propiedad en todas las plataformas principales de reservas.',
+      platformTag:     'Más Exposición · Más Reservas · Mayor Ocupación · Sin Dobles Reservas',
       pricingHeading:  'Precios Simples y Transparentes',
       pricingSub:      'Dos formas de trabajar con IPM — elija el nivel de servicio que necesita.',
       plan1Title:      'Promoción Multi-Plataforma',
@@ -168,9 +184,9 @@ const Home = () => {
       servicesHeading: 'Lo Que Manejamos Por Usted',
       servicesSub:     'Desde la configuración del anuncio hasta el check-out del huésped.',
       services: [
-        { title: 'Listado Multi-Plataforma',     desc: 'Su propiedad promovida en Airbnb, Booking.com, VRBO, Expedia, Hotels.com y Google.' },
-        { title: 'Optimización de Ingresos',      desc: 'Precios dinámicos, estrategia estacional y analíticas de ocupación.' },
-        { title: 'Verificación de Huéspedes',     desc: 'Revisamos cada reserva para verificar huéspedes y proteger su propiedad.' },
+        { title: 'Listado Multi-Plataforma',         desc: 'Su propiedad promovida en Airbnb, Booking.com, VRBO, Expedia, Hotels.com y Google.' },
+        { title: 'Optimización de Ingresos',         desc: 'Precios dinámicos, estrategia estacional y analíticas de ocupación.' },
+        { title: 'Verificación de Huéspedes',        desc: 'Revisamos cada reserva para verificar huéspedes y proteger su propiedad.' },
         { title: 'Panel y Reportes del Propietario', desc: 'Visibilidad en tiempo real de reservas, ingresos y ocupación.' },
       ],
       benefitsHeading: 'Por Qué los Propietarios Eligen IPM',
@@ -193,16 +209,18 @@ const Home = () => {
       ctaBtn2:         'Evaluación de Propiedad',
     },
     fr: {
-      heroHeadline:    'Plus de Réservations.\nMoins de Vacances.',
-      heroSub:         'IPM aide les propriétaires à augmenter leur visibilité, remplir les dates vides et développer leurs revenus grâce à la promotion multi-plateformes.',
+      heroLine1:       'Plus de Réservations.',
+      heroLine2:       'Moins de Vacances.',
+      heroSub:         'Référencez votre propriété là où les voyageurs cherchent. IPM la promeut sur toutes les grandes plateformes et gère les détails — gagnez plus avec moins d\'effort.',
+      heroBullets:     ['Plus de Visibilité', 'Plus de Réservations', 'Meilleure Occupation', 'Synchronisation', 'Pas de Doubles Réservations'],
       cta1:            'Référencer ma Propriété',
       cta2:            'Demander la Gestion Complète',
-      listingBadge:    'Promotion — Seulement 10% de Commission',
-      mgmtBadge:       'Gestion Complète — 20% + Frais Mensuels',
-      statsLabel:      ['Propriétés Gérées', 'Taux d\'Occupation Moyen', 'Années d\'Expérience', 'Support 24/7'],
-      statsNum:        ['30+', '75–85%', '10+', 'Toujours'],
+      commissionNote:  'Seulement 10% de Commission',
+      statsLabel:      ['Propriétés Gérées', 'Taux d\'Occupation Moyen', 'Années d\'Expérience', 'Support Propriétaire'],
+      statsNum:        ['30+', '75–85%', '10+', '24/7'],
       platformHeading: 'Exposition Mondiale pour Votre Propriété',
       platformSub:     'Nous référençons et promouvons votre propriété sur toutes les grandes plateformes.',
+      platformTag:     'Plus de Visibilité · Plus de Réservations · Meilleure Occupation · Pas de Doubles Réservations',
       pricingHeading:  'Tarification Simple et Transparente',
       pricingSub:      'Deux façons de travailler avec IPM.',
       plan1Title:      'Promotion Multi-Plateformes',
@@ -260,180 +278,181 @@ const Home = () => {
   }
 
   const t = translations[language] || translations.en
-  const heroLines = t.heroHeadline.split('\n')
-
   const serviceIcons = [Globe, BarChart3, Shield, Building2]
 
   return (
-    <div className="min-h-screen bg-[#050505]">
+    <div className="min-h-screen bg-[#06121F]">
 
-      {/* ── 1. HERO ──────────────────────────────────────────── */}
-      <section
-        className="relative min-h-screen flex items-center justify-center overflow-hidden"
-        style={{ background: '#06111F' }}
-      >
-        {/* Background image */}
+      {/* ── 1. HERO (ad-style, left aligned) ─────────────────── */}
+      <section className="relative min-h-[92vh] flex items-center overflow-hidden">
+        {/* Background villa image */}
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/cancun-luxury-beach.jpg')" }}
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/luxury_beachfront_resort.webp')" }}
         />
-        {/* Dark gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/80 via-[#06111F]/75 to-[#050505]/90" />
-        {/* Gold bottom glow */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent opacity-60" />
+        {/* Navy gradient — heavy on the left for text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#06121F] via-[#06121F]/92 to-[#06121F]/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#06121F] via-transparent to-[#06121F]/40" />
 
         {/* Content */}
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-32">
-          {/* Eyebrow badge */}
-          <div className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full border border-[#D4AF37]/40 bg-[#D4AF37]/10 text-[#F2D98D] text-sm font-medium tracking-wide">
-            <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse" />
-            International Property Management
-          </div>
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-28">
+          <div className="max-w-3xl animate-fade-up">
+            {/* Eyebrow */}
+            <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-[#D4AF37]/40 bg-[#D4AF37]/10">
+              <Crown className="w-4 h-3 text-[#D4AF37]" />
+              <span className="text-[#F2D98D] text-xs font-semibold tracking-[0.2em] uppercase">International Property Management</span>
+            </div>
 
-          {/* Headline */}
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
-            {heroLines.map((line, i) => (
-              <span key={i} className={`block ${i === 0 ? 'text-white' : 'text-gold-gradient'}`}>
-                {line}
+            {/* Headline */}
+            <h1 className="font-hero text-5xl sm:text-6xl lg:text-7xl leading-[1.02] mb-6">
+              <span className="block text-white">{t.heroLine1}</span>
+              <span className="block text-gold-gradient">{t.heroLine2}</span>
+            </h1>
+
+            {/* Sub */}
+            <p className="text-lg text-[#C9D2DE] max-w-2xl leading-relaxed mb-7">
+              {t.heroSub}
+            </p>
+
+            {/* Platform logo pills */}
+            <div className="flex flex-wrap gap-2.5 mb-8">
+              {PLATFORMS.map(p => (
+                <div key={p.name} className="platform-pill">
+                  {p.logo && <img src={p.logo} alt={p.name} loading="lazy" />}
+                  <span>{p.name}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Benefit checks */}
+            <div className="flex flex-wrap gap-x-6 gap-y-2 mb-9">
+              {t.heroBullets.map(b => (
+                <span key={b} className="flex items-center gap-2 text-white text-sm font-medium">
+                  <Check className="w-4 h-4 text-[#D4AF37]" strokeWidth={3} />
+                  {b}
+                </span>
+              ))}
+            </div>
+
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link to="/contact">
+                <Button className="bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] hover:from-[#F2D98D] hover:to-[#D4AF37] text-[#06121F] font-bold px-8 py-4 text-base rounded-md shadow-lg shadow-[#D4AF37]/25 transition-all duration-200 hover:scale-[1.02]">
+                  {t.cta1}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+              <Link to="/contact">
+                <Button className="bg-white/5 border-2 border-[#D4AF37]/50 text-white hover:bg-[#D4AF37]/10 hover:border-[#D4AF37]/80 font-semibold px-8 py-4 text-base rounded-md transition-all duration-200 backdrop-blur-sm">
+                  {t.cta2}
+                </Button>
+              </Link>
+            </div>
+
+            {/* Commission line */}
+            <div className="mt-9 gold-rule max-w-md">
+              <span className="text-[#F2D98D] text-sm font-semibold tracking-wide whitespace-nowrap">
+                {t.commissionNote}
               </span>
-            ))}
-          </h1>
-
-          {/* Sub */}
-          <p className="text-lg md:text-xl text-[#CFCFCF] max-w-3xl mx-auto leading-relaxed mb-10">
-            {t.heroSub}
-          </p>
-
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Link to="/contact">
-              <Button className="bg-[#D4AF37] hover:bg-[#F2D98D] text-[#050505] font-bold px-8 py-4 text-base rounded-md shadow-lg shadow-[#D4AF37]/25 transition-all duration-200 hover:shadow-[#D4AF37]/40 hover:scale-[1.02]">
-                {t.cta1}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-            <Link to="/contact">
-              <Button className="bg-transparent border-2 border-[#D4AF37]/50 text-white hover:bg-[#D4AF37]/10 hover:border-[#D4AF37]/80 font-semibold px-8 py-4 text-base rounded-md transition-all duration-200">
-                {t.cta2}
-              </Button>
-            </Link>
-          </div>
-
-          {/* Commission badges */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-14 text-sm">
-            <span className="px-4 py-2 rounded-full bg-[#D4AF37]/15 border border-[#D4AF37]/30 text-[#F2D98D] font-medium">
-              {t.listingBadge}
-            </span>
-            <span className="px-4 py-2 rounded-full bg-white/5 border border-white/20 text-[#CFCFCF] font-medium">
-              {t.mgmtBadge}
-            </span>
-          </div>
-
-          {/* Platform strip */}
-          <div className="flex flex-wrap justify-center gap-3">
-            {PLATFORMS.map(p => (
-              <span key={p} className="px-3 py-1 rounded-md bg-white/5 border border-white/10 text-[#CFCFCF] text-xs font-medium">
-                {p}
-              </span>
-            ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* ── 2. STATS BAR ─────────────────────────────────────── */}
-      <section className="bg-[#0A0A0A] border-y border-[#D4AF37]/20 py-14">
+      <section className="bg-[#0A1A30] border-y border-[#D4AF37]/20 py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {t.statsNum.map((num, i) => (
               <div key={i} className="text-center">
-                <div className="text-4xl font-bold text-gold-gradient mb-2">{num}</div>
-                <div className="text-[#CFCFCF] text-sm tracking-wide">{t.statsLabel[i]}</div>
+                <div className="font-display text-4xl font-bold text-gold-gradient mb-2">{num}</div>
+                <div className="text-[#C9D2DE] text-sm tracking-wide">{t.statsLabel[i]}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── 3. PLATFORM LOGOS STRIP ──────────────────────────── */}
-      <section className="bg-[#06111F] py-20">
+      {/* ── 3. PLATFORM STRIP ────────────────────────────────── */}
+      <section className="bg-[#06121F] py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">
             {t.platformHeading}
           </h2>
           <div className="gold-divider max-w-xs mx-auto mb-6" />
-          <p className="text-[#CFCFCF] text-lg mb-12 max-w-2xl mx-auto">{t.platformSub}</p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <p className="text-[#C9D2DE] text-lg mb-12 max-w-2xl mx-auto">{t.platformSub}</p>
+          <div className="flex flex-wrap justify-center gap-3">
             {PLATFORMS.map(p => (
-              <div key={p} className="glass-card px-6 py-3 rounded-lg text-[#F2D98D] font-semibold text-sm tracking-wide hover:border-[#D4AF37]/60 transition-colors duration-200">
-                {p}
+              <div key={p.name} className="platform-pill !py-3 !px-6">
+                {p.logo && <img src={p.logo} alt={p.name} loading="lazy" />}
+                <span className="!text-base">{p.name}</span>
               </div>
             ))}
           </div>
-          <p className="mt-10 text-[#D4AF37] text-sm font-medium tracking-widest uppercase">
-            More Exposure · More Reservations · Higher Occupancy · No Double Bookings
+          <p className="mt-10 text-[#D4AF37] text-xs font-semibold tracking-[0.2em] uppercase">
+            {t.platformTag}
           </p>
         </div>
       </section>
 
       {/* ── 4. PRICING CARDS ─────────────────────────────────── */}
-      <section className="bg-[#050505] py-24">
+      <section className="bg-[#0A1A30] py-24">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t.pricingHeading}</h2>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">{t.pricingHeading}</h2>
             <div className="gold-divider max-w-xs mx-auto mb-4" />
-            <p className="text-[#CFCFCF] text-lg max-w-2xl mx-auto">{t.pricingSub}</p>
+            <p className="text-[#C9D2DE] text-lg max-w-2xl mx-auto">{t.pricingSub}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-            {/* Plan 1 — Listing */}
+            {/* Plan 1 */}
             <div className="glass-card rounded-2xl p-8 flex flex-col">
               <div className="mb-6">
-                <p className="text-[#D4AF37] text-sm font-semibold tracking-widest uppercase mb-2">A</p>
-                <h3 className="text-2xl font-bold text-white mb-4">{t.plan1Title}</h3>
+                <p className="text-[#D4AF37] text-sm font-semibold tracking-widest uppercase mb-2">Listing</p>
+                <h3 className="font-display text-2xl font-bold text-white mb-4">{t.plan1Title}</h3>
                 <div className="flex items-end gap-2 mb-1">
-                  <span className="text-6xl font-bold text-gold-gradient">{t.plan1Price}</span>
-                  <span className="text-[#CFCFCF] mb-2">{t.plan1Unit}</span>
+                  <span className="font-display text-6xl font-bold text-gold-gradient">{t.plan1Price}</span>
+                  <span className="text-[#C9D2DE] mb-2">{t.plan1Unit}</span>
                 </div>
               </div>
               <ul className="space-y-3 mb-8 flex-1">
                 {t.plan1Features.map((f, i) => (
-                  <li key={i} className="flex items-start gap-3 text-[#CFCFCF] text-sm">
+                  <li key={i} className="flex items-start gap-3 text-[#C9D2DE] text-sm">
                     <CheckCircle className="h-4 w-4 text-[#D4AF37] flex-shrink-0 mt-0.5" />
                     {f}
                   </li>
                 ))}
               </ul>
               <Link to="/contact" className="block">
-                <Button className="w-full border-2 border-[#D4AF37]/60 bg-transparent text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#050505] font-bold py-3 rounded-lg transition-all duration-200">
+                <Button className="w-full border-2 border-[#D4AF37]/60 bg-transparent text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#06121F] font-bold py-3 rounded-lg transition-all duration-200">
                   {t.plan1Cta}
                 </Button>
               </Link>
             </div>
 
-            {/* Plan 2 — Full Management */}
-            <div className="relative rounded-2xl p-8 flex flex-col border-2 border-[#D4AF37]/60 bg-gradient-to-b from-[#D4AF37]/10 to-transparent shadow-xl shadow-[#D4AF37]/10">
-              {/* Popular badge */}
-              <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#D4AF37] text-[#050505] text-xs font-bold px-4 py-1 rounded-full tracking-wide">
+            {/* Plan 2 */}
+            <div className="relative rounded-2xl p-8 flex flex-col border-2 border-[#D4AF37]/60 bg-gradient-to-b from-[#D4AF37]/12 to-transparent shadow-xl shadow-[#D4AF37]/10">
+              <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] text-xs font-bold px-4 py-1 rounded-full tracking-wide">
                 {t.plan2Badge}
               </span>
               <div className="mb-6">
-                <p className="text-[#D4AF37] text-sm font-semibold tracking-widest uppercase mb-2">B</p>
-                <h3 className="text-2xl font-bold text-white mb-4">{t.plan2Title}</h3>
+                <p className="text-[#D4AF37] text-sm font-semibold tracking-widest uppercase mb-2">Full Management</p>
+                <h3 className="font-display text-2xl font-bold text-white mb-4">{t.plan2Title}</h3>
                 <div className="flex items-end gap-2 mb-1">
-                  <span className="text-6xl font-bold text-gold-gradient">{t.plan2Price}</span>
-                  <span className="text-[#CFCFCF] mb-2">{t.plan2Unit}</span>
+                  <span className="font-display text-6xl font-bold text-gold-gradient">{t.plan2Price}</span>
+                  <span className="text-[#C9D2DE] mb-2">{t.plan2Unit}</span>
                 </div>
               </div>
               <ul className="space-y-3 mb-8 flex-1">
                 {t.plan2Features.map((f, i) => (
-                  <li key={i} className="flex items-start gap-3 text-[#CFCFCF] text-sm">
+                  <li key={i} className="flex items-start gap-3 text-[#C9D2DE] text-sm">
                     <CheckCircle className="h-4 w-4 text-[#D4AF37] flex-shrink-0 mt-0.5" />
                     {f}
                   </li>
                 ))}
               </ul>
               <Link to="/contact" className="block">
-                <Button className="w-full bg-[#D4AF37] text-[#050505] hover:bg-[#F2D98D] font-bold py-3 rounded-lg shadow-lg shadow-[#D4AF37]/20 transition-all duration-200 hover:scale-[1.02]">
+                <Button className="w-full bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] hover:from-[#F2D98D] hover:to-[#D4AF37] font-bold py-3 rounded-lg shadow-lg shadow-[#D4AF37]/20 transition-all duration-200 hover:scale-[1.02]">
                   {t.plan2Cta}
                 </Button>
               </Link>
@@ -443,12 +462,12 @@ const Home = () => {
       </section>
 
       {/* ── 5. SERVICES ──────────────────────────────────────── */}
-      <section className="bg-[#111111] py-24">
+      <section className="bg-[#06121F] py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t.servicesHeading}</h2>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">{t.servicesHeading}</h2>
             <div className="gold-divider max-w-xs mx-auto mb-4" />
-            <p className="text-[#CFCFCF] text-lg max-w-2xl mx-auto">{t.servicesSub}</p>
+            <p className="text-[#C9D2DE] text-lg max-w-2xl mx-auto">{t.servicesSub}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {t.services.map((svc, i) => {
@@ -459,8 +478,8 @@ const Home = () => {
                     <Icon className="h-5 w-5 text-[#D4AF37]" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-white mb-2">{svc.title}</h3>
-                    <p className="text-[#CFCFCF] text-sm leading-relaxed">{svc.desc}</p>
+                    <h3 className="font-display text-lg font-bold text-white mb-2">{svc.title}</h3>
+                    <p className="text-[#C9D2DE] text-sm leading-relaxed">{svc.desc}</p>
                   </div>
                 </div>
               )
@@ -470,12 +489,12 @@ const Home = () => {
       </section>
 
       {/* ── 6. OWNER BENEFITS ────────────────────────────────── */}
-      <section className="bg-[#06111F] py-24">
+      <section className="bg-[#0A1A30] py-24">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t.benefitsHeading}</h2>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">{t.benefitsHeading}</h2>
             <div className="gold-divider max-w-xs mx-auto mb-4" />
-            <p className="text-[#CFCFCF] text-lg max-w-2xl mx-auto">{t.benefitsSub}</p>
+            <p className="text-[#C9D2DE] text-lg max-w-2xl mx-auto">{t.benefitsSub}</p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
             {t.benefits.map((b, i) => {
@@ -490,49 +509,34 @@ const Home = () => {
               )
             })}
           </div>
-
-          {/* Messaging row */}
-          <div className="mt-14 flex flex-wrap justify-center gap-x-8 gap-y-3 text-xs text-[#D4AF37] font-medium tracking-widest uppercase">
-            {[
-              'Fill Your Empty Dates',
-              'Stop Relying on Airbnb Alone',
-              'Better Guests · Fewer Problems',
-              'We Handle the Setup',
-            ].map(msg => (
-              <span key={msg} className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
-                {msg}
-              </span>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* ── 7. FEATURED PROPERTIES ───────────────────────────── */}
-      <section className="bg-[#050505] py-20">
+      {/* ── 7. FEATURED PROPERTIES (light) ───────────────────── */}
+      <section className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t.featuredHeading}</h2>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-[#0A1A30] mb-4">{t.featuredHeading}</h2>
             <div className="gold-divider max-w-xs mx-auto mb-4" />
-            <p className="text-[#CFCFCF] text-lg max-w-2xl mx-auto">{t.featuredSub}</p>
+            <p className="text-slate-600 text-lg max-w-2xl mx-auto">{t.featuredSub}</p>
           </div>
           <AirbnbSection />
         </div>
       </section>
 
       {/* ── 8. FINAL CTA ─────────────────────────────────────── */}
-      <section className="relative bg-[#06111F] py-28 overflow-hidden">
-        {/* Decorative gold glow */}
+      <section className="relative bg-[#06121F] py-28 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[#D4AF37]/5 to-transparent pointer-events-none" />
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/60 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/60 to-transparent" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">{t.ctaHeading}</h2>
-          <p className="text-xl text-[#CFCFCF] mb-10 max-w-2xl mx-auto leading-relaxed">{t.ctaSub}</p>
+          <Crown className="w-8 h-6 text-[#D4AF37] mx-auto mb-6" />
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-6">{t.ctaHeading}</h2>
+          <p className="text-xl text-[#C9D2DE] mb-10 max-w-2xl mx-auto leading-relaxed">{t.ctaSub}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
-              <Button className="bg-[#D4AF37] text-[#050505] hover:bg-[#F2D98D] font-bold px-10 py-4 text-base rounded-md shadow-lg shadow-[#D4AF37]/25 hover:shadow-[#D4AF37]/40 hover:scale-[1.02] transition-all duration-200">
+              <Button className="bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] hover:from-[#F2D98D] hover:to-[#D4AF37] font-bold px-10 py-4 text-base rounded-md shadow-lg shadow-[#D4AF37]/25 hover:scale-[1.02] transition-all duration-200">
                 {t.ctaBtn1}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>

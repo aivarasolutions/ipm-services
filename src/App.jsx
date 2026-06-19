@@ -52,7 +52,7 @@ function AppLayout() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050505]">
+    <div className="min-h-screen bg-[#06121F]">
       <Header />
       <main>
         <Routes>
