@@ -55,10 +55,10 @@ function AppLayout() {
   }
 
   return (
-    <div className="min-h-screen bg-[#06121F]">
+    <div className="min-h-screen bg-[#06121F] flex flex-col">
       <ScrollToTop />
       <Header />
-      <main>
+      <main className="flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
