@@ -32,6 +32,7 @@ import TegucigalpaChecklist from './pages/TegucigalpaChecklist'
 // Import components
 import Header from './components/Header'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop'
 import { AudioProvider } from './contexts/AudioContext'
 import { LanguageProvider } from './contexts/LanguageContext'
 
@@ -55,6 +56,7 @@ function AppLayout() {
 
   return (
     <div className="min-h-screen bg-[#06121F]">
+      <ScrollToTop />
       <Header />
       <main>
         <Routes>

@@ -1,12 +1,7 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FileText } from 'lucide-react';
 
 export default function TermsAndConditions() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const lastUpdated = 'June 2026';
 
   return (
