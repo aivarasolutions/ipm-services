@@ -304,9 +304,9 @@ const Home = () => {
             </div>
 
             {/* Headline */}
-            <h1 className="font-hero text-5xl sm:text-6xl lg:text-7xl leading-[1.02] mb-6">
+            <h1 className="font-hero text-5xl sm:text-6xl lg:text-7xl leading-[1.12] mb-6">
               <span className="block text-white">{t.heroLine1}</span>
-              <span className="block text-gold-gradient">{t.heroLine2}</span>
+              <span className="block text-gold-gradient pb-2">{t.heroLine2}</span>
             </h1>
 
             {/* Sub */}
