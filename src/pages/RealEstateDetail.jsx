@@ -76,8 +76,8 @@ const RealEstateDetail = () => {
         <div className="row" style={{gap: '40px', alignItems: 'flex-start'}}>
           <div style={{flex: '2', minWidth: '400px'}}>
             <div className="listing-badge">{listing.status}</div>
-            <h1>{listing.title}</h1>
-            <p className="location" style={{fontSize: '1.1rem'}}>{listing.location}</p>
+            <h1 className="font-display text-white">{listing.title}</h1>
+            <p className="location" style={{fontSize: '1.1rem', color: '#C9D2DE'}}>{listing.location}</p>
             
             {listing.gallery ? (
               <div className="property-gallery" style={{marginBottom: '30px'}}>
@@ -148,14 +148,14 @@ const RealEstateDetail = () => {
               
               {listing.specialContent && (
                 <div className="special-content" style={{
-                  backgroundColor: '#f8f9fa',
+                  backgroundColor: '#0F2440',
                   padding: '20px',
                   borderRadius: '12px',
                   marginBottom: '20px',
-                  border: '2px solid rgba(212,175,55,0.22)'
+                  border: '1px solid rgba(212,175,55,0.3)'
                 }}>
-                  <h4 style={{color: '#F8F8F8', marginBottom: '15px'}}>{listing.specialContent.title}</h4>
-                  <ul style={{color: '#B8B8B8', lineHeight: '1.6'}}>
+                  <h4 style={{color: '#F2D98D', marginBottom: '15px'}}>{listing.specialContent.title}</h4>
+                  <ul style={{color: '#C9D2DE', lineHeight: '1.6'}}>
                     {listing.specialContent.highlights.map((highlight, index) => (
                       <li key={index}>• <strong>{highlight.split(' - ')[0]}</strong>{highlight.includes(' - ') ? ` - ${highlight.split(' - ')[1]}` : ''}</li>
                     ))}
@@ -174,7 +174,11 @@ const RealEstateDetail = () => {
                             textDecoration: 'none',
                             padding: '10px 20px',
                             fontSize: '0.9rem',
-                            width: 'fit-content'
+                            fontWeight: 700,
+                            width: 'fit-content',
+                            borderRadius: '8px',
+                            background: 'linear-gradient(90deg, #D4AF37, #F2D98D)',
+                            color: '#06121F'
                           }}
                         >
                           {downloadLink.text}

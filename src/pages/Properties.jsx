@@ -156,37 +156,37 @@ const Properties = () => {
 
   return (
     <div className="min-h-screen">
-      <section className="bg-[#111111] py-20">
+      <section className="bg-gradient-to-br from-[#06121F] via-[#0A1A30] to-[#0F2440] py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-5xl font-bold text-[#F8F8F8] mb-6">{t.ourProperties}</h1>
-            <p className="text-xl text-[#B8B8B8] max-w-4xl mx-auto leading-relaxed">{t.intro}</p>
+            <h1 className="text-5xl font-bold text-white mb-6">{t.ourProperties}</h1>
+            <p className="text-xl text-[#C9D2DE] max-w-4xl mx-auto leading-relaxed">{t.intro}</p>
           </div>
         </div>
       </section>
 
       <ReviewsSection />
 
-      <section className="py-20 bg-[#111111]">
+      <section className="py-20 bg-[#F8F5EF]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-[#F8F8F8] mb-6">{t.featured}</h2>
-          <p className="text-xl text-[#B8B8B8] mb-12 max-w-3xl mx-auto">{t.featuredDesc}</p>
+          <h2 className="text-4xl font-bold text-[#0A1A30] mb-6">{t.featured}</h2>
+          <p className="text-xl text-[#334155] mb-12 max-w-3xl mx-auto">{t.featuredDesc}</p>
           <AirbnbSection />
         </div>
       </section>
 
-      <section className="py-20 bg-[#050505] border-y border-[#D4AF37]/20">
+      <section className="py-20 bg-[#06121F] border-y border-[#D4AF37]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-white mb-6">{t.notFound}</h2>
-          <p className="text-xl text-[#CFCFCF] mb-8 max-w-3xl mx-auto">{t.notFoundDesc}</p>
+          <p className="text-xl text-[#C9D2DE] mb-8 max-w-3xl mx-auto">{t.notFoundDesc}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
-              <Button className="bg-[#D4AF37] text-[#050505] hover:bg-[#E6C978] px-8 py-3 text-lg">
+              <Button className="bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] font-bold hover:from-[#F2D98D] hover:to-[#D4AF37] px-8 py-3 text-lg">
                 {t.contactUs}
               </Button>
             </Link>
             <Link to="/contact">
-              <Button className="bg-[#D4AF37] text-[#050505] hover:bg-[#E6C978] px-8 py-3 text-lg border-2 border-white">
+              <Button className="border-2 border-[#D4AF37]/50 bg-transparent text-white hover:bg-[#D4AF37]/10 px-8 py-3 text-lg">
                 {t.propertyEvaluation}
               </Button>
             </Link>

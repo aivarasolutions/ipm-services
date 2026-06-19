@@ -135,26 +135,26 @@ const OwnerPortal = () => {
 
   if (!isLoggedIn) {
     return (
-      <div className="min-h-screen bg-[#111111] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-[#06121F] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div className="text-center">
-            <h2 className="mt-6 text-3xl font-bold text-[#F8F8F8]">
+            <h2 className="mt-6 text-3xl font-bold text-white">
               Owner Portal Login
             </h2>
-            <p className="mt-2 text-sm text-[#B8B8B8]">
+            <p className="mt-2 text-sm text-[#C9D2DE]">
               Access your property management dashboard
             </p>
           </div>
           
-          <Card className="mt-8">
+          <Card className="mt-8 bg-white border border-[#0A1A30]/10 shadow-lg shadow-[#06121F]/5">
             <CardContent className="p-8">
               <form onSubmit={handleLogin} className="space-y-6">
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-[#CFCFCF] mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-[#334155] mb-2">
                     Email Address
                   </label>
                   <div className="relative">
-                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-[#CFCFCF]" />
+                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-[#475569]" />
                     <Input
                       id="email"
                       name="email"
@@ -169,11 +169,11 @@ const OwnerPortal = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="password" className="block text-sm font-medium text-[#CFCFCF] mb-2">
+                  <label htmlFor="password" className="block text-sm font-medium text-[#334155] mb-2">
                     Password
                   </label>
                   <div className="relative">
-                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-[#CFCFCF]" />
+                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-[#475569]" />
                     <Input
                       id="password"
                       name="password"
@@ -187,7 +187,7 @@ const OwnerPortal = () => {
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#CFCFCF] hover:text-[#B8B8B8]"
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#475569] hover:text-[#0A1A30]"
                     >
                       {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                     </button>
@@ -200,21 +200,21 @@ const OwnerPortal = () => {
                       id="remember-me"
                       name="remember-me"
                       type="checkbox"
-                      className="h-4 w-4 text-[#D4AF37] focus:ring-[#D4AF37] border-[#D4AF37]/25 rounded"
+                      className="h-4 w-4 text-[#D4AF37] focus:ring-[#D4AF37] border-[#0A1A30]/25 rounded"
                     />
-                    <label htmlFor="remember-me" className="ml-2 block text-sm text-[#F8F8F8]">
+                    <label htmlFor="remember-me" className="ml-2 block text-sm text-[#334155]">
                       Remember me
                     </label>
                   </div>
 
                   <div className="text-sm">
-                    <a href="#" className="font-medium text-[#D4AF37] hover:text-[#E6C978]">
+                    <a href="#" className="font-medium text-[#D4AF37] hover:text-[#B8941F]">
                       Forgot your password?
                     </a>
                   </div>
                 </div>
 
-                <Button type="submit" className="w-full">
+                <Button type="submit" className="w-full bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] font-bold hover:from-[#F2D98D] hover:to-[#D4AF37]">
                   Sign In
                 </Button>
               </form>
@@ -222,16 +222,16 @@ const OwnerPortal = () => {
               <div className="mt-6">
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-[#D4AF37]/25" />
+                    <div className="w-full border-t border-[#0A1A30]/15" />
                   </div>
                   <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-[#050505] text-[#A8A8A8]">Don't have an account?</span>
+                    <span className="px-2 bg-white text-[#475569]">Don't have an account?</span>
                   </div>
                 </div>
 
                 <div className="mt-6 text-center">
                   <Link to="/contact">
-                    <Button variant="outline" className="w-full">
+                    <Button variant="outline" className="w-full border-2 border-[#D4AF37] text-[#0A1A30] hover:bg-[#D4AF37] hover:text-[#06121F]">
                       Contact Us to Get Started
                     </Button>
                   </Link>
@@ -241,9 +241,9 @@ const OwnerPortal = () => {
           </Card>
 
           <div className="text-center">
-            <p className="text-sm text-[#B8B8B8]">
+            <p className="text-sm text-[#C9D2DE]">
               Need help? Contact our support team at{' '}
-              <a href="tel:+13104000032" className="text-[#D4AF37] hover:text-[#E6C978]">
+              <a href="tel:+13104000032" className="text-[#D4AF37] hover:text-[#F2D98D]">
                 +1 310-400-0032
               </a>
             </p>
@@ -254,17 +254,17 @@ const OwnerPortal = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#111111]">
+    <div className="min-h-screen bg-[#F8F5EF]">
       {/* Header */}
-      <div className="bg-[#050505] shadow-sm border-b">
+      <div className="bg-[#06121F] shadow-sm border-b border-[#D4AF37]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div>
-              <h1 className="text-2xl font-bold text-[#F8F8F8]">Owner Dashboard</h1>
-              <p className="text-[#B8B8B8]">Welcome back, Property Owner</p>
+              <h1 className="text-2xl font-bold text-white">Owner Dashboard</h1>
+              <p className="text-[#C9D2DE]">Welcome back, Property Owner</p>
             </div>
             <div className="flex items-center space-x-4">
-              <Button variant="outline" onClick={() => setIsLoggedIn(false)}>
+              <Button variant="outline" onClick={() => setIsLoggedIn(false)} className="border-2 border-[#D4AF37]/50 text-white hover:bg-[#D4AF37]/10">
                 Sign Out
               </Button>
             </div>
@@ -276,13 +276,13 @@ const OwnerPortal = () => {
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {dashboardStats.map((stat, index) => (
-            <Card key={index}>
+            <Card key={index} className="bg-white border border-[#0A1A30]/10 shadow-lg shadow-[#06121F]/5">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-[#B8B8B8]">{stat.title}</p>
-                    <p className="text-3xl font-bold text-[#F8F8F8]">{stat.value}</p>
-                    <p className={`text-sm ${stat.changeType === 'positive' ? 'text-green-600' : 'text-[#B8B8B8]'}`}>
+                    <p className="text-sm font-medium text-[#475569]">{stat.title}</p>
+                    <p className="text-3xl font-bold text-[#0A1A30]">{stat.value}</p>
+                    <p className={`text-sm ${stat.changeType === 'positive' ? 'text-green-600' : 'text-[#475569]'}`}>
                       {stat.change}
                     </p>
                   </div>
@@ -298,24 +298,24 @@ const OwnerPortal = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Recent Bookings */}
           <div className="lg:col-span-2">
-            <Card>
+            <Card className="bg-white border border-[#0A1A30]/10 shadow-lg shadow-[#06121F]/5">
               <CardHeader>
-                <CardTitle>Recent Bookings</CardTitle>
+                <CardTitle className="text-[#0A1A30]">Recent Bookings</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   {recentBookings.map((booking, index) => (
-                    <div key={index} className="flex items-center justify-between p-4 border rounded-lg">
+                    <div key={index} className="flex items-center justify-between p-4 border border-[#0A1A30]/10 rounded-lg">
                       <div>
-                        <p className="font-semibold text-[#F8F8F8]">{booking.guest}</p>
-                        <p className="text-sm text-[#B8B8B8]">{booking.dates}</p>
-                        <p className="text-sm text-[#B8B8B8]">{booking.property}</p>
+                        <p className="font-semibold text-[#0A1A30]">{booking.guest}</p>
+                        <p className="text-sm text-[#475569]">{booking.dates}</p>
+                        <p className="text-sm text-[#475569]">{booking.property}</p>
                       </div>
                       <div className="text-right">
-                        <p className="font-semibold text-[#F8F8F8]">{booking.amount}</p>
+                        <p className="font-semibold text-[#0A1A30]">{booking.amount}</p>
                         <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
                           booking.status === 'Confirmed' ? 'bg-green-100 text-green-800' :
-                          booking.status === 'Check-in Today' ? 'bg-[#D4AF37]/15 text-[#F2D98D]' :
+                          booking.status === 'Check-in Today' ? 'bg-[#D4AF37]/15 text-[#0A1A30]' :
                           'bg-yellow-100 text-yellow-800'
                         }`}>
                           {booking.status}
@@ -330,23 +330,23 @@ const OwnerPortal = () => {
 
           {/* Quick Actions */}
           <div>
-            <Card>
+            <Card className="bg-white border border-[#0A1A30]/10 shadow-lg shadow-[#06121F]/5">
               <CardHeader>
-                <CardTitle>Quick Actions</CardTitle>
+                <CardTitle className="text-[#0A1A30]">Quick Actions</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
                   {quickActions.map((action, index) => (
                     <button
                       key={index}
-                      className="w-full flex items-center space-x-3 p-3 text-left hover:bg-[#111111] rounded-lg transition-colors"
+                      className="w-full flex items-center space-x-3 p-3 text-left hover:bg-[#F8F5EF] rounded-lg transition-colors"
                     >
                       <div className="flex-shrink-0 text-[#D4AF37]">
                         {action.icon}
                       </div>
                       <div>
-                        <p className="font-medium text-[#F8F8F8]">{action.title}</p>
-                        <p className="text-sm text-[#B8B8B8]">{action.description}</p>
+                        <p className="font-medium text-[#0A1A30]">{action.title}</p>
+                        <p className="text-sm text-[#475569]">{action.description}</p>
                       </div>
                     </button>
                   ))}
@@ -357,16 +357,16 @@ const OwnerPortal = () => {
         </div>
 
         {/* Revenue Chart Placeholder */}
-        <Card className="mt-8">
+        <Card className="mt-8 bg-white border border-[#0A1A30]/10 shadow-lg shadow-[#06121F]/5">
           <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <TrendingUp className="h-5 w-5" />
+            <CardTitle className="flex items-center space-x-2 text-[#0A1A30]">
+              <TrendingUp className="h-5 w-5 text-[#D4AF37]" />
               <span>Revenue Overview</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-64 bg-[#1F1F1F] rounded-lg flex items-center justify-center">
-              <p className="text-[#A8A8A8]">Revenue chart would be displayed here</p>
+            <div className="h-64 bg-[#F8F5EF] border border-[#0A1A30]/10 rounded-lg flex items-center justify-center">
+              <p className="text-[#475569]">Revenue chart would be displayed here</p>
             </div>
           </CardContent>
         </Card>

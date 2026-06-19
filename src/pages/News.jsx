@@ -268,13 +268,13 @@ export default function News() {
   const currentContent = content[language] || content.en;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#050505] to-[#111111]">
+    <div className="min-h-screen bg-[#06121F]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="mb-12">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-bold text-[#F8F8F8] mb-4"
+            className="text-4xl md:text-5xl font-bold text-white mb-4"
           >
             {currentContent.title}
           </motion.h1>
@@ -282,7 +282,7 @@ export default function News() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-xl text-[#A8A8A8]"
+            className="text-xl text-[#C9D2DE]"
           >
             {currentContent.subtitle}
           </motion.p>
@@ -292,24 +292,24 @@ export default function News() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="bg-gradient-to-br from-amber-50 to-[#1F1F1F] rounded-2xl shadow-xl p-8 mb-12 border-l-4 border-amber-500"
+          className="bg-[#0F2440] rounded-2xl shadow-xl shadow-[#06121F]/40 p-8 mb-12 border-l-4 border-[#D4AF37] border-y border-r border-[#D4AF37]/20"
         >
-          <h2 className="text-2xl md:text-3xl font-bold text-[#F8F8F8] mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
             {currentContent.executiveSummary.title}
           </h2>
-          <p className="text-lg text-[#B8B8B8] leading-relaxed mb-6">
+          <p className="text-lg text-[#C9D2DE] leading-relaxed mb-6">
             {currentContent.executiveSummary.content}
           </p>
-          <div className="bg-[#050505]/70 rounded-lg p-6">
-            <h3 className="font-semibold text-[#F8F8F8] mb-4 flex items-center gap-2">
-              <span className="text-amber-600">📊</span>
+          <div className="bg-[#06121F]/60 border border-[#D4AF37]/15 rounded-lg p-6">
+            <h3 className="font-semibold text-white mb-4 flex items-center gap-2">
+              <span className="text-[#D4AF37]">📊</span>
               {language === 'en' ? 'Key Takeaways:' : 'Puntos Clave:'}
             </h3>
             <ul className="space-y-3">
               {currentContent.executiveSummary.keyTakeaways.map((takeaway, idx) => (
                 <li key={idx} className="flex items-start gap-3">
-                  <span className="text-amber-600 font-bold mt-1">•</span>
-                  <span className="text-[#CFCFCF] font-medium">{takeaway}</span>
+                  <span className="text-[#D4AF37] font-bold mt-1">•</span>
+                  <span className="text-[#C9D2DE] font-medium">{takeaway}</span>
                 </li>
               ))}
             </ul>
@@ -325,7 +325,7 @@ export default function News() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 + 0.3 }}
-                className="bg-[#050505] rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow"
+                className="bg-[#0F2440] border border-[#D4AF37]/20 rounded-2xl shadow-xl shadow-[#06121F]/40 overflow-hidden hover:shadow-2xl transition-shadow"
               >
                 <div className="md:flex">
                   <div className="md:w-1/3 h-64 md:h-auto relative overflow-hidden">
@@ -335,7 +335,7 @@ export default function News() {
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                     />
                     <div className="absolute top-4 left-4">
-                      <div className="p-3 bg-[#050505]/90 backdrop-blur-sm rounded-lg shadow-lg">
+                      <div className="p-3 bg-[#06121F]/90 backdrop-blur-sm rounded-lg shadow-lg">
                         <Icon className="w-6 h-6 text-[#D4AF37]" />
                       </div>
                     </div>
@@ -343,34 +343,34 @@ export default function News() {
                   
                   <div className="md:w-2/3 p-8">
                     <div className="flex flex-wrap items-center gap-4 mb-4">
-                      <span className="px-3 py-1 bg-[#D4AF37]/10 text-[#E6C978] rounded-full text-sm font-medium">
+                      <span className="px-3 py-1 bg-[#D4AF37]/10 text-[#F2D98D] rounded-full text-sm font-medium">
                         {article.category}
                       </span>
-                      <div className="flex items-center gap-2 text-[#A8A8A8] text-sm">
+                      <div className="flex items-center gap-2 text-[#C9D2DE] text-sm">
                         <Calendar className="w-4 h-4" />
                         <span>{currentContent.published}: {article.date}</span>
                       </div>
-                      <span className="text-slate-400 text-sm">•</span>
-                      <span className="text-[#A8A8A8] text-sm font-medium">{article.source}</span>
+                      <span className="text-[#C9D2DE]/60 text-sm">•</span>
+                      <span className="text-[#C9D2DE] text-sm font-medium">{article.source}</span>
                     </div>
                     
-                    <h2 className="text-2xl md:text-3xl font-bold text-[#F8F8F8] mb-4">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
                       {article.title}
                     </h2>
 
-                    <p className="text-lg text-[#A8A8A8] leading-relaxed mb-6">
+                    <p className="text-lg text-[#C9D2DE] leading-relaxed mb-6">
                       {article.summary}
                     </p>
 
-                  <div className="bg-[#111111] rounded-lg p-6 mb-6">
-                    <h3 className="font-semibold text-[#F8F8F8] mb-3">
+                  <div className="bg-[#06121F]/60 border border-[#D4AF37]/15 rounded-lg p-6 mb-6">
+                    <h3 className="font-semibold text-white mb-3">
                       {language === 'en' ? 'Key Points:' : 'Puntos Clave:'}
                     </h3>
                     <ul className="space-y-2">
                       {article.keyPoints.map((point, idx) => (
                         <li key={idx} className="flex items-start gap-3">
                           <span className="text-[#D4AF37] mt-1">▸</span>
-                          <span className="text-[#B8B8B8]">{point}</span>
+                          <span className="text-[#C9D2DE]">{point}</span>
                         </li>
                       ))}
                     </ul>
@@ -380,7 +380,7 @@ export default function News() {
                     href={article.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#D4AF37] to-[#E6C978] text-[#050505] rounded-lg hover:from-[#E6C978] hover:to-[#F2D98D] transition-all shadow-md hover:shadow-lg"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] font-bold rounded-lg hover:from-[#F2D98D] hover:to-[#D4AF37] transition-all shadow-md hover:shadow-lg"
                   >
                     {currentContent.readMore}
                     <ExternalLink className="w-4 h-4" />
@@ -398,7 +398,7 @@ export default function News() {
           transition={{ delay: 0.5 }}
           className="mt-12 p-6 bg-[#D4AF37]/10 rounded-xl border border-[#D4AF37]/20"
         >
-          <p className="text-sm text-[#A8A8A8] text-center">
+          <p className="text-sm text-[#C9D2DE] text-center">
             {language === 'en' 
               ? 'These articles provide insights into the current state of the vacation rental market in Quintana Roo. For professional property management services, contact International Property Management.'
               : 'Estos artículos proporcionan información sobre el estado actual del mercado de rentas vacacionales en Quintana Roo. Para servicios profesionales de gestión de propiedades, contacte a International Property Management.'}

@@ -167,33 +167,33 @@ const About = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-[#111111] py-20">
+      <section className="bg-[#06121F] py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-5xl font-bold text-[#F8F8F8] mb-6">{t.aboutIPM}</h1>
-            <p className="text-xl text-[#B8B8B8] max-w-4xl mx-auto leading-relaxed">{t.intro}</p>
+            <h1 className="text-5xl font-bold text-white mb-6">{t.aboutIPM}</h1>
+            <p className="text-xl text-[#C9D2DE] max-w-4xl mx-auto leading-relaxed">{t.intro}</p>
           </div>
         </div>
       </section>
 
       {/* Our Story Section */}
-      <section className="py-20 bg-[#050505]">
+      <section className="py-20 bg-[#F8F5EF]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-bold text-[#F8F8F8] mb-6">{t.ourStory}</h2>
-              <p className="text-lg text-[#B8B8B8] mb-6 leading-relaxed">{t.story1}</p>
-              <p className="text-lg text-[#B8B8B8] mb-6 leading-relaxed">{t.story2}</p>
-              <p className="text-lg text-[#B8B8B8] leading-relaxed">{t.story3}</p>
+              <h2 className="text-4xl font-bold text-[#0A1A30] mb-6">{t.ourStory}</h2>
+              <p className="text-lg text-[#334155] mb-6 leading-relaxed">{t.story1}</p>
+              <p className="text-lg text-[#334155] mb-6 leading-relaxed">{t.story2}</p>
+              <p className="text-lg text-[#334155] leading-relaxed">{t.story3}</p>
             </div>
             <div className="grid grid-cols-2 gap-6">
               {achievements.map((achievement, index) => (
-                <Card key={index} className="text-center p-6">
+                <Card key={index} className="text-center p-6 bg-white border border-[#0A1A30]/10 shadow-lg shadow-[#06121F]/5">
                   <CardContent className="p-0">
                     <div className="text-3xl font-bold text-[#D4AF37] mb-2">
                       {achievement.number}
                     </div>
-                    <div className="text-[#B8B8B8] text-sm">
+                    <div className="text-[#334155] text-sm">
                       {achievement.label}
                     </div>
                   </CardContent>
@@ -205,23 +205,23 @@ const About = () => {
       </section>
 
       {/* Our Values Section */}
-      <section className="py-20 bg-[#111111]">
+      <section className="py-20 bg-[#06121F]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-[#F8F8F8] mb-4">{t.ourValues}</h2>
-            <p className="text-xl text-[#B8B8B8] max-w-3xl mx-auto">{t.whyGuide}</p>
+            <h2 className="text-4xl font-bold text-white mb-4">{t.ourValues}</h2>
+            <p className="text-xl text-[#C9D2DE] max-w-3xl mx-auto">{t.whyGuide}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
-              <Card key={index} className="text-center p-6 hover:shadow-lg transition-shadow">
+              <Card key={index} className="text-center p-6 bg-[#0F2440] border border-[#D4AF37]/20 hover:shadow-lg transition-shadow">
                 <CardContent className="p-0">
                   <div className="bg-[#D4AF37]/15 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                     <value.icon className="h-8 w-8 text-[#D4AF37]" />
                   </div>
-                  <h3 className="text-xl font-semibold text-[#F8F8F8] mb-3">
+                  <h3 className="text-xl font-semibold text-white mb-3">
                     {value.title}
                   </h3>
-                  <p className="text-[#B8B8B8] text-sm leading-relaxed">
+                  <p className="text-[#C9D2DE] text-sm leading-relaxed">
                     {value.description}
                   </p>
                 </CardContent>
@@ -232,33 +232,33 @@ const About = () => {
       </section>
 
       {/* What We Do Section */}
-      <section className="py-20 bg-[#050505]">
+      <section className="py-20 bg-[#F8F5EF]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-bold text-[#F8F8F8] mb-6">{t.whatWeDo}</h2>
-              <p className="text-lg text-[#B8B8B8] mb-8 leading-relaxed">{t.whatDesc}</p>
+              <h2 className="text-4xl font-bold text-[#0A1A30] mb-6">{t.whatWeDo}</h2>
+              <p className="text-lg text-[#334155] mb-8 leading-relaxed">{t.whatDesc}</p>
               <div className="space-y-4">
                 {services.map((service, index) => (
                   <div key={index} className="flex items-center space-x-3">
                     <CheckCircle className="h-5 w-5 text-[#D4AF37] flex-shrink-0" />
-                    <span className="text-[#CFCFCF]">{service}</span>
+                    <span className="text-[#334155]">{service}</span>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="bg-[#111111] border border-[#D4AF37]/25 text-white p-8 rounded-lg">
+            <div className="bg-[#0A1A30] border border-[#D4AF37]/25 text-white p-8 rounded-lg">
               <h3 className="text-2xl font-bold mb-4">{t.whyChoiceTitle}</h3>
-              <ul className="space-y-3 mb-6">
+              <ul className="space-y-3 mb-6 text-[#C9D2DE]">
                 {t.whyChoiceList.map((item, idx) => (
                   <li key={idx} className="flex items-start space-x-2">
-                    <Award className="h-5 w-5 mt-1 flex-shrink-0" />
+                    <Award className="h-5 w-5 mt-1 flex-shrink-0 text-[#D4AF37]" />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
               <Link to="/contact">
-                <Button className="bg-[#D4AF37] text-[#050505] hover:bg-[#E6C978] w-full">
+                <Button className="bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] font-bold hover:from-[#F2D98D] hover:to-[#D4AF37] w-full">
                   {t.scheduleConsultation}
                 </Button>
               </Link>
@@ -268,18 +268,18 @@ const About = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-[#050505] border-y border-[#D4AF37]/20">
+      <section className="py-20 bg-[#06121F] border-y border-[#D4AF37]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-white mb-6">{t.ready}</h2>
-          <p className="text-xl text-[#CFCFCF] mb-8 max-w-3xl mx-auto">{t.readyDesc}</p>
+          <p className="text-xl text-[#C9D2DE] mb-8 max-w-3xl mx-auto">{t.readyDesc}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
-              <Button className="bg-[#D4AF37] text-[#050505] hover:bg-[#E6C978] px-8 py-3 text-lg">
+              <Button className="bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] font-bold hover:from-[#F2D98D] hover:to-[#D4AF37] px-8 py-3 text-lg">
                 {t.scheduleConsultation}
               </Button>
             </Link>
             <Link to="/properties">
-              <Button className="bg-[#D4AF37] text-[#050505] hover:bg-[#E6C978] px-8 py-3 text-lg border-2 border-white">
+              <Button className="bg-transparent text-white hover:bg-[#D4AF37]/10 px-8 py-3 text-lg border-2 border-[#D4AF37]/50">
                 {t.viewProperties}
               </Button>
             </Link>

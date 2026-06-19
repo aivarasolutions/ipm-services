@@ -1,0 +1,1 @@
+- [shadcn theme tokens are navy](shadcn-card-tokens.md) — `--card`/`--muted`/`--popover` in src/App.css are DARK navy w/ light foreground; bare `<Card>`/muted text renders light-on-navy, NOT light-on-white.

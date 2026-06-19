@@ -90,7 +90,8 @@
   padding: 4px 10px;
   border-radius: 16px;
   font-size: 0.8rem;
-  color: var(--muted);
+  color: #C9D2DE;
+  border: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 /* Property Detail Page */

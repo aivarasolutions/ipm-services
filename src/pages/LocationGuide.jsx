@@ -173,9 +173,9 @@ const LocationGuide = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-[#111111]">
+    <div className="min-h-screen bg-[#F8F5EF]">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-[#050505] to-[#171717] text-white py-20">
+      <section className="bg-gradient-to-r from-[#06121F] to-[#0A1A30] text-white py-20">
         <Container>
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
@@ -193,13 +193,13 @@ const LocationGuide = () => {
       </section>
 
       {/* PDF Download Form */}
-      <section className="py-16 bg-[#111111]">
+      <section className="py-16 bg-[#F8F5EF]">
         <Container>
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-[#F8F8F8] mb-4">
+            <h2 className="text-3xl font-bold text-[#0A1A30] mb-4">
               Get Your Complete Relocation Guide
             </h2>
-            <p className="text-lg text-[#B8B8B8] mb-8">
+            <p className="text-lg text-[#334155] mb-8">
               Download our comprehensive PDF guide with detailed information about relocating to Cancún, Playa del Carmen, and Tulum.
             </p>
             
@@ -239,7 +239,7 @@ const LocationGuide = () => {
                         onChange={handleInputChange}
                         required
                         disabled={submissionStatus === 'loading'}
-                        className="w-full px-4 py-3 border border-[#D4AF37]/25 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent disabled:bg-[#111111] disabled:cursor-not-allowed"
+                        className="w-full px-4 py-3 border border-[#D4AF37]/25 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent disabled:bg-[#E5E0D5] disabled:cursor-not-allowed"
                         placeholder="Enter your first name"
                       />
                     </div>
@@ -255,7 +255,7 @@ const LocationGuide = () => {
                         onChange={handleInputChange}
                         required
                         disabled={submissionStatus === 'loading'}
-                        className="w-full px-4 py-3 border border-[#D4AF37]/25 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent disabled:bg-[#111111] disabled:cursor-not-allowed"
+                        className="w-full px-4 py-3 border border-[#D4AF37]/25 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent disabled:bg-[#E5E0D5] disabled:cursor-not-allowed"
                         placeholder="Enter your last name"
                       />
                     </div>
@@ -273,7 +273,7 @@ const LocationGuide = () => {
                       onChange={handleInputChange}
                       required
                       disabled={submissionStatus === 'loading'}
-                      className="w-full px-4 py-3 border border-[#D4AF37]/25 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent disabled:bg-[#111111] disabled:cursor-not-allowed"
+                      className="w-full px-4 py-3 border border-[#D4AF37]/25 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent disabled:bg-[#E5E0D5] disabled:cursor-not-allowed"
                       placeholder="Enter your email address"
                     />
                   </div>
@@ -290,7 +290,7 @@ const LocationGuide = () => {
                       onChange={handleInputChange}
                       required
                       disabled={submissionStatus === 'loading'}
-                      className="w-full px-4 py-3 border border-[#D4AF37]/25 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent disabled:bg-[#111111] disabled:cursor-not-allowed"
+                      className="w-full px-4 py-3 border border-[#D4AF37]/25 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent disabled:bg-[#E5E0D5] disabled:cursor-not-allowed"
                       placeholder="Enter your phone number"
                     />
                   </div>
@@ -313,7 +313,7 @@ const LocationGuide = () => {
                     type="submit" 
                     size="lg" 
                     disabled={submissionStatus === 'loading'}
-                    className="w-full bg-[#D4AF37] hover:bg-[#E6C978] text-[#050505] disabled:bg-[#555555] disabled:cursor-not-allowed"
+                    className="w-full bg-[#D4AF37] hover:bg-[#E6C978] text-[#06121F] disabled:bg-[#555555] disabled:cursor-not-allowed"
                   >
                     {submissionStatus === 'loading' ? (
                       <>
@@ -339,8 +339,8 @@ const LocationGuide = () => {
       <section className="py-16">
         <Container>
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-[#F8F8F8] mb-4">Quick Comparison</h2>
-            <p className="text-lg text-[#B8B8B8]">Choose your ideal destination</p>
+            <h2 className="text-3xl font-bold text-[#0A1A30] mb-4">Quick Comparison</h2>
+            <p className="text-lg text-[#334155]">Choose your ideal destination</p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
@@ -387,21 +387,21 @@ const LocationGuide = () => {
       </section>
 
       {/* Detailed Location Guides */}
-      <section className="py-16 bg-[#050505]">
+      <section className="py-16 bg-white">
         <Container>
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-[#F8F8F8] mb-4">Detailed Location Guides</h2>
-            <p className="text-lg text-[#B8B8B8]">Everything you need to know about living in paradise</p>
+            <h2 className="text-3xl font-bold text-[#0A1A30] mb-4">Detailed Location Guides</h2>
+            <p className="text-lg text-[#334155]">Everything you need to know about living in paradise</p>
           </div>
 
           <div className="space-y-16">
             {locations.map((location, index) => (
-              <div key={location.id} className={`${index % 2 === 1 ? 'bg-[#111111]' : ''} -mx-4 px-4 py-12 rounded-lg`}>
+              <div key={location.id} className={`${index % 2 === 1 ? 'bg-[#F8F5EF]' : ''} -mx-4 px-4 py-12 rounded-lg`}>
                 <div className="max-w-6xl mx-auto">
                   <div className="text-center mb-12">
-                    <h3 className="text-3xl font-bold text-[#F8F8F8] mb-2">{location.name}</h3>
+                    <h3 className="text-3xl font-bold text-[#0A1A30] mb-2">{location.name}</h3>
                     <p className="text-xl text-[#D4AF37] mb-4">{location.subtitle}</p>
-                    <p className="text-lg text-[#B8B8B8] max-w-3xl mx-auto">{location.description}</p>
+                    <p className="text-lg text-[#334155] max-w-3xl mx-auto">{location.description}</p>
                   </div>
 
                   {/* Key Features */}
@@ -420,12 +420,12 @@ const LocationGuide = () => {
                   <div className="grid lg:grid-cols-2 gap-12">
                     {/* Highlights */}
                     <div>
-                      <h4 className="text-xl font-bold text-[#F8F8F8] mb-4">✨ Location Highlights</h4>
+                      <h4 className="text-xl font-bold text-[#0A1A30] mb-4">✨ Location Highlights</h4>
                       <ul className="space-y-3">
                         {location.highlights.map((highlight, idx) => (
                           <li key={idx} className="flex items-start">
                             <span className="text-[#D4AF37] mr-2">•</span>
-                            <span className="text-[#CFCFCF]">{highlight}</span>
+                            <span className="text-[#334155]">{highlight}</span>
                           </li>
                         ))}
                       </ul>
@@ -433,23 +433,23 @@ const LocationGuide = () => {
 
                     {/* Living Costs */}
                     <div>
-                      <h4 className="text-xl font-bold text-[#F8F8F8] mb-4">💰 Average Living Costs</h4>
+                      <h4 className="text-xl font-bold text-[#0A1A30] mb-4">💰 Average Living Costs</h4>
                       <div className="space-y-3">
                         <div className="flex justify-between">
-                          <span className="text-[#CFCFCF]">Rent (1-2 bedroom):</span>
-                          <span className="font-semibold">{location.livingCost.rent}</span>
+                          <span className="text-[#334155]">Rent (1-2 bedroom):</span>
+                          <span className="font-semibold text-[#0A1A30]">{location.livingCost.rent}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-[#CFCFCF]">Utilities:</span>
-                          <span className="font-semibold">{location.livingCost.utilities}</span>
+                          <span className="text-[#334155]">Utilities:</span>
+                          <span className="font-semibold text-[#0A1A30]">{location.livingCost.utilities}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-[#CFCFCF]">Food & Dining:</span>
-                          <span className="font-semibold">{location.livingCost.food}</span>
+                          <span className="text-[#334155]">Food & Dining:</span>
+                          <span className="font-semibold text-[#0A1A30]">{location.livingCost.food}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-[#CFCFCF]">Transportation:</span>
-                          <span className="font-semibold">{location.livingCost.transportation}</span>
+                          <span className="text-[#334155]">Transportation:</span>
+                          <span className="font-semibold text-[#0A1A30]">{location.livingCost.transportation}</span>
                         </div>
                       </div>
                     </div>
@@ -457,7 +457,7 @@ const LocationGuide = () => {
 
                   {/* Neighborhoods */}
                   <div className="mt-12">
-                    <h4 className="text-xl font-bold text-[#F8F8F8] mb-6">🏘️ Popular Neighborhoods</h4>
+                    <h4 className="text-xl font-bold text-[#0A1A30] mb-6">🏘️ Popular Neighborhoods</h4>
                     <div className="grid md:grid-cols-2 gap-6">
                       {location.neighborhoods.map((neighborhood, idx) => (
                         <Card key={idx} className="p-4">
@@ -477,21 +477,21 @@ const LocationGuide = () => {
       </section>
 
       {/* Contact CTA */}
-      <section className="py-16 bg-[#050505] border-y border-[#D4AF37]/20 text-white">
+      <section className="py-16 bg-[#06121F] border-y border-[#D4AF37]/20 text-white">
         <Container>
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Ready to Make the Move?</h2>
-            <p className="text-xl mb-8 opacity-90">
+            <p className="text-xl mb-8 text-[#C9D2DE]">
               Let our local experts help you find the perfect property and navigate your relocation to Mexico's Caribbean coast.
             </p>
             <div className="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
               <Link to="/contact">
-                <Button size="lg" variant="secondary" className="w-full sm:w-auto">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto border-2 border-[#D4AF37]/50 bg-transparent text-white hover:bg-[#D4AF37]/10">
                   Schedule Consultation
                 </Button>
               </Link>
               <Link to="/real-estate">
-                <Button size="lg" className="w-full sm:w-auto bg-[#D4AF37] text-[#050505] hover:bg-[#E6C978]">
+                <Button size="lg" className="w-full sm:w-auto bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] font-bold hover:from-[#F2D98D] hover:to-[#D4AF37]">
                   View Properties
                 </Button>
               </Link>

@@ -127,44 +127,44 @@ const Services = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#050505] to-[#171717] text-white py-20">
+      <section className="bg-gradient-to-br from-[#06121F] via-[#0A1A30] to-[#0F2440] text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">{t.ourServices}</h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">{t.description}</p>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">{t.ourServices}</h1>
+          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-[#C9D2DE]">{t.description}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
-              <Button size="lg" className="bg-[#D4AF37] text-[#050505] hover:bg-[#E6C978]">{t.getStarted}</Button>
+              <Button size="lg" className="bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] font-bold hover:from-[#F2D98D] hover:to-[#D4AF37]">{t.getStarted}</Button>
             </Link>
             <Link to="/properties">
-              <Button size="lg" className="bg-[#D4AF37] text-[#050505] hover:bg-[#E6C978] border-2 border-white">{t.viewProperties}</Button>
+              <Button size="lg" className="border-2 border-[#D4AF37]/50 bg-transparent text-white hover:bg-[#D4AF37]/10">{t.viewProperties}</Button>
             </Link>
           </div>
         </div>
       </section>
 
       {/* Services Grid */}
-      <section className="py-20 bg-[#111111]">
+      <section className="py-20 bg-[#F8F5EF]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#F8F8F8] mb-4">{t.complete}</h2>
-            <p className="text-xl text-[#B8B8B8] max-w-3xl mx-auto">{t.completeDesc}</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0A1A30] mb-4">{t.complete}</h2>
+            <p className="text-xl text-[#334155] max-w-3xl mx-auto">{t.completeDesc}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {t.servicesList.map((service, index) => (
-              <Card key={index} className="p-8 hover:shadow-xl transition-shadow duration-300">
+              <Card key={index} className="p-8 bg-white border border-[#0A1A30]/10 shadow-lg shadow-[#06121F]/5 hover:shadow-xl transition-shadow duration-300">
                 <CardContent className="p-0">
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">
                       {[<Building2 className="h-12 w-12 text-[#D4AF37]" />, <TrendingUp className="h-12 w-12 text-[#D4AF37]" />, <Clock className="h-12 w-12 text-[#D4AF37]" />, <Globe className="h-12 w-12 text-[#D4AF37]" />][index]}
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-[#F8F8F8] mb-3">{service.title}</h3>
-                      <p className="text-[#B8B8B8] mb-6">{service.description}</p>
+                      <h3 className="text-2xl font-bold text-[#0A1A30] mb-3">{service.title}</h3>
+                      <p className="text-[#334155] mb-6">{service.description}</p>
                       <ul className="space-y-2">
                         {service.features.map((feature, featureIndex) => (
                           <li key={featureIndex} className="flex items-center space-x-2">
-                            <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                            <span className="text-[#CFCFCF]">{feature}</span>
+                            <CheckCircle className="h-5 w-5 text-[#D4AF37] flex-shrink-0" />
+                            <span className="text-[#334155]">{feature}</span>
                           </li>
                         ))}
                       </ul>
@@ -178,23 +178,23 @@ const Services = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-[#050505]">
+      <section className="py-20 bg-[#06121F]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#F8F8F8] mb-4">{t.whyChoose}</h2>
-            <p className="text-xl text-[#B8B8B8] max-w-3xl mx-auto">{t.whyChooseDesc}</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t.whyChoose}</h2>
+            <p className="text-xl text-[#C9D2DE] max-w-3xl mx-auto">{t.whyChooseDesc}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {t.benefits.map((benefit, index) => {
               const Icons = [Star, Shield, Users]
               const Icon = Icons[index]
               return (
-                <div key={index} className="text-center">
+                <div key={index} className="text-center bg-[#0F2440] border border-[#D4AF37]/20 rounded-xl p-8">
                   <div className="flex justify-center mb-4">
                     <Icon className="h-8 w-8 text-[#D4AF37]" />
                   </div>
-                  <h3 className="text-xl font-bold text-[#F8F8F8] mb-3">{benefit.title}</h3>
-                  <p className="text-[#B8B8B8]">{benefit.description}</p>
+                  <h3 className="text-xl font-bold text-white mb-3">{benefit.title}</h3>
+                  <p className="text-[#C9D2DE]">{benefit.description}</p>
                 </div>
               )
             })}
@@ -203,17 +203,17 @@ const Services = () => {
       </section>
 
       {/* Statistics Section */}
-      <section className="py-20 bg-[#050505] border-y border-[#D4AF37]/20 text-white">
+      <section className="py-20 bg-[#0A1A30] border-y border-[#D4AF37]/20 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t.proven}</h2>
-            <p className="text-xl max-w-3xl mx-auto">{t.provenDesc}</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">{t.proven}</h2>
+            <p className="text-xl max-w-3xl mx-auto text-[#C9D2DE]">{t.provenDesc}</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {t.stats.map((stat, idx) => (
               <div key={idx}>
-                <div className="text-4xl md:text-5xl font-bold mb-2">{stat.number}</div>
-                <div className="text-lg">{stat.label}</div>
+                <div className="text-4xl md:text-5xl font-bold mb-2 text-[#D4AF37]">{stat.number}</div>
+                <div className="text-lg text-[#C9D2DE]">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -224,16 +224,16 @@ const Services = () => {
       <ReviewsSection />
 
       {/* CTA Section */}
-      <section className="py-20 bg-[#050505] text-white">
+      <section className="py-20 bg-[#06121F] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">{t.ready}</h2>
-          <p className="text-xl mb-8 max-w-3xl mx-auto">{t.readyDesc}</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">{t.ready}</h2>
+          <p className="text-xl mb-8 max-w-3xl mx-auto text-[#C9D2DE]">{t.readyDesc}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
-              <Button size="lg" className="bg-[#D4AF37] hover:bg-[#E6C978]">{t.scheduleConsultation}</Button>
+              <Button size="lg" className="bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] font-bold hover:from-[#F2D98D] hover:to-[#D4AF37]">{t.scheduleConsultation}</Button>
             </Link>
             <a href="tel:+13104000032">
-              <Button size="lg" className="bg-[#D4AF37] text-[#050505] hover:bg-[#E6C978] border-2 border-white">
+              <Button size="lg" className="border-2 border-[#D4AF37]/50 bg-transparent text-white hover:bg-[#D4AF37]/10">
                 <Phone className="h-5 w-5 mr-2" />
                 {t.callPhone}
               </Button>
