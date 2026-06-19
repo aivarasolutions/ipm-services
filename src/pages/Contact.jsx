@@ -273,14 +273,14 @@ const Contact = () => {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-[#111111] flex items-center justify-center">
         <Card className="max-w-md mx-auto">
           <CardContent className="p-8 text-center">
             <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
               <CheckCircle className="h-8 w-8 text-green-600" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">{t.messageSent}</h2>
-            <p className="text-gray-600 mb-6">{t.thankYou}</p>
+            <h2 className="text-2xl font-bold text-[#F8F8F8] mb-4">{t.messageSent}</h2>
+            <p className="text-[#B8B8B8] mb-6">{t.thankYou}</p>
             <Button 
               onClick={() => setIsSubmitted(false)}
               className="w-full"
@@ -295,16 +295,16 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen">
-      <section className="bg-gray-50 py-20">
+      <section className="bg-[#111111] py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-5xl font-bold text-gray-900 mb-6">{t.contactUs}</h1>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">{t.intro}</p>
+            <h1 className="text-5xl font-bold text-[#F8F8F8] mb-6">{t.contactUs}</h1>
+            <p className="text-xl text-[#B8B8B8] max-w-4xl mx-auto leading-relaxed">{t.intro}</p>
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-[#050505]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {contactMethods.map((method, index) => {
@@ -312,16 +312,16 @@ const Contact = () => {
               return (
                 <Card key={index} className="text-center hover:shadow-lg transition-shadow">
                   <CardContent className="p-8">
-                    <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Icon className="h-8 w-8 text-blue-600" />
+                    <div className="bg-[#D4AF37]/15 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Icon className="h-8 w-8 text-[#D4AF37]" />
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{method.title}</h3>
-                    <p className="text-gray-600 mb-4">{method.description}</p>
+                    <h3 className="text-xl font-semibold text-[#F8F8F8] mb-2">{method.title}</h3>
+                    <p className="text-[#B8B8B8] mb-4">{method.description}</p>
                     <a 
                       href={method.link}
                       target={method.link.startsWith('http') ? '_blank' : undefined}
                       rel={method.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                      className="text-blue-600 hover:text-blue-700 font-medium"
+                      className="text-[#D4AF37] hover:text-[#E6C978] font-medium"
                     >
                       {method.contact}
                     </a>
@@ -333,33 +333,33 @@ const Contact = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-[#111111]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
               <Card>
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">{t.sendMessage}</h2>
+                  <h2 className="text-2xl font-bold text-[#F8F8F8] mb-6">{t.sendMessage}</h2>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">{t.fullName}</label>
+                        <label htmlFor="name" className="block text-sm font-medium text-[#CFCFCF] mb-2">{t.fullName}</label>
                         <Input type="text" id="name" name="name" value={formData.name} onChange={handleInputChange} required placeholder={t.fullNamePlaceholder} />
                       </div>
                       <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">{t.emailAddress}</label>
+                        <label htmlFor="email" className="block text-sm font-medium text-[#CFCFCF] mb-2">{t.emailAddress}</label>
                         <Input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange} required placeholder={t.emailPlaceholder} />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">{t.phoneNumber}</label>
+                        <label htmlFor="phone" className="block text-sm font-medium text-[#CFCFCF] mb-2">{t.phoneNumber}</label>
                         <Input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleInputChange} placeholder={t.phonePlaceholder} />
                       </div>
                       <div>
-                        <label htmlFor="propertyType" className="block text-sm font-medium text-gray-700 mb-2">{t.inquiryType}</label>
-                        <select id="propertyType" name="propertyType" value={formData.propertyType} onChange={handleInputChange} className="w-full border border-gray-300 rounded-md px-3 py-2 bg-white">
+                        <label htmlFor="propertyType" className="block text-sm font-medium text-[#CFCFCF] mb-2">{t.inquiryType}</label>
+                        <select id="propertyType" name="propertyType" value={formData.propertyType} onChange={handleInputChange} className="w-full border border-[#D4AF37]/25 rounded-md px-3 py-2 bg-[#050505]">
                           <option value="inquiry">{t.generalInquiry}</option>
                           <option value="management">{t.propertyManagement}</option>
                           <option value="booking">{t.bookingQuestion}</option>
@@ -370,16 +370,16 @@ const Contact = () => {
                     </div>
 
                     <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">{t.subject}</label>
+                      <label htmlFor="subject" className="block text-sm font-medium text-[#CFCFCF] mb-2">{t.subject}</label>
                       <Input type="text" id="subject" name="subject" value={formData.subject} onChange={handleInputChange} required placeholder={t.subjectPlaceholder} />
                     </div>
 
                     <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">{t.message}</label>
+                      <label htmlFor="message" className="block text-sm font-medium text-[#CFCFCF] mb-2">{t.message}</label>
                       <Textarea id="message" name="message" value={formData.message} onChange={handleInputChange} required rows={6} placeholder={t.messagePlaceholder} />
                     </div>
 
-                    <Button type="submit" disabled={isSubmitting} className="w-full bg-blue-600 hover:bg-blue-700 text-lg py-3">
+                    <Button type="submit" disabled={isSubmitting} className="w-full bg-[#D4AF37] hover:bg-[#E6C978] text-lg py-3">
                       {isSubmitting ? (
                         <><div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>{t.sending}</> 
                       ) : (
@@ -395,15 +395,15 @@ const Contact = () => {
               <Card>
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
-                    <Clock className="h-6 w-6 text-blue-600 mr-3" />
-                    <h3 className="text-xl font-semibold text-gray-900">{t.officeHours}</h3>
+                    <Clock className="h-6 w-6 text-[#D4AF37] mr-3" />
+                    <h3 className="text-xl font-semibold text-[#F8F8F8]">{t.officeHours}</h3>
                   </div>
-                  <div className="space-y-2 text-gray-600">
+                  <div className="space-y-2 text-[#B8B8B8]">
                     <div>{t.monFri}</div>
                     <div>{t.sat}</div>
                     <div>{t.sun}</div>
-                    <div className="mt-4 p-3 bg-blue-50 rounded-lg">
-                      <p className="text-sm text-blue-800">{t.emergency}</p>
+                    <div className="mt-4 p-3 bg-[#D4AF37]/10 rounded-lg">
+                      <p className="text-sm text-[#F2D98D]">{t.emergency}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -412,15 +412,15 @@ const Contact = () => {
               <Card>
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
-                    <MapPin className="h-6 w-6 text-blue-600 mr-3" />
-                    <h3 className="text-xl font-semibold text-gray-900">{t.ourLocations}</h3>
+                    <MapPin className="h-6 w-6 text-[#D4AF37] mr-3" />
+                    <h3 className="text-xl font-semibold text-[#F8F8F8]">{t.ourLocations}</h3>
                   </div>
                   <div className="space-y-4">
                     {locations.map((location, index) => (
-                      <div key={index} className="border-l-4 border-blue-600 pl-4">
-                        <h4 className="font-semibold text-gray-900">{location.name}</h4>
-                        <p className="text-gray-600 text-sm">{location.address}</p>
-                        <p className="text-gray-500 text-xs mt-1">{location.description}</p>
+                      <div key={index} className="border-l-4 border-[#D4AF37] pl-4">
+                        <h4 className="font-semibold text-[#F8F8F8]">{location.name}</h4>
+                        <p className="text-[#B8B8B8] text-sm">{location.address}</p>
+                        <p className="text-[#A8A8A8] text-xs mt-1">{location.description}</p>
                       </div>
                     ))}
                   </div>
@@ -431,13 +431,13 @@ const Contact = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-blue-600">
+      <section className="py-20 bg-[#050505] border-y border-[#D4AF37]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-white mb-6">{t.ready}</h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">{t.readyDesc}</p>
+          <p className="text-xl text-[#CFCFCF] mb-8 max-w-3xl mx-auto">{t.readyDesc}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
-              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 text-lg">
+              <Button className="bg-[#D4AF37] text-[#050505] hover:bg-[#E6C978] px-8 py-3 text-lg">
                 {t.scheduleConsultation}
               </Button>
             </Link>

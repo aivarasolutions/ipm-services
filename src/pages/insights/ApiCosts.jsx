@@ -4,9 +4,9 @@ import { Link as LinkIcon, AlertCircle, DollarSign, Shield, ArrowLeft, X, Check 
 
 export default function ApiCosts() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-[#050505] to-[#111111]">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <Link to="/insights" className="inline-flex items-center text-blue-600 hover:text-blue-700 mb-8">
+        <Link to="/insights" className="inline-flex items-center text-[#D4AF37] hover:text-[#E6C978] mb-8">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Insights
         </Link>
@@ -16,10 +16,10 @@ export default function ApiCosts() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-12"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-[#F8F8F8] mb-4">
             API Connections & Hidden Costs
           </h1>
-          <p className="text-xl text-indigo-600 font-semibold">
+          <p className="text-xl text-[#D4AF37] font-semibold">
             Why Airbnb Charges More When You Connect Through a PMS — And What They Don't Tell You
           </p>
         </motion.div>
@@ -31,37 +31,37 @@ export default function ApiCosts() {
           className="prose prose-lg max-w-none"
         >
           <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-lg mb-8">
-            <p className="text-lg text-slate-800 m-0">
+            <p className="text-lg text-[#CFCFCF] m-0">
               Most hosts assume that using property management software (PMS) or a channel manager is
               always an upgrade. But Airbnb quietly classifies PMS-connected hosts differently — and
               charges them significantly more.
             </p>
           </div>
 
-          <p className="text-slate-700 leading-relaxed">
+          <p className="text-[#B8B8B8] leading-relaxed">
             At IPM, we help hosts understand what Airbnb never explains publicly:
             your software connection can automatically trigger a <strong>15.5% fee structure</strong> — even if you didn't
             ask for it.
           </p>
 
-          <section className="bg-white rounded-xl shadow-lg p-8 my-10">
-            <h2 className="text-3xl font-bold text-slate-900 mb-6 flex items-center gap-3">
-              <LinkIcon className="w-8 h-8 text-indigo-600" />
+          <section className="bg-[#050505] rounded-xl shadow-lg p-8 my-10">
+            <h2 className="text-3xl font-bold text-[#F8F8F8] mb-6 flex items-center gap-3">
+              <LinkIcon className="w-8 h-8 text-[#D4AF37]" />
               What Is an API Connection — And Why It Matters
             </h2>
-            <p className="text-slate-700 mb-4">
+            <p className="text-[#B8B8B8] mb-4">
               An API connection is a direct data bridge between Airbnb and your software.
               This includes platforms like:
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-6">
               {['Lodgify', 'Guesty', 'Hostaway', 'OwnerRez', 'HostTools', 'Smoobu', 'Uplisting', 'Many more'].map((platform) => (
-                <div key={platform} className="bg-indigo-50 rounded-lg p-3 text-center text-slate-800 font-medium">
+                <div key={platform} className="bg-[#D4AF37]/10 rounded-lg p-3 text-center text-[#CFCFCF] font-medium">
                   {platform}
                 </div>
               ))}
             </div>
 
-            <p className="text-slate-700 mb-4">With API, your software can:</p>
+            <p className="text-[#B8B8B8] mb-4">With API, your software can:</p>
             <ul className="space-y-2">
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-1" />
@@ -92,37 +92,37 @@ export default function ApiCosts() {
             </div>
           </section>
 
-          <section className="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl shadow-lg p-8 my-10">
-            <h2 className="text-3xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+          <section className="bg-gradient-to-br from-red-50 to-[#1F1F1F] rounded-xl shadow-lg p-8 my-10">
+            <h2 className="text-3xl font-bold text-[#F8F8F8] mb-6 flex items-center gap-3">
               <AlertCircle className="w-8 h-8 text-red-600" />
               How Airbnb Classifies Software-Connected Hosts
             </h2>
-            <p className="text-slate-700 mb-6">
+            <p className="text-[#B8B8B8] mb-6">
               When Airbnb detects ANY API connection, it immediately labels you as:
             </p>
-            <div className="bg-white rounded-lg p-6 mb-6 text-center">
+            <div className="bg-[#050505] rounded-lg p-6 mb-6 text-center">
               <p className="text-2xl font-bold text-red-600">
                 "Software-connected" = "Professional Host"
               </p>
             </div>
 
-            <p className="text-slate-700 mb-4">This triggers a completely different pricing model:</p>
+            <p className="text-[#B8B8B8] mb-4">This triggers a completely different pricing model:</p>
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="bg-white rounded-lg p-4 flex items-start gap-3">
+              <div className="bg-[#050505] rounded-lg p-4 flex items-start gap-3">
                 <X className="w-6 h-6 text-red-600 flex-shrink-0 mt-1" />
-                <span className="font-medium text-slate-800">No guest service fee</span>
+                <span className="font-medium text-[#CFCFCF]">No guest service fee</span>
               </div>
-              <div className="bg-white rounded-lg p-4 flex items-start gap-3">
+              <div className="bg-[#050505] rounded-lg p-4 flex items-start gap-3">
                 <X className="w-6 h-6 text-red-600 flex-shrink-0 mt-1" />
-                <span className="font-medium text-slate-800">No option to opt out</span>
+                <span className="font-medium text-[#CFCFCF]">No option to opt out</span>
               </div>
-              <div className="bg-white rounded-lg p-4 flex items-start gap-3">
-                <Check className="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
-                <span className="font-medium text-slate-800">Host pays the ENTIRE service fee (14%–16%)</span>
+              <div className="bg-[#050505] rounded-lg p-4 flex items-start gap-3">
+                <Check className="w-6 h-6 text-[#D4AF37] flex-shrink-0 mt-1" />
+                <span className="font-medium text-[#CFCFCF]">Host pays the ENTIRE service fee (14%–16%)</span>
               </div>
-              <div className="bg-white rounded-lg p-4 flex items-start gap-3">
-                <Check className="w-6 h-6 text-blue-600 flex-shrink-0 mt-1" />
-                <span className="font-medium text-slate-800">Airbnb earns the same — just from YOU instead of the guest</span>
+              <div className="bg-[#050505] rounded-lg p-4 flex items-start gap-3">
+                <Check className="w-6 h-6 text-[#D4AF37] flex-shrink-0 mt-1" />
+                <span className="font-medium text-[#CFCFCF]">Airbnb earns the same — just from YOU instead of the guest</span>
               </div>
             </div>
 
@@ -136,34 +136,34 @@ export default function ApiCosts() {
             </div>
           </section>
 
-          <section className="bg-white rounded-xl shadow-lg p-8 my-10">
-            <h2 className="text-3xl font-bold text-slate-900 mb-6">
+          <section className="bg-[#050505] rounded-xl shadow-lg p-8 my-10">
+            <h2 className="text-3xl font-bold text-[#F8F8F8] mb-6">
               What Airbnb Doesn't Tell You
             </h2>
             <div className="space-y-4">
               <div className="flex items-start gap-3 bg-red-50 rounded-lg p-4">
                 <Check className="w-6 h-6 text-red-600 flex-shrink-0 mt-1" />
-                <p className="text-slate-800 font-medium m-0">There is no setting to switch back</p>
+                <p className="text-[#CFCFCF] font-medium m-0">There is no setting to switch back</p>
               </div>
               <div className="flex items-start gap-3 bg-red-50 rounded-lg p-4">
                 <Check className="w-6 h-6 text-red-600 flex-shrink-0 mt-1" />
-                <p className="text-slate-800 font-medium m-0">Airbnb does not warn you when the fee changes</p>
+                <p className="text-[#CFCFCF] font-medium m-0">Airbnb does not warn you when the fee changes</p>
               </div>
               <div className="flex items-start gap-3 bg-red-50 rounded-lg p-4">
                 <Check className="w-6 h-6 text-red-600 flex-shrink-0 mt-1" />
-                <p className="text-slate-800 font-medium m-0">Airbnb does not explain this anywhere obvious</p>
+                <p className="text-[#CFCFCF] font-medium m-0">Airbnb does not explain this anywhere obvious</p>
               </div>
               <div className="flex items-start gap-3 bg-red-50 rounded-lg p-4">
                 <Check className="w-6 h-6 text-red-600 flex-shrink-0 mt-1" />
-                <p className="text-slate-800 font-medium m-0">The PMS company cannot prevent it</p>
+                <p className="text-[#CFCFCF] font-medium m-0">The PMS company cannot prevent it</p>
               </div>
               <div className="flex items-start gap-3 bg-red-50 rounded-lg p-4">
                 <Check className="w-6 h-6 text-red-600 flex-shrink-0 mt-1" />
-                <p className="text-slate-800 font-medium m-0">You can only return to the 3% model by disconnecting the API</p>
+                <p className="text-[#CFCFCF] font-medium m-0">You can only return to the 3% model by disconnecting the API</p>
               </div>
             </div>
 
-            <div className="bg-slate-900 text-white rounded-lg p-6 mt-6">
+            <div className="bg-[#050505] text-white rounded-lg p-6 mt-6">
               <p className="text-lg font-bold m-0">
                 Airbnb's system is automatic. No human reviews it. No toggle exists.
               </p>
@@ -174,13 +174,13 @@ export default function ApiCosts() {
           </section>
 
           <section className="bg-gradient-to-br from-red-50 to-pink-50 rounded-xl shadow-lg p-8 my-10">
-            <h2 className="text-3xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+            <h2 className="text-3xl font-bold text-[#F8F8F8] mb-6 flex items-center gap-3">
               <DollarSign className="w-8 h-8 text-red-600" />
               Why Hosts Lose Thousands Without Knowing
             </h2>
-            <p className="text-slate-700 mb-6">Here's a simple example:</p>
+            <p className="text-[#B8B8B8] mb-6">Here's a simple example:</p>
 
-            <div className="bg-white rounded-lg p-6 mb-6">
+            <div className="bg-[#050505] rounded-lg p-6 mb-6">
               <div className="space-y-3 text-lg">
                 <p>Booking subtotal: <strong>$2,000</strong></p>
                 <p className="text-green-700">Old fee (3%): <strong>–$60</strong></p>
@@ -205,59 +205,59 @@ export default function ApiCosts() {
             </div>
           </section>
 
-          <section className="bg-white rounded-xl shadow-lg p-8 my-10">
-            <h2 className="text-3xl font-bold text-slate-900 mb-6">
+          <section className="bg-[#050505] rounded-xl shadow-lg p-8 my-10">
+            <h2 className="text-3xl font-bold text-[#F8F8F8] mb-6">
               "But if I use a PMS, don't I GET more?"
             </h2>
             <p className="text-2xl font-bold text-red-600 mb-6">No.</p>
-            <p className="text-slate-700 mb-6">
+            <p className="text-[#B8B8B8] mb-6">
               Here's exactly what Airbnb gives PMS-connected hosts vs. regular hosts:
             </p>
 
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
                 <thead>
-                  <tr className="bg-slate-100">
-                    <th className="border border-slate-300 p-4 text-left">Feature</th>
-                    <th className="border border-slate-300 p-4 text-left">Regular Host</th>
-                    <th className="border border-slate-300 p-4 text-left">API Host</th>
+                  <tr className="bg-[#1F1F1F]">
+                    <th className="border border-[#D4AF37]/25 p-4 text-left">Feature</th>
+                    <th className="border border-[#D4AF37]/25 p-4 text-left">Regular Host</th>
+                    <th className="border border-[#D4AF37]/25 p-4 text-left">API Host</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="border border-slate-300 p-4 font-medium">Host fee</td>
-                    <td className="border border-slate-300 p-4 bg-green-50">~3%</td>
-                    <td className="border border-slate-300 p-4 bg-red-50">14–16%</td>
+                    <td className="border border-[#D4AF37]/25 p-4 font-medium">Host fee</td>
+                    <td className="border border-[#D4AF37]/25 p-4 bg-green-50">~3%</td>
+                    <td className="border border-[#D4AF37]/25 p-4 bg-red-50">14–16%</td>
                   </tr>
                   <tr>
-                    <td className="border border-slate-300 p-4 font-medium">Guest service fee</td>
-                    <td className="border border-slate-300 p-4">Yes</td>
-                    <td className="border border-slate-300 p-4">No</td>
+                    <td className="border border-[#D4AF37]/25 p-4 font-medium">Guest service fee</td>
+                    <td className="border border-[#D4AF37]/25 p-4">Yes</td>
+                    <td className="border border-[#D4AF37]/25 p-4">No</td>
                   </tr>
                   <tr>
-                    <td className="border border-slate-300 p-4 font-medium">Airbnb support</td>
-                    <td className="border border-slate-300 p-4">Same</td>
-                    <td className="border border-slate-300 p-4">Same</td>
+                    <td className="border border-[#D4AF37]/25 p-4 font-medium">Airbnb support</td>
+                    <td className="border border-[#D4AF37]/25 p-4">Same</td>
+                    <td className="border border-[#D4AF37]/25 p-4">Same</td>
                   </tr>
                   <tr>
-                    <td className="border border-slate-300 p-4 font-medium">Host protection (AirCover)</td>
-                    <td className="border border-slate-300 p-4">Same</td>
-                    <td className="border border-slate-300 p-4">Same</td>
+                    <td className="border border-[#D4AF37]/25 p-4 font-medium">Host protection (AirCover)</td>
+                    <td className="border border-[#D4AF37]/25 p-4">Same</td>
+                    <td className="border border-[#D4AF37]/25 p-4">Same</td>
                   </tr>
                   <tr>
-                    <td className="border border-slate-300 p-4 font-medium">Guest visibility</td>
-                    <td className="border border-slate-300 p-4">Same</td>
-                    <td className="border border-slate-300 p-4">Same</td>
+                    <td className="border border-[#D4AF37]/25 p-4 font-medium">Guest visibility</td>
+                    <td className="border border-[#D4AF37]/25 p-4">Same</td>
+                    <td className="border border-[#D4AF37]/25 p-4">Same</td>
                   </tr>
                   <tr>
-                    <td className="border border-slate-300 p-4 font-medium">Search ranking benefits</td>
-                    <td className="border border-slate-300 p-4">Same</td>
-                    <td className="border border-slate-300 p-4">Same</td>
+                    <td className="border border-[#D4AF37]/25 p-4 font-medium">Search ranking benefits</td>
+                    <td className="border border-[#D4AF37]/25 p-4">Same</td>
+                    <td className="border border-[#D4AF37]/25 p-4">Same</td>
                   </tr>
                   <tr>
-                    <td className="border border-slate-300 p-4 font-medium">PMS features</td>
-                    <td className="border border-slate-300 p-4">Provided by PMS, not Airbnb</td>
-                    <td className="border border-slate-300 p-4">Provided by PMS, not Airbnb</td>
+                    <td className="border border-[#D4AF37]/25 p-4 font-medium">PMS features</td>
+                    <td className="border border-[#D4AF37]/25 p-4">Provided by PMS, not Airbnb</td>
+                    <td className="border border-[#D4AF37]/25 p-4">Provided by PMS, not Airbnb</td>
                   </tr>
                 </tbody>
               </table>
@@ -270,46 +270,46 @@ export default function ApiCosts() {
             </div>
           </section>
 
-          <section className="bg-white rounded-xl shadow-lg p-8 my-10">
-            <h2 className="text-3xl font-bold text-slate-900 mb-6">
+          <section className="bg-[#050505] rounded-xl shadow-lg p-8 my-10">
+            <h2 className="text-3xl font-bold text-[#F8F8F8] mb-6">
               Key Takeaways
             </h2>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <Check className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                <p className="text-slate-800 font-medium">API = 15.5%</p>
+                <p className="text-[#CFCFCF] font-medium">API = 15.5%</p>
               </div>
               <div className="flex items-start gap-3">
                 <Check className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                <p className="text-slate-800 font-medium">PMS → forces "host-only fee"</p>
+                <p className="text-[#CFCFCF] font-medium">PMS → forces "host-only fee"</p>
               </div>
               <div className="flex items-start gap-3">
                 <Check className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                <p className="text-slate-800 font-medium">No extra support, no extra features from Airbnb</p>
+                <p className="text-[#CFCFCF] font-medium">No extra support, no extra features from Airbnb</p>
               </div>
               <div className="flex items-start gap-3">
                 <Check className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                <p className="text-slate-800 font-medium">Airbnb earns the same money but charges YOU instead of the guest</p>
+                <p className="text-[#CFCFCF] font-medium">Airbnb earns the same money but charges YOU instead of the guest</p>
               </div>
               <div className="flex items-start gap-3">
                 <Check className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                <p className="text-slate-800 font-medium">The only way back to 3% is disconnecting the API</p>
+                <p className="text-[#CFCFCF] font-medium">The only way back to 3% is disconnecting the API</p>
               </div>
               <div className="flex items-start gap-3">
                 <Check className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                <p className="text-slate-800 font-medium">IPM helps implement the safer alternative</p>
+                <p className="text-[#CFCFCF] font-medium">IPM helps implement the safer alternative</p>
               </div>
             </div>
           </section>
 
-          <section className="bg-gradient-to-r from-indigo-600 to-indigo-700 rounded-2xl shadow-2xl p-8 text-center text-white my-10">
+          <section className="bg-gradient-to-r from-[#D4AF37] to-[#C8A24A] rounded-2xl shadow-2xl p-8 text-center text-white my-10">
             <h2 className="text-3xl font-bold mb-4">Book a Consultation with IPM</h2>
             <p className="text-lg mb-6 opacity-90">
               Optimize your property, reduce costs, and increase profits. Click below to get started.
             </p>
             <a
               href="#"
-              className="inline-block bg-white text-indigo-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-indigo-50 transition-colors shadow-lg"
+              className="inline-block bg-[#050505] text-[#D4AF37] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#D4AF37]/10 transition-colors shadow-lg"
             >
               Schedule a Call →
             </a>

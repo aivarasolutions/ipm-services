@@ -42,9 +42,9 @@ export default function AvoidFees() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-[#050505] to-[#111111]">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <Link to="/insights" className="inline-flex items-center text-blue-600 hover:text-blue-700 mb-8">
+        <Link to="/insights" className="inline-flex items-center text-[#D4AF37] hover:text-[#E6C978] mb-8">
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Insights
         </Link>
@@ -54,7 +54,7 @@ export default function AvoidFees() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-12"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-[#F8F8F8] mb-4">
             How to Avoid Airbnb's 15.5% Host-Only Fee
           </h1>
           <p className="text-xl text-green-600 font-semibold">
@@ -70,31 +70,31 @@ export default function AvoidFees() {
         >
           <div className="bg-green-50 border-l-4 border-green-500 p-6 rounded-r-lg mb-8">
             <p className="text-lg font-bold text-green-900 m-0">Good news:</p>
-            <p className="text-lg text-slate-800 mt-3 m-0">
+            <p className="text-lg text-[#CFCFCF] mt-3 m-0">
               Most hosts can get back to the 3% Airbnb fee — but only if they disconnect their PMS API and
               follow the correct steps.
             </p>
           </div>
 
-          <p className="text-slate-700 leading-relaxed">
+          <p className="text-[#B8B8B8] leading-relaxed">
             At IPM, we help hosts transition safely without losing automation, without risking double
             bookings, and without violating Airbnb's system. Here's exactly how it works.
           </p>
 
-          <section className="bg-white rounded-xl shadow-lg p-8 my-10">
-            <h2 className="text-3xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+          <section className="bg-[#050505] rounded-xl shadow-lg p-8 my-10">
+            <h2 className="text-3xl font-bold text-[#F8F8F8] mb-6 flex items-center gap-3">
               <AlertTriangle className="w-8 h-8 text-amber-600" />
               Understand What Actually Triggers the 15.5% Fee
             </h2>
-            <p className="text-slate-700 mb-4">The fee is NOT based on:</p>
+            <p className="text-[#B8B8B8] mb-4">The fee is NOT based on:</p>
             <ul className="space-y-2 mb-6">
-              <li className="text-slate-600">Your host rating</li>
-              <li className="text-slate-600">Your booking volume</li>
-              <li className="text-slate-600">Your property type</li>
-              <li className="text-slate-600">Your location</li>
+              <li className="text-[#A8A8A8]">Your host rating</li>
+              <li className="text-[#A8A8A8]">Your booking volume</li>
+              <li className="text-[#A8A8A8]">Your property type</li>
+              <li className="text-[#A8A8A8]">Your location</li>
             </ul>
 
-            <p className="text-slate-700 mb-4">It is triggered by one thing only:</p>
+            <p className="text-[#B8B8B8] mb-4">It is triggered by one thing only:</p>
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-red-100 border-2 border-red-400 rounded-lg p-6 text-center">
                 <p className="text-xl font-bold text-red-800 m-0">API CONNECTION =</p>
@@ -106,36 +106,36 @@ export default function AvoidFees() {
               </div>
             </div>
 
-            <div className="bg-slate-100 rounded-lg p-6 mt-6">
-              <p className="text-lg font-medium text-slate-800 m-0">
+            <div className="bg-[#1F1F1F] rounded-lg p-6 mt-6">
+              <p className="text-lg font-medium text-[#CFCFCF] m-0">
                 Airbnb sees API as "professional hosting." iCal is treated as "manual hosting." Only iCal allows the standard 3% model.
               </p>
             </div>
           </section>
 
-          <section className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl shadow-lg p-8 my-10">
-            <h2 className="text-3xl font-bold text-slate-900 mb-8 flex items-center gap-3">
+          <section className="bg-gradient-to-br from-[#111111] to-[#1F1F1F] rounded-xl shadow-lg p-8 my-10">
+            <h2 className="text-3xl font-bold text-[#F8F8F8] mb-8 flex items-center gap-3">
               <Shield className="w-8 h-8 text-green-600" />
               How to Switch Back to the 3% Fee (Step-by-Step)
             </h2>
 
             <div className="space-y-8">
               {steps.map((step, index) => (
-                <div key={index} className="bg-white rounded-xl shadow-md p-6 border-l-4 border-green-500">
+                <div key={index} className="bg-[#050505] rounded-xl shadow-md p-6 border-l-4 border-green-500">
                   <div className="flex items-start gap-4 mb-4">
                     <div className="flex-shrink-0 w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center text-xl font-bold">
                       {step.number}
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-slate-900 mb-3">{step.title}</h3>
-                      <p className="text-slate-700 mb-3">{step.description}</p>
+                      <h3 className="text-2xl font-bold text-[#F8F8F8] mb-3">{step.title}</h3>
+                      <p className="text-[#B8B8B8] mb-3">{step.description}</p>
                       
                       {step.details && (
                         <ul className="space-y-2 mb-3">
                           {step.details.map((detail, idx) => (
                             <li key={idx} className="flex items-start gap-2">
                               <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-1" />
-                              <span className="text-slate-700">{detail}</span>
+                              <span className="text-[#B8B8B8]">{detail}</span>
                             </li>
                           ))}
                         </ul>
@@ -144,7 +144,7 @@ export default function AvoidFees() {
                       {step.tools && (
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-3">
                           {step.tools.map((tool, idx) => (
-                            <div key={idx} className="bg-blue-50 rounded-lg p-3 text-sm text-center text-slate-800 font-medium">
+                            <div key={idx} className="bg-[#D4AF37]/10 rounded-lg p-3 text-sm text-center text-[#CFCFCF] font-medium">
                               {tool}
                             </div>
                           ))}
@@ -152,7 +152,7 @@ export default function AvoidFees() {
                       )}
                       
                       {step.note && (
-                        <p className="text-sm italic text-slate-600 mb-3">{step.note}</p>
+                        <p className="text-sm italic text-[#A8A8A8] mb-3">{step.note}</p>
                       )}
                       
                       {step.result && (
@@ -169,42 +169,42 @@ export default function AvoidFees() {
             </div>
           </section>
 
-          <section className="bg-white rounded-xl shadow-lg p-8 my-10">
-            <h2 className="text-3xl font-bold text-slate-900 mb-6 flex items-center gap-3">
+          <section className="bg-[#050505] rounded-xl shadow-lg p-8 my-10">
+            <h2 className="text-3xl font-bold text-[#F8F8F8] mb-6 flex items-center gap-3">
               <TrendingUp className="w-8 h-8 text-green-600" />
               What Changes Immediately
             </h2>
-            <p className="text-slate-700 mb-6">After disconnecting API:</p>
+            <p className="text-[#B8B8B8] mb-6">After disconnecting API:</p>
             <div className="grid md:grid-cols-2 gap-4">
               <div className="bg-green-50 rounded-lg p-4 flex items-start gap-3">
                 <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                <span className="font-medium text-slate-800">Host fee drops from 15.5% → ~3%</span>
+                <span className="font-medium text-[#CFCFCF]">Host fee drops from 15.5% → ~3%</span>
               </div>
               <div className="bg-green-50 rounded-lg p-4 flex items-start gap-3">
                 <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                <span className="font-medium text-slate-800">Guest service fee returns to the guest</span>
+                <span className="font-medium text-[#CFCFCF]">Guest service fee returns to the guest</span>
               </div>
               <div className="bg-green-50 rounded-lg p-4 flex items-start gap-3">
                 <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                <span className="font-medium text-slate-800">Payouts increase significantly</span>
+                <span className="font-medium text-[#CFCFCF]">Payouts increase significantly</span>
               </div>
               <div className="bg-green-50 rounded-lg p-4 flex items-start gap-3">
                 <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                <span className="font-medium text-slate-800">Airbnb considers you a "regular" host again</span>
+                <span className="font-medium text-[#CFCFCF]">Airbnb considers you a "regular" host again</span>
               </div>
             </div>
           </section>
 
           <section className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl shadow-lg p-8 my-10">
-            <h2 className="text-3xl font-bold text-slate-900 mb-6">
+            <h2 className="text-3xl font-bold text-[#F8F8F8] mb-6">
               What Stays the Same
             </h2>
             <p className="text-lg font-bold text-green-800 mb-4">You KEEP:</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {keepsFeatures.map((feature, index) => (
-                <div key={index} className="bg-white rounded-lg p-4 text-center shadow-md">
+                <div key={index} className="bg-[#050505] rounded-lg p-4 text-center shadow-md">
                   <CheckCircle className="w-6 h-6 text-green-600 mx-auto mb-2" />
-                  <span className="text-slate-800 font-medium text-sm">{feature}</span>
+                  <span className="text-[#CFCFCF] font-medium text-sm">{feature}</span>
                 </div>
               ))}
             </div>
@@ -215,13 +215,13 @@ export default function AvoidFees() {
             </div>
           </section>
 
-          <section className="bg-white rounded-xl shadow-lg p-8 my-10">
-            <h2 className="text-3xl font-bold text-slate-900 mb-6">
+          <section className="bg-[#050505] rounded-xl shadow-lg p-8 my-10">
+            <h2 className="text-3xl font-bold text-[#F8F8F8] mb-6">
               Common Fears — And the Real Truth
             </h2>
             <div className="space-y-4">
               {fears.map((item, index) => (
-                <div key={index} className="bg-slate-50 rounded-lg p-6">
+                <div key={index} className="bg-[#111111] rounded-lg p-6">
                   <p className="text-xl font-bold text-red-600 mb-3">{item.fear}</p>
                   <p className="text-lg font-medium text-green-700 m-0">{item.truth}</p>
                 </div>
@@ -229,30 +229,30 @@ export default function AvoidFees() {
             </div>
           </section>
 
-          <section className="bg-white rounded-xl shadow-lg p-8 my-10">
-            <h2 className="text-3xl font-bold text-slate-900 mb-6">
+          <section className="bg-[#050505] rounded-xl shadow-lg p-8 my-10">
+            <h2 className="text-3xl font-bold text-[#F8F8F8] mb-6">
               Key Takeaways
             </h2>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                <p className="text-slate-800 font-medium">API triggers the 15.5% host-only fee</p>
+                <p className="text-[#CFCFCF] font-medium">API triggers the 15.5% host-only fee</p>
               </div>
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                <p className="text-slate-800 font-medium">Switching to iCal restores the 3% fee instantly</p>
+                <p className="text-[#CFCFCF] font-medium">Switching to iCal restores the 3% fee instantly</p>
               </div>
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                <p className="text-slate-800 font-medium">Your listing is NOT penalized</p>
+                <p className="text-[#CFCFCF] font-medium">Your listing is NOT penalized</p>
               </div>
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                <p className="text-slate-800 font-medium">Your payouts increase dramatically</p>
+                <p className="text-[#CFCFCF] font-medium">Your payouts increase dramatically</p>
               </div>
               <div className="flex items-start gap-3">
                 <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                <p className="text-slate-800 font-medium">IPM can set up the new workflow for you</p>
+                <p className="text-[#CFCFCF] font-medium">IPM can set up the new workflow for you</p>
               </div>
             </div>
           </section>
@@ -264,7 +264,7 @@ export default function AvoidFees() {
             </p>
             <a
               href="#"
-              className="inline-block bg-white text-green-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-green-50 transition-colors shadow-lg"
+              className="inline-block bg-[#050505] text-green-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-green-50 transition-colors shadow-lg"
             >
               Schedule a Call →
             </a>

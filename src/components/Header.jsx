@@ -13,14 +13,14 @@ const Header = () => {
   const [showInsightsDropdown, setShowInsightsDropdown] = useState(false)
 
   const navItems = [
-    { name: 'Home', path: '/', color: 'bg-green-500 text-white' },
-    { name: 'Services', path: '/services', color: 'bg-blue-600 text-white' },
-    { name: 'Properties', path: '/properties', color: 'bg-orange-500 text-white' },
-    { name: 'Real Estate', path: '/real-estate', color: 'bg-red-600 text-white' },
+    { name: 'Home', path: '/', color: 'bg-[#D4AF37] text-[#050505]' },
+    { name: 'Services', path: '/services', color: 'bg-[#D4AF37] text-[#050505]' },
+    { name: 'Properties', path: '/properties', color: 'bg-[#D4AF37] text-[#050505]' },
+    { name: 'Real Estate', path: '/real-estate', color: 'bg-[#D4AF37] text-[#050505]' },
     { 
       name: 'Insights', 
       path: '/insights', 
-      color: 'bg-violet-600 text-white',
+      color: 'bg-[#D4AF37] text-[#050505]',
       hasDropdown: true,
       dropdownItems: [
         { name: 'Insights Hub', path: '/insights' },
@@ -36,21 +36,21 @@ const Header = () => {
         { name: '🏠 Tegucigalpa Launch Checklist', path: '/insights/tegucigalpa-checklist' }
       ]
     },
-    { name: 'News', path: '/news', color: 'bg-indigo-600 text-white' },
-    { name: 'Relocation Guide', path: '/location-guide', color: 'bg-teal-600 text-white' },
-    { name: 'Contact', path: '/contact', color: 'bg-gray-600 text-white' },
-    { name: 'Owner Portal', path: 'https://portal.ipm.services/', color: 'bg-purple-600 text-white', external: true }
+    { name: 'News', path: '/news', color: 'bg-[#D4AF37] text-[#050505]' },
+    { name: 'Relocation Guide', path: '/location-guide', color: 'bg-[#D4AF37] text-[#050505]' },
+    { name: 'Contact', path: '/contact', color: 'bg-[#D4AF37] text-[#050505]' },
+    { name: 'Owner Portal', path: 'https://portal.ipm.services/', color: 'bg-[#D4AF37] text-[#050505]', external: true }
   ]
 
   return (
-    <header className="bg-white shadow-sm border-b border-gray-100">
+    <header className="bg-[#050505] shadow-sm border-b border-[#D4AF37]/15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center rounded bg-black px-2 py-1 shadow-sm">
-            <img 
-              src="/images/ipm-logo-new.png" 
-              alt="IPM International Property Management" 
+            <img
+              src="/images/ipm-logo-new.png"
+              alt="IPM International Property Management"
               className="h-10 w-auto"
             />
           </Link>
@@ -73,19 +73,19 @@ const Header = () => {
                         className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                           isActive
                             ? item.color
-                            : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+                            : 'text-[#CFCFCF] hover:text-[#F8F8F8] hover:bg-[#1F1F1F]'
                         }`}
                       >
                         {item.name} ▾
                       </Button>
                     </Link>
                     {showInsightsDropdown && (
-                      <div className="absolute left-0 mt-2 w-64 bg-white rounded-md shadow-lg border border-gray-200 py-2 z-50">
+                      <div className="absolute left-0 mt-2 w-64 bg-[#050505] rounded-md shadow-lg border border-[#D4AF37]/20 py-2 z-50">
                         {item.dropdownItems.map((subItem) => (
                           <Link 
                             key={subItem.path} 
                             to={subItem.path}
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-violet-50 hover:text-violet-700 transition-colors"
+                            className="block px-4 py-2 text-sm text-[#CFCFCF] hover:bg-[#D4AF37]/10 hover:text-[#E6C978] transition-colors"
                           >
                             {subItem.name}
                           </Link>
@@ -100,7 +100,7 @@ const Header = () => {
                   <a key={item.name} href={item.path} target="_blank" rel="noopener noreferrer">
                     <Button
                       variant="ghost"
-                      className="px-4 py-2 rounded-md text-sm font-medium transition-colors text-gray-700 hover:text-gray-900 hover:bg-gray-100"
+                      className="px-4 py-2 rounded-md text-sm font-medium transition-colors text-[#CFCFCF] hover:text-[#F8F8F8] hover:bg-[#1F1F1F]"
                     >
                       {item.name}
                     </Button>
@@ -114,7 +114,7 @@ const Header = () => {
                     className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                       location.pathname === item.path
                         ? item.color
-                        : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+                        : 'text-[#CFCFCF] hover:text-[#F8F8F8] hover:bg-[#1F1F1F]'
                     }`}
                   >
                     {item.name}
@@ -132,13 +132,13 @@ const Header = () => {
                 variant="ghost"
                 size="sm"
                 onClick={() => setShowLanguageMenu(!showLanguageMenu)}
-                className="p-2 hover:bg-gray-100 flex items-center space-x-1 text-gray-700"
+                className="p-2 hover:bg-[#1F1F1F] flex items-center space-x-1 text-[#CFCFCF]"
               >
                 <Globe className="w-4 h-4" />
                 <span className="text-xs font-semibold">{language.toUpperCase()}</span>
               </Button>
               {showLanguageMenu && (
-                <div className="absolute right-0 mt-1 w-32 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+                <div className="absolute right-0 mt-1 w-32 bg-[#050505] border border-[#D4AF37]/20 rounded-md shadow-lg z-50">
                   {['en', 'es', 'fr'].map((lang) => (
                     <button
                       key={lang}
@@ -148,8 +148,8 @@ const Header = () => {
                       }}
                       className={`block w-full text-left px-4 py-2 text-sm transition-colors ${
                         language === lang
-                          ? 'bg-blue-100 text-blue-700 font-semibold'
-                          : 'text-gray-700 hover:bg-gray-100'
+                          ? 'bg-[#D4AF37]/15 text-[#E6C978] font-semibold'
+                          : 'text-[#CFCFCF] hover:bg-[#1F1F1F]'
                       }`}
                     >
                       {lang === 'en' && 'English'}
@@ -162,7 +162,7 @@ const Header = () => {
             </div>
 
             <Link to="/contact">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md text-sm font-medium">
+              <Button className="bg-[#D4AF37] hover:bg-[#E6C978] text-[#050505] px-6 py-2 rounded-md text-sm font-medium">
                 Get Started
               </Button>
             </Link>
@@ -177,9 +177,9 @@ const Header = () => {
               className="p-2"
             >
               {isMobileMenuOpen ? (
-                <X className="h-6 w-6 text-gray-700" />
+                <X className="h-6 w-6 text-[#CFCFCF]" />
               ) : (
-                <Menu className="h-6 w-6 text-gray-700" />
+                <Menu className="h-6 w-6 text-[#CFCFCF]" />
               )}
             </Button>
           </div>
@@ -188,7 +188,7 @@ const Header = () => {
 
       {/* Mobile Navigation Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100 shadow-lg">
+        <div className="md:hidden bg-[#050505] border-t border-[#D4AF37]/15 shadow-lg">
           <div className="px-4 pt-2 pb-3 space-y-1">
             {navItems.map((item) => {
               const isActive = item.hasDropdown ? location.pathname.startsWith(item.path) : location.pathname === item.path
@@ -201,8 +201,8 @@ const Header = () => {
                       onClick={() => setIsMobileMenuOpen(false)}
                       className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                         isActive
-                          ? 'bg-violet-600 text-white'
-                          : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+                          ? 'bg-[#D4AF37] text-[#050505]'
+                          : 'text-[#CFCFCF] hover:text-[#F8F8F8] hover:bg-[#1F1F1F]'
                       }`}
                     >
                       {item.name}
@@ -215,8 +215,8 @@ const Header = () => {
                           onClick={() => setIsMobileMenuOpen(false)}
                           className={`block px-3 py-2 rounded-md text-sm transition-colors ${
                             location.pathname === subItem.path
-                              ? 'bg-violet-100 text-violet-700'
-                              : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                              ? 'bg-[#D4AF37]/15 text-[#E6C978]'
+                              : 'text-[#B8B8B8] hover:text-[#F8F8F8] hover:bg-[#111111]'
                           }`}
                         >
                           {subItem.name}
@@ -235,7 +235,7 @@ const Header = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block px-3 py-2 rounded-md text-base font-medium transition-colors text-gray-700 hover:text-gray-900 hover:bg-gray-100"
+                    className="block px-3 py-2 rounded-md text-base font-medium transition-colors text-[#CFCFCF] hover:text-[#F8F8F8] hover:bg-[#1F1F1F]"
                   >
                     {item.name}
                   </a>
@@ -248,8 +248,8 @@ const Header = () => {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                     isActive
-                      ? 'bg-blue-600 text-white'
-                      : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+                      ? 'bg-[#D4AF37] text-[#050505]'
+                      : 'text-[#CFCFCF] hover:text-[#F8F8F8] hover:bg-[#1F1F1F]'
                   }`}
                 >
                   {item.name}
@@ -257,8 +257,8 @@ const Header = () => {
               )
             })}
             {/* Mobile Language Selector */}
-            <div className="pt-4 border-t border-gray-100 mb-4">
-              <div className="px-3 py-2 text-xs font-semibold text-gray-700 mb-2">Language</div>
+            <div className="pt-4 border-t border-[#D4AF37]/15 mb-4">
+              <div className="px-3 py-2 text-xs font-semibold text-[#CFCFCF] mb-2">Language</div>
               <div className="flex gap-2 px-3">
                 {['en', 'es', 'fr'].map((lang) => (
                   <button
@@ -269,8 +269,8 @@ const Header = () => {
                     }}
                     className={`flex-1 px-3 py-2 text-xs font-medium rounded-md transition-colors ${
                       language === lang
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        ? 'bg-[#D4AF37] text-[#050505]'
+                        : 'bg-[#1F1F1F] text-[#CFCFCF] hover:bg-[#2A2A2A]'
                     }`}
                   >
                     {lang === 'en' && 'EN'}
@@ -287,7 +287,7 @@ const Header = () => {
                 to="/contact"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md text-sm font-medium">
+                <Button className="w-full bg-[#D4AF37] hover:bg-[#E6C978] text-[#050505] px-6 py-2 rounded-md text-sm font-medium">
                   Get Started
                 </Button>
               </Link>

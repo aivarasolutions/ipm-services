@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -84,7 +84,7 @@ const AirbnbSection = () => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-      {properties.map((property, index) => (
+      {properties.map((property) => (
         <div key={property.id} className="flex justify-center">
           <AirbnbWidget 
             id={property.id}
@@ -225,24 +225,24 @@ const Home = () => {
       </section>
 
       {/* Elevating Property Management Section */}
-      <section className="bg-gray-50 py-20">
+      <section className="bg-[#111111] py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+          <h1 className="text-5xl md:text-6xl font-bold text-[#F8F8F8] mb-6">
             {t.elevating}
           </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl text-[#B8B8B8] mb-8 max-w-4xl mx-auto leading-relaxed">
             {t.maxROI}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="https://portal.ipm.services/" target="_blank" rel="noopener noreferrer">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-lg">
+              <Button className="bg-[#D4AF37] hover:bg-[#E6C978] text-[#050505] px-8 py-3 text-lg">
                 <Users className="mr-2 h-5 w-5" />
                 {t.ownerPortal}
               </Button>
             </a>
 
             <Link to="/properties">
-              <Button variant="outline" className="border-2 border-gray-300 px-8 py-3 text-lg">
+              <Button variant="outline" className="border-2 border-[#D4AF37]/40 text-[#F8F8F8] hover:bg-[#D4AF37]/10 hover:text-[#E6C978] px-8 py-3 text-lg">
                 {t.viewProperties}
               </Button>
             </Link>
@@ -251,18 +251,18 @@ const Home = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-[#050505]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="flex justify-center mb-4">
-                  <div className="bg-blue-100 p-4 rounded-full">
-                    <stat.icon className="h-8 w-8 text-blue-600" />
+                  <div className="bg-[#D4AF37]/15 p-4 rounded-full">
+                    <stat.icon className="h-8 w-8 text-[#D4AF37]" />
                   </div>
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">{stat.number}</div>
-                <div className="text-gray-600">{stat.label}</div>
+                <div className="text-3xl font-bold text-[#F8F8F8] mb-2">{stat.number}</div>
+                <div className="text-[#B8B8B8]">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -270,27 +270,27 @@ const Home = () => {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-[#111111]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">{t.ourServices}</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <h2 className="text-4xl font-bold text-[#F8F8F8] mb-4">{t.ourServices}</h2>
+            <p className="text-xl text-[#B8B8B8] max-w-3xl mx-auto">
               {t.servicesDesc}
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.map((service, index) => (
-              <Card key={index} className="bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <Card key={index} className="bg-[#050505] border-[#D4AF37]/20 shadow-lg shadow-black/30 hover:border-[#D4AF37]/40 hover:shadow-xl hover:shadow-black/40 transition-all duration-300">
                 <CardContent className="p-8">
                   <div className="flex items-start space-x-4">
-                    <div className="bg-blue-100 p-3 rounded-lg flex-shrink-0">
-                      <service.icon className="h-6 w-6 text-blue-600" />
+                    <div className="bg-[#D4AF37]/15 p-3 rounded-lg flex-shrink-0">
+                      <service.icon className="h-6 w-6 text-[#D4AF37]" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                      <h3 className="text-xl font-semibold text-[#F8F8F8] mb-3">
                         {service.title}
                       </h3>
-                      <p className="text-gray-600 leading-relaxed">
+                      <p className="text-[#B8B8B8] leading-relaxed">
                         {service.description}
                       </p>
                     </div>
@@ -303,11 +303,11 @@ const Home = () => {
       </section>
 
       {/* Featured Properties Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-[#050505]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured Properties</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <h2 className="text-4xl font-bold text-[#F8F8F8] mb-4">Featured Properties</h2>
+            <p className="text-xl text-[#B8B8B8] max-w-3xl mx-auto">
               Discover our exceptional vacation rental properties available for booking directly through Airbnb.
             </p>
           </div>
@@ -316,23 +316,23 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-blue-600">
+      <section className="py-20 bg-[#050505] border-y border-[#D4AF37]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-white mb-6">
             Ready to Maximize Your Property's Potential?
           </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl text-[#CFCFCF] mb-8 max-w-3xl mx-auto">
             Join 30+ property owners who trust IPM to manage their vacation rentals. 
             Get started today and see the difference professional management makes.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
-              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 text-lg">
+              <Button className="bg-[#D4AF37] text-[#050505] hover:bg-[#E6C978] px-8 py-3 text-lg">
                 Schedule Consultation
               </Button>
             </Link>
             <Link to="/contact">
-              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 text-lg border-2 border-white">
+              <Button className="bg-transparent text-[#F8F8F8] hover:bg-[#D4AF37]/10 hover:text-[#E6C978] px-8 py-3 text-lg border-2 border-[#D4AF37]/40">
                 Property Evaluation
               </Button>
             </Link>
@@ -344,4 +344,3 @@ const Home = () => {
 }
 
 export default Home
-
