@@ -60,7 +60,17 @@ Status changes, custom items, and deletions on `/insights/tegucigalpa-checklist`
   - Vercel-hosted `ipm.services` uses `vercel.json` rewrites to proxy `/api/*` → the Replit deployment. No CORS or env vars needed on Vercel.
 - **After backend code changes**: click **Publish** on Replit to redeploy the Autoscale backend. Static frontend on Vercel is unaffected unless you also push to GitHub.
 
+## Brand System (Home, Header, Footer, global base)
+- **Palette (navy + gold, NO black):** deepest navy `#06121F` (page base), navy `#0A1A30`, panel navy `#0F2440`, gold `#D4AF37`, champagne `#F2D98D`, muted text `#C9D2DE`. CSS vars in `src/App.css` `:root` and `src/index.css` `:root` both use navy — keep them in sync; never reintroduce `#050505`/`#111111` on Home/Header/Footer.
+- **Fonts:** Playfair Display (headings — `.font-display`, `.font-hero`) + Montserrat (body) loaded via Google Fonts in `index.html`. Body defaults to Montserrat in `src/index.css`.
+- **Platform logos:** white SVGs in `/public/images/platforms/` (airbnb, booking, expedia, hotels, google) from simple-icons CDN. VRBO has no simple-icons logo → rendered as text-only pill. Pills use `.platform-pill` class in `src/index.css`.
+- **Hero:** ad-style left-aligned layout over `/luxury_beachfront_resort.webp` with navy left-to-right gradient, matching the IPM ad creatives.
+- **Note:** Insights subpages (`src/pages/insights/*`) and standalone proposal pages still use the older black theme — they were out of scope for the Home redesign.
+
 ## Recent Changes
+### 2026-06-19
+- **Luxury redesign of Home + global brand** — navy/gold palette (removed all black from Home/Header/Footer + global `App.css`/`App.jsx` base), Playfair Display + Montserrat fonts, ad-style hero with platform logo pills, white Featured Properties section so Airbnb embeds blend in. See "Brand System" section above.
+
 ### 2026-05-18
 - **Added shared persistence for Tegucigalpa checklist** — replaced localStorage-only with a Replit Postgres-backed API. Status, custom items, and deletes now sync across all devices via 5-second polling. localStorage kept as offline fallback cache. See "Shared Checklist Persistence" section above.
 - Added Express backend (`server/index.js`), API client (`src/services/checklistApi.js`), Vite `/api` proxy, `vercel.json` rewrites, autoscale deployment config.
