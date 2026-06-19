@@ -174,8 +174,8 @@ const CharlotteProposal = () => {
         .cp-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.25rem 0; transition: background 0.3s, padding 0.3s, box-shadow 0.3s; }
         .cp-nav-scrolled { background: rgba(14,26,43,0.97); padding: 0.75rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
         .cp-nav-inner { display: flex; align-items: center; justify-content: space-between; }
-        .cp-nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: #FFFFFF !important; letter-spacing: 0.05em; text-decoration: none; }
-        .cp-nav-logo span { color: #C6A66B; }
+        .cp-nav-logo { display:inline-flex; align-items:center; background:#050505; border-radius:6px; padding:0.25rem 0.45rem; text-decoration:none; }
+        .cp-nav-logo img { display:block; height:46px; width:auto; }
         .cp-hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; background-color: #0E1A2B; }
         .cp-hero-bg { position: absolute; inset: 0; background-image: url('/charlotte-hero-bg.jpg'); background-size: cover; background-position: center; opacity: 0.25; }
         .cp-hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(14,26,43,0.92) 0%, rgba(14,26,43,0.75) 50%, rgba(35,42,51,0.85) 100%); }
@@ -279,8 +279,8 @@ const CharlotteProposal = () => {
         .cp-cta-btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
         .cp-footer { background: #080F1A; padding: 3rem 0 2rem; color: rgba(255,255,255,0.5); }
         .cp-footer-inner { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 1.5rem; }
-        .cp-footer-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: #FFFFFF; margin-bottom: 0.4rem; }
-        .cp-footer-logo span { color: #C6A66B; }
+        .cp-footer-logo { display:inline-flex; align-items:center; background:#050505; border-radius:6px; padding:0.25rem 0.45rem; margin-bottom:0.4rem; }
+        .cp-footer-logo img { display:block; height:50px; width:auto; }
         .cp-footer-tagline { font-size: 0.82rem; color: rgba(255,255,255,0.4); }
         .cp-footer-contact p { font-size: 0.85rem; color: rgba(255,255,255,0.45); margin-bottom: 0.4rem; }
         .cp-footer-contact a { color: #C6A66B; font-weight: 500; }
@@ -321,7 +321,9 @@ const CharlotteProposal = () => {
         <nav className="cp-nav" id="cpMainNav">
           <div className="cp-container">
             <div className="cp-nav-inner">
-              <a href="/" className="cp-nav-logo">IPM<span>.</span></a>
+              <a href="/" className="cp-nav-logo" aria-label="IPM International Property Management">
+                <img src="/images/ipm-logo-new.png" alt="IPM International Property Management" />
+              </a>
               <a href="#cp-cta" className="cp-btn cp-btn-primary" style={{fontSize:'0.82rem', padding:'0.6rem 1.4rem'}}>Schedule Consultation</a>
             </div>
           </div>
@@ -747,7 +749,9 @@ const CharlotteProposal = () => {
           <div className="cp-container">
             <div className="cp-footer-inner">
               <div>
-                <div className="cp-footer-logo">IPM<span>.</span></div>
+                <div className="cp-footer-logo">
+                  <img src="/images/ipm-logo-new.png" alt="IPM International Property Management" />
+                </div>
                 <div className="cp-footer-tagline">International Property Management</div>
                 <div className="cp-footer-tagline" style={{marginTop:'0.25rem'}}>Charlotte Property Management Division</div>
               </div>

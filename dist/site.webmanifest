@@ -11,9 +11,15 @@
       "src": "/android-chrome-512x512.png", 
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
-  "theme_color": "#2563eb",
-  "background_color": "#ffffff",
+  "theme_color": "#050505",
+  "background_color": "#050505",
   "display": "standalone"
 }
