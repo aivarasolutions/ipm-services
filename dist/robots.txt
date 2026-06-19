@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://ipm-services.com/sitemap.xml
+Sitemap: https://www.ipm.services/sitemap.xml
 
 # Crawl-delay
 Crawl-delay: 1
@@ -16,4 +16,3 @@ Allow: /
 Allow: /about
 Allow: /properties
 Allow: /contact
-

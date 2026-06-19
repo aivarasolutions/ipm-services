@@ -151,9 +151,8 @@ const StAugustineProposal = () => {
         .sa-nav { position:fixed; top:0; left:0; right:0; z-index:1000; padding:1.25rem 0; transition:all 0.3s; }
         .sa-nav.sa-scrolled { background:rgba(14,26,43,0.97); padding:0.75rem 0; box-shadow:0 4px 20px rgba(0,0,0,0.3); }
         .sa-nav-inner { max-width:1160px; margin:0 auto; padding:0 1.5rem; display:flex; align-items:center; justify-content:space-between; }
-        .sa-nav-logo { font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:700; color:#fff; letter-spacing:0.05em; }
-        .sa-nav-logo a { color:#fff; }
-        .sa-nav-logo span { color:#C6A66B; }
+        .sa-nav-logo a { display:inline-flex; align-items:center; background:#050505; border-radius:6px; padding:0.25rem 0.45rem; }
+        .sa-nav-logo img { display:block; height:46px; width:auto; }
         .sa-nav-cta { background:#C6A66B; color:#0E1A2B; border:2px solid #C6A66B; border-radius:6px; padding:0.6rem 1.4rem; font-size:0.82rem; font-weight:600; letter-spacing:0.04em; cursor:pointer; transition:all 0.3s; white-space:nowrap; }
         .sa-nav-cta:hover { background:#D9BC8A; border-color:#D9BC8A; transform:translateY(-2px); }
 
@@ -323,8 +322,8 @@ const StAugustineProposal = () => {
         /* FOOTER */
         .sa-footer { background:#060D18; color:rgba(255,255,255,0.6); padding:3rem 0 2rem; }
         .sa-footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:3rem; margin-bottom:2.5rem; }
-        .sa-footer-brand { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:700; color:#fff; margin-bottom:0.5rem; }
-        .sa-footer-brand span { color:#C6A66B; }
+        .sa-footer-brand { display:inline-flex; align-items:center; background:#050505; border-radius:6px; padding:0.25rem 0.45rem; margin-bottom:0.5rem; }
+        .sa-footer-brand img { display:block; height:50px; width:auto; }
         .sa-footer-sub { font-size:0.85rem; color:rgba(255,255,255,0.45); margin-bottom:1.25rem; }
         .sa-footer-heading { font-family:'Inter',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#C6A66B; margin-bottom:1rem; }
         .sa-footer-links { list-style:none; }
@@ -358,7 +357,11 @@ const StAugustineProposal = () => {
       {/* NAV */}
       <nav className="sa-nav" id="sa-nav">
         <div className="sa-nav-inner">
-          <div className="sa-nav-logo"><a href="/"><span>IPM</span>.</a></div>
+          <div className="sa-nav-logo">
+            <a href="/" aria-label="IPM International Property Management">
+              <img src="/images/ipm-logo-new.png" alt="IPM International Property Management" />
+            </a>
+          </div>
           <a href="https://calendly.com" className="sa-btn sa-nav-cta" target="_blank" rel="noopener noreferrer">Schedule Consultation</a>
         </div>
       </nav>
@@ -714,7 +717,9 @@ const StAugustineProposal = () => {
         <div className="sa-container">
           <div className="sa-footer-grid">
             <div>
-              <div className="sa-footer-brand"><span>IPM</span>. International Property Management</div>
+              <div className="sa-footer-brand">
+                <img src="/images/ipm-logo-new.png" alt="IPM International Property Management" />
+              </div>
               <div className="sa-footer-sub">St. Augustine Property Management Division</div>
               <p style={{fontSize:'0.84rem',color:'rgba(255,255,255,0.4)',lineHeight:'1.7',maxWidth:'320px'}}>Professional short-term rental management across St. Augustine, Charlotte, Tampa, Playa del Carmen, Tulum, and Lake Norman.</p>
             </div>

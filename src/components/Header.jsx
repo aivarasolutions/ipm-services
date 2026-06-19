@@ -47,9 +47,9 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
+          <Link to="/" className="flex items-center rounded bg-black px-2 py-1 shadow-sm">
             <img 
-              src="/logo.png" 
+              src="/images/ipm-logo-new.png" 
               alt="IPM International Property Management" 
               className="h-10 w-auto"
             />
@@ -300,4 +300,3 @@ const Header = () => {
 }
 
 export default Header
-

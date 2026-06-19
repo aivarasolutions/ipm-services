@@ -29,11 +29,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and Description */}
           <div className="col-span-1">
-            <Link to="/" className="flex items-center space-x-2 mb-4">
+            <Link to="/" className="inline-flex items-center rounded bg-black px-2 py-1 mb-4">
               <img 
-                src="/logo.png" 
+                src="/images/ipm-logo-new.png" 
                 alt="IPM International Property Management" 
-                className="h-8 w-auto"
+                className="h-10 w-auto"
               />
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed mb-4">
@@ -160,4 +160,3 @@ const Footer = () => {
 }
 
 export default Footer
-
