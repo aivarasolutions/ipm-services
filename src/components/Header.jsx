@@ -43,7 +43,7 @@ const Header = () => {
   ]
 
   return (
-    <header className="bg-[#050505] shadow-sm border-b border-[#D4AF37]/15">
+    <header className="sticky top-0 z-50 bg-[#050505]/95 backdrop-blur-sm border-b border-[#D4AF37]/20 shadow-lg shadow-black/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -73,7 +73,7 @@ const Header = () => {
                         className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                           isActive
                             ? item.color
-                            : 'text-[#CFCFCF] hover:text-[#F8F8F8] hover:bg-[#1F1F1F]'
+                            : 'text-[#CFCFCF] hover:text-[#D4AF37] hover:bg-[#D4AF37]/10'
                         }`}
                       >
                         {item.name} ▾
@@ -100,7 +100,7 @@ const Header = () => {
                   <a key={item.name} href={item.path} target="_blank" rel="noopener noreferrer">
                     <Button
                       variant="ghost"
-                      className="px-4 py-2 rounded-md text-sm font-medium transition-colors text-[#CFCFCF] hover:text-[#F8F8F8] hover:bg-[#1F1F1F]"
+                      className="px-4 py-2 rounded-md text-sm font-medium transition-colors text-[#CFCFCF] hover:text-[#D4AF37] hover:bg-[#D4AF37]/10"
                     >
                       {item.name}
                     </Button>
@@ -114,7 +114,7 @@ const Header = () => {
                     className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                       location.pathname === item.path
                         ? item.color
-                        : 'text-[#CFCFCF] hover:text-[#F8F8F8] hover:bg-[#1F1F1F]'
+                        : 'text-[#CFCFCF] hover:text-[#D4AF37] hover:bg-[#D4AF37]/10'
                     }`}
                   >
                     {item.name}
@@ -202,7 +202,7 @@ const Header = () => {
                       className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                         isActive
                           ? 'bg-[#D4AF37] text-[#050505]'
-                          : 'text-[#CFCFCF] hover:text-[#F8F8F8] hover:bg-[#1F1F1F]'
+                          : 'text-[#CFCFCF] hover:text-[#D4AF37] hover:bg-[#D4AF37]/10'
                       }`}
                     >
                       {item.name}
@@ -216,7 +216,7 @@ const Header = () => {
                           className={`block px-3 py-2 rounded-md text-sm transition-colors ${
                             location.pathname === subItem.path
                               ? 'bg-[#D4AF37]/15 text-[#E6C978]'
-                              : 'text-[#B8B8B8] hover:text-[#F8F8F8] hover:bg-[#111111]'
+                              : 'text-[#B8B8B8] hover:text-[#D4AF37] hover:bg-[#D4AF37]/10'
                           }`}
                         >
                           {subItem.name}
@@ -235,7 +235,7 @@ const Header = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block px-3 py-2 rounded-md text-base font-medium transition-colors text-[#CFCFCF] hover:text-[#F8F8F8] hover:bg-[#1F1F1F]"
+                    className="block px-3 py-2 rounded-md text-base font-medium transition-colors text-[#CFCFCF] hover:text-[#D4AF37] hover:bg-[#D4AF37]/10"
                   >
                     {item.name}
                   </a>
@@ -249,7 +249,7 @@ const Header = () => {
                   className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                     isActive
                       ? 'bg-[#D4AF37] text-[#050505]'
-                      : 'text-[#CFCFCF] hover:text-[#F8F8F8] hover:bg-[#1F1F1F]'
+                      : 'text-[#CFCFCF] hover:text-[#D4AF37] hover:bg-[#D4AF37]/10'
                   }`}
                 >
                   {item.name}
