@@ -142,10 +142,24 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-[#D4AF37]/20 mt-8 pt-8 text-center">
-          <p className="text-[#CFCFCF] text-sm">
+        <div className="border-t border-[#D4AF37]/20 mt-8 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-[#CFCFCF] text-sm text-center md:text-left">
             © {new Date().getFullYear()} International Property Management. All rights reserved.
           </p>
+          <nav className="flex items-center gap-6" aria-label="Legal">
+            <Link
+              to="/privacy-policy"
+              className="text-[#CFCFCF] hover:text-[#E6C978] transition-colors text-sm"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              to="/terms-and-conditions"
+              className="text-[#CFCFCF] hover:text-[#E6C978] transition-colors text-sm"
+            >
+              Terms &amp; Conditions
+            </Link>
+          </nav>
         </div>
       </div>
     </footer>

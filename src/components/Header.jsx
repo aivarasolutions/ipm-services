@@ -35,8 +35,6 @@ const Header = () => {
         { name: '🏠 Tegucigalpa Launch Checklist', path: '/insights/tegucigalpa-checklist' }
       ]
     },
-    { name: 'News', path: '/news', color: 'bg-[#D4AF37] text-[#06121F]' },
-    { name: 'Relocation Guide', path: '/location-guide', color: 'bg-[#D4AF37] text-[#06121F]' },
     { name: 'Contact', path: '/contact', color: 'bg-[#D4AF37] text-[#06121F]' },
     { name: 'Owner Portal', path: 'https://portal.ipm.services/', color: 'bg-[#D4AF37] text-[#06121F]', external: true }
   ]

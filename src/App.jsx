@@ -15,6 +15,8 @@ import RealEstate from './pages/RealEstate'
 import RealEstateDetail from './pages/RealEstateDetail'
 import LocationGuide from './pages/LocationGuide'
 import News from './pages/News'
+import PrivacyPolicy from './pages/PrivacyPolicy'
+import TermsAndConditions from './pages/TermsAndConditions'
 import Insights from './pages/Insights'
 import AirbnbFees from './pages/insights/AirbnbFees'
 import ApiCosts from './pages/insights/ApiCosts'
@@ -73,6 +75,8 @@ function AppLayout() {
           <Route path="/location-guide" element={<LocationGuide />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/owner-portal" element={<OwnerPortal />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         </Routes>
       </main>
       <Footer />
