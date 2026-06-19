@@ -18,7 +18,7 @@ const LeadCaptureForm = ({ variant = 'simple' }) => {
       });
       setStatus('success');
       form.reset();
-    } catch (error) {
+    } catch {
       setStatus('error');
     }
   }

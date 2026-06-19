@@ -173,9 +173,9 @@ const LocationGuide = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#111111]">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-teal-600 text-white py-20">
+      <section className="bg-gradient-to-r from-[#050505] to-[#171717] text-white py-20">
         <Container>
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
@@ -193,13 +193,13 @@ const LocationGuide = () => {
       </section>
 
       {/* PDF Download Form */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-[#111111]">
         <Container>
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-[#F8F8F8] mb-4">
               Get Your Complete Relocation Guide
             </h2>
-            <p className="text-lg text-gray-600 mb-8">
+            <p className="text-lg text-[#B8B8B8] mb-8">
               Download our comprehensive PDF guide with detailed information about relocating to Cancún, Playa del Carmen, and Tulum.
             </p>
             
@@ -228,7 +228,7 @@ const LocationGuide = () => {
                 <form onSubmit={handleFormSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="firstName" className="block text-sm font-medium text-[#CFCFCF] mb-2">
                         First Name *
                       </label>
                       <input
@@ -239,12 +239,12 @@ const LocationGuide = () => {
                         onChange={handleInputChange}
                         required
                         disabled={submissionStatus === 'loading'}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-50 disabled:cursor-not-allowed"
+                        className="w-full px-4 py-3 border border-[#D4AF37]/25 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent disabled:bg-[#111111] disabled:cursor-not-allowed"
                         placeholder="Enter your first name"
                       />
                     </div>
                     <div>
-                      <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label htmlFor="lastName" className="block text-sm font-medium text-[#CFCFCF] mb-2">
                         Last Name *
                       </label>
                       <input
@@ -255,14 +255,14 @@ const LocationGuide = () => {
                         onChange={handleInputChange}
                         required
                         disabled={submissionStatus === 'loading'}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-50 disabled:cursor-not-allowed"
+                        className="w-full px-4 py-3 border border-[#D4AF37]/25 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent disabled:bg-[#111111] disabled:cursor-not-allowed"
                         placeholder="Enter your last name"
                       />
                     </div>
                   </div>
                   
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-[#CFCFCF] mb-2">
                       Email Address *
                     </label>
                     <input
@@ -273,13 +273,13 @@ const LocationGuide = () => {
                       onChange={handleInputChange}
                       required
                       disabled={submissionStatus === 'loading'}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-50 disabled:cursor-not-allowed"
+                      className="w-full px-4 py-3 border border-[#D4AF37]/25 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent disabled:bg-[#111111] disabled:cursor-not-allowed"
                       placeholder="Enter your email address"
                     />
                   </div>
                   
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="phone" className="block text-sm font-medium text-[#CFCFCF] mb-2">
                       Phone Number *
                     </label>
                     <input
@@ -290,7 +290,7 @@ const LocationGuide = () => {
                       onChange={handleInputChange}
                       required
                       disabled={submissionStatus === 'loading'}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-50 disabled:cursor-not-allowed"
+                      className="w-full px-4 py-3 border border-[#D4AF37]/25 rounded-md focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent disabled:bg-[#111111] disabled:cursor-not-allowed"
                       placeholder="Enter your phone number"
                     />
                   </div>
@@ -301,9 +301,9 @@ const LocationGuide = () => {
                         type="checkbox"
                         required
                         disabled={submissionStatus === 'loading'}
-                        className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded disabled:cursor-not-allowed"
+                        className="mt-1 h-4 w-4 text-[#D4AF37] focus:ring-[#D4AF37] border-[#D4AF37]/25 rounded disabled:cursor-not-allowed"
                       />
-                      <span className="text-sm text-gray-600">
+                      <span className="text-sm text-[#B8B8B8]">
                         I agree to receive the relocation guide and occasional updates about properties and services in Mexico. You can unsubscribe at any time.
                       </span>
                     </label>
@@ -313,7 +313,7 @@ const LocationGuide = () => {
                     type="submit" 
                     size="lg" 
                     disabled={submissionStatus === 'loading'}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white disabled:bg-gray-400 disabled:cursor-not-allowed"
+                    className="w-full bg-[#D4AF37] hover:bg-[#E6C978] text-[#050505] disabled:bg-[#555555] disabled:cursor-not-allowed"
                   >
                     {submissionStatus === 'loading' ? (
                       <>
@@ -325,7 +325,7 @@ const LocationGuide = () => {
                     )}
                   </Button>
                   
-                  <p className="text-xs text-gray-500 text-center">
+                  <p className="text-xs text-[#A8A8A8] text-center">
                     Your information is secure and will never be shared with third parties.
                   </p>
                 </form>
@@ -339,17 +339,17 @@ const LocationGuide = () => {
       <section className="py-16">
         <Container>
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Quick Comparison</h2>
-            <p className="text-lg text-gray-600">Choose your ideal destination</p>
+            <h2 className="text-3xl font-bold text-[#F8F8F8] mb-4">Quick Comparison</h2>
+            <p className="text-lg text-[#B8B8B8]">Choose your ideal destination</p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="text-center p-6 hover:shadow-lg transition-shadow">
               <CardContent>
-                <Building className="h-12 w-12 mx-auto mb-4 text-blue-600" />
+                <Building className="h-12 w-12 mx-auto mb-4 text-[#D4AF37]" />
                 <h3 className="text-xl font-bold mb-2">Cancún</h3>
-                <p className="text-gray-600 mb-4">International city with modern amenities</p>
-                <div className="text-sm text-gray-500">
+                <p className="text-[#B8B8B8] mb-4">International city with modern amenities</p>
+                <div className="text-sm text-[#A8A8A8]">
                   <p>✈️ Major international airport</p>
                   <p>🏨 Resort and hotel zone</p>
                   <p>🌃 Vibrant nightlife</p>
@@ -359,10 +359,10 @@ const LocationGuide = () => {
 
             <Card className="text-center p-6 hover:shadow-lg transition-shadow">
               <CardContent>
-                <Waves className="h-12 w-12 mx-auto mb-4 text-teal-600" />
+                <Waves className="h-12 w-12 mx-auto mb-4 text-[#D4AF37]" />
                 <h3 className="text-xl font-bold mb-2">Playa del Carmen</h3>
-                <p className="text-gray-600 mb-4">Charming beach town with expat community</p>
-                <div className="text-sm text-gray-500">
+                <p className="text-[#B8B8B8] mb-4">Charming beach town with expat community</p>
+                <div className="text-sm text-[#A8A8A8]">
                   <p>🚶 Walkable downtown area</p>
                   <p>🌍 Growing international community</p>
                   <p>🏖️ Beach clubs and cenotes</p>
@@ -374,8 +374,8 @@ const LocationGuide = () => {
               <CardContent>
                 <TreePine className="h-12 w-12 mx-auto mb-4 text-green-600" />
                 <h3 className="text-xl font-bold mb-2">Tulum</h3>
-                <p className="text-gray-600 mb-4">Eco-luxury paradise with ancient ruins</p>
-                <div className="text-sm text-gray-500">
+                <p className="text-[#B8B8B8] mb-4">Eco-luxury paradise with ancient ruins</p>
+                <div className="text-sm text-[#A8A8A8]">
                   <p>🏛️ Mayan archaeological site</p>
                   <p>🧘 Wellness and yoga retreats</p>
                   <p>🌿 Sustainable eco-tourism</p>
@@ -387,21 +387,21 @@ const LocationGuide = () => {
       </section>
 
       {/* Detailed Location Guides */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-[#050505]">
         <Container>
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Detailed Location Guides</h2>
-            <p className="text-lg text-gray-600">Everything you need to know about living in paradise</p>
+            <h2 className="text-3xl font-bold text-[#F8F8F8] mb-4">Detailed Location Guides</h2>
+            <p className="text-lg text-[#B8B8B8]">Everything you need to know about living in paradise</p>
           </div>
 
           <div className="space-y-16">
             {locations.map((location, index) => (
-              <div key={location.id} className={`${index % 2 === 1 ? 'bg-gray-50' : ''} -mx-4 px-4 py-12 rounded-lg`}>
+              <div key={location.id} className={`${index % 2 === 1 ? 'bg-[#111111]' : ''} -mx-4 px-4 py-12 rounded-lg`}>
                 <div className="max-w-6xl mx-auto">
                   <div className="text-center mb-12">
-                    <h3 className="text-3xl font-bold text-gray-900 mb-2">{location.name}</h3>
-                    <p className="text-xl text-blue-600 mb-4">{location.subtitle}</p>
-                    <p className="text-lg text-gray-600 max-w-3xl mx-auto">{location.description}</p>
+                    <h3 className="text-3xl font-bold text-[#F8F8F8] mb-2">{location.name}</h3>
+                    <p className="text-xl text-[#D4AF37] mb-4">{location.subtitle}</p>
+                    <p className="text-lg text-[#B8B8B8] max-w-3xl mx-auto">{location.description}</p>
                   </div>
 
                   {/* Key Features */}
@@ -409,9 +409,9 @@ const LocationGuide = () => {
                     {location.keyFeatures.map((feature, idx) => (
                       <Card key={idx} className="text-center p-4 hover:shadow-md transition-shadow">
                         <CardContent>
-                          <feature.icon className="h-8 w-8 mx-auto mb-3 text-blue-600" />
+                          <feature.icon className="h-8 w-8 mx-auto mb-3 text-[#D4AF37]" />
                           <h4 className="font-semibold mb-2">{feature.title}</h4>
-                          <p className="text-sm text-gray-600">{feature.description}</p>
+                          <p className="text-sm text-[#B8B8B8]">{feature.description}</p>
                         </CardContent>
                       </Card>
                     ))}
@@ -420,12 +420,12 @@ const LocationGuide = () => {
                   <div className="grid lg:grid-cols-2 gap-12">
                     {/* Highlights */}
                     <div>
-                      <h4 className="text-xl font-bold text-gray-900 mb-4">✨ Location Highlights</h4>
+                      <h4 className="text-xl font-bold text-[#F8F8F8] mb-4">✨ Location Highlights</h4>
                       <ul className="space-y-3">
                         {location.highlights.map((highlight, idx) => (
                           <li key={idx} className="flex items-start">
-                            <span className="text-blue-600 mr-2">•</span>
-                            <span className="text-gray-700">{highlight}</span>
+                            <span className="text-[#D4AF37] mr-2">•</span>
+                            <span className="text-[#CFCFCF]">{highlight}</span>
                           </li>
                         ))}
                       </ul>
@@ -433,22 +433,22 @@ const LocationGuide = () => {
 
                     {/* Living Costs */}
                     <div>
-                      <h4 className="text-xl font-bold text-gray-900 mb-4">💰 Average Living Costs</h4>
+                      <h4 className="text-xl font-bold text-[#F8F8F8] mb-4">💰 Average Living Costs</h4>
                       <div className="space-y-3">
                         <div className="flex justify-between">
-                          <span className="text-gray-700">Rent (1-2 bedroom):</span>
+                          <span className="text-[#CFCFCF]">Rent (1-2 bedroom):</span>
                           <span className="font-semibold">{location.livingCost.rent}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-700">Utilities:</span>
+                          <span className="text-[#CFCFCF]">Utilities:</span>
                           <span className="font-semibold">{location.livingCost.utilities}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-700">Food & Dining:</span>
+                          <span className="text-[#CFCFCF]">Food & Dining:</span>
                           <span className="font-semibold">{location.livingCost.food}</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-700">Transportation:</span>
+                          <span className="text-[#CFCFCF]">Transportation:</span>
                           <span className="font-semibold">{location.livingCost.transportation}</span>
                         </div>
                       </div>
@@ -457,13 +457,13 @@ const LocationGuide = () => {
 
                   {/* Neighborhoods */}
                   <div className="mt-12">
-                    <h4 className="text-xl font-bold text-gray-900 mb-6">🏘️ Popular Neighborhoods</h4>
+                    <h4 className="text-xl font-bold text-[#F8F8F8] mb-6">🏘️ Popular Neighborhoods</h4>
                     <div className="grid md:grid-cols-2 gap-6">
                       {location.neighborhoods.map((neighborhood, idx) => (
                         <Card key={idx} className="p-4">
                           <CardContent>
-                            <h5 className="font-semibold text-gray-900 mb-2">{neighborhood.name}</h5>
-                            <p className="text-gray-600 text-sm">{neighborhood.description}</p>
+                            <h5 className="font-semibold text-[#F8F8F8] mb-2">{neighborhood.name}</h5>
+                            <p className="text-[#B8B8B8] text-sm">{neighborhood.description}</p>
                           </CardContent>
                         </Card>
                       ))}
@@ -477,7 +477,7 @@ const LocationGuide = () => {
       </section>
 
       {/* Contact CTA */}
-      <section className="py-16 bg-blue-600 text-white">
+      <section className="py-16 bg-[#050505] border-y border-[#D4AF37]/20 text-white">
         <Container>
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold mb-6">Ready to Make the Move?</h2>
@@ -491,7 +491,7 @@ const LocationGuide = () => {
                 </Button>
               </Link>
               <Link to="/real-estate">
-                <Button size="lg" className="w-full sm:w-auto bg-white text-blue-600 hover:bg-gray-100">
+                <Button size="lg" className="w-full sm:w-auto bg-[#D4AF37] text-[#050505] hover:bg-[#E6C978]">
                   View Properties
                 </Button>
               </Link>

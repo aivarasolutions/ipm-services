@@ -102,12 +102,12 @@ const CharlotteProposal = () => {
           options: {
             responsive: true,
             plugins: {
-              legend: { labels: { color: '#4A5568', font: { family: 'Inter', size: 12 } } },
+              legend: { labels: { color: '#B8B8B8', font: { family: 'Inter', size: 12 } } },
               tooltip: { callbacks: { label: ctx => ` $${ctx.parsed.y.toLocaleString()}` } }
             },
             scales: {
-              x: { ticks: { color: '#4A5568', font: { family: 'Inter', size: 12 } }, grid: { color: 'rgba(0,0,0,0.05)' } },
-              y: { ticks: { color: '#4A5568', font: { family: 'Inter', size: 12 }, callback: v => '$' + (v/1000) + 'K' }, grid: { color: 'rgba(0,0,0,0.05)' } }
+              x: { ticks: { color: '#B8B8B8', font: { family: 'Inter', size: 12 } }, grid: { color: 'rgba(0,0,0,0.05)' } },
+              y: { ticks: { color: '#B8B8B8', font: { family: 'Inter', size: 12 }, callback: v => '$' + (v/1000) + 'K' }, grid: { color: 'rgba(0,0,0,0.05)' } }
             }
           }
         });
@@ -143,30 +143,30 @@ const CharlotteProposal = () => {
   return (
     <>
       <style>{`
-        .cp-wrap { font-family: 'Inter', sans-serif; background-color: #F8F7F4; color: #1A2230; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+        .cp-wrap { font-family: 'Inter', sans-serif; background-color: #F8F7F4; color: #F8F8F8; line-height: 1.7; -webkit-font-smoothing: antialiased; }
         .cp-wrap *, .cp-wrap *::before, .cp-wrap *::after { box-sizing: border-box; margin: 0; padding: 0; }
         .cp-wrap a { color: inherit; text-decoration: none; }
         .cp-wrap img { max-width: 100%; height: auto; display: block; }
-        .cp-wrap h1, .cp-wrap h2, .cp-wrap h3, .cp-wrap h4 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.25; color: #0E1A2B; }
+        .cp-wrap h1, .cp-wrap h2, .cp-wrap h3, .cp-wrap h4 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.25; color: #050505; }
         .cp-wrap h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; }
         .cp-wrap h2 { font-size: clamp(1.6rem, 3.5vw, 2.6rem); font-weight: 600; }
         .cp-wrap h3 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-weight: 600; }
         .cp-wrap h4 { font-size: 1.1rem; font-weight: 600; }
-        .cp-wrap p { color: #4A5568; font-size: 1rem; line-height: 1.8; }
+        .cp-wrap p { color: #B8B8B8; font-size: 1rem; line-height: 1.8; }
         .cp-container { max-width: 1160px; margin: 0 auto; padding: 0 1.5rem; }
         .cp-section { padding: 5rem 0; }
-        .cp-section-dark { background-color: #0E1A2B; }
-        .cp-section-slate { background-color: #232A33; }
+        .cp-section-dark { background-color: #050505; }
+        .cp-section-slate { background-color: #171717; }
         .cp-section-ivory { background-color: #F8F7F4; }
         .cp-section-white { background-color: #FFFFFF; }
         .cp-section-header { text-align: center; max-width: 700px; margin: 0 auto 3.5rem; }
         .cp-section-header h2 { margin-bottom: 1rem; }
         .cp-section-header p { font-size: 1.05rem; }
-        .cp-section-label { font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: #C6A66B; margin-bottom: 0.75rem; }
-        .cp-gold-divider { width: 60px; height: 3px; background: linear-gradient(90deg, #C6A66B, #D9BC8A); border-radius: 2px; margin: 1.25rem auto; }
+        .cp-section-label { font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: #D4AF37; margin-bottom: 0.75rem; }
+        .cp-gold-divider { width: 60px; height: 3px; background: linear-gradient(90deg, #D4AF37, #D9BC8A); border-radius: 2px; margin: 1.25rem auto; }
         .cp-gold-divider-left { margin-left: 0; }
         .cp-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2rem; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); border: 2px solid transparent; white-space: nowrap; text-decoration: none; }
-        .cp-btn-primary { background-color: #C6A66B; color: #0E1A2B !important; border-color: #C6A66B; }
+        .cp-btn-primary { background-color: #D4AF37; color: #050505 !important; border-color: #D4AF37; }
         .cp-btn-primary:hover { background-color: #D9BC8A; border-color: #D9BC8A; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(198,166,107,0.35); }
         .cp-btn-outline { background-color: rgba(0,0,0,0.35); color: #FFFFFF !important; border-color: #FFFFFF; }
         .cp-btn-outline:hover { background-color: rgba(0,0,0,0.55); border-color: #FFFFFF; transform: translateY(-2px); }
@@ -175,94 +175,94 @@ const CharlotteProposal = () => {
         .cp-nav-scrolled { background: rgba(14,26,43,0.97); padding: 0.75rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
         .cp-nav-inner { display: flex; align-items: center; justify-content: space-between; }
         .cp-nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: #FFFFFF !important; letter-spacing: 0.05em; text-decoration: none; }
-        .cp-nav-logo span { color: #C6A66B; }
-        .cp-hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; background-color: #0E1A2B; }
+        .cp-nav-logo span { color: #D4AF37; }
+        .cp-hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; background-color: #050505; }
         .cp-hero-bg { position: absolute; inset: 0; background-image: url('/charlotte-hero-bg.jpg'); background-size: cover; background-position: center; opacity: 0.25; }
         .cp-hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(14,26,43,0.92) 0%, rgba(14,26,43,0.75) 50%, rgba(35,42,51,0.85) 100%); }
         .cp-hero-content { position: relative; z-index: 2; max-width: 800px; padding: 8rem 0 5rem; }
-        .cp-hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(198,166,107,0.15); border: 1px solid rgba(198,166,107,0.4); border-radius: 50px; padding: 0.4rem 1rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #C6A66B; margin-bottom: 1.5rem; }
+        .cp-hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(198,166,107,0.15); border: 1px solid rgba(198,166,107,0.4); border-radius: 50px; padding: 0.4rem 1rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #D4AF37; margin-bottom: 1.5rem; }
         .cp-hero h1 { color: #FFFFFF; margin-bottom: 1.25rem; }
         .cp-hero-sub { font-size: 1.15rem; color: rgba(255,255,255,0.85) !important; margin-bottom: 0.75rem; font-family: 'Playfair Display', serif; font-style: italic; }
         .cp-hero-desc { font-size: 1rem; color: rgba(255,255,255,0.8) !important; max-width: 580px; margin-bottom: 2.5rem; line-height: 1.8; }
         .cp-hero-stats { display: flex; gap: 2.5rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.12); flex-wrap: wrap; }
-        .cp-hero-stat-value { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: #C6A66B; }
+        .cp-hero-stat-value { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: #D4AF37; }
         .cp-hero-stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem; }
         .cp-prop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-        .cp-address-card { background: #0E1A2B; border-radius: 20px; padding: 2.5rem; color: #FFFFFF; position: relative; overflow: hidden; }
+        .cp-address-card { background: #050505; border-radius: 20px; padding: 2.5rem; color: #FFFFFF; position: relative; overflow: hidden; }
         .cp-address-card::before { content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px; background: radial-gradient(circle, rgba(198,166,107,0.15) 0%, transparent 70%); border-radius: 50%; }
-        .cp-address-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: #C6A66B; font-weight: 600; margin-bottom: 0.5rem; }
+        .cp-address-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: #D4AF37; font-weight: 600; margin-bottom: 0.5rem; }
         .cp-address-card h3 { color: #FFFFFF; font-size: 1.5rem; margin-bottom: 0.25rem; }
         .cp-address-city { color: rgba(255,255,255,0.6); font-size: 1rem; margin-bottom: 1.5rem; }
-        .cp-map-placeholder { background: #232A33; border-radius: 12px; height: 200px; margin-top: 1.5rem; overflow: hidden; }
+        .cp-map-placeholder { background: #171717; border-radius: 12px; height: 200px; margin-top: 1.5rem; overflow: hidden; }
         .cp-map-placeholder iframe { width: 100%; height: 100%; border: none; }
         .cp-demand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1.5rem; }
-        .cp-demand-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; color: #4A5568; }
+        .cp-demand-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; color: #B8B8B8; }
         .cp-demand-icon { width: 32px; height: 32px; background: linear-gradient(135deg, rgba(198,166,107,0.15), rgba(198,166,107,0.05)); border: 1px solid rgba(198,166,107,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
         .cp-market-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 3rem; }
         .cp-market-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(198,166,107,0.2); border-radius: 12px; padding: 1.75rem; text-align: center; }
-        .cp-market-value { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: #C6A66B; line-height: 1; margin-bottom: 0.5rem; }
+        .cp-market-value { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: #D4AF37; line-height: 1; margin-bottom: 0.5rem; }
         .cp-market-desc { font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
         .cp-chart-container { background: rgba(255,255,255,0.04); border: 1px solid rgba(198,166,107,0.15); border-radius: 20px; padding: 2rem; max-width: 700px; margin: 0 auto; }
         .cp-chart-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #FFFFFF; text-align: center; margin-bottom: 1.5rem; }
         .cp-proj-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 3rem; }
-        .cp-proj-card { background: #FFFFFF; border-radius: 20px; padding: 2rem; box-shadow: 0 2px 8px rgba(14,26,43,0.08); border-top: 4px solid transparent; transition: transform 0.3s, box-shadow 0.3s; position: relative; cursor: pointer; }
+        .cp-proj-card { background: #111111FFF; border-radius: 20px; padding: 2rem; box-shadow: 0 2px 8px rgba(14,26,43,0.08); border-top: 4px solid transparent; transition: transform 0.3s, box-shadow 0.3s; position: relative; cursor: pointer; }
         .cp-proj-card:hover { transform: translateY(-6px); box-shadow: 0 8px 32px rgba(14,26,43,0.12); }
-        .cp-proj-card.cp-selected { outline: 3px solid #C6A66B; outline-offset: 2px; transform: translateY(-6px); box-shadow: 0 8px 32px rgba(198,166,107,0.25); }
-        .cp-proj-card.cp-selected::after { content: '✓ Selected'; position: absolute; bottom: 1rem; right: 1rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #C6A66B; }
+        .cp-proj-card.cp-selected { outline: 3px solid #D4AF37; outline-offset: 2px; transform: translateY(-6px); box-shadow: 0 8px 32px rgba(198,166,107,0.25); }
+        .cp-proj-card.cp-selected::after { content: '✓ Selected'; position: absolute; bottom: 1rem; right: 1rem; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #D4AF37; }
         .cp-proj-conservative { border-top-color: #8BA3C0; }
-        .cp-proj-strong { border-top-color: #C6A66B; background: #0E1A2B; }
+        .cp-proj-strong { border-top-color: #D4AF37; background: #050505; }
         .cp-proj-premium { border-top-color: #2D6A4F; }
         .cp-proj-badge { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 50px; margin-bottom: 1rem; }
         .cp-proj-conservative .cp-proj-badge { background: rgba(139,163,192,0.15); color: #5A7A9A; }
-        .cp-proj-strong .cp-proj-badge { background: rgba(198,166,107,0.2); color: #C6A66B; }
+        .cp-proj-strong .cp-proj-badge { background: rgba(198,166,107,0.2); color: #D4AF37; }
         .cp-proj-premium .cp-proj-badge { background: rgba(45,106,79,0.12); color: #2D6A4F; }
-        .cp-proj-nightly { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: #0E1A2B; line-height: 1; margin-bottom: 0.25rem; }
-        .cp-proj-strong .cp-proj-nightly { color: #C6A66B; }
-        .cp-proj-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: #718096; margin-bottom: 1.5rem; }
+        .cp-proj-nightly { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: #050505; line-height: 1; margin-bottom: 0.25rem; }
+        .cp-proj-strong .cp-proj-nightly { color: #D4AF37; }
+        .cp-proj-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: #A8A8A8; margin-bottom: 1.5rem; }
         .cp-proj-strong .cp-proj-label, .cp-proj-strong h3 { color: #FFFFFF; }
-        .cp-proj-rows { border-top: 1px solid #E2E8F0; padding-top: 1.25rem; }
+        .cp-proj-rows { border-top: 1px solid rgba(212,175,55,0.22); padding-top: 1.25rem; }
         .cp-proj-strong .cp-proj-rows { border-top-color: rgba(255,255,255,0.1); }
         .cp-proj-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; font-size: 0.88rem; }
-        .cp-proj-row-label { color: #718096; }
+        .cp-proj-row-label { color: #A8A8A8; }
         .cp-proj-strong .cp-proj-row-label { color: rgba(255,255,255,0.65); }
-        .cp-proj-row-value { font-weight: 600; color: #1A2230; }
+        .cp-proj-row-value { font-weight: 600; color: #F8F8F8; }
         .cp-proj-strong .cp-proj-row-value { color: #FFFFFF; }
         .cp-proj-annual { background: linear-gradient(135deg, rgba(198,166,107,0.12), rgba(198,166,107,0.05)); border: 1px solid rgba(198,166,107,0.3); border-radius: 8px; padding: 1rem; margin-top: 1.25rem; text-align: center; }
-        .cp-proj-annual-value { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: #C6A66B; }
-        .cp-proj-annual-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #718096; margin-top: 0.2rem; }
-        .cp-popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #C6A66B; color: #0E1A2B; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 1rem; border-radius: 50px; white-space: nowrap; }
-        .cp-disclaimer { background: rgba(198,166,107,0.06); border-left: 3px solid #C6A66B; border-radius: 0 8px 8px 0; padding: 1rem 1.5rem; font-size: 0.82rem; color: #718096; margin-top: 2rem; line-height: 1.6; }
+        .cp-proj-annual-value { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: #D4AF37; }
+        .cp-proj-annual-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #A8A8A8; margin-top: 0.2rem; }
+        .cp-popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #D4AF37; color: #050505; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 1rem; border-radius: 50px; white-space: nowrap; }
+        .cp-disclaimer { background: rgba(198,166,107,0.06); border-left: 3px solid #D4AF37; border-radius: 0 8px 8px 0; padding: 1rem 1.5rem; font-size: 0.82rem; color: #A8A8A8; margin-top: 2rem; line-height: 1.6; }
         .cp-earnings-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: start; }
-        .cp-fee-structure { background: #0E1A2B; border-radius: 20px; padding: 2.5rem; color: #FFFFFF; }
+        .cp-fee-structure { background: #050505; border-radius: 20px; padding: 2.5rem; color: #FFFFFF; }
         .cp-fee-item { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
         .cp-fee-item:last-child { border-bottom: none; }
         .cp-fee-item-label { font-size: 0.9rem; color: rgba(255,255,255,0.7); }
         .cp-fee-item-sublabel { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-top: 0.2rem; }
-        .cp-fee-item-value { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: #C6A66B; }
+        .cp-fee-item-value { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: #D4AF37; }
         .cp-earnings-table-wrap { overflow-x: auto; border-radius: 12px; box-shadow: 0 2px 8px rgba(14,26,43,0.08); }
-        .cp-earnings-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; background: #FFFFFF; }
-        .cp-earnings-table th { background: #0E1A2B; color: #FFFFFF; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 1rem 1.25rem; text-align: left; }
-        .cp-earnings-table td { padding: 0.9rem 1.25rem; border-bottom: 1px solid #E2E8F0; color: #4A5568; }
-        .cp-earnings-table td:last-child { font-weight: 600; color: #1A2230; text-align: right; }
-        .cp-earnings-table tr.cp-highlight td { background: linear-gradient(90deg, rgba(198,166,107,0.08), rgba(198,166,107,0.04)); color: #0E1A2B; font-weight: 700; font-size: 1rem; }
-        .cp-earnings-table tr.cp-highlight td:last-child { color: #C6A66B; font-size: 1.1rem; }
-        .cp-editable-note { font-size: 0.78rem; color: #718096; margin-top: 0.75rem; display: flex; align-items: center; gap: 0.4rem; }
+        .cp-earnings-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; background: #111111FFF; }
+        .cp-earnings-table th { background: #050505; color: #FFFFFF; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 1rem 1.25rem; text-align: left; }
+        .cp-earnings-table td { padding: 0.9rem 1.25rem; border-bottom: 1px solid rgba(212,175,55,0.22); color: #B8B8B8; }
+        .cp-earnings-table td:last-child { font-weight: 600; color: #F8F8F8; text-align: right; }
+        .cp-earnings-table tr.cp-highlight td { background: linear-gradient(90deg, rgba(198,166,107,0.08), rgba(198,166,107,0.04)); color: #050505; font-weight: 700; font-size: 1rem; }
+        .cp-earnings-table tr.cp-highlight td:last-child { color: #D4AF37; font-size: 1.1rem; }
+        .cp-editable-note { font-size: 0.78rem; color: #A8A8A8; margin-top: 0.75rem; display: flex; align-items: center; gap: 0.4rem; }
         .cp-services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
-        .cp-service-card { background: #FFFFFF; border-radius: 12px; padding: 1.75rem 1.5rem; text-align: center; box-shadow: 0 2px 8px rgba(14,26,43,0.08); transition: transform 0.3s, box-shadow 0.3s; }
+        .cp-service-card { background: #111111FFF; border-radius: 12px; padding: 1.75rem 1.5rem; text-align: center; box-shadow: 0 2px 8px rgba(14,26,43,0.08); transition: transform 0.3s, box-shadow 0.3s; }
         .cp-service-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(14,26,43,0.12); }
         .cp-service-icon { width: 56px; height: 56px; background: linear-gradient(135deg, rgba(198,166,107,0.15), rgba(198,166,107,0.05)); border: 1px solid rgba(198,166,107,0.3); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1rem; }
-        .cp-service-card h4 { font-size: 0.9rem; font-family: 'Inter', sans-serif; font-weight: 600; color: #0E1A2B; line-height: 1.4; }
+        .cp-service-card h4 { font-size: 0.9rem; font-family: 'Inter', sans-serif; font-weight: 600; color: #050505; line-height: 1.4; }
         .cp-why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-        .cp-why-card { background: #FFFFFF; border-radius: 12px; padding: 2rem; box-shadow: 0 2px 8px rgba(14,26,43,0.08); border-left: 3px solid #C6A66B; transition: transform 0.3s, box-shadow 0.3s; }
+        .cp-why-card { background: #111111FFF; border-radius: 12px; padding: 2rem; box-shadow: 0 2px 8px rgba(14,26,43,0.08); border-left: 3px solid #D4AF37; transition: transform 0.3s, box-shadow 0.3s; }
         .cp-why-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(14,26,43,0.12); }
         .cp-why-card-icon { font-size: 1.6rem; margin-bottom: 1rem; }
-        .cp-why-card h4 { font-size: 1rem; margin-bottom: 0.5rem; color: #0E1A2B; font-family: 'Playfair Display', serif; }
+        .cp-why-card h4 { font-size: 1rem; margin-bottom: 0.5rem; color: #050505; font-family: 'Playfair Display', serif; }
         .cp-why-card p { font-size: 0.88rem; line-height: 1.6; }
         .cp-dashboard-features { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; margin-top: 2.5rem; }
         .cp-dashboard-feature { text-align: center; padding: 1.5rem 1rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(198,166,107,0.15); border-radius: 12px; }
         .cp-dashboard-feature .cp-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
         .cp-dashboard-feature p { font-size: 0.82rem; color: rgba(255,255,255,0.65); line-height: 1.4; }
-        .cp-gallery-section { background: #FFFFFF; }
+        .cp-gallery-section { background: #111111FFF; }
         .cp-gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
         .cp-gallery-item { border-radius: 10px; overflow: hidden; position: relative; cursor: pointer; }
         .cp-gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
@@ -272,21 +272,21 @@ const CharlotteProposal = () => {
         .cp-gallery-hero { grid-column: span 2; height: 340px; }
         .cp-gallery-tall { height: 340px; }
         .cp-gallery-regular { height: 220px; }
-        .cp-cta-section { background: linear-gradient(135deg, #0E1A2B 0%, #1A2D47 50%, #232A33 100%); text-align: center; padding: 6rem 0; position: relative; overflow: hidden; }
+        .cp-cta-section { background: linear-gradient(135deg, #050505 0%, #111111 50%, #171717 100%); text-align: center; padding: 6rem 0; position: relative; overflow: hidden; }
         .cp-cta-section::before { content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(198,166,107,0.08) 0%, transparent 70%); border-radius: 50%; }
         .cp-cta-section h2 { color: #FFFFFF; margin-bottom: 1rem; }
         .cp-cta-section > .cp-container > .cp-fade-in > p { color: rgba(255,255,255,0.65); max-width: 560px; margin: 0 auto 2.5rem; font-size: 1.05rem; }
         .cp-cta-btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-        .cp-footer { background: #080F1A; padding: 3rem 0 2rem; color: rgba(255,255,255,0.5); }
+        .cp-footer { background: #050505; padding: 3rem 0 2rem; color: rgba(255,255,255,0.5); }
         .cp-footer-inner { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 1.5rem; }
         .cp-footer-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: #FFFFFF; margin-bottom: 0.4rem; }
-        .cp-footer-logo span { color: #C6A66B; }
+        .cp-footer-logo span { color: #D4AF37; }
         .cp-footer-tagline { font-size: 0.82rem; color: rgba(255,255,255,0.4); }
         .cp-footer-contact p { font-size: 0.85rem; color: rgba(255,255,255,0.45); margin-bottom: 0.4rem; }
-        .cp-footer-contact a { color: #C6A66B; font-weight: 500; }
+        .cp-footer-contact a { color: #D4AF37; font-weight: 500; }
         .cp-footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
         .cp-footer-bottom p { font-size: 0.78rem; }
-        .cp-footer-private { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; background: rgba(198,166,107,0.1); border: 1px solid rgba(198,166,107,0.2); color: #C6A66B; padding: 0.3rem 0.8rem; border-radius: 50px; }
+        .cp-footer-private { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.72rem; background: rgba(198,166,107,0.1); border: 1px solid rgba(198,166,107,0.2); color: #D4AF37; padding: 0.3rem 0.8rem; border-radius: 50px; }
         .cp-fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
         .cp-visible { opacity: 1; transform: translateY(0); }
         .cp-delay-1 { transition-delay: 0.1s; }
@@ -334,7 +334,7 @@ const CharlotteProposal = () => {
           <div className="cp-container">
             <div className="cp-hero-content">
               <div className="cp-hero-badge">✦ Private Owner Proposal</div>
-              <h1>Maximize the Revenue Potential of Your <span style={{color:'#C6A66B'}}>Charlotte</span> Property</h1>
+              <h1>Maximize the Revenue Potential of Your <span style={{color:'#D4AF37'}}>Charlotte</span> Property</h1>
               <p className="cp-hero-sub">Custom Property Management Proposal for<br/>5048 Downhaul Dr – Charlotte, NC</p>
               <p className="cp-hero-desc">
                 IPM – International Property Management specializes in professional short-term rental management, helping property owners like you maximize revenue while protecting your most valuable asset. This proposal was prepared exclusively for your property.
@@ -388,7 +388,7 @@ const CharlotteProposal = () => {
                   <div style={{display:'flex', gap:'1rem', flexWrap:'wrap'}}>
                     <div>
                       <div style={{fontSize:'0.72rem', color:'rgba(255,255,255,0.45)', textTransform:'uppercase', letterSpacing:'0.1em'}}>Market</div>
-                      <div style={{color:'#C6A66B', fontWeight:'600', fontSize:'0.95rem'}}>Charlotte Metro</div>
+                      <div style={{color:'#D4AF37', fontWeight:'600', fontSize:'0.95rem'}}>Charlotte Metro</div>
                     </div>
                     <div>
                       <div style={{fontSize:'0.72rem', color:'rgba(255,255,255,0.45)', textTransform:'uppercase', letterSpacing:'0.1em'}}>STR Status</div>
@@ -558,8 +558,8 @@ const CharlotteProposal = () => {
                 <div className="cp-proj-annual"><div className="cp-proj-annual-value">$67K–$72K</div><div className="cp-proj-annual-label">Estimated Annual Gross Revenue</div></div>
               </div>
             </div>
-            <div className="cp-chart-container cp-fade-in" style={{background:'#FFFFFF', border:'1px solid #E2E8F0', maxWidth:'750px'}}>
-              <div className="cp-chart-title" style={{color:'#0E1A2B'}}>Annual Revenue Comparison – Three Scenarios</div>
+            <div className="cp-chart-container cp-fade-in" style={{background:'#FFFFFF', border:'1px solid rgba(212,175,55,0.22)', maxWidth:'750px'}}>
+              <div className="cp-chart-title" style={{color:'#050505'}}>Annual Revenue Comparison – Three Scenarios</div>
               <canvas ref={revenueChartRef} height="260"></canvas>
             </div>
             <div className="cp-disclaimer cp-fade-in"><strong>Disclaimer:</strong> Revenue projections are estimates based on market data and comparable listings in Charlotte. Actual performance depends on property condition, amenities, pricing strategy, guest demand, and seasonality.</div>
@@ -578,7 +578,7 @@ const CharlotteProposal = () => {
             <div className="cp-earnings-layout cp-fade-in">
               <div>
                 <div className="cp-fee-structure">
-                  <div className="cp-section-label" style={{color:'#C6A66B'}}>IPM Fee Structure</div>
+                  <div className="cp-section-label" style={{color:'#D4AF37'}}>IPM Fee Structure</div>
                   <h3 style={{color:'#FFFFFF', marginBottom:'1.5rem'}}>Simple. Transparent. Aligned.</h3>
                   <div className="cp-fee-item">
                     <div>
@@ -595,7 +595,7 @@ const CharlotteProposal = () => {
                     <div className="cp-fee-item-value">20%</div>
                   </div>
                   <div style={{marginTop:'1.5rem', padding:'1rem', background:'rgba(198,166,107,0.1)', borderRadius:'8px', border:'1px solid rgba(198,166,107,0.2)'}}>
-                    <p style={{fontSize:'0.82rem', color:'rgba(255,255,255,0.6)', lineHeight:'1.6'}}><strong style={{color:'#C6A66B'}}>Net Profit Definition:</strong> Revenue after platform commissions (e.g., Airbnb, Booking.com). IPM's management fee is never applied to gross revenue — only to what you actually earn.</p>
+                    <p style={{fontSize:'0.82rem', color:'rgba(255,255,255,0.6)', lineHeight:'1.6'}}><strong style={{color:'#D4AF37'}}>Net Profit Definition:</strong> Revenue after platform commissions (e.g., Airbnb, Booking.com). IPM's management fee is never applied to gross revenue — only to what you actually earn.</p>
                   </div>
                 </div>
               </div>
@@ -617,7 +617,7 @@ const CharlotteProposal = () => {
                       <tr><td>IPM Management Fee (20% of Net)</td><td style={{color:'#E53E3E'}}>– {fmt(TIERS[selectedTier].mgmtFee)}</td></tr>
                       <tr><td>Monthly Platform / Software Fee</td><td style={{color:'#E53E3E'}}>– {fmt(TIERS[selectedTier].platformFee)}</td></tr>
                       <tr className="cp-highlight">
-                        <td><strong>Estimated Owner Payout</strong><br/><span style={{fontSize:'0.75rem', fontWeight:'400', color:'#718096'}}>Before taxes &amp; maintenance reserve</span></td>
+                        <td><strong>Estimated Owner Payout</strong><br/><span style={{fontSize:'0.75rem', fontWeight:'400', color:'#A8A8A8'}}>Before taxes &amp; maintenance reserve</span></td>
                         <td><strong>{fmt(TIERS[selectedTier].payout)}</strong></td>
                       </tr>
                     </tbody>
@@ -659,8 +659,8 @@ const CharlotteProposal = () => {
               ))}
             </div>
             <div style={{textAlign:'center', marginTop:'3rem'}} className="cp-fade-in">
-              <div style={{maxWidth:'580px', margin:'0 auto', background:'#FFFFFF', borderRadius:'20px', padding:'2rem', boxShadow:'0 2px 8px rgba(14,26,43,0.08)', borderTop:'3px solid #C6A66B'}}>
-                <p style={{fontSize:'1rem', color:'#1A2230', fontWeight:'500', lineHeight:'1.7'}}>"Owners receive a <strong>completely hands-off experience</strong> while IPM handles every aspect of operations — from the first booking inquiry to the final guest review."</p>
+              <div style={{maxWidth:'580px', margin:'0 auto', background:'#FFFFFF', borderRadius:'20px', padding:'2rem', boxShadow:'0 2px 8px rgba(14,26,43,0.08)', borderTop:'3px solid #D4AF37'}}>
+                <p style={{fontSize:'1rem', color:'#F8F8F8', fontWeight:'500', lineHeight:'1.7'}}>"Owners receive a <strong>completely hands-off experience</strong> while IPM handles every aspect of operations — from the first booking inquiry to the final guest review."</p>
               </div>
             </div>
           </div>
@@ -730,7 +730,7 @@ const CharlotteProposal = () => {
           <div className="cp-container" style={{position:'relative', zIndex:2}}>
             <div className="cp-fade-in">
               <div className="cp-section-label" style={{textAlign:'center'}}>Ready to Move Forward?</div>
-              <h2>Turn Your Property Into a<br/><span style={{color:'#C6A66B'}}>High-Performing Asset</span></h2>
+              <h2>Turn Your Property Into a<br/><span style={{color:'#D4AF37'}}>High-Performing Asset</span></h2>
               <div className="cp-gold-divider"></div>
               <p style={{color:'rgba(255,255,255,0.65)', maxWidth:'560px', margin:'0 auto 2.5rem', fontSize:'1.05rem'}}>Join the growing number of Charlotte property owners who trust IPM to manage their short-term rental investment. Let's discuss how we can maximize the revenue potential of your property.</p>
               <div className="cp-cta-btn-group">
@@ -764,7 +764,7 @@ const CharlotteProposal = () => {
             </div>
             <div className="cp-footer-bottom">
               <p>© {new Date().getFullYear()} IPM – International Property Management. All rights reserved.</p>
-              <p><a href="https://ipm.services" style={{color:'#C6A66B'}}>ipm.services</a></p>
+              <p><a href="https://ipm.services" style={{color:'#D4AF37'}}>ipm.services</a></p>
             </div>
           </div>
         </footer>

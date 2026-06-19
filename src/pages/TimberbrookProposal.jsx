@@ -120,7 +120,7 @@ const TimberbrookProposal = () => {
                 'rgba(198,166,107,0.85)',
                 'rgba(45,106,79,0.75)'
               ],
-              borderColor: ['#8BA3C0','#C6A66B','#2D6A4F'],
+              borderColor: ['#8BA3C0','#D4AF37','#2D6A4F'],
               borderWidth: 2,
               borderRadius: 8,
             }]
@@ -170,12 +170,12 @@ const TimberbrookProposal = () => {
     <div className="tt-wrap">
       <style>{`
         .tt-wrap * { box-sizing: border-box; margin: 0; padding: 0; }
-        .tt-wrap { font-family: 'Inter', sans-serif; background: #F8F7F4; color: #1A2230; line-height: 1.7; -webkit-font-smoothing: antialiased; }
-        .tt-wrap h1,.tt-wrap h2,.tt-wrap h3,.tt-wrap h4 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.25; color: #0E1A2B; }
+        .tt-wrap { font-family: 'Inter', sans-serif; background: #F8F7F4; color: #F8F8F8; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+        .tt-wrap h1,.tt-wrap h2,.tt-wrap h3,.tt-wrap h4 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.25; color: #050505; }
         .tt-wrap h1 { font-size: clamp(2rem,5vw,3.5rem); font-weight:700; }
         .tt-wrap h2 { font-size: clamp(1.6rem,3.5vw,2.5rem); font-weight:600; }
         .tt-wrap h3 { font-size: clamp(1.15rem,2.5vw,1.5rem); font-weight:600; }
-        .tt-wrap p  { color:#4A5568; font-size:1rem; line-height:1.8; }
+        .tt-wrap p  { color:#B8B8B8; font-size:1rem; line-height:1.8; }
         .tt-wrap a  { color:inherit; text-decoration:none; }
 
         /* NAV */
@@ -184,44 +184,44 @@ const TimberbrookProposal = () => {
         .tt-nav-inner { max-width:1160px; margin:0 auto; padding:0 1.5rem; display:flex; align-items:center; justify-content:space-between; }
         .tt-nav-logo { font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:700; color:#fff; letter-spacing:0.05em; }
         .tt-nav-logo a { color:#fff; }
-        .tt-nav-logo span { color:#C6A66B; }
-        .tt-nav-cta { background:#C6A66B; color:#0E1A2B; border:2px solid #C6A66B; border-radius:6px; padding:0.6rem 1.4rem; font-size:0.82rem; font-weight:600; letter-spacing:0.04em; cursor:pointer; transition:all 0.3s; white-space:nowrap; }
+        .tt-nav-logo span { color:#D4AF37; }
+        .tt-nav-cta { background:#D4AF37; color:#050505; border:2px solid #D4AF37; border-radius:6px; padding:0.6rem 1.4rem; font-size:0.82rem; font-weight:600; letter-spacing:0.04em; cursor:pointer; transition:all 0.3s; white-space:nowrap; }
         .tt-nav-cta:hover { background:#D9BC8A; border-color:#D9BC8A; transform:translateY(-2px); }
 
         /* HERO */
-        .tt-hero { position:relative; min-height:100vh; display:flex; align-items:center; overflow:hidden; background:#0E1A2B; }
+        .tt-hero { position:relative; min-height:100vh; display:flex; align-items:center; overflow:hidden; background:#050505; }
         .tt-hero-bg { position:absolute; inset:0; background-image:url('/timberbrook-hero-bg.jpg'); background-size:cover; background-position:center; opacity:0.25; }
         .tt-hero-overlay { position:absolute; inset:0; background:linear-gradient(135deg,rgba(14,26,43,0.92) 0%,rgba(14,26,43,0.75) 50%,rgba(35,42,51,0.85) 100%); }
         .tt-hero-content { position:relative; z-index:2; max-width:1160px; margin:0 auto; padding:8rem 1.5rem 5rem; width:100%; }
         .tt-hero-inner { max-width:800px; }
-        .tt-hero-badge { display:inline-flex; align-items:center; gap:0.5rem; background:rgba(198,166,107,0.15); border:1px solid rgba(198,166,107,0.4); border-radius:50px; padding:0.4rem 1rem; font-size:0.78rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#C6A66B; margin-bottom:1.5rem; }
+        .tt-hero-badge { display:inline-flex; align-items:center; gap:0.5rem; background:rgba(198,166,107,0.15); border:1px solid rgba(198,166,107,0.4); border-radius:50px; padding:0.4rem 1rem; font-size:0.78rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#D4AF37; margin-bottom:1.5rem; }
         .tt-hero h1 { color:#fff !important; margin-bottom:1.25rem; }
-        .tt-hero h1 em { color:#C6A66B; font-style:normal; }
+        .tt-hero h1 em { color:#D4AF37; font-style:normal; }
         .tt-hero-sub { font-size:1.15rem; color:rgba(255,255,255,0.75) !important; margin-bottom:0.75rem; font-family:'Playfair Display',serif; font-style:italic; }
         .tt-hero-desc { font-size:1rem; color:rgba(255,255,255,0.65) !important; max-width:580px; margin-bottom:2.5rem; line-height:1.8; }
         .tt-hero-stats { display:flex; gap:2.5rem; margin-top:3rem; padding-top:2rem; border-top:1px solid rgba(255,255,255,0.12); flex-wrap:wrap; }
-        .tt-hero-stat-value { font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:700; color:#C6A66B; }
+        .tt-hero-stat-value { font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:700; color:#D4AF37; }
         .tt-hero-stat-label { font-size:0.78rem; color:rgba(255,255,255,0.55); text-transform:uppercase; letter-spacing:0.08em; margin-top:0.2rem; }
         .tt-btn-group { display:flex; gap:1rem; flex-wrap:wrap; }
         .tt-btn { display:inline-flex; align-items:center; gap:0.5rem; padding:0.85rem 2rem; border-radius:6px; font-family:'Inter',sans-serif; font-size:0.9rem; font-weight:600; letter-spacing:0.04em; cursor:pointer; transition:all 0.3s; border:2px solid transparent; white-space:nowrap; }
-        .tt-btn-primary { background:#C6A66B; color:#0E1A2B; border-color:#C6A66B; }
+        .tt-btn-primary { background:#D4AF37; color:#050505; border-color:#D4AF37; }
         .tt-btn-primary:hover { background:#D9BC8A; border-color:#D9BC8A; transform:translateY(-2px); box-shadow:0 8px 24px rgba(198,166,107,0.35); }
         .tt-btn-outline { background:rgba(0,0,0,0.35); color:#fff !important; border-color:#fff; }
         .tt-btn-outline:hover { background:rgba(0,0,0,0.55); border-color:#fff; transform:translateY(-2px); }
-        .tt-btn-dark { background:transparent; color:#0E1A2B; border-color:#0E1A2B; }
-        .tt-btn-dark:hover { background:#0E1A2B; color:#fff; transform:translateY(-2px); }
+        .tt-btn-dark { background:transparent; color:#050505; border-color:#050505; }
+        .tt-btn-dark:hover { background:#050505; color:#fff; transform:translateY(-2px); }
 
         /* SECTIONS */
         .tt-container { max-width:1160px; margin:0 auto; padding:0 1.5rem; }
         .tt-section { padding:5rem 0; }
-        .tt-section-dark { background:#0E1A2B; }
-        .tt-section-slate { background:#232A33; }
+        .tt-section-dark { background:#050505; }
+        .tt-section-slate { background:#171717; }
         .tt-section-ivory { background:#F8F7F4; }
-        .tt-section-white { background:#fff; }
+        .tt-section-white { background:#111111; }
         .tt-section-header { text-align:center; max-width:700px; margin:0 auto 3.5rem; }
         .tt-section-header h2 { margin-bottom:1rem; }
-        .tt-section-label { font-family:'Inter',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:#C6A66B; margin-bottom:0.75rem; }
-        .tt-gold-divider { width:60px; height:3px; background:linear-gradient(90deg,#C6A66B,#D9BC8A); border-radius:2px; margin:1.25rem auto; }
+        .tt-section-label { font-family:'Inter',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:#D4AF37; margin-bottom:0.75rem; }
+        .tt-gold-divider { width:60px; height:3px; background:linear-gradient(90deg,#D4AF37,#D9BC8A); border-radius:2px; margin:1.25rem auto; }
 
         /* FADE IN */
         .tt-fade-in { opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease; }
@@ -229,26 +229,26 @@ const TimberbrookProposal = () => {
 
         /* PROPERTY OVERVIEW */
         .tt-property-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; }
-        .tt-address-card { background:#0E1A2B; border-radius:20px; padding:2.5rem; color:#fff; position:relative; overflow:hidden; }
+        .tt-address-card { background:#050505; border-radius:20px; padding:2.5rem; color:#fff; position:relative; overflow:hidden; }
         .tt-address-card::before { content:''; position:absolute; top:-40px; right:-40px; width:180px; height:180px; background:radial-gradient(circle,rgba(198,166,107,0.15) 0%,transparent 70%); border-radius:50%; }
-        .tt-address-card .tt-addr-label { font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:#C6A66B; font-weight:600; margin-bottom:0.5rem; }
+        .tt-address-card .tt-addr-label { font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:#D4AF37; font-weight:600; margin-bottom:0.5rem; }
         .tt-address-card h3 { color:#fff !important; font-size:1.5rem; margin-bottom:0.25rem; }
         .tt-address-card .tt-city { color:rgba(255,255,255,0.6); font-size:1rem; margin-bottom:1.5rem; }
         .tt-map-embed { border-radius:12px; overflow:hidden; margin-top:1.5rem; height:200px; }
         .tt-map-embed iframe { width:100%; height:100%; border:none; }
         .tt-prop-features { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-top:1.5rem; }
-        .tt-feature-item { display:flex; align-items:center; gap:0.6rem; font-size:0.9rem; color:#4A5568; }
+        .tt-feature-item { display:flex; align-items:center; gap:0.6rem; font-size:0.9rem; color:#B8B8B8; }
         .tt-feature-icon { width:32px; height:32px; background:linear-gradient(135deg,rgba(198,166,107,0.15),rgba(198,166,107,0.05)); border:1px solid rgba(198,166,107,0.3); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:0.9rem; flex-shrink:0; }
         .tt-demand-list { list-style:none; }
-        .tt-demand-list li { display:flex; align-items:flex-start; gap:0.75rem; padding:0.85rem 0; border-bottom:1px solid #E2E8F0; font-size:0.95rem; color:#4A5568; }
+        .tt-demand-list li { display:flex; align-items:flex-start; gap:0.75rem; padding:0.85rem 0; border-bottom:1px solid rgba(212,175,55,0.22); font-size:0.95rem; color:#B8B8B8; }
         .tt-demand-list li:last-child { border-bottom:none; }
-        .tt-demand-list li::before { content:'✓'; color:#C6A66B; font-weight:700; font-size:0.9rem; flex-shrink:0; margin-top:0.15rem; }
+        .tt-demand-list li::before { content:'✓'; color:#D4AF37; font-weight:700; font-size:0.9rem; flex-shrink:0; margin-top:0.15rem; }
 
         /* GALLERY */
         .tt-gallery-section { background:#F8F7F4; padding:5rem 0; }
         .tt-gallery-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0.75rem; }
         .tt-gallery-grid .tt-gallery-featured { grid-column:span 2; grid-row:span 2; }
-        .tt-gallery-item { overflow:hidden; border-radius:12px; position:relative; background:#E2E8F0; aspect-ratio:4/3; cursor:pointer; }
+        .tt-gallery-item { overflow:hidden; border-radius:12px; position:relative; background:rgba(212,175,55,0.22); aspect-ratio:4/3; cursor:pointer; }
         .tt-gallery-item img { width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease; display:block; }
         .tt-gallery-item:hover img { transform:scale(1.05); }
         .tt-gallery-featured { aspect-ratio:unset; }
@@ -269,73 +269,73 @@ const TimberbrookProposal = () => {
         /* MARKET */
         .tt-market-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-bottom:3rem; }
         .tt-market-stat { background:rgba(255,255,255,0.06); border:1px solid rgba(198,166,107,0.2); border-radius:16px; padding:1.75rem; text-align:center; }
-        .tt-market-stat-value { font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:700; color:#C6A66B; }
+        .tt-market-stat-value { font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:700; color:#D4AF37; }
         .tt-market-stat-label { font-size:0.82rem; color:rgba(255,255,255,0.55); text-transform:uppercase; letter-spacing:0.08em; margin-top:0.4rem; }
         .tt-market-stat-desc { font-size:0.78rem; color:rgba(255,255,255,0.4); margin-top:0.3rem; }
         .tt-market-drivers { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; margin-top:2rem; }
         .tt-driver-card { background:rgba(255,255,255,0.05); border:1px solid rgba(198,166,107,0.15); border-radius:12px; padding:1.25rem; }
-        .tt-driver-title { font-size:0.88rem; font-weight:600; color:#C6A66B; margin-bottom:0.4rem; }
+        .tt-driver-title { font-size:0.88rem; font-weight:600; color:#D4AF37; margin-bottom:0.4rem; }
         .tt-driver-desc { font-size:0.82rem; color:rgba(255,255,255,0.55); line-height:1.6; }
         .tt-chart-container { background:rgba(255,255,255,0.04); border:1px solid rgba(198,166,107,0.15); border-radius:20px; padding:2rem; max-width:700px; margin:0 auto; }
-        .tt-chart-container.tt-white { background:#fff; border:1px solid #E2E8F0; }
+        .tt-chart-container.tt-white { background:#111111; border:1px solid rgba(212,175,55,0.22); }
         .tt-chart-title { font-family:'Playfair Display',serif; font-size:1.1rem; color:#fff; text-align:center; margin-bottom:1.5rem; }
-        .tt-chart-title.tt-dark-text { color:#0E1A2B; }
+        .tt-chart-title.tt-dark-text { color:#050505; }
 
         /* PROJECTIONS */
         .tt-proj-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-bottom:3rem; }
-        .tt-proj-card { background:#fff; border-radius:20px; padding:2rem; box-shadow:0 2px 8px rgba(14,26,43,0.08); border-top:4px solid transparent; transition:transform 0.3s, box-shadow 0.3s; position:relative; cursor:pointer; }
+        .tt-proj-card { background:#111111; border-radius:20px; padding:2rem; box-shadow:0 2px 8px rgba(14,26,43,0.08); border-top:4px solid transparent; transition:transform 0.3s, box-shadow 0.3s; position:relative; cursor:pointer; }
         .tt-proj-card:hover { transform:translateY(-6px); box-shadow:0 8px 32px rgba(14,26,43,0.12); }
-        .tt-proj-card.tt-selected { outline:3px solid #C6A66B; outline-offset:2px; transform:translateY(-6px); box-shadow:0 8px 32px rgba(198,166,107,0.25); }
-        .tt-proj-card.tt-selected::after { content:'✓ Selected'; position:absolute; bottom:1rem; right:1rem; font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#C6A66B; }
+        .tt-proj-card.tt-selected { outline:3px solid #D4AF37; outline-offset:2px; transform:translateY(-6px); box-shadow:0 8px 32px rgba(198,166,107,0.25); }
+        .tt-proj-card.tt-selected::after { content:'✓ Selected'; position:absolute; bottom:1rem; right:1rem; font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#D4AF37; }
         .tt-proj-conservative { border-top-color:#8BA3C0; }
-        .tt-proj-strong { border-top-color:#C6A66B; background:#0E1A2B; }
+        .tt-proj-strong { border-top-color:#D4AF37; background:#050505; }
         .tt-proj-premium { border-top-color:#2D6A4F; }
         .tt-proj-badge { display:inline-block; font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:0.3rem 0.8rem; border-radius:50px; margin-bottom:1rem; }
         .tt-proj-conservative .tt-proj-badge { background:rgba(139,163,192,0.15); color:#5A7FA5; }
-        .tt-proj-strong .tt-proj-badge { background:rgba(198,166,107,0.2); color:#C6A66B; }
+        .tt-proj-strong .tt-proj-badge { background:rgba(198,166,107,0.2); color:#D4AF37; }
         .tt-proj-premium .tt-proj-badge { background:rgba(45,106,79,0.15); color:#2D6A4F; }
-        .tt-proj-nightly { font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:700; color:#0E1A2B; line-height:1; margin-bottom:0.25rem; }
-        .tt-proj-strong .tt-proj-nightly { color:#C6A66B; }
-        .tt-proj-label { font-size:0.75rem; color:#718096; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:1.25rem; }
+        .tt-proj-nightly { font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:700; color:#050505; line-height:1; margin-bottom:0.25rem; }
+        .tt-proj-strong .tt-proj-nightly { color:#D4AF37; }
+        .tt-proj-label { font-size:0.75rem; color:#A8A8A8; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:1.25rem; }
         .tt-proj-strong .tt-proj-label { color:rgba(255,255,255,0.5); }
-        .tt-proj-rows { border-top:1px solid #E2E8F0; padding-top:1rem; }
+        .tt-proj-rows { border-top:1px solid rgba(212,175,55,0.22); padding-top:1rem; }
         .tt-proj-strong .tt-proj-rows { border-top-color:rgba(255,255,255,0.12); }
         .tt-proj-row { display:flex; justify-content:space-between; align-items:center; padding:0.5rem 0; font-size:0.85rem; }
-        .tt-proj-row-label { color:#718096; }
+        .tt-proj-row-label { color:#A8A8A8; }
         .tt-proj-strong .tt-proj-row-label { color:rgba(255,255,255,0.5); }
-        .tt-proj-row-value { font-weight:600; color:#1A2230; }
+        .tt-proj-row-value { font-weight:600; color:#F8F8F8; }
         .tt-proj-strong .tt-proj-row-value { color:#fff; }
-        .tt-proj-annual { margin-top:1.25rem; padding-top:1rem; border-top:1px solid #E2E8F0; }
+        .tt-proj-annual { margin-top:1.25rem; padding-top:1rem; border-top:1px solid rgba(212,175,55,0.22); }
         .tt-proj-strong .tt-proj-annual { border-top-color:rgba(255,255,255,0.12); }
-        .tt-proj-annual-value { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:700; color:#C6A66B; }
-        .tt-proj-annual-label { font-size:0.75rem; color:#718096; margin-top:0.2rem; }
+        .tt-proj-annual-value { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:700; color:#D4AF37; }
+        .tt-proj-annual-label { font-size:0.75rem; color:#A8A8A8; margin-top:0.2rem; }
         .tt-proj-strong .tt-proj-annual-label { color:rgba(255,255,255,0.45); }
-        .tt-popular-badge { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:#C6A66B; color:#0E1A2B; font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:0.3rem 0.9rem; border-radius:50px; white-space:nowrap; }
-        .tt-disclaimer { background:rgba(198,166,107,0.08); border:1px solid rgba(198,166,107,0.2); border-radius:12px; padding:1.25rem 1.5rem; font-size:0.84rem; color:#4A5568; margin-top:2rem; }
+        .tt-popular-badge { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:#D4AF37; color:#050505; font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:0.3rem 0.9rem; border-radius:50px; white-space:nowrap; }
+        .tt-disclaimer { background:rgba(198,166,107,0.08); border:1px solid rgba(198,166,107,0.2); border-radius:12px; padding:1.25rem 1.5rem; font-size:0.84rem; color:#B8B8B8; margin-top:2rem; }
 
         /* EARNINGS */
         .tt-earnings-layout { display:grid; grid-template-columns:1fr 1.3fr; gap:3rem; align-items:start; }
-        .tt-fee-structure { background:#0E1A2B; border-radius:20px; padding:2.5rem; }
+        .tt-fee-structure { background:#050505; border-radius:20px; padding:2.5rem; }
         .tt-fee-item { display:flex; justify-content:space-between; align-items:center; padding:1.1rem 0; border-bottom:1px solid rgba(255,255,255,0.08); }
         .tt-fee-item:last-child { border-bottom:none; }
         .tt-fee-item-label { font-size:0.9rem; font-weight:600; color:#fff; }
         .tt-fee-item-sublabel { font-size:0.78rem; color:rgba(255,255,255,0.45); margin-top:0.2rem; }
-        .tt-fee-item-value { font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:700; color:#C6A66B; }
+        .tt-fee-item-value { font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:700; color:#D4AF37; }
         .tt-earnings-table-wrap { overflow-x:auto; border-radius:12px; box-shadow:0 2px 8px rgba(14,26,43,0.08); }
-        .tt-earnings-table { width:100%; border-collapse:collapse; font-size:0.92rem; background:#fff; }
-        .tt-earnings-table th { background:#0E1A2B; color:#fff; font-family:'Inter',sans-serif; font-weight:600; font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase; padding:1rem 1.25rem; text-align:left; }
-        .tt-earnings-table td { padding:0.9rem 1.25rem; border-bottom:1px solid #E2E8F0; color:#4A5568; }
-        .tt-earnings-table td:last-child { font-weight:600; color:#1A2230; text-align:right; }
-        .tt-earnings-table tr.tt-highlight td { background:linear-gradient(90deg,rgba(198,166,107,0.08),rgba(198,166,107,0.04)); color:#0E1A2B; font-weight:700; font-size:1rem; }
-        .tt-earnings-table tr.tt-highlight td:last-child { color:#C6A66B; font-size:1.1rem; }
-        .tt-editable-note { display:flex; align-items:center; gap:0.5rem; font-size:0.8rem; color:#718096; margin-top:0.75rem; font-style:italic; }
+        .tt-earnings-table { width:100%; border-collapse:collapse; font-size:0.92rem; background:#111111; }
+        .tt-earnings-table th { background:#050505; color:#fff; font-family:'Inter',sans-serif; font-weight:600; font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase; padding:1rem 1.25rem; text-align:left; }
+        .tt-earnings-table td { padding:0.9rem 1.25rem; border-bottom:1px solid rgba(212,175,55,0.22); color:#B8B8B8; }
+        .tt-earnings-table td:last-child { font-weight:600; color:#F8F8F8; text-align:right; }
+        .tt-earnings-table tr.tt-highlight td { background:linear-gradient(90deg,rgba(198,166,107,0.08),rgba(198,166,107,0.04)); color:#050505; font-weight:700; font-size:1rem; }
+        .tt-earnings-table tr.tt-highlight td:last-child { color:#D4AF37; font-size:1.1rem; }
+        .tt-editable-note { display:flex; align-items:center; gap:0.5rem; font-size:0.8rem; color:#A8A8A8; margin-top:0.75rem; font-style:italic; }
 
         /* SERVICES */
         .tt-services-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; }
-        .tt-service-card { background:#fff; border-radius:14px; padding:1.75rem 1.5rem; box-shadow:0 2px 8px rgba(14,26,43,0.07); text-align:center; transition:transform 0.3s, box-shadow 0.3s; }
+        .tt-service-card { background:#111111; border-radius:14px; padding:1.75rem 1.5rem; box-shadow:0 2px 8px rgba(14,26,43,0.07); text-align:center; transition:transform 0.3s, box-shadow 0.3s; }
         .tt-service-card:hover { transform:translateY(-4px); box-shadow:0 8px 24px rgba(14,26,43,0.11); }
         .tt-service-icon { font-size:1.75rem; margin-bottom:0.75rem; }
-        .tt-service-title { font-family:'Inter',sans-serif; font-size:0.88rem; font-weight:600; color:#0E1A2B; line-height:1.4; }
+        .tt-service-title { font-family:'Inter',sans-serif; font-size:0.88rem; font-weight:600; color:#050505; line-height:1.4; }
 
         /* WHY IPM */
         .tt-why-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
@@ -347,13 +347,13 @@ const TimberbrookProposal = () => {
 
         /* DASHBOARD */
         .tt-dashboard-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; }
-        .tt-dashboard-card { background:#fff; border-radius:16px; padding:1.75rem; box-shadow:0 2px 8px rgba(14,26,43,0.07); display:flex; gap:1.25rem; align-items:flex-start; }
+        .tt-dashboard-card { background:#111111; border-radius:16px; padding:1.75rem; box-shadow:0 2px 8px rgba(14,26,43,0.07); display:flex; gap:1.25rem; align-items:flex-start; }
         .tt-dashboard-icon { font-size:1.5rem; background:linear-gradient(135deg,rgba(198,166,107,0.15),rgba(198,166,107,0.05)); border:1px solid rgba(198,166,107,0.3); border-radius:10px; width:48px; height:48px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-        .tt-dashboard-title { font-family:'Inter',sans-serif; font-size:0.95rem; font-weight:700; color:#0E1A2B; margin-bottom:0.35rem; }
-        .tt-dashboard-desc { font-size:0.84rem; color:#718096; line-height:1.6; }
+        .tt-dashboard-title { font-family:'Inter',sans-serif; font-size:0.95rem; font-weight:700; color:#050505; margin-bottom:0.35rem; }
+        .tt-dashboard-desc { font-size:0.84rem; color:#A8A8A8; line-height:1.6; }
 
         /* CTA */
-        .tt-cta { text-align:center; padding:6rem 1.5rem; background:linear-gradient(135deg,#0E1A2B 0%,#1a2d47 50%,#0E1A2B 100%); }
+        .tt-cta { text-align:center; padding:6rem 1.5rem; background:linear-gradient(135deg,#050505 0%,#111111 50%,#050505 100%); }
         .tt-cta h2 { color:#fff !important; margin-bottom:1rem; }
         .tt-cta p { color:rgba(255,255,255,0.65) !important; font-size:1.1rem; margin-bottom:2.5rem; max-width:560px; margin-left:auto; margin-right:auto; }
 
@@ -361,13 +361,13 @@ const TimberbrookProposal = () => {
         .tt-footer { background:#060D18; color:rgba(255,255,255,0.6); padding:3rem 0 2rem; }
         .tt-footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:3rem; margin-bottom:2.5rem; }
         .tt-footer-brand { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:700; color:#fff; margin-bottom:0.5rem; }
-        .tt-footer-brand span { color:#C6A66B; }
+        .tt-footer-brand span { color:#D4AF37; }
         .tt-footer-sub { font-size:0.85rem; color:rgba(255,255,255,0.45); margin-bottom:1.25rem; }
-        .tt-footer-heading { font-family:'Inter',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#C6A66B; margin-bottom:1rem; }
+        .tt-footer-heading { font-family:'Inter',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#D4AF37; margin-bottom:1rem; }
         .tt-footer-links { list-style:none; }
         .tt-footer-links li { margin-bottom:0.5rem; }
         .tt-footer-links a { font-size:0.85rem; color:rgba(255,255,255,0.45); transition:color 0.2s; }
-        .tt-footer-links a:hover { color:#C6A66B; }
+        .tt-footer-links a:hover { color:#D4AF37; }
         .tt-footer-bottom { border-top:1px solid rgba(255,255,255,0.08); padding-top:1.5rem; text-align:center; font-size:0.8rem; color:rgba(255,255,255,0.3); }
 
         /* RESPONSIVE */
@@ -439,7 +439,7 @@ const TimberbrookProposal = () => {
             <div>
               <div className="tt-section-label">Property Overview</div>
               <h2 style={{marginBottom:'1rem'}}>2804 Timberbrook Dr<br/>Charlotte, NC 28208</h2>
-              <div style={{width:'60px',height:'3px',background:'linear-gradient(90deg,#C6A66B,#D9BC8A)',borderRadius:'2px',marginBottom:'1.5rem'}}></div>
+              <div style={{width:'60px',height:'3px',background:'linear-gradient(90deg,#D4AF37,#D9BC8A)',borderRadius:'2px',marginBottom:'1.5rem'}}></div>
               <p style={{marginBottom:'1.5rem'}}>This 3-bedroom, 2-bathroom single-family home in Charlotte is ideally positioned to perform as a high-demand short-term rental. Its quiet residential setting combined with proximity to Charlotte's top demand generators creates an excellent opportunity for consistent bookings year-round.</p>
               <div className="tt-prop-features">
                 {[
@@ -471,7 +471,7 @@ const TimberbrookProposal = () => {
                 <div style={{display:'flex',gap:'1.5rem',paddingTop:'1rem',borderTop:'1px solid rgba(255,255,255,0.1)'}}>
                   {[['3','Bedrooms'],['2','Bathrooms'],['~1,300','Sq Ft']].map(([v,l]) => (
                     <div key={l}>
-                      <div style={{fontFamily:"'Playfair Display',serif",fontSize:'1.6rem',fontWeight:700,color:'#C6A66B'}}>{v}</div>
+                      <div style={{fontFamily:"'Playfair Display',serif",fontSize:'1.6rem',fontWeight:700,color:'#D4AF37'}}>{v}</div>
                       <div style={{fontSize:'0.75rem',color:'rgba(255,255,255,0.45)',textTransform:'uppercase',letterSpacing:'0.08em'}}>{l}</div>
                     </div>
                   ))}
@@ -656,7 +656,7 @@ const TimberbrookProposal = () => {
           <div className="tt-earnings-layout tt-fade-in">
             <div>
               <div className="tt-fee-structure">
-                <div className="tt-section-label" style={{color:'#C6A66B'}}>IPM Fee Structure</div>
+                <div className="tt-section-label" style={{color:'#D4AF37'}}>IPM Fee Structure</div>
                 <h3 style={{color:'#fff',marginBottom:'1.5rem'}}>Simple. Transparent. Aligned.</h3>
                 <div className="tt-fee-item">
                   <div>
@@ -673,7 +673,7 @@ const TimberbrookProposal = () => {
                   <div className="tt-fee-item-value">20%</div>
                 </div>
                 <div style={{marginTop:'1.5rem',padding:'1rem',background:'rgba(198,166,107,0.1)',borderRadius:'8px',border:'1px solid rgba(198,166,107,0.2)'}}>
-                  <p style={{fontSize:'0.82rem',color:'rgba(255,255,255,0.6)',lineHeight:'1.6'}}><strong style={{color:'#C6A66B'}}>Net Profit Definition:</strong> Revenue after platform commissions (e.g., Airbnb, Booking.com). IPM's management fee is never applied to gross revenue — only to what you actually earn.</p>
+                  <p style={{fontSize:'0.82rem',color:'rgba(255,255,255,0.6)',lineHeight:'1.6'}}><strong style={{color:'#D4AF37'}}>Net Profit Definition:</strong> Revenue after platform commissions (e.g., Airbnb, Booking.com). IPM's management fee is never applied to gross revenue — only to what you actually earn.</p>
                 </div>
               </div>
             </div>
@@ -695,7 +695,7 @@ const TimberbrookProposal = () => {
                     <tr><td>IPM Management Fee (20% of Net)</td><td style={{color:'#E53E3E'}}>– {fmt(TIERS[selectedTier].mgmtFee)}</td></tr>
                     <tr><td>Monthly Platform / Software Fee</td><td style={{color:'#E53E3E'}}>– {fmt(TIERS[selectedTier].platformFee)}</td></tr>
                     <tr className="tt-highlight">
-                      <td><strong>Estimated Owner Payout</strong><br/><span style={{fontSize:'0.75rem',fontWeight:'400',color:'#718096'}}>Before taxes &amp; maintenance reserve</span></td>
+                      <td><strong>Estimated Owner Payout</strong><br/><span style={{fontSize:'0.75rem',fontWeight:'400',color:'#A8A8A8'}}>Before taxes &amp; maintenance reserve</span></td>
                       <td><strong>{fmt(TIERS[selectedTier].payout)}</strong></td>
                     </tr>
                   </tbody>
@@ -792,7 +792,7 @@ const TimberbrookProposal = () => {
 
       {/* CTA */}
       <section className="tt-cta" id="tt-cta">
-        <div className="tt-section-label" style={{color:'#C6A66B',textAlign:'center',marginBottom:'1rem'}}>Next Steps</div>
+        <div className="tt-section-label" style={{color:'#D4AF37',textAlign:'center',marginBottom:'1rem'}}>Next Steps</div>
         <h2>Turn Your Property Into a High-Performing Asset</h2>
         <p>Schedule a no-obligation consultation with our Charlotte property team. We'll walk you through the full opportunity and answer every question you have.</p>
         <div className="tt-btn-group" style={{justifyContent:'center'}}>

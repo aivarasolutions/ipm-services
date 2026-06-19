@@ -54,14 +54,14 @@ const OwnerPortal = () => {
       changeType: "positive"
     },
     {
-      icon: <Calendar className="h-8 w-8 text-blue-600" />,
+      icon: <Calendar className="h-8 w-8 text-[#D4AF37]" />,
       title: "Occupancy Rate",
       value: "82%",
       change: "+5.2%",
       changeType: "positive"
     },
     {
-      icon: <Users className="h-8 w-8 text-purple-600" />,
+      icon: <Users className="h-8 w-8 text-[#D4AF37]" />,
       title: "Total Bookings",
       value: "24",
       change: "+8 this month",
@@ -135,13 +135,13 @@ const OwnerPortal = () => {
 
   if (!isLoggedIn) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-[#111111] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div className="text-center">
-            <h2 className="mt-6 text-3xl font-bold text-gray-900">
+            <h2 className="mt-6 text-3xl font-bold text-[#F8F8F8]">
               Owner Portal Login
             </h2>
-            <p className="mt-2 text-sm text-gray-600">
+            <p className="mt-2 text-sm text-[#B8B8B8]">
               Access your property management dashboard
             </p>
           </div>
@@ -150,11 +150,11 @@ const OwnerPortal = () => {
             <CardContent className="p-8">
               <form onSubmit={handleLogin} className="space-y-6">
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-[#CFCFCF] mb-2">
                     Email Address
                   </label>
                   <div className="relative">
-                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-[#CFCFCF]" />
                     <Input
                       id="email"
                       name="email"
@@ -169,11 +169,11 @@ const OwnerPortal = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="password" className="block text-sm font-medium text-[#CFCFCF] mb-2">
                     Password
                   </label>
                   <div className="relative">
-                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-[#CFCFCF]" />
                     <Input
                       id="password"
                       name="password"
@@ -187,7 +187,7 @@ const OwnerPortal = () => {
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#CFCFCF] hover:text-[#B8B8B8]"
                     >
                       {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                     </button>
@@ -200,15 +200,15 @@ const OwnerPortal = () => {
                       id="remember-me"
                       name="remember-me"
                       type="checkbox"
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      className="h-4 w-4 text-[#D4AF37] focus:ring-[#D4AF37] border-[#D4AF37]/25 rounded"
                     />
-                    <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+                    <label htmlFor="remember-me" className="ml-2 block text-sm text-[#F8F8F8]">
                       Remember me
                     </label>
                   </div>
 
                   <div className="text-sm">
-                    <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
+                    <a href="#" className="font-medium text-[#D4AF37] hover:text-[#E6C978]">
                       Forgot your password?
                     </a>
                   </div>
@@ -222,10 +222,10 @@ const OwnerPortal = () => {
               <div className="mt-6">
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-gray-300" />
+                    <div className="w-full border-t border-[#D4AF37]/25" />
                   </div>
                   <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-white text-gray-500">Don't have an account?</span>
+                    <span className="px-2 bg-[#050505] text-[#A8A8A8]">Don't have an account?</span>
                   </div>
                 </div>
 
@@ -241,9 +241,9 @@ const OwnerPortal = () => {
           </Card>
 
           <div className="text-center">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-[#B8B8B8]">
               Need help? Contact our support team at{' '}
-              <a href="tel:+13104000032" className="text-blue-600 hover:text-blue-500">
+              <a href="tel:+13104000032" className="text-[#D4AF37] hover:text-[#E6C978]">
                 +1 310-400-0032
               </a>
             </p>
@@ -254,14 +254,14 @@ const OwnerPortal = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#111111]">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b">
+      <div className="bg-[#050505] shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Owner Dashboard</h1>
-              <p className="text-gray-600">Welcome back, Property Owner</p>
+              <h1 className="text-2xl font-bold text-[#F8F8F8]">Owner Dashboard</h1>
+              <p className="text-[#B8B8B8]">Welcome back, Property Owner</p>
             </div>
             <div className="flex items-center space-x-4">
               <Button variant="outline" onClick={() => setIsLoggedIn(false)}>
@@ -280,9 +280,9 @@ const OwnerPortal = () => {
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-600">{stat.title}</p>
-                    <p className="text-3xl font-bold text-gray-900">{stat.value}</p>
-                    <p className={`text-sm ${stat.changeType === 'positive' ? 'text-green-600' : 'text-gray-600'}`}>
+                    <p className="text-sm font-medium text-[#B8B8B8]">{stat.title}</p>
+                    <p className="text-3xl font-bold text-[#F8F8F8]">{stat.value}</p>
+                    <p className={`text-sm ${stat.changeType === 'positive' ? 'text-green-600' : 'text-[#B8B8B8]'}`}>
                       {stat.change}
                     </p>
                   </div>
@@ -307,15 +307,15 @@ const OwnerPortal = () => {
                   {recentBookings.map((booking, index) => (
                     <div key={index} className="flex items-center justify-between p-4 border rounded-lg">
                       <div>
-                        <p className="font-semibold text-gray-900">{booking.guest}</p>
-                        <p className="text-sm text-gray-600">{booking.dates}</p>
-                        <p className="text-sm text-gray-600">{booking.property}</p>
+                        <p className="font-semibold text-[#F8F8F8]">{booking.guest}</p>
+                        <p className="text-sm text-[#B8B8B8]">{booking.dates}</p>
+                        <p className="text-sm text-[#B8B8B8]">{booking.property}</p>
                       </div>
                       <div className="text-right">
-                        <p className="font-semibold text-gray-900">{booking.amount}</p>
+                        <p className="font-semibold text-[#F8F8F8]">{booking.amount}</p>
                         <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
                           booking.status === 'Confirmed' ? 'bg-green-100 text-green-800' :
-                          booking.status === 'Check-in Today' ? 'bg-blue-100 text-blue-800' :
+                          booking.status === 'Check-in Today' ? 'bg-[#D4AF37]/15 text-[#F2D98D]' :
                           'bg-yellow-100 text-yellow-800'
                         }`}>
                           {booking.status}
@@ -339,14 +339,14 @@ const OwnerPortal = () => {
                   {quickActions.map((action, index) => (
                     <button
                       key={index}
-                      className="w-full flex items-center space-x-3 p-3 text-left hover:bg-gray-50 rounded-lg transition-colors"
+                      className="w-full flex items-center space-x-3 p-3 text-left hover:bg-[#111111] rounded-lg transition-colors"
                     >
-                      <div className="flex-shrink-0 text-blue-600">
+                      <div className="flex-shrink-0 text-[#D4AF37]">
                         {action.icon}
                       </div>
                       <div>
-                        <p className="font-medium text-gray-900">{action.title}</p>
-                        <p className="text-sm text-gray-600">{action.description}</p>
+                        <p className="font-medium text-[#F8F8F8]">{action.title}</p>
+                        <p className="text-sm text-[#B8B8B8]">{action.description}</p>
                       </div>
                     </button>
                   ))}
@@ -365,8 +365,8 @@ const OwnerPortal = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center">
-              <p className="text-gray-500">Revenue chart would be displayed here</p>
+            <div className="h-64 bg-[#1F1F1F] rounded-lg flex items-center justify-center">
+              <p className="text-[#A8A8A8]">Revenue chart would be displayed here</p>
             </div>
           </CardContent>
         </Card>

@@ -59,7 +59,7 @@ const RealEstateDetail = () => {
         <div style={{marginBottom: '20px'}}>
           <button
             onClick={() => navigate('/real-estate')}
-            className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors"
+            className="flex items-center gap-2 text-[#D4AF37] hover:text-[#E6C978] font-medium transition-colors"
             style={{
               background: 'none',
               border: 'none',
@@ -152,10 +152,10 @@ const RealEstateDetail = () => {
                   padding: '20px',
                   borderRadius: '12px',
                   marginBottom: '20px',
-                  border: '2px solid #e9ecef'
+                  border: '2px solid rgba(212,175,55,0.22)'
                 }}>
-                  <h4 style={{color: '#2d3748', marginBottom: '15px'}}>{listing.specialContent.title}</h4>
-                  <ul style={{color: '#4a5568', lineHeight: '1.6'}}>
+                  <h4 style={{color: '#F8F8F8', marginBottom: '15px'}}>{listing.specialContent.title}</h4>
+                  <ul style={{color: '#B8B8B8', lineHeight: '1.6'}}>
                     {listing.specialContent.highlights.map((highlight, index) => (
                       <li key={index}>• <strong>{highlight.split(' - ')[0]}</strong>{highlight.includes(' - ') ? ` - ${highlight.split(' - ')[1]}` : ''}</li>
                     ))}

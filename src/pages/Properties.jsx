@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -102,7 +102,7 @@ const AirbnbSection = () => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-      {properties.map((property, index) => (
+      {properties.map((property) => (
         <div key={property.id} className="flex justify-center">
           <AirbnbWidget 
             id={property.id}
@@ -156,37 +156,37 @@ const Properties = () => {
 
   return (
     <div className="min-h-screen">
-      <section className="bg-gray-50 py-20">
+      <section className="bg-[#111111] py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-5xl font-bold text-gray-900 mb-6">{t.ourProperties}</h1>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">{t.intro}</p>
+            <h1 className="text-5xl font-bold text-[#F8F8F8] mb-6">{t.ourProperties}</h1>
+            <p className="text-xl text-[#B8B8B8] max-w-4xl mx-auto leading-relaxed">{t.intro}</p>
           </div>
         </div>
       </section>
 
       <ReviewsSection />
 
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-[#111111]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">{t.featured}</h2>
-          <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">{t.featuredDesc}</p>
+          <h2 className="text-4xl font-bold text-[#F8F8F8] mb-6">{t.featured}</h2>
+          <p className="text-xl text-[#B8B8B8] mb-12 max-w-3xl mx-auto">{t.featuredDesc}</p>
           <AirbnbSection />
         </div>
       </section>
 
-      <section className="py-20 bg-blue-600">
+      <section className="py-20 bg-[#050505] border-y border-[#D4AF37]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-white mb-6">{t.notFound}</h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">{t.notFoundDesc}</p>
+          <p className="text-xl text-[#CFCFCF] mb-8 max-w-3xl mx-auto">{t.notFoundDesc}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
-              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 text-lg">
+              <Button className="bg-[#D4AF37] text-[#050505] hover:bg-[#E6C978] px-8 py-3 text-lg">
                 {t.contactUs}
               </Button>
             </Link>
             <Link to="/contact">
-              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-3 text-lg border-2 border-white">
+              <Button className="bg-[#D4AF37] text-[#050505] hover:bg-[#E6C978] px-8 py-3 text-lg border-2 border-white">
                 {t.propertyEvaluation}
               </Button>
             </Link>

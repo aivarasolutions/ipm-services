@@ -199,7 +199,7 @@ const RealEstate = () => {
         <div className="absolute inset-0 bg-[url('/hero-pattern.png')] opacity-5"></div>
         <div className="absolute top-0 left-0 w-full h-full">
           <div className="absolute top-20 left-10 w-48 md:w-72 h-48 md:h-72 bg-amber-500/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 right-10 w-64 md:w-96 h-64 md:h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 w-64 md:w-96 h-64 md:h-96 bg-[#D4AF37]/10 rounded-full blur-3xl"></div>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <p className="text-amber-400 uppercase tracking-widest text-xs md:text-sm font-medium mb-4">Premium Real Estate</p>
@@ -210,10 +210,10 @@ const RealEstate = () => {
             {t.heroSubtitle}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center px-4">
-            <a href="#listings" className="bg-amber-500 hover:bg-amber-600 text-slate-900 px-8 md:px-10 py-3 md:py-4 text-base md:text-lg rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-amber-500/25 hover:scale-105">
+            <a href="#listings" className="bg-[#D4AF37] hover:bg-[#E6C978] text-[#050505] px-8 md:px-10 py-3 md:py-4 text-base md:text-lg rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-[#D4AF37]/25 hover:scale-105">
               {t.viewListings}
             </a>
-            <Link to="/contact" className="border-2 border-white/30 hover:border-white/60 text-white px-8 md:px-10 py-3 md:py-4 text-base md:text-lg rounded-full font-semibold transition-all duration-300 hover:bg-white/10">
+            <Link to="/contact" className="border-2 border-white/30 hover:border-white/60 text-white px-8 md:px-10 py-3 md:py-4 text-base md:text-lg rounded-full font-semibold transition-all duration-300 hover:bg-[#050505]/10">
               {t.contactUs}
             </Link>
           </div>
@@ -221,18 +221,18 @@ const RealEstate = () => {
       </section>
 
       {/* Featured Properties Section */}
-      <section className="py-12 md:py-20 bg-slate-50" id="listings">
+      <section className="py-12 md:py-20 bg-[#111111]" id="listings">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-4">
             <p className="text-amber-600 uppercase tracking-widest text-xs md:text-sm font-medium">{t.featured}</p>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-10 md:mb-16 text-center">{t.currentListings}</h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#F8F8F8] mb-10 md:mb-16 text-center">{t.currentListings}</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {featuredListings.map(listing => (
-              <div key={listing.id} className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
+              <div key={listing.id} className="group bg-[#050505] rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2">
                 <div className="relative overflow-hidden">
-                  <div className="absolute top-3 md:top-4 left-3 md:left-4 bg-amber-500 text-slate-900 px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-bold z-10 shadow-lg">
+                  <div className="absolute top-3 md:top-4 left-3 md:left-4 bg-[#D4AF37] text-[#050505] px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-bold z-10 shadow-lg">
                     {listing.status}
                   </div>
                   <img 
@@ -244,8 +244,8 @@ const RealEstate = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
                 <div className="p-5 md:p-8">
-                  <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2">{listing.title}</h3>
-                  <p className="text-slate-500 mb-4 md:mb-6 flex items-center text-sm md:text-base">
+                  <h3 className="text-xl md:text-2xl font-bold text-[#F8F8F8] mb-2">{listing.title}</h3>
+                  <p className="text-[#A8A8A8] mb-4 md:mb-6 flex items-center text-sm md:text-base">
                     <MapPin className="w-4 h-4 mr-2 text-amber-500 flex-shrink-0" />
                     {listing.location}
                   </p>
@@ -253,7 +253,7 @@ const RealEstate = () => {
                   <div className="flex items-baseline justify-between mb-4 md:mb-6 pb-4 md:pb-6 border-b border-slate-100">
                     <div>
                       <p className="text-xs md:text-sm text-slate-400 mb-1">{t.startingAt}</p>
-                      <p className="text-lg md:text-2xl font-bold text-slate-900">${listing.price.toLocaleString()} USD</p>
+                      <p className="text-lg md:text-2xl font-bold text-[#F8F8F8]">${listing.price.toLocaleString()} USD</p>
                     </div>
                     <div className="text-right">
                       <p className="text-xs md:text-sm text-slate-400 mb-1">{t.roi}</p>
@@ -261,13 +261,13 @@ const RealEstate = () => {
                     </div>
                   </div>
                   
-                  <p className="text-slate-600 text-sm mb-4 md:mb-6 line-clamp-2 leading-relaxed">
+                  <p className="text-[#A8A8A8] text-sm mb-4 md:mb-6 line-clamp-2 leading-relaxed">
                     {listing.description}
                   </p>
                   
                   <div className="flex flex-wrap gap-1.5 md:gap-2 mb-4 md:mb-6">
                     {listing.features.slice(0, 4).map((feature, index) => (
-                      <span key={index} className="bg-slate-100 text-slate-700 px-2 md:px-3 py-1 rounded-full text-xs font-medium">
+                      <span key={index} className="bg-[#1F1F1F] text-[#B8B8B8] px-2 md:px-3 py-1 rounded-full text-xs font-medium">
                         {feature}
                       </span>
                     ))}
@@ -275,7 +275,7 @@ const RealEstate = () => {
                   
                   <Link 
                     to={`/real-estate/${listing.slug}`}
-                    className="w-full bg-slate-900 hover:bg-slate-800 text-white py-3 md:py-4 px-4 md:px-6 rounded-xl font-semibold text-center flex items-center justify-center group/btn transition-all duration-300 text-sm md:text-base"
+                    className="w-full bg-[#050505] hover:bg-slate-800 text-white py-3 md:py-4 px-4 md:px-6 rounded-xl font-semibold text-center flex items-center justify-center group/btn transition-all duration-300 text-sm md:text-base"
                   >
                     {t.viewDetails}
                     <ArrowRight className="w-4 md:w-5 h-4 md:h-5 ml-2 group-hover/btn:translate-x-1 transition-transform" />
@@ -288,13 +288,13 @@ const RealEstate = () => {
       </section>
 
       {/* Desired Locations Section */}
-      <section className="py-12 md:py-20 bg-white">
+      <section className="py-12 md:py-20 bg-[#050505]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-4">
             <p className="text-amber-600 uppercase tracking-widest text-xs md:text-sm font-medium">{t.desiredLocations}</p>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 md:mb-6 text-center">{t.exploreDestinations}</h2>
-          <p className="text-base md:text-xl text-slate-600 mb-10 md:mb-16 text-center max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#F8F8F8] mb-4 md:mb-6 text-center">{t.exploreDestinations}</h2>
+          <p className="text-base md:text-xl text-[#A8A8A8] mb-10 md:mb-16 text-center max-w-3xl mx-auto">
             {t.locationsDesc}
           </p>
           
@@ -311,7 +311,7 @@ const RealEstate = () => {
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">Cancun</h3>
                 <p className="text-slate-300 text-sm md:text-base">{t.cancunDesc}</p>
               </div>
-              <div className="absolute top-4 right-4 bg-amber-500 text-slate-900 px-3 py-1 rounded-full text-xs font-bold">
+              <div className="absolute top-4 right-4 bg-[#D4AF37] text-[#050505] px-3 py-1 rounded-full text-xs font-bold">
                 HOT
               </div>
             </div>
@@ -345,7 +345,7 @@ const RealEstate = () => {
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">Riviera Maya</h3>
                 <p className="text-slate-300 text-sm md:text-base">{t.rivieraMayaDesc}</p>
               </div>
-              <div className="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+              <div className="absolute top-4 right-4 bg-[#D4AF37] text-[#050505] px-3 py-1 rounded-full text-xs font-bold">
                 EXCLUSIVE
               </div>
             </div>
@@ -361,11 +361,11 @@ const RealEstate = () => {
           <p className="text-lg md:text-xl text-slate-300 mb-8 md:mb-12 max-w-2xl mx-auto">{t.consultationDesc}</p>
           
           <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center">
-            <a href="tel:+13104000032" className="inline-flex items-center justify-center bg-amber-500 hover:bg-amber-600 text-slate-900 px-8 md:px-10 py-3 md:py-4 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-amber-500/25 text-sm md:text-base">
+            <a href="tel:+13104000032" className="inline-flex items-center justify-center bg-[#D4AF37] hover:bg-[#E6C978] text-[#050505] px-8 md:px-10 py-3 md:py-4 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-[#D4AF37]/25 text-sm md:text-base">
               <Phone className="w-4 md:w-5 h-4 md:h-5 mr-2 md:mr-3" />
               {t.callUs}
             </a>
-            <a href="mailto:info@richaf.global" className="inline-flex items-center justify-center border-2 border-white/30 hover:border-white/60 text-white px-8 md:px-10 py-3 md:py-4 rounded-full font-semibold transition-all duration-300 hover:bg-white/10 text-sm md:text-base">
+            <a href="mailto:info@richaf.global" className="inline-flex items-center justify-center border-2 border-white/30 hover:border-white/60 text-white px-8 md:px-10 py-3 md:py-4 rounded-full font-semibold transition-all duration-300 hover:bg-[#050505]/10 text-sm md:text-base">
               <Mail className="w-4 md:w-5 h-4 md:h-5 mr-2 md:mr-3" />
               {t.emailUs}
             </a>
@@ -374,14 +374,14 @@ const RealEstate = () => {
       </section>
 
       {/* Buyers Company Information */}
-      <section className="py-12 md:py-16 bg-white">
+      <section className="py-12 md:py-16 bg-[#050505]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4 md:mb-6">{t.buyersCompanyTitle}</h2>
-            <p className="text-base md:text-lg text-slate-600 mb-4 leading-relaxed">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#F8F8F8] mb-4 md:mb-6">{t.buyersCompanyTitle}</h2>
+            <p className="text-base md:text-lg text-[#A8A8A8] mb-4 leading-relaxed">
               {t.buyersCompanyDesc}
             </p>
-            <p className="text-sm md:text-base text-slate-500">
+            <p className="text-sm md:text-base text-[#A8A8A8]">
               {t.buyersCompanyNote}
             </p>
           </div>
@@ -389,13 +389,13 @@ const RealEstate = () => {
       </section>
 
       {/* Services Section */}
-      <section className="py-12 md:py-20 bg-slate-50">
+      <section className="py-12 md:py-20 bg-[#111111]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-4">
             <p className="text-amber-600 uppercase tracking-widest text-xs md:text-sm font-medium">{t.ourServices}</p>
           </div>
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 md:mb-6 text-center">{t.comprehensiveManagement}</h2>
-          <p className="text-base md:text-xl text-slate-600 mb-10 md:mb-16 text-center max-w-3xl mx-auto">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-[#F8F8F8] mb-4 md:mb-6 text-center">{t.comprehensiveManagement}</h2>
+          <p className="text-base md:text-xl text-[#A8A8A8] mb-10 md:mb-16 text-center max-w-3xl mx-auto">
             {t.servicesDesc}
           </p>
           <div className="text-center mb-8 md:mb-12">
@@ -408,12 +408,12 @@ const RealEstate = () => {
             {services.map((service, index) => {
               const Icon = service.icon;
               return (
-                <div key={index} className="bg-white p-4 md:p-8 rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transition-shadow text-center">
+                <div key={index} className="bg-[#050505] p-4 md:p-8 rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transition-shadow text-center">
                   <div className="w-12 md:w-16 h-12 md:h-16 bg-amber-100 rounded-xl md:rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6">
                     <Icon className="w-6 md:w-8 h-6 md:h-8 text-amber-600" />
                   </div>
-                  <h3 className="text-sm md:text-xl font-bold text-slate-900 mb-2 md:mb-3">{service.title}</h3>
-                  <p className="text-xs md:text-base text-slate-600 hidden md:block">{service.desc}</p>
+                  <h3 className="text-sm md:text-xl font-bold text-[#F8F8F8] mb-2 md:mb-3">{service.title}</h3>
+                  <p className="text-xs md:text-base text-[#A8A8A8] hidden md:block">{service.desc}</p>
                 </div>
               );
             })}
@@ -422,20 +422,20 @@ const RealEstate = () => {
       </section>
 
       {/* Why Invest with IPM */}
-      <section className="py-12 md:py-20 bg-white">
+      <section className="py-12 md:py-20 bg-[#050505]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 md:mb-16">
-            <h2 className="text-2xl md:text-4xl font-bold text-slate-900 mb-4">{t.whyInvest}</h2>
-            <p className="text-base md:text-xl text-slate-600 max-w-3xl mx-auto">{t.whyInvestDesc}</p>
+            <h2 className="text-2xl md:text-4xl font-bold text-[#F8F8F8] mb-4">{t.whyInvest}</h2>
+            <p className="text-base md:text-xl text-[#A8A8A8] max-w-3xl mx-auto">{t.whyInvestDesc}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
             {t.benefits.map((benefit, index) => (
-              <div key={index} className="bg-slate-50 p-5 md:p-8 rounded-xl md:rounded-2xl hover:bg-slate-100 transition-colors">
+              <div key={index} className="bg-[#111111] p-5 md:p-8 rounded-xl md:rounded-2xl hover:bg-[#1F1F1F] transition-colors">
                 <div className="w-10 md:w-12 h-10 md:h-12 bg-emerald-100 rounded-lg md:rounded-xl flex items-center justify-center mb-4 md:mb-6">
                   <CheckCircle className="w-5 md:w-6 h-5 md:h-6 text-emerald-600" />
                 </div>
-                <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-2 md:mb-3">{benefit.title}</h3>
-                <p className="text-sm md:text-base text-slate-600">{benefit.desc}</p>
+                <h3 className="text-lg md:text-xl font-bold text-[#F8F8F8] mb-2 md:mb-3">{benefit.title}</h3>
+                <p className="text-sm md:text-base text-[#A8A8A8]">{benefit.desc}</p>
               </div>
             ))}
           </div>
@@ -443,20 +443,20 @@ const RealEstate = () => {
       </section>
 
       {/* Investment Process */}
-      <section className="py-12 md:py-20 bg-slate-50" id="consultation">
+      <section className="py-12 md:py-20 bg-[#111111]" id="consultation">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 md:mb-16">
-            <h2 className="text-2xl md:text-4xl font-bold text-slate-900 mb-4">{t.investmentProcess}</h2>
-            <p className="text-base md:text-xl text-slate-600 max-w-3xl mx-auto">{t.processDesc}</p>
+            <h2 className="text-2xl md:text-4xl font-bold text-[#F8F8F8] mb-4">{t.investmentProcess}</h2>
+            <p className="text-base md:text-xl text-[#A8A8A8] max-w-3xl mx-auto">{t.processDesc}</p>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mb-12 md:mb-20">
             {t.steps.map((step, index) => (
               <div key={index} className="text-center">
-                <div className="bg-gradient-to-br from-amber-500 to-amber-600 text-white w-14 md:w-20 h-14 md:h-20 rounded-xl md:rounded-2xl flex items-center justify-center text-xl md:text-3xl font-bold mx-auto mb-4 md:mb-6 shadow-lg shadow-amber-500/25">
+                <div className="bg-gradient-to-br from-[#D4AF37] to-[#E6C978] text-[#050505] w-14 md:w-20 h-14 md:h-20 rounded-xl md:rounded-2xl flex items-center justify-center text-xl md:text-3xl font-bold mx-auto mb-4 md:mb-6 shadow-lg shadow-[#D4AF37]/25">
                   {index + 1}
                 </div>
-                <h3 className="text-sm md:text-xl font-bold text-slate-900 mb-2 md:mb-3">{step.title}</h3>
-                <p className="text-xs md:text-base text-slate-600 hidden md:block">{step.desc}</p>
+                <h3 className="text-sm md:text-xl font-bold text-[#F8F8F8] mb-2 md:mb-3">{step.title}</h3>
+                <p className="text-xs md:text-base text-[#A8A8A8] hidden md:block">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -464,7 +464,7 @@ const RealEstate = () => {
           <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl md:rounded-3xl p-6 md:p-12 text-center">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">{t.readyToInvest}</h2>
             <p className="text-base md:text-xl text-slate-300 mb-6 md:mb-10">{t.freeAnalysis}</p>
-            <div className="max-w-lg mx-auto bg-white rounded-xl md:rounded-2xl p-5 md:p-8">
+            <div className="max-w-lg mx-auto bg-[#050505] rounded-xl md:rounded-2xl p-5 md:p-8">
               <LeadCaptureForm variant="detailed" />
             </div>
           </div>

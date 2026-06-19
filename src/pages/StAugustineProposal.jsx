@@ -95,7 +95,7 @@ const StAugustineProposal = () => {
               label: 'Annual Gross Revenue ($)',
               data: [38400, 58800, 85200],
               backgroundColor: ['rgba(139,163,192,0.7)','rgba(198,166,107,0.85)','rgba(45,106,79,0.75)'],
-              borderColor: ['#8BA3C0','#C6A66B','#2D6A4F'],
+              borderColor: ['#8BA3C0','#D4AF37','#2D6A4F'],
               borderWidth: 2,
               borderRadius: 8,
             }]
@@ -139,12 +139,12 @@ const StAugustineProposal = () => {
     <div className="sa-wrap">
       <style>{`
         .sa-wrap * { box-sizing: border-box; margin: 0; padding: 0; }
-        .sa-wrap { font-family: 'Inter', sans-serif; background: #F8F7F4; color: #1A2230; line-height: 1.7; -webkit-font-smoothing: antialiased; }
-        .sa-wrap h1,.sa-wrap h2,.sa-wrap h3,.sa-wrap h4 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.25; color: #0E1A2B; }
+        .sa-wrap { font-family: 'Inter', sans-serif; background: #F8F7F4; color: #F8F8F8; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+        .sa-wrap h1,.sa-wrap h2,.sa-wrap h3,.sa-wrap h4 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.25; color: #050505; }
         .sa-wrap h1 { font-size: clamp(2rem,5vw,3.5rem); font-weight:700; }
         .sa-wrap h2 { font-size: clamp(1.6rem,3.5vw,2.5rem); font-weight:600; }
         .sa-wrap h3 { font-size: clamp(1.15rem,2.5vw,1.5rem); font-weight:600; }
-        .sa-wrap p  { color:#4A5568; font-size:1rem; line-height:1.8; }
+        .sa-wrap p  { color:#B8B8B8; font-size:1rem; line-height:1.8; }
         .sa-wrap a  { color:inherit; text-decoration:none; }
 
         /* NAV */
@@ -153,27 +153,27 @@ const StAugustineProposal = () => {
         .sa-nav-inner { max-width:1160px; margin:0 auto; padding:0 1.5rem; display:flex; align-items:center; justify-content:space-between; }
         .sa-nav-logo { font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:700; color:#fff; letter-spacing:0.05em; }
         .sa-nav-logo a { color:#fff; }
-        .sa-nav-logo span { color:#C6A66B; }
-        .sa-nav-cta { background:#C6A66B; color:#0E1A2B; border:2px solid #C6A66B; border-radius:6px; padding:0.6rem 1.4rem; font-size:0.82rem; font-weight:600; letter-spacing:0.04em; cursor:pointer; transition:all 0.3s; white-space:nowrap; }
+        .sa-nav-logo span { color:#D4AF37; }
+        .sa-nav-cta { background:#D4AF37; color:#050505; border:2px solid #D4AF37; border-radius:6px; padding:0.6rem 1.4rem; font-size:0.82rem; font-weight:600; letter-spacing:0.04em; cursor:pointer; transition:all 0.3s; white-space:nowrap; }
         .sa-nav-cta:hover { background:#D9BC8A; border-color:#D9BC8A; transform:translateY(-2px); }
 
         /* HERO */
-        .sa-hero { position:relative; min-height:100vh; display:flex; align-items:center; overflow:hidden; background:#0E1A2B; }
+        .sa-hero { position:relative; min-height:100vh; display:flex; align-items:center; overflow:hidden; background:#050505; }
         .sa-hero-bg { position:absolute; inset:0; background-image:url('/staugustine-hero-bg.jpg'); background-size:cover; background-position:center 30%; opacity:0.3; }
         .sa-hero-overlay { position:absolute; inset:0; background:linear-gradient(135deg,rgba(14,26,43,0.9) 0%,rgba(14,26,43,0.7) 50%,rgba(35,42,51,0.82) 100%); }
         .sa-hero-content { position:relative; z-index:2; max-width:1160px; margin:0 auto; padding:8rem 1.5rem 5rem; width:100%; }
         .sa-hero-inner { max-width:800px; }
-        .sa-hero-badge { display:inline-flex; align-items:center; gap:0.5rem; background:rgba(198,166,107,0.15); border:1px solid rgba(198,166,107,0.4); border-radius:50px; padding:0.4rem 1rem; font-size:0.78rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#C6A66B; margin-bottom:1.5rem; }
+        .sa-hero-badge { display:inline-flex; align-items:center; gap:0.5rem; background:rgba(198,166,107,0.15); border:1px solid rgba(198,166,107,0.4); border-radius:50px; padding:0.4rem 1rem; font-size:0.78rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#D4AF37; margin-bottom:1.5rem; }
         .sa-hero h1 { color:#fff !important; margin-bottom:1.25rem; }
-        .sa-hero h1 em { color:#C6A66B; font-style:normal; }
+        .sa-hero h1 em { color:#D4AF37; font-style:normal; }
         .sa-hero-sub { font-size:1.15rem; color:rgba(255,255,255,0.75) !important; margin-bottom:0.75rem; font-family:'Playfair Display',serif; font-style:italic; }
         .sa-hero-desc { font-size:1rem; color:rgba(255,255,255,0.65) !important; max-width:580px; margin-bottom:2.5rem; line-height:1.8; }
         .sa-hero-stats { display:flex; gap:2.5rem; margin-top:3rem; padding-top:2rem; border-top:1px solid rgba(255,255,255,0.12); flex-wrap:wrap; }
-        .sa-hero-stat-value { font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:700; color:#C6A66B; }
+        .sa-hero-stat-value { font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:700; color:#D4AF37; }
         .sa-hero-stat-label { font-size:0.78rem; color:rgba(255,255,255,0.55); text-transform:uppercase; letter-spacing:0.08em; margin-top:0.2rem; }
         .sa-btn-group { display:flex; gap:1rem; flex-wrap:wrap; }
         .sa-btn { display:inline-flex; align-items:center; gap:0.5rem; padding:0.85rem 2rem; border-radius:6px; font-family:'Inter',sans-serif; font-size:0.9rem; font-weight:600; letter-spacing:0.04em; cursor:pointer; transition:all 0.3s; border:2px solid transparent; white-space:nowrap; }
-        .sa-btn-primary { background:#C6A66B; color:#0E1A2B; border-color:#C6A66B; }
+        .sa-btn-primary { background:#D4AF37; color:#050505; border-color:#D4AF37; }
         .sa-btn-primary:hover { background:#D9BC8A; border-color:#D9BC8A; transform:translateY(-2px); box-shadow:0 8px 24px rgba(198,166,107,0.35); }
         .sa-btn-outline { background:rgba(0,0,0,0.35); color:#fff !important; border-color:#fff; }
         .sa-btn-outline:hover { background:rgba(0,0,0,0.55); border-color:#fff; transform:translateY(-2px); }
@@ -181,12 +181,12 @@ const StAugustineProposal = () => {
         /* LAYOUT */
         .sa-container { max-width:1160px; margin:0 auto; padding:0 1.5rem; }
         .sa-section { padding:5rem 0; }
-        .sa-section-dark { background:#0E1A2B; }
+        .sa-section-dark { background:#050505; }
         .sa-section-ivory { background:#F8F7F4; }
-        .sa-section-white { background:#fff; }
+        .sa-section-white { background:#111111; }
         .sa-section-header { text-align:center; max-width:700px; margin:0 auto 3.5rem; }
-        .sa-section-label { font-family:'Inter',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:#C6A66B; margin-bottom:0.75rem; }
-        .sa-gold-divider { width:60px; height:3px; background:linear-gradient(90deg,#C6A66B,#D9BC8A); border-radius:2px; margin:1.25rem auto; }
+        .sa-section-label { font-family:'Inter',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:#D4AF37; margin-bottom:0.75rem; }
+        .sa-gold-divider { width:60px; height:3px; background:linear-gradient(90deg,#D4AF37,#D9BC8A); border-radius:2px; margin:1.25rem auto; }
 
         /* FADE */
         .sa-fade-in { opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease; }
@@ -194,25 +194,25 @@ const StAugustineProposal = () => {
 
         /* PROPERTY OVERVIEW */
         .sa-property-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; }
-        .sa-address-card { background:#0E1A2B; border-radius:20px; padding:2.5rem; color:#fff; position:relative; overflow:hidden; }
+        .sa-address-card { background:#050505; border-radius:20px; padding:2.5rem; color:#fff; position:relative; overflow:hidden; }
         .sa-address-card::before { content:''; position:absolute; top:-40px; right:-40px; width:180px; height:180px; background:radial-gradient(circle,rgba(198,166,107,0.15) 0%,transparent 70%); border-radius:50%; }
-        .sa-addr-label { font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:#C6A66B; font-weight:600; margin-bottom:0.5rem; }
+        .sa-addr-label { font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:#D4AF37; font-weight:600; margin-bottom:0.5rem; }
         .sa-address-card h3 { color:#fff !important; font-size:1.5rem; margin-bottom:0.25rem; }
         .sa-city { color:rgba(255,255,255,0.6); font-size:1rem; margin-bottom:1.5rem; }
         .sa-map-embed { border-radius:12px; overflow:hidden; margin-top:1.5rem; height:200px; }
         .sa-map-embed iframe { width:100%; height:100%; border:none; }
         .sa-prop-features { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-top:1.5rem; }
-        .sa-feature-item { display:flex; align-items:center; gap:0.6rem; font-size:0.9rem; color:#4A5568; }
+        .sa-feature-item { display:flex; align-items:center; gap:0.6rem; font-size:0.9rem; color:#B8B8B8; }
         .sa-feature-icon { width:32px; height:32px; background:linear-gradient(135deg,rgba(198,166,107,0.15),rgba(198,166,107,0.05)); border:1px solid rgba(198,166,107,0.3); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:0.9rem; flex-shrink:0; }
         .sa-demand-list { list-style:none; }
-        .sa-demand-list li { display:flex; align-items:flex-start; gap:0.75rem; padding:0.85rem 0; border-bottom:1px solid #E2E8F0; font-size:0.95rem; color:#4A5568; }
+        .sa-demand-list li { display:flex; align-items:flex-start; gap:0.75rem; padding:0.85rem 0; border-bottom:1px solid rgba(212,175,55,0.22); font-size:0.95rem; color:#B8B8B8; }
         .sa-demand-list li:last-child { border-bottom:none; }
-        .sa-demand-list li::before { content:'✓'; color:#C6A66B; font-weight:700; font-size:0.9rem; flex-shrink:0; margin-top:0.15rem; }
+        .sa-demand-list li::before { content:'✓'; color:#D4AF37; font-weight:700; font-size:0.9rem; flex-shrink:0; margin-top:0.15rem; }
 
         /* GALLERY */
         .sa-gallery-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0.75rem; }
         .sa-gallery-grid .sa-gallery-featured { grid-column:span 2; grid-row:span 2; }
-        .sa-gallery-item { overflow:hidden; border-radius:12px; position:relative; background:#E2E8F0; aspect-ratio:4/3; cursor:pointer; }
+        .sa-gallery-item { overflow:hidden; border-radius:12px; position:relative; background:rgba(212,175,55,0.22); aspect-ratio:4/3; cursor:pointer; }
         .sa-gallery-item img { width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease; display:block; }
         .sa-gallery-item:hover img { transform:scale(1.05); }
         .sa-gallery-featured { aspect-ratio:unset; min-height:320px; }
@@ -227,78 +227,78 @@ const StAugustineProposal = () => {
         .sa-lx-nav:hover { background:rgba(255,255,255,0.3); }
         .sa-lx-prev { left:1.5rem; }
         .sa-lx-next { right:1.5rem; }
-        .sa-gallery-note { text-align:center; margin-top:1.25rem; font-size:0.82rem; color:#718096; font-style:italic; }
+        .sa-gallery-note { text-align:center; margin-top:1.25rem; font-size:0.82rem; color:#A8A8A8; font-style:italic; }
 
         /* MARKET */
         .sa-market-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-bottom:3rem; }
         .sa-market-stat { background:rgba(255,255,255,0.06); border:1px solid rgba(198,166,107,0.2); border-radius:16px; padding:1.75rem; text-align:center; }
-        .sa-market-stat-value { font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:700; color:#C6A66B; }
+        .sa-market-stat-value { font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:700; color:#D4AF37; }
         .sa-market-stat-label { font-size:0.82rem; color:rgba(255,255,255,0.55); text-transform:uppercase; letter-spacing:0.08em; margin-top:0.4rem; }
         .sa-market-stat-desc { font-size:0.78rem; color:rgba(255,255,255,0.4); margin-top:0.3rem; }
         .sa-market-drivers { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; margin-top:2rem; }
         .sa-driver-card { background:rgba(255,255,255,0.05); border:1px solid rgba(198,166,107,0.15); border-radius:12px; padding:1.25rem; }
-        .sa-driver-title { font-size:0.88rem; font-weight:600; color:#C6A66B; margin-bottom:0.4rem; }
+        .sa-driver-title { font-size:0.88rem; font-weight:600; color:#D4AF37; margin-bottom:0.4rem; }
         .sa-driver-desc { font-size:0.82rem; color:rgba(255,255,255,0.55); line-height:1.6; }
         .sa-chart-container { background:rgba(255,255,255,0.04); border:1px solid rgba(198,166,107,0.15); border-radius:20px; padding:2rem; max-width:700px; margin:0 auto; }
-        .sa-chart-container.sa-white { background:#fff; border:1px solid #E2E8F0; }
+        .sa-chart-container.sa-white { background:#111111; border:1px solid rgba(212,175,55,0.22); }
         .sa-chart-title { font-family:'Playfair Display',serif; font-size:1.1rem; color:#fff; text-align:center; margin-bottom:1.5rem; }
-        .sa-chart-title.sa-dark-text { color:#0E1A2B; }
+        .sa-chart-title.sa-dark-text { color:#050505; }
 
         /* PROJECTIONS */
         .sa-proj-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-bottom:3rem; }
-        .sa-proj-card { background:#fff; border-radius:20px; padding:2rem; box-shadow:0 2px 8px rgba(14,26,43,0.08); border-top:4px solid transparent; transition:transform 0.3s, box-shadow 0.3s; position:relative; cursor:pointer; }
+        .sa-proj-card { background:#111111; border-radius:20px; padding:2rem; box-shadow:0 2px 8px rgba(14,26,43,0.08); border-top:4px solid transparent; transition:transform 0.3s, box-shadow 0.3s; position:relative; cursor:pointer; }
         .sa-proj-card:hover { transform:translateY(-6px); box-shadow:0 8px 32px rgba(14,26,43,0.12); }
-        .sa-proj-card.sa-selected { outline:3px solid #C6A66B; outline-offset:2px; transform:translateY(-6px); box-shadow:0 8px 32px rgba(198,166,107,0.25); }
-        .sa-proj-card.sa-selected::after { content:'✓ Selected'; position:absolute; bottom:1rem; right:1rem; font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#C6A66B; }
+        .sa-proj-card.sa-selected { outline:3px solid #D4AF37; outline-offset:2px; transform:translateY(-6px); box-shadow:0 8px 32px rgba(198,166,107,0.25); }
+        .sa-proj-card.sa-selected::after { content:'✓ Selected'; position:absolute; bottom:1rem; right:1rem; font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:#D4AF37; }
         .sa-proj-conservative { border-top-color:#8BA3C0; }
-        .sa-proj-strong { border-top-color:#C6A66B; background:#0E1A2B; }
+        .sa-proj-strong { border-top-color:#D4AF37; background:#050505; }
         .sa-proj-premium { border-top-color:#2D6A4F; }
         .sa-proj-badge { display:inline-block; font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:0.3rem 0.8rem; border-radius:50px; margin-bottom:1rem; }
         .sa-proj-conservative .sa-proj-badge { background:rgba(139,163,192,0.15); color:#5A7FA5; }
-        .sa-proj-strong .sa-proj-badge { background:rgba(198,166,107,0.2); color:#C6A66B; }
+        .sa-proj-strong .sa-proj-badge { background:rgba(198,166,107,0.2); color:#D4AF37; }
         .sa-proj-premium .sa-proj-badge { background:rgba(45,106,79,0.15); color:#2D6A4F; }
-        .sa-proj-nightly { font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:700; color:#0E1A2B; line-height:1; margin-bottom:0.25rem; }
-        .sa-proj-strong .sa-proj-nightly { color:#C6A66B; }
-        .sa-proj-label { font-size:0.75rem; color:#718096; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:1.25rem; }
+        .sa-proj-nightly { font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:700; color:#050505; line-height:1; margin-bottom:0.25rem; }
+        .sa-proj-strong .sa-proj-nightly { color:#D4AF37; }
+        .sa-proj-label { font-size:0.75rem; color:#A8A8A8; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:1.25rem; }
         .sa-proj-strong .sa-proj-label { color:rgba(255,255,255,0.5); }
-        .sa-proj-rows { border-top:1px solid #E2E8F0; padding-top:1rem; }
+        .sa-proj-rows { border-top:1px solid rgba(212,175,55,0.22); padding-top:1rem; }
         .sa-proj-strong .sa-proj-rows { border-top-color:rgba(255,255,255,0.12); }
         .sa-proj-row { display:flex; justify-content:space-between; align-items:center; padding:0.5rem 0; font-size:0.85rem; }
-        .sa-proj-row-label { color:#718096; }
+        .sa-proj-row-label { color:#A8A8A8; }
         .sa-proj-strong .sa-proj-row-label { color:rgba(255,255,255,0.5); }
-        .sa-proj-row-value { font-weight:600; color:#1A2230; }
+        .sa-proj-row-value { font-weight:600; color:#F8F8F8; }
         .sa-proj-strong .sa-proj-row-value { color:#fff; }
-        .sa-proj-annual { margin-top:1.25rem; padding-top:1rem; border-top:1px solid #E2E8F0; }
+        .sa-proj-annual { margin-top:1.25rem; padding-top:1rem; border-top:1px solid rgba(212,175,55,0.22); }
         .sa-proj-strong .sa-proj-annual { border-top-color:rgba(255,255,255,0.12); }
-        .sa-proj-annual-value { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:700; color:#C6A66B; }
-        .sa-proj-annual-label { font-size:0.75rem; color:#718096; margin-top:0.2rem; }
+        .sa-proj-annual-value { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:700; color:#D4AF37; }
+        .sa-proj-annual-label { font-size:0.75rem; color:#A8A8A8; margin-top:0.2rem; }
         .sa-proj-strong .sa-proj-annual-label { color:rgba(255,255,255,0.45); }
-        .sa-popular-badge { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:#C6A66B; color:#0E1A2B; font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:0.3rem 0.9rem; border-radius:50px; white-space:nowrap; }
-        .sa-disclaimer { background:rgba(198,166,107,0.08); border:1px solid rgba(198,166,107,0.2); border-radius:12px; padding:1.25rem 1.5rem; font-size:0.84rem; color:#4A5568; margin-top:2rem; }
+        .sa-popular-badge { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:#D4AF37; color:#050505; font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:0.3rem 0.9rem; border-radius:50px; white-space:nowrap; }
+        .sa-disclaimer { background:rgba(198,166,107,0.08); border:1px solid rgba(198,166,107,0.2); border-radius:12px; padding:1.25rem 1.5rem; font-size:0.84rem; color:#B8B8B8; margin-top:2rem; }
 
         /* EARNINGS */
         .sa-earnings-layout { display:grid; grid-template-columns:1fr 1.3fr; gap:3rem; align-items:start; }
-        .sa-fee-structure { background:#0E1A2B; border-radius:20px; padding:2.5rem; }
+        .sa-fee-structure { background:#050505; border-radius:20px; padding:2.5rem; }
         .sa-fee-item { display:flex; justify-content:space-between; align-items:center; padding:1.1rem 0; border-bottom:1px solid rgba(255,255,255,0.08); }
         .sa-fee-item:last-child { border-bottom:none; }
         .sa-fee-item-label { font-size:0.9rem; font-weight:600; color:#fff; }
         .sa-fee-item-sublabel { font-size:0.78rem; color:rgba(255,255,255,0.45); margin-top:0.2rem; }
-        .sa-fee-item-value { font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:700; color:#C6A66B; }
+        .sa-fee-item-value { font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:700; color:#D4AF37; }
         .sa-earnings-table-wrap { overflow-x:auto; border-radius:12px; box-shadow:0 2px 8px rgba(14,26,43,0.08); }
-        .sa-earnings-table { width:100%; border-collapse:collapse; font-size:0.92rem; background:#fff; }
-        .sa-earnings-table th { background:#0E1A2B; color:#fff; font-family:'Inter',sans-serif; font-weight:600; font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase; padding:1rem 1.25rem; text-align:left; }
-        .sa-earnings-table td { padding:0.9rem 1.25rem; border-bottom:1px solid #E2E8F0; color:#4A5568; }
-        .sa-earnings-table td:last-child { font-weight:600; color:#1A2230; text-align:right; }
-        .sa-earnings-table tr.sa-highlight td { background:linear-gradient(90deg,rgba(198,166,107,0.08),rgba(198,166,107,0.04)); color:#0E1A2B; font-weight:700; font-size:1rem; }
-        .sa-earnings-table tr.sa-highlight td:last-child { color:#C6A66B; font-size:1.1rem; }
-        .sa-editable-note { display:flex; align-items:center; gap:0.5rem; font-size:0.8rem; color:#718096; margin-top:0.75rem; font-style:italic; }
+        .sa-earnings-table { width:100%; border-collapse:collapse; font-size:0.92rem; background:#111111; }
+        .sa-earnings-table th { background:#050505; color:#fff; font-family:'Inter',sans-serif; font-weight:600; font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase; padding:1rem 1.25rem; text-align:left; }
+        .sa-earnings-table td { padding:0.9rem 1.25rem; border-bottom:1px solid rgba(212,175,55,0.22); color:#B8B8B8; }
+        .sa-earnings-table td:last-child { font-weight:600; color:#F8F8F8; text-align:right; }
+        .sa-earnings-table tr.sa-highlight td { background:linear-gradient(90deg,rgba(198,166,107,0.08),rgba(198,166,107,0.04)); color:#050505; font-weight:700; font-size:1rem; }
+        .sa-earnings-table tr.sa-highlight td:last-child { color:#D4AF37; font-size:1.1rem; }
+        .sa-editable-note { display:flex; align-items:center; gap:0.5rem; font-size:0.8rem; color:#A8A8A8; margin-top:0.75rem; font-style:italic; }
 
         /* SERVICES */
         .sa-services-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; }
-        .sa-service-card { background:#fff; border-radius:14px; padding:1.75rem 1.5rem; box-shadow:0 2px 8px rgba(14,26,43,0.07); text-align:center; transition:transform 0.3s, box-shadow 0.3s; }
+        .sa-service-card { background:#111111; border-radius:14px; padding:1.75rem 1.5rem; box-shadow:0 2px 8px rgba(14,26,43,0.07); text-align:center; transition:transform 0.3s, box-shadow 0.3s; }
         .sa-service-card:hover { transform:translateY(-4px); box-shadow:0 8px 24px rgba(14,26,43,0.11); }
         .sa-service-icon { font-size:1.75rem; margin-bottom:0.75rem; }
-        .sa-service-title { font-family:'Inter',sans-serif; font-size:0.88rem; font-weight:600; color:#0E1A2B; line-height:1.4; }
+        .sa-service-title { font-family:'Inter',sans-serif; font-size:0.88rem; font-weight:600; color:#050505; line-height:1.4; }
 
         /* WHY */
         .sa-why-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
@@ -310,13 +310,13 @@ const StAugustineProposal = () => {
 
         /* DASHBOARD */
         .sa-dashboard-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; }
-        .sa-dashboard-card { background:#fff; border-radius:16px; padding:1.75rem; box-shadow:0 2px 8px rgba(14,26,43,0.07); display:flex; gap:1.25rem; align-items:flex-start; }
+        .sa-dashboard-card { background:#111111; border-radius:16px; padding:1.75rem; box-shadow:0 2px 8px rgba(14,26,43,0.07); display:flex; gap:1.25rem; align-items:flex-start; }
         .sa-dashboard-icon { font-size:1.5rem; background:linear-gradient(135deg,rgba(198,166,107,0.15),rgba(198,166,107,0.05)); border:1px solid rgba(198,166,107,0.3); border-radius:10px; width:48px; height:48px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-        .sa-dashboard-title { font-family:'Inter',sans-serif; font-size:0.95rem; font-weight:700; color:#0E1A2B; margin-bottom:0.35rem; }
-        .sa-dashboard-desc { font-size:0.84rem; color:#718096; line-height:1.6; }
+        .sa-dashboard-title { font-family:'Inter',sans-serif; font-size:0.95rem; font-weight:700; color:#050505; margin-bottom:0.35rem; }
+        .sa-dashboard-desc { font-size:0.84rem; color:#A8A8A8; line-height:1.6; }
 
         /* CTA */
-        .sa-cta { text-align:center; padding:6rem 1.5rem; background:linear-gradient(135deg,#0E1A2B 0%,#1a2d47 50%,#0E1A2B 100%); }
+        .sa-cta { text-align:center; padding:6rem 1.5rem; background:linear-gradient(135deg,#050505 0%,#111111 50%,#050505 100%); }
         .sa-cta h2 { color:#fff !important; margin-bottom:1rem; }
         .sa-cta p { color:rgba(255,255,255,0.65) !important; font-size:1.1rem; margin-bottom:2.5rem; max-width:560px; margin-left:auto; margin-right:auto; }
 
@@ -324,13 +324,13 @@ const StAugustineProposal = () => {
         .sa-footer { background:#060D18; color:rgba(255,255,255,0.6); padding:3rem 0 2rem; }
         .sa-footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr; gap:3rem; margin-bottom:2.5rem; }
         .sa-footer-brand { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:700; color:#fff; margin-bottom:0.5rem; }
-        .sa-footer-brand span { color:#C6A66B; }
+        .sa-footer-brand span { color:#D4AF37; }
         .sa-footer-sub { font-size:0.85rem; color:rgba(255,255,255,0.45); margin-bottom:1.25rem; }
-        .sa-footer-heading { font-family:'Inter',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#C6A66B; margin-bottom:1rem; }
+        .sa-footer-heading { font-family:'Inter',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#D4AF37; margin-bottom:1rem; }
         .sa-footer-links { list-style:none; }
         .sa-footer-links li { margin-bottom:0.5rem; }
         .sa-footer-links a { font-size:0.85rem; color:rgba(255,255,255,0.45); transition:color 0.2s; }
-        .sa-footer-links a:hover { color:#C6A66B; }
+        .sa-footer-links a:hover { color:#D4AF37; }
         .sa-footer-bottom { border-top:1px solid rgba(255,255,255,0.08); padding-top:1.5rem; text-align:center; font-size:0.8rem; color:rgba(255,255,255,0.3); }
 
         /* RESPONSIVE */
@@ -393,7 +393,7 @@ const StAugustineProposal = () => {
             <div>
               <div className="sa-section-label">Property Overview</div>
               <h2 style={{marginBottom:'1rem'}}>3851 N Crossroad<br/>St. Augustine, FL</h2>
-              <div style={{width:'60px',height:'3px',background:'linear-gradient(90deg,#C6A66B,#D9BC8A)',borderRadius:'2px',marginBottom:'1.5rem'}}></div>
+              <div style={{width:'60px',height:'3px',background:'linear-gradient(90deg,#D4AF37,#D9BC8A)',borderRadius:'2px',marginBottom:'1.5rem'}}></div>
               <p style={{marginBottom:'1.5rem'}}>Nestled in one of Florida's most beloved coastal destinations, this property sits in the heart of St. Augustine's thriving short-term rental market. With year-round tourism driven by beaches, historic attractions, and major events, the property is ideally positioned for exceptional occupancy and premium nightly rates.</p>
               <div className="sa-prop-features">
                 {[
@@ -425,7 +425,7 @@ const StAugustineProposal = () => {
                 <div style={{display:'flex',gap:'1.5rem',paddingTop:'1rem',borderTop:'1px solid rgba(255,255,255,0.1)'}}>
                   {[['Beach','Proximity'],['FL','Coastal'],['$85K+','Revenue Potential']].map(([v,l]) => (
                     <div key={l}>
-                      <div style={{fontFamily:"'Playfair Display',serif",fontSize:'1.3rem',fontWeight:700,color:'#C6A66B'}}>{v}</div>
+                      <div style={{fontFamily:"'Playfair Display',serif",fontSize:'1.3rem',fontWeight:700,color:'#D4AF37'}}>{v}</div>
                       <div style={{fontSize:'0.72rem',color:'rgba(255,255,255,0.45)',textTransform:'uppercase',letterSpacing:'0.08em'}}>{l}</div>
                     </div>
                   ))}
@@ -579,7 +579,7 @@ const StAugustineProposal = () => {
           <div className="sa-earnings-layout sa-fade-in">
             <div>
               <div className="sa-fee-structure">
-                <div className="sa-section-label" style={{color:'#C6A66B'}}>IPM Fee Structure</div>
+                <div className="sa-section-label" style={{color:'#D4AF37'}}>IPM Fee Structure</div>
                 <h3 style={{color:'#fff',marginBottom:'1.5rem'}}>Simple. Transparent. Aligned.</h3>
                 <div className="sa-fee-item">
                   <div><div className="sa-fee-item-label">Monthly Platform & Software Fee</div><div className="sa-fee-item-sublabel">Flat monthly fee regardless of bookings</div></div>
@@ -590,7 +590,7 @@ const StAugustineProposal = () => {
                   <div className="sa-fee-item-value">20%</div>
                 </div>
                 <div style={{marginTop:'1.5rem',padding:'1rem',background:'rgba(198,166,107,0.1)',borderRadius:'8px',border:'1px solid rgba(198,166,107,0.2)'}}>
-                  <p style={{fontSize:'0.82rem',color:'rgba(255,255,255,0.6)',lineHeight:'1.6'}}><strong style={{color:'#C6A66B'}}>Net Profit Definition:</strong> Revenue after platform commissions (Airbnb, VRBO, Booking.com). IPM's fee is never applied to gross revenue — only to what you actually earn.</p>
+                  <p style={{fontSize:'0.82rem',color:'rgba(255,255,255,0.6)',lineHeight:'1.6'}}><strong style={{color:'#D4AF37'}}>Net Profit Definition:</strong> Revenue after platform commissions (Airbnb, VRBO, Booking.com). IPM's fee is never applied to gross revenue — only to what you actually earn.</p>
                 </div>
               </div>
             </div>
@@ -610,7 +610,7 @@ const StAugustineProposal = () => {
                     <tr><td>IPM Management Fee (20% of Net)</td><td style={{color:'#E53E3E'}}>– {fmt(TIERS[selectedTier].mgmtFee)}</td></tr>
                     <tr><td>Monthly Platform / Software Fee</td><td style={{color:'#E53E3E'}}>– {fmt(TIERS[selectedTier].platformFee)}</td></tr>
                     <tr className="sa-highlight">
-                      <td><strong>Estimated Owner Payout</strong><br/><span style={{fontSize:'0.75rem',fontWeight:'400',color:'#718096'}}>Before taxes &amp; maintenance reserve</span></td>
+                      <td><strong>Estimated Owner Payout</strong><br/><span style={{fontSize:'0.75rem',fontWeight:'400',color:'#A8A8A8'}}>Before taxes &amp; maintenance reserve</span></td>
                       <td><strong>{fmt(TIERS[selectedTier].payout)}</strong></td>
                     </tr>
                   </tbody>
@@ -700,7 +700,7 @@ const StAugustineProposal = () => {
 
       {/* CTA */}
       <section className="sa-cta" id="sa-cta">
-        <div className="sa-section-label" style={{color:'#C6A66B',textAlign:'center',marginBottom:'1rem'}}>Next Steps</div>
+        <div className="sa-section-label" style={{color:'#D4AF37',textAlign:'center',marginBottom:'1rem'}}>Next Steps</div>
         <h2>Turn Your Coastal Property Into a High-Performing Asset</h2>
         <p>Schedule a no-obligation consultation with our St. Augustine property team. We'll walk you through the full opportunity and answer every question.</p>
         <div className="sa-btn-group" style={{justifyContent:'center'}}>

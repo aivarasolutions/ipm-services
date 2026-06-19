@@ -16,15 +16,8 @@ const Footer = () => {
     'Lake Norman'
   ]
 
-  const contact = [
-    '24/7 Support Available',
-    'DM for Inquiries',
-    'Property Evaluations',
-    'Owner Portal Access'
-  ]
-
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-[#050505] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and Description */}
@@ -36,7 +29,7 @@ const Footer = () => {
                 className="h-8 w-auto"
               />
             </Link>
-            <p className="text-gray-400 text-sm leading-relaxed mb-4">
+            <p className="text-[#CFCFCF] text-sm leading-relaxed mb-4">
               International Property Management - Elevating vacation rental experiences worldwide.
             </p>
             
@@ -46,7 +39,7 @@ const Footer = () => {
                 href="https://instagram.com/ipm.promotion" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-[#CFCFCF] hover:text-white transition-colors"
                 aria-label="Follow us on Instagram"
               >
                 <Instagram className="h-5 w-5" />
@@ -55,7 +48,7 @@ const Footer = () => {
                 href="https://www.facebook.com/61554061650450/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-[#CFCFCF] hover:text-white transition-colors"
                 aria-label="Follow us on Facebook"
               >
                 <Facebook className="h-5 w-5" />
@@ -64,7 +57,7 @@ const Footer = () => {
                 href="https://www.linkedin.com/company/107691694/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-[#CFCFCF] hover:text-white transition-colors"
                 aria-label="Connect with us on LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
@@ -74,13 +67,13 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
+            <h3 className="text-lg font-semibold text-[#D4AF37] mb-4">Services</h3>
             <ul className="space-y-2">
               {services.map((service, index) => (
                 <li key={index}>
                   <Link 
                     to="/services" 
-                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                    className="text-[#CFCFCF] hover:text-[#E6C978] transition-colors text-sm"
                   >
                     {service}
                   </Link>
@@ -91,13 +84,13 @@ const Footer = () => {
 
           {/* Locations */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Locations</h3>
+            <h3 className="text-lg font-semibold text-[#D4AF37] mb-4">Locations</h3>
             <ul className="space-y-2">
               {locations.map((location, index) => (
                 <li key={index}>
                   <Link 
                     to="/properties" 
-                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                    className="text-[#CFCFCF] hover:text-[#E6C978] transition-colors text-sm"
                   >
                     {location}
                   </Link>
@@ -108,12 +101,12 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact</h3>
+            <h3 className="text-lg font-semibold text-[#D4AF37] mb-4">Contact</h3>
             <ul className="space-y-2">
               <li>
                 <a 
                   href="tel:+13104000032" 
-                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                  className="text-[#CFCFCF] hover:text-[#E6C978] transition-colors text-sm"
                 >
                   24/7 Support Available
                 </a>
@@ -121,7 +114,7 @@ const Footer = () => {
               <li>
                 <a 
                   href="mailto:info@richaf.global" 
-                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                  className="text-[#CFCFCF] hover:text-[#E6C978] transition-colors text-sm"
                 >
                   DM for Inquiries
                 </a>
@@ -129,7 +122,7 @@ const Footer = () => {
               <li>
                 <Link 
                   to="/contact" 
-                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                  className="text-[#CFCFCF] hover:text-[#E6C978] transition-colors text-sm"
                 >
                   Property Evaluations
                 </Link>
@@ -139,7 +132,7 @@ const Footer = () => {
                   href="https://wa.me/13104000032" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                  className="text-[#CFCFCF] hover:text-[#E6C978] transition-colors text-sm"
                 >
                   Owner Portal Access
                 </a>
@@ -149,8 +142,8 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p className="text-gray-400 text-sm">
+        <div className="border-t border-[#D4AF37]/20 mt-8 pt-8 text-center">
+          <p className="text-[#CFCFCF] text-sm">
             © {new Date().getFullYear()} International Property Management. All rights reserved.
           </p>
         </div>
@@ -160,4 +153,3 @@ const Footer = () => {
 }
 
 export default Footer
-

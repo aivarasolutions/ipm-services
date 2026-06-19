@@ -127,27 +127,27 @@ const Services = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20">
+      <section className="bg-gradient-to-br from-[#050505] to-[#171717] text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6">{t.ourServices}</h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">{t.description}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">{t.getStarted}</Button>
+              <Button size="lg" className="bg-[#D4AF37] text-[#050505] hover:bg-[#E6C978]">{t.getStarted}</Button>
             </Link>
             <Link to="/properties">
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 border-2 border-white">{t.viewProperties}</Button>
+              <Button size="lg" className="bg-[#D4AF37] text-[#050505] hover:bg-[#E6C978] border-2 border-white">{t.viewProperties}</Button>
             </Link>
           </div>
         </div>
       </section>
 
       {/* Services Grid */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-[#111111]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t.complete}</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">{t.completeDesc}</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#F8F8F8] mb-4">{t.complete}</h2>
+            <p className="text-xl text-[#B8B8B8] max-w-3xl mx-auto">{t.completeDesc}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {t.servicesList.map((service, index) => (
@@ -155,16 +155,16 @@ const Services = () => {
                 <CardContent className="p-0">
                   <div className="flex items-start space-x-4">
                     <div className="flex-shrink-0">
-                      {[<Building2 className="h-12 w-12 text-blue-600" />, <TrendingUp className="h-12 w-12 text-blue-600" />, <Clock className="h-12 w-12 text-blue-600" />, <Globe className="h-12 w-12 text-blue-600" />][index]}
+                      {[<Building2 className="h-12 w-12 text-[#D4AF37]" />, <TrendingUp className="h-12 w-12 text-[#D4AF37]" />, <Clock className="h-12 w-12 text-[#D4AF37]" />, <Globe className="h-12 w-12 text-[#D4AF37]" />][index]}
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-gray-900 mb-3">{service.title}</h3>
-                      <p className="text-gray-600 mb-6">{service.description}</p>
+                      <h3 className="text-2xl font-bold text-[#F8F8F8] mb-3">{service.title}</h3>
+                      <p className="text-[#B8B8B8] mb-6">{service.description}</p>
                       <ul className="space-y-2">
                         {service.features.map((feature, featureIndex) => (
                           <li key={featureIndex} className="flex items-center space-x-2">
                             <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
-                            <span className="text-gray-700">{feature}</span>
+                            <span className="text-[#CFCFCF]">{feature}</span>
                           </li>
                         ))}
                       </ul>
@@ -178,11 +178,11 @@ const Services = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-[#050505]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t.whyChoose}</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">{t.whyChooseDesc}</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#F8F8F8] mb-4">{t.whyChoose}</h2>
+            <p className="text-xl text-[#B8B8B8] max-w-3xl mx-auto">{t.whyChooseDesc}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {t.benefits.map((benefit, index) => {
@@ -191,10 +191,10 @@ const Services = () => {
               return (
                 <div key={index} className="text-center">
                   <div className="flex justify-center mb-4">
-                    <Icon className={`h-8 w-8 ${['text-yellow-500', 'text-green-500', 'text-purple-500'][index]}`} />
+                    <Icon className="h-8 w-8 text-[#D4AF37]" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{benefit.title}</h3>
-                  <p className="text-gray-600">{benefit.description}</p>
+                  <h3 className="text-xl font-bold text-[#F8F8F8] mb-3">{benefit.title}</h3>
+                  <p className="text-[#B8B8B8]">{benefit.description}</p>
                 </div>
               )
             })}
@@ -203,7 +203,7 @@ const Services = () => {
       </section>
 
       {/* Statistics Section */}
-      <section className="py-20 bg-blue-600 text-white">
+      <section className="py-20 bg-[#050505] border-y border-[#D4AF37]/20 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t.proven}</h2>
@@ -224,16 +224,16 @@ const Services = () => {
       <ReviewsSection />
 
       {/* CTA Section */}
-      <section className="py-20 bg-gray-900 text-white">
+      <section className="py-20 bg-[#050505] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">{t.ready}</h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto">{t.readyDesc}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700">{t.scheduleConsultation}</Button>
+              <Button size="lg" className="bg-[#D4AF37] hover:bg-[#E6C978]">{t.scheduleConsultation}</Button>
             </Link>
             <a href="tel:+13104000032">
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 border-2 border-white">
+              <Button size="lg" className="bg-[#D4AF37] text-[#050505] hover:bg-[#E6C978] border-2 border-white">
                 <Phone className="h-5 w-5 mr-2" />
                 {t.callPhone}
               </Button>

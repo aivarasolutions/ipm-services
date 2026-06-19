@@ -2,45 +2,45 @@ import { Star, Award, ExternalLink } from 'lucide-react'
 
 const ReviewsSection = () => {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-[#050505]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#F8F8F8] mb-4">
             Guest Reviews & Recognition
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-[#B8B8B8] max-w-3xl mx-auto">
             Discover what our guests are saying about their exceptional experiences with IPM properties.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Airbnb Profile Info */}
-          <div className="bg-gray-50 rounded-2xl p-8">
+          <div className="bg-[#111111] rounded-2xl p-8">
             <div className="flex items-center mb-6">
               <div className="bg-[#FF5A5F] p-3 rounded-full mr-4">
                 <Star className="h-8 w-8 text-white fill-current" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-gray-900">Airbnb Superhost</h3>
-                <p className="text-gray-600">Trusted for 10+ Years</p>
+                <h3 className="text-2xl font-bold text-[#F8F8F8]">Airbnb Superhost</h3>
+                <p className="text-[#B8B8B8]">Trusted for 10+ Years</p>
               </div>
             </div>
             
             <div className="space-y-4 mb-6">
               <div className="flex items-center justify-between">
-                <span className="text-gray-700 font-medium">Overall Rating</span>
+                <span className="text-[#CFCFCF] font-medium">Overall Rating</span>
                 <div className="flex items-center">
                   <Star className="h-5 w-5 text-yellow-500 fill-current" />
-                  <span className="ml-1 font-bold text-gray-900">4.9 Average</span>
+                  <span className="ml-1 font-bold text-[#F8F8F8]">4.9 Average</span>
                 </div>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-gray-700 font-medium">Total Reviews</span>
-                <span className="font-bold text-gray-900">200+ Reviews</span>
+                <span className="text-[#CFCFCF] font-medium">Total Reviews</span>
+                <span className="font-bold text-[#F8F8F8]">200+ Reviews</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-gray-700 font-medium">Properties Listed</span>
-                <span className="font-bold text-gray-900">30+ Listings</span>
+                <span className="text-[#CFCFCF] font-medium">Properties Listed</span>
+                <span className="font-bold text-[#F8F8F8]">30+ Listings</span>
               </div>
             </div>
 
@@ -62,8 +62,8 @@ const ReviewsSection = () => {
                 <Award className="h-6 w-6 text-yellow-600" />
               </div>
               <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Superhost Status</h4>
-                <p className="text-gray-600">
+                <h4 className="text-xl font-bold text-[#F8F8F8] mb-2">Superhost Status</h4>
+                <p className="text-[#B8B8B8]">
                   Earned and maintained Airbnb Superhost status for over 10 years, demonstrating 
                   exceptional hospitality and guest satisfaction.
                 </p>
@@ -71,12 +71,12 @@ const ReviewsSection = () => {
             </div>
 
             <div className="flex items-start space-x-4">
-              <div className="bg-blue-100 p-3 rounded-full">
-                <Star className="h-6 w-6 text-blue-600" />
+              <div className="bg-[#D4AF37]/15 p-3 rounded-full">
+                <Star className="h-6 w-6 text-[#D4AF37]" />
               </div>
               <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Outstanding Reviews</h4>
-                <p className="text-gray-600">
+                <h4 className="text-xl font-bold text-[#F8F8F8] mb-2">Outstanding Reviews</h4>
+                <p className="text-[#B8B8B8]">
                   Our guests consistently praise our attention to detail, property cleanliness, 
                   and responsive communication throughout their stays.
                 </p>
@@ -84,12 +84,12 @@ const ReviewsSection = () => {
             </div>
 
             <div className="flex items-start space-x-4">
-              <div className="bg-green-100 p-3 rounded-full">
-                <Star className="h-6 w-6 text-green-600" />
+              <div className="bg-[#D4AF37]/15 p-3 rounded-full">
+                <Star className="h-6 w-6 text-[#D4AF37]" />
               </div>
               <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-2">Professional Management</h4>
-                <p className="text-gray-600">
+                <h4 className="text-xl font-bold text-[#F8F8F8] mb-2">Professional Management</h4>
+                <p className="text-[#B8B8B8]">
                   Recognized for our professional approach to property management and guest 
                   relations across multiple international markets.
                 </p>
@@ -100,11 +100,11 @@ const ReviewsSection = () => {
 
         {/* Recent Review Highlights */}
         <div className="mt-16">
-          <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">
+          <h3 className="text-2xl font-bold text-[#F8F8F8] text-center mb-8">
             What Our Guests Are Saying
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-gray-50 p-6 rounded-lg">
+            <div className="bg-[#111111] p-6 rounded-lg">
               <div className="flex items-center mb-3">
                 <div className="flex text-yellow-500">
                   {[...Array(5)].map((_, i) => (
@@ -112,14 +112,14 @@ const ReviewsSection = () => {
                   ))}
                 </div>
               </div>
-              <p className="text-gray-700 italic mb-3">
+              <p className="text-[#CFCFCF] italic mb-3">
                 "Exceptional property management and outstanding guest experience. 
                 The attention to detail was impressive!"
               </p>
-              <p className="text-sm text-gray-500">Recent Guest Review</p>
+              <p className="text-sm text-[#A8A8A8]">Recent Guest Review</p>
             </div>
 
-            <div className="bg-gray-50 p-6 rounded-lg">
+            <div className="bg-[#111111] p-6 rounded-lg">
               <div className="flex items-center mb-3">
                 <div className="flex text-yellow-500">
                   {[...Array(5)].map((_, i) => (
@@ -127,14 +127,14 @@ const ReviewsSection = () => {
                   ))}
                 </div>
               </div>
-              <p className="text-gray-700 italic mb-3">
+              <p className="text-[#CFCFCF] italic mb-3">
                 "Professional service from start to finish. The property exceeded 
                 all expectations. Highly recommended!"
               </p>
-              <p className="text-sm text-gray-500">Recent Guest Review</p>
+              <p className="text-sm text-[#A8A8A8]">Recent Guest Review</p>
             </div>
 
-            <div className="bg-gray-50 p-6 rounded-lg">
+            <div className="bg-[#111111] p-6 rounded-lg">
               <div className="flex items-center mb-3">
                 <div className="flex text-yellow-500">
                   {[...Array(5)].map((_, i) => (
@@ -142,11 +142,11 @@ const ReviewsSection = () => {
                   ))}
                 </div>
               </div>
-              <p className="text-gray-700 italic mb-3">
+              <p className="text-[#CFCFCF] italic mb-3">
                 "Seamless booking process and amazing property. The team was 
                 responsive and helpful throughout our stay."
               </p>
-              <p className="text-sm text-gray-500">Recent Guest Review</p>
+              <p className="text-sm text-[#A8A8A8]">Recent Guest Review</p>
             </div>
           </div>
         </div>

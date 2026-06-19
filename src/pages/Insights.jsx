@@ -220,43 +220,43 @@ export default function Insights() {
   const iconMap = { DollarSign, LinkIcon, Shield, Smartphone, Video };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-[#050505] to-[#111111]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6">{t.title}</h1>
-          <p className="text-xl md:text-2xl text-blue-600 font-semibold mb-4">{t.subtitle}</p>
-          <p className="text-lg text-slate-700 max-w-4xl mx-auto leading-relaxed">{t.intro}</p>
+          <h1 className="text-4xl md:text-6xl font-bold text-[#F8F8F8] mb-6">{t.title}</h1>
+          <p className="text-xl md:text-2xl text-[#D4AF37] font-semibold mb-4">{t.subtitle}</p>
+          <p className="text-lg text-[#B8B8B8] max-w-4xl mx-auto leading-relaxed">{t.intro}</p>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="bg-white rounded-2xl shadow-xl p-8 mb-16">
-          <p className="text-lg text-slate-700 leading-relaxed mb-6">{t.mainDesc1}</p>
-          <p className="text-lg text-slate-700 leading-relaxed mb-6">{t.mainDesc2}</p>
-          <p className="text-lg text-slate-700 leading-relaxed">{t.mainDesc3}</p>
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="bg-[#050505] rounded-2xl shadow-xl p-8 mb-16">
+          <p className="text-lg text-[#B8B8B8] leading-relaxed mb-6">{t.mainDesc1}</p>
+          <p className="text-lg text-[#B8B8B8] leading-relaxed mb-6">{t.mainDesc2}</p>
+          <p className="text-lg text-[#B8B8B8] leading-relaxed">{t.mainDesc3}</p>
         </motion.div>
 
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-slate-900 mb-8 text-center">{t.whatYouFind}</h2>
+          <h2 className="text-3xl font-bold text-[#F8F8F8] mb-8 text-center">{t.whatYouFind}</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {t.topics.map((topic, index) => {
               const IconComponent = iconMap[['DollarSign', 'LinkIcon', 'Shield', 'Smartphone', 'Video'][index]];
               const colorClasses = {
-                blue: 'from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700',
-                indigo: 'from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700',
-                green: 'from-green-500 to-green-600 hover:from-green-600 hover:to-green-700',
-                purple: 'from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700',
-                red: 'from-red-500 to-red-600 hover:from-red-600 hover:to-red-700'
+                blue: 'from-[#D4AF37] to-[#E6C978] hover:from-[#E6C978] hover:to-[#F2D98D]',
+                indigo: 'from-[#171717] to-[#E6C978] hover:from-[#D4AF37] hover:to-[#C8A24A]',
+                green: 'from-[#D4AF37] to-[#E6C978] hover:from-[#E6C978] hover:to-[#F2D98D]',
+                purple: 'from-[#171717] to-[#E6C978] hover:from-[#D4AF37] hover:to-[#C8A24A]',
+                red: 'from-[#D4AF37] to-[#E6C978] hover:from-[#E6C978] hover:to-[#F2D98D]'
               };
 
               return (
                 <motion.div key={index} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + index * 0.1 }}>
                   <Link to={topic.path}>
-                    <div className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all p-6 h-full border-2 border-transparent hover:border-blue-200 group">
+                    <div className="bg-[#050505] rounded-xl shadow-lg hover:shadow-2xl transition-all p-6 h-full border-2 border-transparent hover:border-[#D4AF37]/30 group">
                       <div className={`inline-flex p-4 rounded-lg bg-gradient-to-r ${colorClasses[topic.color]} mb-4`}>
                         <IconComponent className="w-8 h-8 text-white" />
                       </div>
-                      <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">{topic.title}</h3>
-                      <p className="text-slate-600 leading-relaxed mb-4">{topic.description}</p>
-                      <div className="flex items-center text-blue-600 font-semibold group-hover:translate-x-2 transition-transform">
+                      <h3 className="text-2xl font-bold text-[#F8F8F8] mb-3 group-hover:text-[#D4AF37] transition-colors">{topic.title}</h3>
+                      <p className="text-[#A8A8A8] leading-relaxed mb-4">{topic.description}</p>
+                      <div className="flex items-center text-[#D4AF37] font-semibold group-hover:translate-x-2 transition-transform">
                         {t.learnMore} <ArrowRight className="w-4 h-4 ml-2" />
                       </div>
                     </div>
@@ -267,43 +267,43 @@ export default function Insights() {
           </div>
         </div>
 
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }} className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl shadow-xl p-8 mb-16 border-l-4 border-amber-500">
-          <h2 className="text-3xl font-bold text-slate-900 mb-6">{t.whyCreate}</h2>
-          <p className="text-lg text-slate-700 leading-relaxed mb-6">{t.whyCreatDesc}</p>
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }} className="bg-gradient-to-br from-amber-50 to-[#1F1F1F] rounded-2xl shadow-xl p-8 mb-16 border-l-4 border-amber-500">
+          <h2 className="text-3xl font-bold text-[#F8F8F8] mb-6">{t.whyCreate}</h2>
+          <p className="text-lg text-[#B8B8B8] leading-relaxed mb-6">{t.whyCreatDesc}</p>
           <div className="grid md:grid-cols-2 gap-4 mb-6">
             {t.problems.map((problem, index) => (
-              <div key={index} className="flex items-start gap-3 bg-white/70 rounded-lg p-4">
+              <div key={index} className="flex items-start gap-3 bg-[#050505]/70 rounded-lg p-4">
                 <span className="text-amber-600 mt-1">⚠️</span>
-                <span className="text-slate-800 font-medium">{problem}</span>
+                <span className="text-[#CFCFCF] font-medium">{problem}</span>
               </div>
             ))}
           </div>
-          <p className="text-xl font-bold text-slate-900 mb-2">{t.empowered}</p>
-          <p className="text-lg text-slate-700">{t.mission}</p>
+          <p className="text-xl font-bold text-[#F8F8F8] mb-2">{t.empowered}</p>
+          <p className="text-lg text-[#B8B8B8]">{t.mission}</p>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9 }} className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl shadow-xl p-8 mb-16">
-          <h2 className="text-3xl font-bold text-slate-900 mb-6">{t.advantages}</h2>
-          <p className="text-lg text-slate-700 mb-6">{t.advantagesDesc}</p>
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9 }} className="bg-gradient-to-br from-[#111111] to-[#1F1F1F] rounded-2xl shadow-xl p-8 mb-16">
+          <h2 className="text-3xl font-bold text-[#F8F8F8] mb-6">{t.advantages}</h2>
+          <p className="text-lg text-[#B8B8B8] mb-6">{t.advantagesDesc}</p>
           <div className="grid md:grid-cols-2 gap-4">
             {t.advList.map((advantage, index) => (
               <div key={index} className="flex items-start gap-3">
                 <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                <span className="text-slate-800 font-medium">{advantage}</span>
+                <span className="text-[#CFCFCF] font-medium">{advantage}</span>
               </div>
             ))}
           </div>
-          <p className="text-lg text-slate-700 mt-8 font-medium">{t.advConc}</p>
+          <p className="text-lg text-[#B8B8B8] mt-8 font-medium">{t.advConc}</p>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0 }} className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl shadow-2xl p-8 text-center text-white">
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0 }} className="bg-gradient-to-r from-[#D4AF37] to-[#E6C978] rounded-2xl shadow-2xl p-8 text-center text-[#050505]">
           <h2 className="text-3xl font-bold mb-4">{t.ready}</h2>
           <p className="text-lg mb-8 opacity-90">{t.readyDesc}</p>
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 mb-6">
+          <div className="bg-[#050505]/10 backdrop-blur-sm rounded-xl p-6 mb-6">
             <h3 className="text-2xl font-bold mb-3">{t.bookConsultation}</h3>
             <p className="text-lg mb-6 opacity-90">{t.consultDesc}</p>
             <Link to="/contact">
-              <button className="inline-block bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-blue-50 transition-colors shadow-lg hover:shadow-xl">
+              <button className="inline-block bg-[#050505] text-[#D4AF37] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#D4AF37]/10 transition-colors shadow-lg hover:shadow-xl">
                 {t.scheduleCall}
               </button>
             </Link>
