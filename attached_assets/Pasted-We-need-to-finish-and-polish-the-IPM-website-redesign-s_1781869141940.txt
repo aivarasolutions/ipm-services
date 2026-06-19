@@ -1,0 +1,217 @@
+We need to finish and polish the IPM website redesign so it looks like a premium luxury property management website, matching the new IPM logo and the attached IPM ad/flyer designs.
+
+Important:
+The current black/gold redesign is too plain and unfinished. Do not just make the background black with basic white text. The website needs to feel high-end, modern, polished, visual, and conversion-focused, similar to the attached IPM media designs.
+
+Brand style reference:
+Use the attached IPM ad/flyer images as the main visual direction:
+
+* Dark navy/black luxury background
+* Gold metallic accents
+* White bold typography
+* Premium real estate / luxury villa / hotel management feel
+* Strong sales messaging
+* Clean CTA buttons
+* High-end property imagery
+* Subtle gradients, overlays, gold borders, glow effects, and polished spacing
+
+Website:
+https://www.ipm.services
+
+Primary business positioning:
+IPM helps property owners get more bookings, reduce vacancy, and increase revenue by listing and managing properties across multiple platforms.
+
+Key offers to feature clearly:
+
+1. Listing / marketing service:
+
+   * Only 10% commission
+   * We promote owner listings across Airbnb, Booking.com, VRBO, Expedia, Hotels.com, Google Vacation Rentals, and other platforms
+   * Goal: more exposure, more reservations, higher occupancy, calendar sync, fewer double bookings, increased revenue
+
+2. Full property management:
+
+   * Full management available for 20% commission plus a competitive monthly fee
+   * Includes guest communication, check-in coordination, cleaning coordination, maintenance coordination, owner support, revenue optimization, and multi-platform listing management
+
+Hero section requirements:
+Replace the current plain hero with a high-quality luxury hero section.
+
+Hero visual direction:
+
+* Use a high-quality luxury villa, beachfront property, skyline condo, or premium vacation rental background image
+* Add a dark navy/black overlay so text is readable
+* Add subtle gold glow/gradient accents
+* Use the new IPM logo clearly at the top/header
+* Hero should feel like the attached ads, not like a basic template
+
+Hero copy direction:
+Use strong messaging like:
+“More Bookings. Less Vacancy.”
+“Get Your Property Listed Worldwide.”
+“Only 10% Commission for Multi-Platform Listing Promotion.”
+“Full Management Available.”
+
+Recommended hero layout:
+Headline:
+More Bookings. Less Vacancy.
+
+Subheadline:
+IPM helps property owners increase exposure, fill empty dates, and grow revenue through multi-platform listing promotion and full-service vacation rental management.
+
+CTA buttons:
+Primary: Get Listed Worldwide
+Secondary: Request Property Management
+
+Add badges or platform row:
+Airbnb
+Booking.com
+VRBO
+Expedia
+Hotels.com
+Google Vacation Rentals
+
+Add small offer text:
+Listing Promotion: Only 10% Commission
+Full Management: 20% + Competitive Monthly Fee
+
+Use flyer-style messaging throughout the page:
+
+* More Exposure
+* More Reservations
+* Higher Occupancy
+* Calendar Sync
+* No Double Bookings
+* Verify Guests. Reduce Chargebacks.
+* Better Guests. Fewer Problems.
+* Fill Your Empty Dates
+* Turn Vacancy Into Revenue
+* Stop Relying on Airbnb Alone
+* Global Exposure for Your Property
+* We Handle the Setup
+* Listing Creation
+* Photo Uploads
+* Rate Setup
+* Calendar Connections
+* Platform Integration
+* Optimization
+
+Design improvements needed across the website:
+
+1. Header
+
+   * Premium sticky header with dark glass effect
+   * Logo visible and professional
+   * Gold hover states
+   * Strong CTA button, like “Get Listed” or “Schedule Consultation”
+
+2. Homepage
+
+   * Replace plain sections with premium sections matching the flyer style
+   * Add strong visual hierarchy
+   * Use alternating dark navy/black sections
+   * Use gold dividers, gold icon accents, glass cards, and premium real estate imagery
+   * Avoid large plain empty black areas
+
+3. Featured properties section
+
+   * Current property cards look too white/basic against the black background
+   * Restyle them to match the brand:
+
+     * dark card shell or premium framed cards
+     * gold border accents
+     * better spacing
+     * no harsh white blocks unless intentionally framed
+   * Make the Airbnb-style cards feel integrated into the luxury design
+
+4. Service cards
+
+   * Make service cards look polished and premium
+   * Use icon circles, gold borders, dark glass backgrounds
+   * Include clear benefits, not just generic service names
+
+5. Pricing / offer section
+
+   * Add a clear section comparing:
+     A. Multi-Platform Listing Promotion — 10% commission
+     B. Full Property Management — 20% + competitive monthly fee
+   * Make it visually polished, with gold cards and clear CTAs
+
+6. Owner benefit section
+
+   * Add a section that explains why owners choose IPM:
+
+     * More booking channels
+     * Higher occupancy potential
+     * Reduced vacancy
+     * Guest verification
+     * Calendar management
+     * Revenue optimization
+     * Less stress for owners
+
+7. CTA sections
+
+   * Add polished CTA blocks throughout:
+     “Turn Vacancy Into Revenue”
+     “Get Listed Worldwide”
+     “Protect Your Property”
+     “Start Growing Your Revenue”
+   * Use gold buttons and dark luxury backgrounds
+
+8. Footer
+
+   * Keep the black/gold luxury style
+   * Make it clean, polished, and aligned with the rest of the website
+   * Logo should be visible and not too small
+
+9. Mobile
+
+   * Must look premium on mobile
+   * Hero text should not be too large or cropped
+   * Buttons should stack nicely
+   * Property cards and offer cards should look good on phone screens
+
+10. Proposal pages and inner pages
+
+* Do not break existing proposal pages
+* Keep the black/gold brand style but make sure readability is good
+* Do not remove existing content or routes
+
+Technical instructions:
+
+* Inspect the existing codebase before editing
+* Keep existing functionality, routes, SEO metadata, logos, favicon, social preview, sitemap, and robots intact
+* Use existing asset structure where possible
+* Add new image assets only if needed
+* If using external image URLs, use reliable high-quality royalty-free-looking images or existing project assets
+* Avoid random stock-photo clutter; every image should feel luxury property management
+* Do not commit node_modules
+* Do not remove the existing new IPM logo assets
+
+Important content update:
+Make sure the website no longer feels like just a generic property management site. It should clearly sell:
+
+* 10% commission to promote/list properties across all major booking platforms
+* Full management for 20% plus a competitive monthly fee
+* More bookings, less vacancy, better guests, fewer problems, and higher revenue potential
+
+Suggested color palette:
+
+* Deep navy: #06111F
+* Near black: #050505
+* Charcoal: #111111
+* Gold: #D4AF37
+* Champagne gold: #F2D98D
+* White: #FFFFFF
+* Muted text: #CFCFCF
+* Gold border: rgba(212, 175, 55, 0.35)
+
+After completing:
+
+1. Run npm run build
+2. Run npm run lint if available
+3. If lint fails only because of existing unrelated issues, say that clearly
+4. Show git status and git diff --stat
+5. Commit locally with message:
+   Polish IPM luxury website redesign
+6. Do not push until I review
