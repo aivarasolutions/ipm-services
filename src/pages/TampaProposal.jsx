@@ -174,8 +174,8 @@ const TampaProposal = () => {
         .tp-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.25rem 0; transition: background 0.3s, padding 0.3s, box-shadow 0.3s; }
         .tp-nav-scrolled { background: rgba(14,26,43,0.97); padding: 0.75rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
         .tp-nav-inner { display: flex; align-items: center; justify-content: space-between; }
-        .tp-nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: #FFFFFF !important; letter-spacing: 0.05em; text-decoration: none; }
-        .tp-nav-logo span { color: #D4AF37; }
+        .tp-nav-logo { display:inline-flex; align-items:center; background:#050505; border-radius:6px; padding:0.25rem 0.45rem; text-decoration:none; }
+        .tp-nav-logo img { display:block; height:46px; width:auto; }
 
         .tp-hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; background: #050505; }
         .tp-hero-bg { position: absolute; inset: 0; background-image: url('/tampa-hero-bg.jpg'); background-size: cover; background-position: center 30%; opacity: 0.28; }
@@ -296,8 +296,8 @@ const TampaProposal = () => {
 
         .tp-footer { background: #050505; padding: 3rem 0 2rem; }
         .tp-footer-inner { display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem; flex-wrap: wrap; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 1.5rem; }
-        .tp-footer-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: #FFFFFF; margin-bottom: 0.4rem; }
-        .tp-footer-logo span { color: #D4AF37; }
+        .tp-footer-logo { display:inline-flex; align-items:center; background:#050505; border-radius:6px; padding:0.25rem 0.45rem; margin-bottom:0.4rem; }
+        .tp-footer-logo img { display:block; height:50px; width:auto; }
         .tp-footer-tagline { font-size: 0.82rem; color: rgba(255,255,255,0.4); }
         .tp-footer-contact p { font-size: 0.85rem; color: rgba(255,255,255,0.45); margin-bottom: 0.4rem; }
         .tp-footer-contact a { color: #D4AF37 !important; font-weight: 500; }
@@ -333,7 +333,9 @@ const TampaProposal = () => {
       <nav className="tp-nav" id="tpMainNav">
         <div className="tp-container">
           <div className="tp-nav-inner">
-            <a href="/" className="tp-nav-logo">IPM<span>.</span></a>
+            <a href="/" className="tp-nav-logo" aria-label="IPM International Property Management">
+              <img src="/images/ipm-logo-new.png" alt="IPM International Property Management" />
+            </a>
             <a href="#tp-cta" className="tp-btn tp-btn-primary" style={{fontSize:'0.82rem', padding:'0.6rem 1.4rem'}}>Schedule Consultation</a>
           </div>
         </div>
@@ -789,7 +791,9 @@ const TampaProposal = () => {
         <div className="tp-container">
           <div className="tp-footer-inner">
             <div>
-              <div className="tp-footer-logo">IPM<span>.</span></div>
+              <div className="tp-footer-logo">
+                <img src="/images/ipm-logo-new.png" alt="IPM International Property Management" />
+              </div>
               <div className="tp-footer-tagline">International Property Management</div>
             </div>
             <div className="tp-footer-contact">
