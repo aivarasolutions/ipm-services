@@ -13,7 +13,6 @@ const Header = () => {
   const [showInsightsDropdown, setShowInsightsDropdown] = useState(false)
 
   const navItems = [
-    { name: 'Home', path: '/', color: 'bg-[#D4AF37] text-[#06121F]' },
     { name: 'Services', path: '/services', color: 'bg-[#D4AF37] text-[#06121F]' },
     { name: 'Properties', path: '/properties', color: 'bg-[#D4AF37] text-[#06121F]' },
     { name: 'Real Estate', path: '/real-estate', color: 'bg-[#D4AF37] text-[#06121F]' },
@@ -47,11 +46,11 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex items-center shrink-0 mr-4">
             <img
               src="/images/ipm-logo-new.png"
               alt="IPM International Property Management"
-              className="h-12 w-auto"
+              className="h-12 w-auto shrink-0 object-contain"
             />
           </Link>
 
