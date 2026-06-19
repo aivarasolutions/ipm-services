@@ -47,11 +47,11 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center rounded bg-[#0A1A30] px-2 py-1 shadow-sm">
+          <Link to="/" className="flex items-center">
             <img
               src="/images/ipm-logo-new.png"
               alt="IPM International Property Management"
-              className="h-10 w-auto"
+              className="h-12 w-auto"
             />
           </Link>
 
