@@ -11,3 +11,9 @@ id = "eK1f9iRX0rQVrrAkCsDUe"
 uri = "file://public/og-image.jpg"
 type = "image"
 title = "New SEO / Link Preview Image"
+
+[[outputs]]
+id = "Js1isnOhmzMtomvq85R2-"
+uri = "file://email-templates/MAILCHIMP_SETUP.md"
+type = "text"
+title = "Mailchimp Nurture Journey — Manual Setup Guide"
