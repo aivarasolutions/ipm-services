@@ -66,9 +66,9 @@ function buildCustomerHtml(name) {
           your message and our team will get back to you shortly.
         </p>
         <p style="color:#334155;line-height:1.8;font-size:15px;">
-          For urgent matters you can also reach us on
-          <a href="https://wa.me/13104000032" style="color:#B8932A;font-weight:600;">
-            WhatsApp (+1 310-400-0032)
+          For urgent matters you can also reach us by phone at
+          <a href="tel:+13104000032" style="color:#B8932A;font-weight:600;">
+            +1 (310) 400-0032
           </a>
           or email
           <a href="mailto:info@ipm.services" style="color:#B8932A;font-weight:600;">
@@ -126,7 +126,7 @@ export async function sendFormEmails({ fields, customerEmail, customerName, sour
           'Thank you for contacting International Property Management.',
           'We have received your message and our team will get back to you shortly.',
           '',
-          'For urgent matters: WhatsApp +1 310-400-0032 or info@ipm.services',
+          'For urgent matters: call +1 (310) 400-0032 or email info@ipm.services',
           '',
           'International Property Management · ipm.services',
         ].join('\n'),
