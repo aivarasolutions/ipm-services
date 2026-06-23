@@ -88,7 +88,9 @@ export async function addToMailchimp({ email, firstName, lastName, phone, proper
 
     const hash = md5(email);
 
-    // PUT is idempotent — creates or updates the subscriber
+    // Step 1: PUT is idempotent — creates or updates the subscriber + merge fields.
+    // NOTE: tags set in this body do NOT reliably fire Customer Journey
+    // "tag added" triggers, so we apply tags separately in step 2.
     const member = await client.lists.setListMember(listId, hash, {
       email_address: email,
       status_if_new: 'subscribed',
@@ -100,8 +102,19 @@ export async function addToMailchimp({ email, firstName, lastName, phone, proper
         SOURCE:   formSource       || 'Website Form',
         SIGNDATE: new Date().toISOString().split('T')[0],
       },
-      tags: uniqueTags,
     });
+
+    // Step 2: Apply tags via the dedicated Tags endpoint. Setting a tag to
+    // 'active' here is what fires tag-based automations / Customer Journeys
+    // (including the "Website Lead" nurture trigger). Mailchimp won't
+    // re-trigger for tags a contact already has, so repeat submissions are safe.
+    try {
+      await client.lists.updateListMemberTags(listId, hash, {
+        tags: uniqueTags.map((name) => ({ name, status: 'active' })),
+      });
+    } catch (tagErr) {
+      console.error('[mailchimp] Tag apply error:', tagErr.response?.body || tagErr.message);
+    }
 
     console.log(`[mailchimp] Synced: ${email} → ${member.status} | tags: ${uniqueTags.join(', ')}`);
     return { ok: true, id: member.id, status: member.status, tags: uniqueTags };

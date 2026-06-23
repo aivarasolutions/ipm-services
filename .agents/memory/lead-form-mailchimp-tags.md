@@ -18,3 +18,17 @@ right keywords. There is no separate plan/tag parameter — `source` is the sing
 
 **How to apply:** when building a new form/popup, set `source` like
 `"Lead Popup — Full Management (20%)"`. No backend change needed if keywords match.
+
+## Triggering the Customer Journey (gotcha)
+
+Tags set via the `tags` array in `setListMember` (the add/update member PUT) do NOT
+reliably fire Mailchimp Customer Journey "tag added" triggers. To trigger the journey,
+apply tags through the dedicated tags endpoint: `client.lists.updateListMemberTags(
+listId, hash, { tags: [{ name, status: 'active' }] })`. `addToMailchimp` does this as a
+second step after the member PUT.
+
+**Why:** the "Website Lead" nurture journey is tag-triggered; without the dedicated
+tags call, new leads were synced but never entered the journey.
+
+**How to apply:** keep the two-step flow (PUT member → updateListMemberTags). Mailchimp
+won't re-trigger for tags a contact already has, so repeat submissions are safe.
