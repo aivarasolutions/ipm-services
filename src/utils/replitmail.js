@@ -62,6 +62,8 @@ export async function sendEmail(message) {
       },
       body: JSON.stringify({
         to: message.to,
+        from: message.from,
+        replyTo: message.replyTo,
         cc: message.cc,
         subject: message.subject,
         text: message.text,

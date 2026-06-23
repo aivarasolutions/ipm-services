@@ -7,15 +7,15 @@ const LeadCaptureForm = ({ variant = 'simple' }) => {
     e.preventDefault();
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
-    
+
     setStatus('sending');
     try {
-      // For now, just simulate success - you can add actual API call later
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      console.log('Real Estate Lead:', {
-        ...data,
-        timestamp: new Date().toISOString()
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...data, source: 'Real Estate Lead' }),
       });
+      if (!res.ok) throw new Error('Server error');
       setStatus('success');
       form.reset();
     } catch {

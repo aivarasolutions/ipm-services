@@ -4,6 +4,7 @@ import pg from 'pg';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
+import { sendFormEmails } from './emailService.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -35,6 +36,63 @@ const bumpVersion = async (client, checklistId) => {
 };
 
 app.get('/api/health', (req, res) => res.json({ ok: true, time: Date.now() }));
+
+// ─── Contact form ─────────────────────────────────────────────────────────────
+// Sends admin notification to support@ipm.services (forwards to Kevin@AivaraSolutions.com)
+// and a customer confirmation to the submitter.
+// DNS forwarding must be set up at the domain provider separately.
+app.post('/api/contact', async (req, res) => {
+  try {
+    const { name, email, phone, subject, message, propertyType, source } = req.body;
+    const fields = {
+      'Name':          name          || '—',
+      'Email':         email         || '—',
+      'Phone':         phone         || '—',
+      'Subject':       subject       || '—',
+      'Property Type': propertyType  || '—',
+      'Message':       message       || '—',
+      'Source':        source        || 'Contact Form',
+    };
+    const result = await sendFormEmails({
+      fields,
+      customerEmail: email,
+      customerName:  name,
+      source:        source || 'Contact Form',
+    });
+    if (!result.ok) {
+      console.error('[/api/contact] Email error(s):', result.errors);
+    }
+    res.json({ ok: true, message: 'Message received. We will get back to you shortly.' });
+  } catch (err) {
+    console.error('[/api/contact] Unexpected error:', err);
+    res.status(500).json({ error: 'Failed to send message. Please try again.' });
+  }
+});
+
+// ─── Relocation guide form ────────────────────────────────────────────────────
+app.post('/api/relocation-guide', async (req, res) => {
+  try {
+    const fields = Object.fromEntries(
+      Object.entries(req.body).map(([k, v]) => [
+        k.charAt(0).toUpperCase() + k.slice(1).replace(/([A-Z])/g, ' $1'),
+        v || '—',
+      ])
+    );
+    const result = await sendFormEmails({
+      fields,
+      customerEmail: req.body.email,
+      customerName:  req.body.name,
+      source:        'Relocation Guide Form',
+    });
+    if (!result.ok) {
+      console.error('[/api/relocation-guide] Email error(s):', result.errors);
+    }
+    res.json({ ok: true, message: 'Request received. We will be in touch shortly.' });
+  } catch (err) {
+    console.error('[/api/relocation-guide] Unexpected error:', err);
+    res.status(500).json({ error: 'Failed to submit. Please try again.' });
+  }
+});
 
 app.get('/api/checklist/:id/version', async (req, res, next) => {
   try {
