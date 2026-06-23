@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 
-const STORAGE_KEY = 'ipm_lead_popup_v1';
-const SHOW_DELAY_MS = 12000;
+const STORAGE_KEY = 'ipm_lead_popup_v2';
+const SHOW_DELAY_MS = 5000;
+const SCROLL_TRIGGER_PCT = 0.25;
 
 const PLANS = {
   promotion: {
@@ -46,8 +47,18 @@ export default function LeadPopup() {
       setOpen(true);
     };
 
+    // Trigger 1: time on page
     const timer = setTimeout(trigger, SHOW_DELAY_MS);
 
+    // Trigger 2: scrolling down the page
+    const onScroll = () => {
+      const scrolled = window.scrollY + window.innerHeight;
+      const total = document.documentElement.scrollHeight;
+      if (total > 0 && scrolled / total >= SCROLL_TRIGGER_PCT) trigger();
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Trigger 3: exit intent (mouse leaves top of viewport)
     const onMouseOut = (e) => {
       if (e.clientY <= 0) trigger();
     };
@@ -55,6 +66,7 @@ export default function LeadPopup() {
 
     return () => {
       clearTimeout(timer);
+      window.removeEventListener('scroll', onScroll);
       document.removeEventListener('mouseout', onMouseOut);
     };
   }, []);
