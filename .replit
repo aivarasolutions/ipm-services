@@ -1,4 +1,4 @@
-modules = ["nodejs-20", "web", "postgresql-16"]
+modules = ["nodejs-20", "web", "postgresql-16", "python-3.11"]
 
 [nix]
 channel = "stable-25_05"
@@ -6,7 +6,7 @@ packages = ["imagemagick"]
 
 [agent]
 expertMode = true
-integrations = ["replitmail:1.0.0"]
+integrations = ["replitmail:1.0.0", "mailchimp:1.0.0", "resend:1.0.0"]
 
 [workflows]
 runButton = "Project"

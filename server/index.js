@@ -5,6 +5,7 @@ import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { sendFormEmails } from './emailService.js';
+import { addToMailchimp } from './mailchimpService.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -53,15 +54,24 @@ app.post('/api/contact', async (req, res) => {
       'Message':       message       || '—',
       'Source':        source        || 'Contact Form',
     };
-    const result = await sendFormEmails({
-      fields,
-      customerEmail: email,
-      customerName:  name,
-      source:        source || 'Contact Form',
-    });
-    if (!result.ok) {
-      console.error('[/api/contact] Email error(s):', result.errors);
-    }
+    const [emailResult, mcResult] = await Promise.allSettled([
+      sendFormEmails({
+        fields,
+        customerEmail: email,
+        customerName:  name,
+        source:        source || 'Contact Form',
+      }),
+      addToMailchimp({
+        email,
+        firstName:        name?.split(' ')[0],
+        lastName:         name?.split(' ').slice(1).join(' ') || '',
+        phone,
+        propertyLocation: propertyType || '',
+        formSource:       source || 'Contact Form',
+      }),
+    ]);
+    if (emailResult.status === 'rejected') console.error('[/api/contact] Email error:', emailResult.reason);
+    if (mcResult.status === 'rejected')    console.error('[/api/contact] Mailchimp error:', mcResult.reason);
     res.json({ ok: true, message: 'Message received. We will get back to you shortly.' });
   } catch (err) {
     console.error('[/api/contact] Unexpected error:', err);
@@ -78,15 +88,24 @@ app.post('/api/relocation-guide', async (req, res) => {
         v || '—',
       ])
     );
-    const result = await sendFormEmails({
-      fields,
-      customerEmail: req.body.email,
-      customerName:  req.body.name,
-      source:        'Relocation Guide Form',
-    });
-    if (!result.ok) {
-      console.error('[/api/relocation-guide] Email error(s):', result.errors);
-    }
+    const { email, name, phone } = req.body;
+    const [emailResult, mcResult] = await Promise.allSettled([
+      sendFormEmails({
+        fields,
+        customerEmail: email,
+        customerName:  name,
+        source:        'Relocation Guide Form',
+      }),
+      addToMailchimp({
+        email,
+        firstName:  name?.split(' ')[0],
+        lastName:   name?.split(' ').slice(1).join(' ') || '',
+        phone,
+        formSource: 'Relocation Guide Form',
+      }),
+    ]);
+    if (emailResult.status === 'rejected') console.error('[/api/relocation-guide] Email error:', emailResult.reason);
+    if (mcResult.status === 'rejected')    console.error('[/api/relocation-guide] Mailchimp error:', mcResult.reason);
     res.json({ ok: true, message: 'Request received. We will be in touch shortly.' });
   } catch (err) {
     console.error('[/api/relocation-guide] Unexpected error:', err);
