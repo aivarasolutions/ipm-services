@@ -33,6 +33,7 @@ import TegucigalpaChecklist from './pages/TegucigalpaChecklist'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
+import LeadPopup from './components/LeadPopup'
 import { AudioProvider } from './contexts/AudioContext'
 import { LanguageProvider } from './contexts/LanguageContext'
 
@@ -82,6 +83,7 @@ function AppLayout() {
         </Routes>
       </main>
       <Footer />
+      <LeadPopup />
     </div>
   );
 }
