@@ -10,7 +10,10 @@
 import { Resend } from 'resend';
 
 // ─── Config ───────────────────────────────────────────────────────────────────
-const ADMIN_TO     = 'support@ipm.services';
+// Admin notifications go directly to Kevin's inbox.
+// Once email forwarding is live on ipm.services, this can be changed back to
+// support@ipm.services — but direct delivery is more reliable long-term.
+const ADMIN_TO     = 'Kevin@AivaraSolutions.com';
 const FROM_ADDRESS = 'notifications@ipm.services';
 const FROM_LABEL   = `IPM Notifications <${FROM_ADDRESS}>`;
 
