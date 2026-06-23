@@ -39,8 +39,8 @@ const bumpVersion = async (client, checklistId) => {
 app.get('/api/health', (req, res) => res.json({ ok: true, time: Date.now() }));
 
 // ─── Contact form ─────────────────────────────────────────────────────────────
-// Sends admin notification to support@ipm.services (forwards to Kevin@AivaraSolutions.com)
-// and a customer confirmation to the submitter.
+// Sends admin notification to Kevin@AivaraSolutions.com (reply_to set to visitor).
+// Customer-facing thank-you is sent by Mailchimp Customer Journey (not here).
 // DNS forwarding must be set up at the domain provider separately.
 app.post('/api/contact', async (req, res) => {
   try {
