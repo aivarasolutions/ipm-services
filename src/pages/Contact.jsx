@@ -209,6 +209,7 @@ const Contact = () => {
       if (response.ok) {
         console.log('Form submitted successfully:', result)
         setIsSubmitted(true)
+        if (typeof gtag === 'function') gtag('event', 'book_click', {});
         setFormData({
           name: '',
           email: '',

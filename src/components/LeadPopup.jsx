@@ -180,6 +180,7 @@ export default function LeadPopup() {
       if (!res.ok) throw new Error('Server error');
       setStatus('success');
       markDone();
+      if (typeof gtag === 'function') gtag('event', 'book_click', {});
     } catch {
       setStatus('error');
     }
