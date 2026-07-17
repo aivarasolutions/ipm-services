@@ -17,3 +17,51 @@ id = "Js1isnOhmzMtomvq85R2-"
 uri = "file://email-templates/MAILCHIMP_SETUP.md"
 type = "text"
 title = "Mailchimp Nurture Journey — Manual Setup Guide"
+
+[[outputs]]
+id = "klCYUi4EGkL3GIEowD33E"
+uri = "file://attached_assets/stock_images/danang_skyline.jpg"
+type = "image"
+title = "Da Nang Vietnam beach city skyline aerial"
+
+[[outputs]]
+id = "mbbKXKctSsrYlMvkC_awX"
+uri = "file://attached_assets/stock_images/luxury_interior.jpg"
+type = "image"
+title = "luxury modern apartment living room interior bright"
+
+[[outputs]]
+id = "D8R9iSWRhjAjpEDJWT0Qb"
+uri = "file://attached_assets/stock_images/housekeeping.jpg"
+type = "image"
+title = "hotel housekeeping professional cleaning luxury room"
+
+[[outputs]]
+id = "Qw-F0fLCC3fp7mrxQDjqq"
+uri = "file://attached_assets/stock_images/guest_welcome.jpg"
+type = "image"
+title = "friendly host welcoming guests with keys apartment handshake"
+
+[[outputs]]
+id = "y0fp0Neqs9K8ZPYza3flc"
+uri = "file://attached_assets/stock_images/housekeeping2_1.jpg"
+type = "image"
+title = "hotel staff making bed fresh white linens bright room"
+
+[[outputs]]
+id = "EGxfG5U7_rtIIOcY1ktLX"
+uri = "file://attached_assets/stock_images/housekeeping2_2.jpg"
+type = "image"
+title = "hotel staff making bed fresh white linens bright room"
+
+[[outputs]]
+id = "tQCWgGUJy7jj3612rdFeF"
+uri = "file://attached_assets/stock_images/villa_pool_1.jpg"
+type = "image"
+title = "tropical resort villa swimming pool palm trees luxury"
+
+[[outputs]]
+id = "-PQTPbwrWNmW75LGU3fVv"
+uri = "file://attached_assets/stock_images/villa_pool_2.jpg"
+type = "image"
+title = "tropical resort villa swimming pool palm trees luxury"

@@ -25,6 +25,12 @@ const content = {
       ctaPrimary: 'Schedule a Consultation',
       ctaSecondary: 'Become a Partner',
     },
+    alts: {
+      interior: 'Bright luxury apartment living room with ocean view — professionally managed by IPM',
+      bedroom: 'Pristine, professionally prepared bedroom with fresh linens',
+      danang: 'Da Nang, Vietnam — Dragon Bridge and city skyline over the Han River',
+      pool: 'Resort pool illuminated at night with palm trees',
+    },
     whyIpm: {
       title: 'Why IPM',
       subtitle:
@@ -183,6 +189,12 @@ const content = {
         'International Property Management giúp chủ nhà Việt Nam tăng lượt đặt phòng, nâng cao trải nghiệm khách lưu trú và quản lý chuyên nghiệp căn hộ cho thuê ngắn hạn dành cho du khách từ khắp nơi trên thế giới.',
       ctaPrimary: 'Đặt Lịch Tư Vấn',
       ctaSecondary: 'Trở Thành Đối Tác',
+    },
+    alts: {
+      interior: 'Phòng khách căn hộ sang trọng, sáng sủa với tầm nhìn ra biển — được IPM quản lý chuyên nghiệp',
+      bedroom: 'Phòng ngủ được chuẩn bị chuyên nghiệp với ga giường sạch sẽ',
+      danang: 'Đà Nẵng, Việt Nam — Cầu Rồng và đường chân trời thành phố bên sông Hàn',
+      pool: 'Hồ bơi khu nghỉ dưỡng lung linh về đêm với hàng dừa',
     },
     whyIpm: {
       title: 'Vì Sao Chọn IPM',
@@ -461,9 +473,17 @@ export default function Vietnam() {
       {/* Why IPM */}
       <section className="py-20 bg-[#0A1A30]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div {...fadeUp} className="text-center max-w-3xl mx-auto">
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white">{t.whyIpm.title}</h2>
-            <p className="mt-4 text-lg leading-relaxed">{t.whyIpm.subtitle}</p>
+          <motion.div {...fadeUp} className="grid md:grid-cols-2 gap-10 items-center max-w-5xl mx-auto">
+            <div>
+              <h2 className="font-display text-3xl sm:text-4xl font-bold text-white">{t.whyIpm.title}</h2>
+              <p className="mt-4 text-lg leading-relaxed">{t.whyIpm.subtitle}</p>
+            </div>
+            <img
+              src="/images/vietnam/luxury-interior.jpg"
+              alt={t.alts.interior}
+              loading="lazy"
+              className="rounded-2xl border border-[#D4AF37]/25 shadow-xl shadow-[#06121F]/60 w-full h-64 sm:h-72 object-cover"
+            />
           </motion.div>
           <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {t.whyIpm.items.map((item, i) => (
@@ -547,7 +567,16 @@ export default function Vietnam() {
             <p className="mt-4 text-lg leading-relaxed">{t.verified.subtitle}</p>
           </motion.div>
 
-          <motion.div {...fadeUp} className="mt-14 rounded-2xl border border-[#D4AF37]/25 bg-[#0F2440] p-8 sm:p-10">
+          <motion.div {...fadeUp} className="mt-12 max-w-4xl mx-auto">
+            <img
+              src="/images/vietnam/pristine-bedroom.jpg"
+              alt={t.alts.bedroom}
+              loading="lazy"
+              className="rounded-2xl border border-[#D4AF37]/25 shadow-xl shadow-[#06121F]/60 w-full h-64 sm:h-80 object-cover"
+            />
+          </motion.div>
+
+          <motion.div {...fadeUp} className="mt-10 rounded-2xl border border-[#D4AF37]/25 bg-[#0F2440] p-8 sm:p-10">
             <h3 className="text-center font-display text-xl font-bold text-[#F2D98D]">{t.verified.inspectionTitle}</h3>
             <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
               {t.verified.items.map((item, i) => (
@@ -592,7 +621,15 @@ export default function Vietnam() {
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-white">{t.whyVietnam.title}</h2>
             <p className="mt-4 text-lg leading-relaxed">{t.whyVietnam.subtitle}</p>
           </motion.div>
-          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div {...fadeUp} className="mt-12 max-w-5xl mx-auto">
+            <img
+              src="/images/vietnam/danang-skyline.jpg"
+              alt={t.alts.danang}
+              loading="lazy"
+              className="rounded-2xl border border-[#D4AF37]/25 shadow-xl shadow-[#06121F]/60 w-full h-64 sm:h-96 object-cover"
+            />
+          </motion.div>
+          <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {t.whyVietnam.items.map((item, i) => (
               <motion.div
                 key={i}
@@ -633,8 +670,12 @@ export default function Vietnam() {
       </section>
 
       {/* Future Vision */}
-      <section className="py-20 bg-[#0A1A30]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section
+        className="relative py-24 bg-[#0A1A30] bg-cover bg-center"
+        style={{ backgroundImage: "url('/images/vietnam/resort-pool-night.jpg')" }}
+      >
+        <div className="absolute inset-0 bg-[#06121F]/80" />
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div {...fadeUp}>
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-white">{t.vision.title}</h2>
             <p className="mt-4 text-lg leading-relaxed">{t.vision.subtitle}</p>
