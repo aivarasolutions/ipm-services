@@ -28,6 +28,7 @@ import TampaProposal from './pages/TampaProposal'
 import TimberbrookProposal from './pages/TimberbrookProposal'
 import StAugustineProposal from './pages/StAugustineProposal'
 import TegucigalpaChecklist from './pages/TegucigalpaChecklist'
+import Vietnam from './pages/Vietnam'
 
 // Import components
 import Header from './components/Header'
@@ -75,6 +76,7 @@ function AppLayout() {
           <Route path="/insights/checkin-system" element={<CheckinSystem />} />
           <Route path="/insights/video-library" element={<VideoLibrary />} />
           <Route path="/news" element={<News />} />
+          <Route path="/vietnam" element={<Vietnam />} />
           <Route path="/location-guide" element={<LocationGuide />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/owner-portal" element={<OwnerPortal />} />
