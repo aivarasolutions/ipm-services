@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 
 const STORAGE_KEY = 'ipm_lead_popup_v2';
-const SHOW_DELAY_MS = 5000;
+const SHOW_DELAY_MS = 45000;       // fallback: 45s on page with no scroll
+const SCROLL_DELAY_MS = 25000;    // 25s after visitor first scrolls
 const SCROLL_TRIGGER_PCT = 0.25;
 
 const PLANS = {
@@ -50,11 +51,15 @@ export default function LeadPopup() {
     // Trigger 1: time on page
     const timer = setTimeout(trigger, SHOW_DELAY_MS);
 
-    // Trigger 2: scrolling down the page
+    // Trigger 2: 25s after visitor first scrolls past 25% of the page
+    let scrollTimer = null;
     const onScroll = () => {
+      if (scrollTimer) return; // countdown already started
       const scrolled = window.scrollY + window.innerHeight;
       const total = document.documentElement.scrollHeight;
-      if (total > 0 && scrolled / total >= SCROLL_TRIGGER_PCT) trigger();
+      if (total > 0 && scrolled / total >= SCROLL_TRIGGER_PCT) {
+        scrollTimer = setTimeout(trigger, SCROLL_DELAY_MS);
+      }
     };
     window.addEventListener('scroll', onScroll, { passive: true });
 
@@ -66,6 +71,7 @@ export default function LeadPopup() {
 
     return () => {
       clearTimeout(timer);
+      clearTimeout(scrollTimer);
       window.removeEventListener('scroll', onScroll);
       document.removeEventListener('mouseout', onMouseOut);
     };
