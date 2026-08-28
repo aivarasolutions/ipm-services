@@ -1,8 +1,7 @@
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '../contexts/LanguageContext'
-import { FULL_PORTFOLIO_URL, PROPERTIES } from '../data/properties'
+import PropertyGrid from '../components/PropertyGrid'
 import {
   Building2, TrendingUp, Shield, DollarSign,
   BarChart3, Globe, Calendar, Zap, HeartHandshake,
@@ -26,42 +25,6 @@ const Crown = ({ className = '' }) => (
   </svg>
 )
 
-/* ── Airbnb Embed ──────────────────────────────────────────── */
-const AirbnbWidget = ({ id, href, description }) => (
-  <div
-    className="airbnb-embed-frame"
-    data-id={id}
-    data-view="home"
-    data-hide-price="true"
-    style={{ width: '450px', height: '300px', margin: 'auto' }}
-  >
-    <a href={href} rel="nofollow noopener noreferrer" target="_blank">View On Airbnb</a>
-    <a href={href} rel="nofollow noopener noreferrer" target="_blank">{description}</a>
-  </div>
-)
-
-const AirbnbSection = () => {
-  useEffect(() => {
-    const script = document.createElement('script')
-    script.src = 'https://www.airbnb.com/embeddable/airbnb_jssdk'
-    script.async = true
-    document.body.appendChild(script)
-    return () => {
-      const s = document.querySelector('script[src="https://www.airbnb.com/embeddable/airbnb_jssdk"]')
-      if (s) s.remove()
-    }
-  }, [])
-
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-      {PROPERTIES.map(p => (
-        <div key={p.id} className="flex justify-center rounded-xl overflow-hidden border border-slate-200 shadow-md">
-          <AirbnbWidget {...p} />
-        </div>
-      ))}
-    </div>
-  )
-}
 
 /* ── Main component ────────────────────────────────────────── */
 const Home = () => {
@@ -520,18 +483,15 @@ const Home = () => {
             <div className="gold-divider max-w-xs mx-auto mb-4" />
             <p className="text-slate-600 text-lg max-w-2xl mx-auto">{t.featuredSub}</p>
           </div>
-          <AirbnbSection />
+          <PropertyGrid />
           <div className="text-center mt-12">
-            <p className="text-slate-600 mb-4">{t.portfolioNote}</p>
-            <a
-              href={FULL_PORTFOLIO_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/properties"
               className="inline-flex items-center justify-center rounded-md bg-[#D4AF37] px-6 py-3 font-semibold text-[#06121F] transition-colors hover:bg-[#F2D98D]"
             >
               {t.portfolioLink}
               <ArrowRight className="ml-2 h-4 w-4" />
-            </a>
+            </Link>
           </div>
         </div>
       </section>
