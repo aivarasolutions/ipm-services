@@ -64,7 +64,7 @@ Status changes, custom items, and deletions on `/insights/tegucigalpa-checklist`
 - Public rental inventory is loaded from Hostaway through server-only endpoints under `/api/properties`; credentials must remain in `HOSTAWAY_ACCOUNT_ID` and `HOSTAWAY_CLIENT_SECRET`.
 - The homepage, Properties page, and property detail routes share the live Hostaway inventory, photos, amenities, reviews, calendars, and quotes.
 - Reservation requests are repriced and revalidated server-side, protected by exact-origin checks plus shared Postgres rate limiting and idempotency records, then created in Hostaway.
-- The website does not collect card details. Guests are told that IPM will send secure payment instructions and final confirmation after the Hostaway reservation request is received.
+- After reservation creation, guests continue to that reservation's HTTPS Hostaway Guest Portal to pay. Hostaway applies payment to the matching reservation; IPM never collects or stores card details.
 
 ## Brand System (Home, Header, Footer, global base)
 - **Palette (navy + gold, NO black):** deepest navy `#06121F` (page base), navy `#0A1A30`, panel navy `#0F2440`, gold `#D4AF37`, champagne `#F2D98D`, muted text `#C9D2DE`. CSS vars in `src/App.css` `:root` and `src/index.css` `:root` both use navy — keep them in sync; never reintroduce `#050505`/`#111111` on Home/Header/Footer.

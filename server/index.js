@@ -313,7 +313,13 @@ app.post('/api/properties/:identifier/reservations', guardReservationRequest, as
       message: cleanText(message, 1000),
     });
     await completeReservationRequest(idempotencyKey, reservation);
-    res.status(201).json({ reservation });
+    res.status(201).json({
+      reservation,
+      payment: {
+        state: reservation.paymentState,
+        hosted: Boolean(reservation.checkoutUrl),
+      },
+    });
   } catch (error) {
     const idempotencyKey = cleanText(req.get('idempotency-key'), 100);
     if (idempotencyKey) await markReservationUncertain(idempotencyKey).catch(() => {});

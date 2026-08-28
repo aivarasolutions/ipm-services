@@ -2,15 +2,18 @@ import { createElement, useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import {
   ArrowLeft, Bath, BedDouble, CalendarDays, CheckCircle2, ChevronLeft,
-  ChevronRight, MapPin, Star, Users, Wifi,
+  ChevronRight, ExternalLink, MapPin, ShieldCheck, Star, Users, Wifi,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { fetchProperty, fetchQuote, fetchReviews, submitReservation } from '../services/hostawayApi'
 
 const today = new Date().toISOString().slice(0, 10)
 const addDays = (date, days) => {
-  const next = new Date(`${date}T12:00:00`)
-  next.setDate(next.getDate() + days)
+  const [year, month, day] = String(date || '').split('-').map(Number)
+  if (![year, month, day].every(Number.isInteger)) return ''
+  const next = new Date(Date.UTC(year, month - 1, day))
+  if (Number.isNaN(next.getTime())) return ''
+  next.setUTCDate(next.getUTCDate() + days)
   return next.toISOString().slice(0, 10)
 }
 
@@ -98,6 +101,12 @@ const PropertyDetail = () => {
     }
   }
 
+  const startOver = () => {
+    setConfirmation(null)
+    setBookingError('')
+    reservationKey.current = ''
+  }
+
   if (loading) return (
     <div className="flex min-h-[70vh] items-center justify-center bg-[#06121F]">
       <div className="text-center text-[#C9D2DE]"><div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-2 border-[#D4AF37] border-t-transparent" />Loading live property details…</div>
@@ -159,7 +168,41 @@ const PropertyDetail = () => {
         <aside>
           <div className="sticky top-24 rounded-2xl border border-[#D4AF37]/30 bg-white p-6 shadow-xl">
             {confirmation ? (
-              <div className="py-8 text-center"><CheckCircle2 className="mx-auto mb-4 h-14 w-14 text-green-600" /><h2 className="mb-2 text-2xl font-bold text-[#0A1A30]">Reservation request received</h2><p className="mb-4 text-[#475569]">Request #{confirmation.id}. Our booking team will email your secure payment instructions and final confirmation.</p><p className="font-semibold text-[#0A1A30]">{money(confirmation.total, confirmation.currency)}</p></div>
+              <div className="py-4">
+                {confirmation.checkoutUrl ? (
+                  <>
+                    <div className="mb-5 text-center">
+                      <ShieldCheck className="mx-auto mb-4 h-14 w-14 text-green-600" />
+                      <h2 className="mb-2 text-2xl font-bold text-[#0A1A30]">Your stay is ready to pay</h2>
+                      <p className="text-[#475569]">Reservation #{confirmation.id} has been created in Hostaway. Complete payment in the secure Hostaway Guest Portal.</p>
+                    </div>
+                    <div className="mb-5 rounded-xl bg-[#F8F5EF] p-4">
+                      <div className="flex items-center justify-between text-lg font-bold text-[#0A1A30]"><span>Total</span><span>{money(confirmation.total, confirmation.currency)}</span></div>
+                      <p className="mt-2 text-xs text-[#64748B]">This total comes from the live Hostaway reservation quote. IPM never sees or stores your card details.</p>
+                    </div>
+                    <a
+                      href={confirmation.checkoutUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#0A1A30] px-4 py-3 font-bold text-white transition-colors hover:bg-[#0F2440]"
+                    >
+                      Continue to secure payment <ExternalLink className="h-4 w-4" />
+                    </a>
+                    <p className="mt-4 text-center text-xs leading-relaxed text-[#64748B]">If payment is declined or you close the portal, use the button above to try again. Hostaway prevents duplicate payment collection for this reservation.</p>
+                    <button type="button" onClick={startOver} className="mt-4 w-full text-sm font-semibold text-[#64748B] underline underline-offset-2 hover:text-[#0A1A30]">Start a different reservation</button>
+                  </>
+                ) : (
+                  <>
+                    <div className="mb-5 text-center">
+                      <CheckCircle2 className="mx-auto mb-4 h-14 w-14 text-green-600" />
+                      <h2 className="mb-2 text-2xl font-bold text-[#0A1A30]">Reservation request received</h2>
+                      <p className="text-[#475569]">Request #{confirmation.id} is safely recorded in Hostaway, but its secure payment portal is still being prepared.</p>
+                    </div>
+                    <p className="mb-5 rounded-xl bg-amber-50 p-4 text-sm leading-relaxed text-amber-900">Please check your email for Hostaway payment instructions. If you do not receive them shortly, contact our reservations team with request #{confirmation.id}.</p>
+                    <button type="button" onClick={startOver} className="w-full rounded-lg border border-[#0A1A30] px-4 py-3 font-bold text-[#0A1A30] hover:bg-slate-50">Start a different reservation</button>
+                  </>
+                )}
+              </div>
             ) : (
               <>
                 <div className="mb-6"><h2 className="font-display text-2xl font-bold text-[#0A1A30]">Book your stay</h2><p className="mt-1 text-sm text-[#64748B]">Live availability and pricing from Hostaway</p></div>
@@ -172,7 +215,7 @@ const PropertyDetail = () => {
                   <Button disabled={booking} className="w-full bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] py-3 font-bold text-[#06121F]">{booking ? 'Checking…' : 'Check availability & price'}</Button>
                 </form>
 
-                {quote && <form onSubmit={reserve} className="mt-6 space-y-4 border-t border-slate-200 pt-6"><div className="rounded-xl bg-[#F8F5EF] p-4"><div className="flex items-center justify-between text-lg font-bold text-[#0A1A30]"><span>Total</span><span>{quote.total == null ? 'Confirmed at booking' : money(quote.total, quote.currency)}</span></div><p className="mt-2 text-xs text-[#64748B]">Taxes and required fees included in the Hostaway quote.</p></div><div className="grid grid-cols-2 gap-3"><input required placeholder="First name" value={guest.firstName} onChange={(e) => setGuest({ ...guest, firstName: e.target.value })} className="rounded-lg border border-slate-300 p-3" /><input required placeholder="Last name" value={guest.lastName} onChange={(e) => setGuest({ ...guest, lastName: e.target.value })} className="rounded-lg border border-slate-300 p-3" /></div><input required type="email" placeholder="Email" value={guest.email} onChange={(e) => setGuest({ ...guest, email: e.target.value })} className="w-full rounded-lg border border-slate-300 p-3" /><input required type="tel" placeholder="Phone" value={guest.phone} onChange={(e) => setGuest({ ...guest, phone: e.target.value })} className="w-full rounded-lg border border-slate-300 p-3" /><textarea placeholder="Message or special request (optional)" value={guest.message} onChange={(e) => setGuest({ ...guest, message: e.target.value })} className="min-h-24 w-full rounded-lg border border-slate-300 p-3" /><input name="website" tabIndex="-1" autoComplete="off" aria-hidden="true" className="hidden" /><Button disabled={booking || quote.total == null} className="w-full bg-[#0A1A30] py-3 font-bold text-white hover:bg-[#0F2440]">{booking ? 'Submitting…' : 'Submit reservation request'}</Button><p className="text-center text-xs text-[#64748B]">Your request is sent securely to Hostaway. IPM will email payment instructions and final confirmation. Card details are never collected on this website.</p></form>}
+                {quote && <form onSubmit={reserve} className="mt-6 space-y-4 border-t border-slate-200 pt-6"><div className="rounded-xl bg-[#F8F5EF] p-4"><div className="flex items-center justify-between text-lg font-bold text-[#0A1A30]"><span>Total</span><span>{quote.total == null ? 'Confirmed at booking' : money(quote.total, quote.currency)}</span></div><p className="mt-2 text-xs text-[#64748B]">Taxes and required fees included in the Hostaway quote.</p></div><div className="grid grid-cols-2 gap-3"><input required placeholder="First name" value={guest.firstName} onChange={(e) => setGuest({ ...guest, firstName: e.target.value })} className="rounded-lg border border-slate-300 p-3" /><input required placeholder="Last name" value={guest.lastName} onChange={(e) => setGuest({ ...guest, lastName: e.target.value })} className="rounded-lg border border-slate-300 p-3" /></div><input required type="email" placeholder="Email" value={guest.email} onChange={(e) => setGuest({ ...guest, email: e.target.value })} className="w-full rounded-lg border border-slate-300 p-3" /><input required type="tel" placeholder="Phone" value={guest.phone} onChange={(e) => setGuest({ ...guest, phone: e.target.value })} className="w-full rounded-lg border border-slate-300 p-3" /><textarea placeholder="Message or special request (optional)" value={guest.message} onChange={(e) => setGuest({ ...guest, message: e.target.value })} className="min-h-24 w-full rounded-lg border border-slate-300 p-3" /><input name="website" tabIndex="-1" autoComplete="off" aria-hidden="true" className="hidden" /><Button disabled={booking || quote.total == null} className="w-full bg-[#0A1A30] py-3 font-bold text-white hover:bg-[#0F2440]">{booking ? 'Submitting…' : 'Reserve & pay securely'}</Button><p className="text-center text-xs text-[#64748B]">Next, Hostaway will open a secure hosted payment portal for this reservation. Card details are never collected on this website.</p></form>}
                 {bookingError && <p role="alert" className="mt-4 rounded-lg bg-red-50 p-3 text-sm text-red-700">{bookingError}</p>}
                 <div className="mt-6 flex items-center justify-center gap-2 border-t border-slate-200 pt-5 text-sm text-[#64748B]"><Wifi className="h-4 w-4 text-[#D4AF37]" />Secure, live booking connection</div>
               </>

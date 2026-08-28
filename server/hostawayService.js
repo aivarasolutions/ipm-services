@@ -109,6 +109,24 @@ const normalizeRating = (rating) => {
   return value > 5 ? Math.round((value / 2) * 10) / 10 : Math.round(value * 10) / 10;
 };
 
+const hostedUrl = (value) => {
+  if (!value) return null;
+  try {
+    const url = new URL(String(value));
+    return url.protocol === 'https:' ? url.toString() : null;
+  } catch {
+    return null;
+  }
+};
+
+const paymentState = (reservation) => {
+  if (reservation?.paymentStatus) return String(reservation.paymentStatus).toLowerCase();
+  if (reservation?.remainingBalance != null) {
+    return Number(reservation.remainingBalance) <= 0 ? 'paid' : 'unpaid';
+  }
+  return 'unpaid';
+};
+
 const normalizeListing = (listing, detailed = false) => {
   const images = (listing.listingImages || [])
     .filter((image) => image?.url)
@@ -321,13 +339,39 @@ export const createReservation = async (identifier, input) => {
     }),
   });
 
+  // Hostaway normally returns guestPortalUrl on create. Fetch the reservation
+  // once more when it is not present so payment can start immediately even
+  // when portal details are attached asynchronously.
+  let reservation = result || {};
+  if (reservation.id && !reservation.guestPortalUrl) {
+    try {
+      reservation =
+        (await request(`/reservations/${reservation.id}?includePayments=1`)) || reservation;
+    } catch (error) {
+      console.warn('[hostaway] reservation created but portal URL was not available', {
+        reservationId: reservation.id,
+        message: error.message,
+      });
+    }
+  }
+
+  const checkoutUrl = hostedUrl(
+    reservation.guestPortalUrl ||
+      reservation.paymentLink ||
+      reservation.paymentUrl ||
+      reservation.guestPortal?.url
+  );
+  const reservationTotal = Number(reservation.totalPrice ?? quote.total);
+
   return {
-    id: String(result?.id || ''),
-    status: result?.status || 'new',
-    arrivalDate: result?.arrivalDate || input.startDate,
-    departureDate: result?.departureDate || input.endDate,
-    total: Number(result?.totalPrice ?? quote.total),
-    currency: result?.currency || quote.currency,
+    id: String(reservation.id || ''),
+    status: reservation.status || 'new',
+    arrivalDate: reservation.arrivalDate || input.startDate,
+    departureDate: reservation.departureDate || input.endDate,
+    total: Number.isFinite(reservationTotal) ? reservationTotal : quote.total,
+    currency: reservation.currency || quote.currency,
+    checkoutUrl,
+    paymentState: checkoutUrl ? paymentState(reservation) : 'payment_link_unavailable',
   };
 };
 
