@@ -54,3 +54,7 @@ publicDir = "dist"
 
 [userenv.shared]
 MAILCHIMP_LIST_ID = "a090381f0a"
+
+[postMerge]
+path = "scripts/post-merge.sh"
+timeoutMs = 180000
