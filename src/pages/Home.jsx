@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '../contexts/LanguageContext'
+import { FULL_PORTFOLIO_URL, PROPERTIES } from '../data/properties'
 import {
   Building2, TrendingUp, Shield, DollarSign,
   BarChart3, Globe, Calendar, Zap, HeartHandshake,
@@ -51,16 +52,9 @@ const AirbnbSection = () => {
     }
   }, [])
 
-  const properties = [
-    { id: '1347342374342049672', href: 'https://www.airbnb.com/rooms/1347342374342049672?guests=1&adults=1&s=66&source=embed_widget', description: 'Home in Mooresville · ★4.79 · 3 bedrooms · 5 beds · 3 baths' },
-    { id: '1471379203731591914', href: 'https://www.airbnb.com/rooms/1471379203731591914?guests=1&adults=1&s=66&source=embed_widget', description: 'Villa in Playa del Carmen · ★5.0 · 2 bedrooms · 2 beds · 2 baths' },
-    { id: '797383249287358281',  href: 'https://www.airbnb.com/rooms/797383249287358281?guests=1&adults=1&s=66&source=embed_widget',  description: 'Rental unit in Playa del Carmen · ★4.75 · 3 bedrooms · 6 beds · 3 baths' },
-    { id: '1360603145357884662', href: 'https://www.airbnb.com/rooms/1360603145357884662?guests=1&adults=1&s=66&source=embed_widget', description: 'Treehouse in Playa del Carmen · ★5.0 · 1 bedroom · 3 beds · 1 bath' },
-  ]
-
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-      {properties.map(p => (
+      {PROPERTIES.map(p => (
         <div key={p.id} className="flex justify-center rounded-xl overflow-hidden border border-slate-200 shadow-md">
           <AirbnbWidget {...p} />
         </div>
@@ -140,6 +134,8 @@ const Home = () => {
       ctaSub:          'Join 30+ property owners who trust IPM to fill their calendars, protect their properties, and grow their rental income.',
       ctaBtn1:         'Schedule a Free Consultation',
       ctaBtn2:         'Get a Property Evaluation',
+      portfolioLink:   'Explore Our Full Property Portfolio',
+      portfolioNote:   'See all available stays and current booking options on RichAF Global.',
     },
     es: {
       heroLine1:       'Más Reservas.',
@@ -207,6 +203,8 @@ const Home = () => {
       ctaSub:          'Únase a más de 30 propietarios que confían en IPM para llenar sus calendarios.',
       ctaBtn1:         'Agendar Consulta Gratuita',
       ctaBtn2:         'Evaluación de Propiedad',
+      portfolioLink:   'Explorar Nuestro Portafolio Completo',
+      portfolioNote:   'Vea todas las estancias disponibles y las opciones de reserva actuales en RichAF Global.',
     },
     fr: {
       heroLine1:       'Plus de Réservations.',
@@ -274,6 +272,8 @@ const Home = () => {
       ctaSub:          'Rejoignez 30+ propriétaires qui font confiance à IPM pour remplir leurs calendriers.',
       ctaBtn1:         'Planifier une Consultation Gratuite',
       ctaBtn2:         'Évaluation de Propriété',
+      portfolioLink:   'Explorer Notre Portefeuille Complet',
+      portfolioNote:   'Consultez tous les séjours disponibles et les options de réservation sur RichAF Global.',
     },
   }
 
@@ -521,6 +521,18 @@ const Home = () => {
             <p className="text-slate-600 text-lg max-w-2xl mx-auto">{t.featuredSub}</p>
           </div>
           <AirbnbSection />
+          <div className="text-center mt-12">
+            <p className="text-slate-600 mb-4">{t.portfolioNote}</p>
+            <a
+              href={FULL_PORTFOLIO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-md bg-[#D4AF37] px-6 py-3 font-semibold text-[#06121F] transition-colors hover:bg-[#F2D98D]"
+            >
+              {t.portfolioLink}
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </a>
+          </div>
         </div>
       </section>
 

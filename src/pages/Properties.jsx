@@ -4,6 +4,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '../contexts/LanguageContext'
 import ReviewsSection from '../components/ReviewsSection'
+import { FULL_PORTFOLIO_URL, PROPERTIES } from '../data/properties'
 
 const AirbnbWidget = ({ id, href, description }) => {
   return (
@@ -47,62 +48,9 @@ const AirbnbSection = () => {
     };
   }, []);
 
-  const properties = [
-    {
-      id: "1347342374342049672",
-      href: "https://www.airbnb.com/rooms/1347342374342049672?guests=1&adults=1&s=66&source=embed_widget",
-      description: "Home in Mooresville · ★4.79 · 3 bedrooms · 5 beds · 3 baths"
-    },
-    {
-      id: "1471379203731591914",
-      href: "https://www.airbnb.com/rooms/1471379203731591914?guests=1&adults=1&s=66&source=embed_widget",
-      description: "Villa in Playa del Carmen · ★5.0 · 2 bedrooms · 2 beds · 2 baths"
-    },
-    {
-      id: "797383249287358281",
-      href: "https://www.airbnb.com/rooms/797383249287358281?guests=1&adults=1&s=66&source=embed_widget",
-      description: "Rental unit in Playa del Carmen · ★4.75 · 3 bedrooms · 6 beds · 3 baths"
-    },
-    {
-      id: "1360603145357884662",
-      href: "https://www.airbnb.com/rooms/1360603145357884662?guests=1&adults=1&s=66&source=embed_widget",
-      description: "Treehouse in Playa del Carmen · ★5.0 · 1 bedroom · 3 beds · 1 bath"
-    },
-    {
-      id: "979746807451190456",
-      href: "https://www.airbnb.com/rooms/979746807451190456?guests=1&adults=1&s=66&source=embed_widget",
-      description: "Condo in Playa del Carmen · ★5.0 · 2 bedrooms · 3 beds · 3 baths"
-    },
-    {
-      id: "748643168197644004",
-      href: "https://www.airbnb.com/rooms/748643168197644004?guests=1&adults=1&s=66&source=embed_widget",
-      description: "Condo in Playa del Carmen · ★5.0 · 2 bedrooms · 3 beds · 2 baths"
-    },
-    {
-      id: "940819925405007925",
-      href: "https://www.airbnb.com/rooms/940819925405007925?guests=1&adults=1&s=66&source=embed_widget",
-      description: "Villa in Playa del Carmen · ★4.67 · 2 bedrooms · 3 beds · 2 baths"
-    },
-    {
-      id: "661689319093803636",
-      href: "https://www.airbnb.com/rooms/661689319093803636?guests=1&adults=1&s=66&source=embed_widget",
-      description: "Serviced apartment in Playa del Carmen · ★5.0 · 4 bedrooms · 11 beds · 4 baths"
-    },
-    {
-      id: "51245107",
-      href: "https://www.airbnb.com/rooms/51245107?guests=1&adults=1&s=66&source=embed_widget",
-      description: "Vacation home in Playa del Carmen · ★4.92 · 2 bedrooms · 5 beds · 2 baths"
-    },
-    {
-      id: "658618315945266161",
-      href: "https://www.airbnb.com/rooms/658618315945266161?guests=1&adults=1&s=66&source=embed_widget",
-      description: "Vacation home in Playa del Carmen · ★4.91 · 2 bedrooms · 4 beds · 2 baths"
-    }
-  ];
-
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-      {properties.map((property) => (
+      {PROPERTIES.map((property) => (
         <div key={property.id} className="flex justify-center">
           <AirbnbWidget 
             id={property.id}
@@ -128,7 +76,9 @@ const Properties = () => {
       notFound: 'Don\'t See What You\'re Looking For?',
       notFoundDesc: 'We\'re constantly adding new properties to our portfolio. Contact us to discuss your specific needs or to learn about upcoming listings.',
       contactUs: 'Contact Us',
-      propertyEvaluation: 'Property Evaluation'
+      propertyEvaluation: 'Property Evaluation',
+      portfolioLink: 'Explore Our Full Property Portfolio',
+      portfolioNote: 'See all available stays and current booking options on RichAF Global.'
     },
     es: {
       ourProperties: 'Nuestras Propiedades',
@@ -138,7 +88,9 @@ const Properties = () => {
       notFound: '¿No Encuentra Lo Que Busca?',
       notFoundDesc: 'Estamos constantemente agregando nuevas propiedades a nuestro portafolio. Contáctenos para discutir sus necesidades específicas o para obtener información sobre próximos anuncios.',
       contactUs: 'Contáctenos',
-      propertyEvaluation: 'Evaluación de Propiedad'
+      propertyEvaluation: 'Evaluación de Propiedad',
+      portfolioLink: 'Explorar Nuestro Portafolio Completo',
+      portfolioNote: 'Vea todas las estancias disponibles y las opciones de reserva actuales en RichAF Global.'
     },
     fr: {
       ourProperties: 'Nos Propriétés',
@@ -148,7 +100,9 @@ const Properties = () => {
       notFound: 'Vous ne Trouvez Pas Ce que Vous Cherchez?',
       notFoundDesc: 'Nous ajoutons constamment de nouvelles propriétés à notre portefeuille. Contactez-nous pour discuter de vos besoins spécifiques ou pour en savoir plus sur les annonces à venir.',
       contactUs: 'Nous Contacter',
-      propertyEvaluation: 'Évaluation de Propriété'
+      propertyEvaluation: 'Évaluation de Propriété',
+      portfolioLink: 'Explorer Notre Portefeuille Complet',
+      portfolioNote: 'Consultez tous les séjours disponibles et les options de réservation sur RichAF Global.'
     }
   }
 
@@ -172,6 +126,18 @@ const Properties = () => {
           <h2 className="text-4xl font-bold text-[#0A1A30] mb-6">{t.featured}</h2>
           <p className="text-xl text-[#334155] mb-12 max-w-3xl mx-auto">{t.featuredDesc}</p>
           <AirbnbSection />
+          <div className="mt-12">
+            <p className="text-[#334155] mb-4">{t.portfolioNote}</p>
+            <a
+              href={FULL_PORTFOLIO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-md bg-[#D4AF37] px-6 py-3 font-semibold text-[#06121F] transition-colors hover:bg-[#F2D98D]"
+            >
+              {t.portfolioLink}
+              <span aria-hidden="true" className="ml-2">→</span>
+            </a>
+          </div>
         </div>
       </section>
 
