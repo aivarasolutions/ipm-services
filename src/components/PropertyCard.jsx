@@ -7,12 +7,13 @@ const PropertyCard = ({ property }) => (
     className="group overflow-hidden rounded-2xl border border-[#0A1A30]/10 bg-white text-left shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
   >
     <div className="relative aspect-[4/3] overflow-hidden bg-[#E8E4DC]">
-      {property.thumbnailUrl ? (
+      {(property.images?.[0]?.url || property.thumbnailUrl) ? (
         <img
-          src={property.thumbnailUrl}
+          src={property.images?.[0]?.url || property.thumbnailUrl}
           alt={property.name}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
+          decoding="async"
         />
       ) : (
         <div className="flex h-full items-center justify-center text-[#475569]">Photo coming soon</div>
