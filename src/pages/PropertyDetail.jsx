@@ -190,6 +190,17 @@ const PropertyDetail = () => {
     if (dates.startDate && dates.endDate) loadQuote(dates.startDate, dates.endDate, guests)
   }
 
+  const handleManualDateChange = (field, value) => {
+    const nextDates = { ...dates, [field]: value }
+    if (field === 'startDate' && nextDates.endDate && nextDates.endDate <= value) nextDates.endDate = ''
+    setDates(nextDates)
+    setQuote(null)
+    setBookingError('')
+    if (nextDates.startDate && nextDates.endDate) {
+      loadQuote(nextDates.startDate, nextDates.endDate, nextDates.guests)
+    }
+  }
+
   const isDateOutsideBookingWindow = (date) => {
     const dateKey = toDateKey(date)
     if (availabilityLoading || availabilityError || dateKey < today || dateKey > addDays(today, 365)) return true
@@ -288,7 +299,7 @@ const PropertyDetail = () => {
         </div>
 
         <aside>
-          <div className="sticky top-24 rounded-2xl border border-[#D4AF37]/30 bg-white p-6 shadow-xl">
+          <div className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto rounded-2xl border border-[#D4AF37]/30 bg-white p-6 shadow-xl">
             {confirmation ? (
               <div className="py-4">
                 {confirmation.checkoutUrl ? (
@@ -334,6 +345,33 @@ const PropertyDetail = () => {
                       <CalendarDays className="h-4 w-4 text-[#B28B17]" />
                       <span>Select your dates</span>
                     </div>
+                    <div className="mb-4 grid grid-cols-2 gap-3">
+                      <label className="text-xs font-semibold uppercase tracking-wide text-[#64748B]">
+                        Check-in
+                        <input
+                          type="date"
+                          required
+                          min={today}
+                          max={addDays(today, 365)}
+                          value={dates.startDate}
+                          onChange={(event) => handleManualDateChange('startDate', event.target.value)}
+                          className="mt-1 w-full rounded-lg border border-slate-300 bg-white p-3 text-sm font-normal text-[#0A1A30] outline-none placeholder:text-[#94A3B8] focus:border-[#B28B17] focus:ring-2 focus:ring-[#D4AF37]/30"
+                        />
+                      </label>
+                      <label className="text-xs font-semibold uppercase tracking-wide text-[#64748B]">
+                        Check-out
+                        <input
+                          type="date"
+                          required
+                          min={dates.startDate ? addDays(dates.startDate, 1) : today}
+                          max={addDays(today, 365)}
+                          value={dates.endDate}
+                          onChange={(event) => handleManualDateChange('endDate', event.target.value)}
+                          className="mt-1 w-full rounded-lg border border-slate-300 bg-white p-3 text-sm font-normal text-[#0A1A30] outline-none placeholder:text-[#94A3B8] focus:border-[#B28B17] focus:ring-2 focus:ring-[#D4AF37]/30"
+                        />
+                      </label>
+                    </div>
+                    <p className="mb-2 text-xs text-[#64748B]">Type dates above or select them below. Crossed-out dates cannot be check-in or stay nights.</p>
                     <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
                       {availabilityLoading ? (
                         <div className="flex min-h-80 items-center justify-center px-5 text-center text-sm text-[#64748B]">
@@ -401,7 +439,7 @@ const PropertyDetail = () => {
                 </form>
 
                 {quoteLoading && <div className="mt-6 rounded-xl border border-[#D4AF37]/30 bg-[#F8F5EF] p-4 text-center text-sm text-[#475569]">Getting the live price for your stay…</div>}
-                {quote && <form onSubmit={reserve} className="mt-6 space-y-4 border-t border-slate-200 pt-6"><div className="rounded-xl bg-[#F8F5EF] p-4"><div className="flex items-center justify-between text-lg font-bold text-[#0A1A30]"><span>Total</span><span>{quote.total == null ? 'Confirmed at booking' : money(quote.total, quote.currency)}</span></div>{quote.components?.length > 0 && <div className="mt-3 space-y-1 border-t border-[#0A1A30]/10 pt-3 text-sm text-[#475569]">{quote.components.map((component, index) => <div key={`${component.name}-${index}`} className="flex items-center justify-between gap-3"><span>{component.name}</span><span>{money(component.total, quote.currency)}</span></div>)}</div>}<p className="mt-2 text-xs text-[#64748B]">Taxes and required fees included in the Hostaway quote.</p></div><div className="grid grid-cols-2 gap-3"><input required placeholder="First name" value={guest.firstName} onChange={(e) => setGuest({ ...guest, firstName: e.target.value })} className="rounded-lg border border-slate-300 p-3" /><input required placeholder="Last name" value={guest.lastName} onChange={(e) => setGuest({ ...guest, lastName: e.target.value })} className="rounded-lg border border-slate-300 p-3" /></div><input required type="email" placeholder="Email" value={guest.email} onChange={(e) => setGuest({ ...guest, email: e.target.value })} className="w-full rounded-lg border border-slate-300 p-3" /><input required type="tel" placeholder="Phone" value={guest.phone} onChange={(e) => setGuest({ ...guest, phone: e.target.value })} className="w-full rounded-lg border border-slate-300 p-3" /><textarea placeholder="Message or special request (optional)" value={guest.message} onChange={(e) => setGuest({ ...guest, message: e.target.value })} className="min-h-24 w-full rounded-lg border border-slate-300 p-3" /><input name="website" tabIndex="-1" autoComplete="off" aria-hidden="true" className="hidden" /><Button disabled={booking || quote.total == null} className="w-full bg-[#0A1A30] py-3 font-bold text-white hover:bg-[#0F2440]">{booking ? 'Submitting…' : 'Reserve & pay securely'}</Button><p className="text-center text-xs text-[#64748B]">Next, Hostaway will open a secure hosted payment portal for this reservation. Card details are never collected on this website.</p></form>}
+                {quote && <form onSubmit={reserve} className="mt-6 space-y-4 border-t border-slate-200 pt-6"><div className="rounded-xl bg-[#F8F5EF] p-4"><div className="flex items-center justify-between text-lg font-bold text-[#0A1A30]"><span>Total</span><span>{quote.total == null ? 'Confirmed at booking' : money(quote.total, quote.currency)}</span></div>{quote.components?.length > 0 && <div className="mt-3 space-y-1 border-t border-[#0A1A30]/10 pt-3 text-sm text-[#475569]">{quote.components.map((component, index) => <div key={`${component.name}-${index}`} className="flex items-center justify-between gap-3"><span>{component.name}</span><span>{money(component.total, quote.currency)}</span></div>)}</div>}<p className="mt-2 text-xs text-[#64748B]">Taxes and required fees included in the Hostaway quote.</p></div><div className="grid grid-cols-2 gap-3"><input required placeholder="First name" value={guest.firstName} onChange={(e) => setGuest({ ...guest, firstName: e.target.value })} className="rounded-lg border border-slate-300 bg-white p-3 text-[#0A1A30] placeholder:text-[#94A3B8] outline-none focus:border-[#B28B17] focus:ring-2 focus:ring-[#D4AF37]/30" /><input required placeholder="Last name" value={guest.lastName} onChange={(e) => setGuest({ ...guest, lastName: e.target.value })} className="rounded-lg border border-slate-300 bg-white p-3 text-[#0A1A30] placeholder:text-[#94A3B8] outline-none focus:border-[#B28B17] focus:ring-2 focus:ring-[#D4AF37]/30" /></div><input required type="email" placeholder="Email" value={guest.email} onChange={(e) => setGuest({ ...guest, email: e.target.value })} className="w-full rounded-lg border border-slate-300 bg-white p-3 text-[#0A1A30] placeholder:text-[#94A3B8] outline-none focus:border-[#B28B17] focus:ring-2 focus:ring-[#D4AF37]/30" /><input required type="tel" placeholder="Phone" value={guest.phone} onChange={(e) => setGuest({ ...guest, phone: e.target.value })} className="w-full rounded-lg border border-slate-300 bg-white p-3 text-[#0A1A30] placeholder:text-[#94A3B8] outline-none focus:border-[#B28B17] focus:ring-2 focus:ring-[#D4AF37]/30" /><textarea placeholder="Message or special request (optional)" value={guest.message} onChange={(e) => setGuest({ ...guest, message: e.target.value })} className="min-h-24 w-full rounded-lg border border-slate-300 bg-white p-3 text-[#0A1A30] placeholder:text-[#94A3B8] outline-none focus:border-[#B28B17] focus:ring-2 focus:ring-[#D4AF37]/30" /><input name="website" tabIndex="-1" autoComplete="off" aria-hidden="true" className="hidden" /><Button type="submit" disabled={booking || quote.total == null} className="w-full bg-[#0A1A30] py-3 font-bold text-white hover:bg-[#0F2440]">{booking ? 'Submitting…' : 'Reserve & pay securely'}</Button><p className="text-center text-xs text-[#64748B]">Next, Hostaway will open a secure hosted payment portal for this reservation. Card details are never collected on this website.</p></form>}
                 {bookingError && <p role="alert" className="mt-4 rounded-lg bg-red-50 p-3 text-sm text-red-700">{bookingError}</p>}
                 <div className="mt-6 flex items-center justify-center gap-2 border-t border-slate-200 pt-5 text-sm text-[#64748B]"><Wifi className="h-4 w-4 text-[#D4AF37]" />Secure, live booking connection</div>
               </>
