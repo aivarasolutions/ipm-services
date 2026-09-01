@@ -35,6 +35,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import LeadPopup from './components/LeadPopup'
+import RouteStructuredData from './components/RouteStructuredData'
 import { AudioProvider } from './contexts/AudioContext'
 import { LanguageProvider } from './contexts/LanguageContext'
 
@@ -59,6 +60,7 @@ function AppLayout() {
   return (
     <div className="min-h-screen bg-[#06121F] flex flex-col">
       <ScrollToTop />
+      <RouteStructuredData />
       <Header />
       <main className="flex-1">
         <Routes>

@@ -8,7 +8,7 @@
     "dev:api": "node server/index.js",
     "dev": "concurrently -n vite,api -c blue,green \"npm:dev:vite\" \"npm:dev:api\"",
     "build": "vite build && npm run postbuild",
-    "postbuild": "cp dist/index.html dist/404.html",
+    "postbuild": "node scripts/prerender-seo.mjs && cp dist/index.html dist/404.html",
     "lint": "eslint .",
     "preview": "vite preview --host 0.0.0.0 --port 5000",
     "deploy": "npm run build",

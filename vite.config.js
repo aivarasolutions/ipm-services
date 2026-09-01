@@ -2,11 +2,23 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
+import { injectStructuredDataIntoHtml } from './src/lib/structuredData.js'
+
+const routeStructuredDataPlugin = () => ({
+  name: 'route-structured-data',
+  transformIndexHtml: {
+    order: 'post',
+    handler(html, ctx) {
+      const pathname = new URL(ctx.originalUrl || ctx.path || '/', 'https://www.ipm.services').pathname
+      return injectStructuredDataIntoHtml(html, pathname)
+    },
+  },
+})
 
 // https://vite.dev/config/
 export default defineConfig(({ command, mode }) => {
   const config = {
-    plugins: [react(),tailwindcss()],
+    plugins: [react(), tailwindcss(), routeStructuredDataPlugin()],
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "./src"),

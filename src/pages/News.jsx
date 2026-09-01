@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ExternalLink, Calendar, TrendingDown, AlertTriangle, Building2, DollarSign } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { getNewsArticleFragment } from '../lib/structuredData.js';
 
 export default function News() {
   const { language } = useLanguage();
@@ -322,6 +323,7 @@ export default function News() {
             return (
               <motion.article
                 key={index}
+                id={getNewsArticleFragment(article.title)}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 + 0.3 }}

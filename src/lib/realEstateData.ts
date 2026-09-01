@@ -1,3 +1,5 @@
+import { createRealEstateListingStructuredData } from './structuredData.js';
+
 export type RealEstateListing = {
   id: string;
   slug: string;
@@ -205,5 +207,9 @@ export function getRealEstateListings(): RealEstateListing[] {
 
 export function getRealEstateListing(slug: string): RealEstateListing | undefined {
   return getRealEstateListings().find(listing => listing.slug === slug);
+}
+
+export function getRealEstateListingStructuredData(slug: string) {
+  return createRealEstateListingStructuredData(getRealEstateListing(slug));
 }
 
