@@ -284,10 +284,11 @@ export default function Insights() {
           <div className="bg-[#06121F]/10 backdrop-blur-sm rounded-xl p-6 mb-6">
             <h3 className="text-2xl font-bold mb-3">{t.bookConsultation}</h3>
             <p className="text-lg mb-6 opacity-90">{t.consultDesc}</p>
-            <Link to="/contact">
-              <button className="inline-block bg-[#06121F] text-[#F2D98D] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#0A1A30] transition-colors shadow-lg hover:shadow-xl">
-                {t.scheduleCall}
-              </button>
+            <Link
+              to="/contact"
+              className="inline-block bg-[#06121F] text-[#F2D98D] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#0A1A30] transition-colors shadow-lg hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#06121F] focus-visible:ring-offset-2 focus-visible:ring-offset-[#D4AF37]"
+            >
+              {t.scheduleCall}
             </Link>
           </div>
         </motion.div>

@@ -135,6 +135,48 @@ const insightSeoRoutes = {
   },
 };
 
+const localizedSeoRoutes = {
+  es: {
+    '/': ['IPM | Gestión Internacional de Propiedades y Alquileres Vacacionales', 'Gestión profesional de alquileres vacacionales para propietarios en Playa del Carmen, Tulum, Lake Norman y otros destinos.', 'Más Reservas. Menos Vacantes.', 'Gestión profesional y promoción multiplataforma para aumentar sus ingresos con menos trabajo.'],
+    '/about': ['Acerca de IPM | Gestión Internacional de Propiedades', 'Conozca cómo IPM combina experiencia local, estándares globales y sistemas profesionales de hospitalidad.', 'Acerca de IPM', 'Ayudamos a propietarios a maximizar resultados y ofrecer experiencias consistentes a sus huéspedes.'],
+    '/services': ['Servicios de Gestión de Alquileres Vacacionales | IPM', 'Explore la gestión integral, optimización de ingresos, atención al huésped y promoción multiplataforma de IPM.', 'Nuestros Servicios', 'Servicios integrales diseñados para maximizar el potencial de su propiedad y su tranquilidad.'],
+    '/properties': ['Alquileres Vacacionales de Lujo | Propiedades IPM', 'Explore alquileres vacacionales gestionados por IPM, consulte disponibilidad y reserve directamente.', 'Nuestras Propiedades', 'Descubra alquileres vacacionales gestionados profesionalmente en destinos privilegiados.'],
+    '/real-estate': ['Propiedades de Inversión de Lujo | IPM', 'Explore oportunidades inmobiliarias seleccionadas en Playa del Carmen y el Caribe Mexicano.', 'Propiedades de Lujo', 'Residencias excepcionales y oportunidades de inversión en ubicaciones deseadas.'],
+    '/insights': ['Guías para Anfitriones de Alquileres Vacacionales | IPM', 'Lea guías prácticas sobre tarifas, automatización y operaciones rentables de alquileres vacacionales.', 'IPM Insights', 'Conocimiento experto, orientación transparente y estrategias profesionales para anfitriones.'],
+    '/news': ['Noticias del Mercado de Rentas Vacacionales | IPM', 'Actualizaciones sobre ocupación, precios, regulación y hospitalidad en Quintana Roo.', 'Noticias del Mercado de Rentas Vacacionales', 'Últimas noticias del mercado de rentas vacacionales y hotelería en Quintana Roo.'],
+    '/contact': ['Contacte a IPM | Consulta de Gestión de Propiedades', 'Contacte a IPM para gestión de alquileres, evaluación de propiedades, reservas y consultas.', 'Contáctenos', 'Hable con nuestro equipo para obtener soluciones personalizadas de gestión de propiedades.'],
+  },
+  fr: {
+    '/': ['IPM | Gestion Internationale de Propriétés et Locations de Vacances', 'Gestion professionnelle de locations de vacances pour les propriétaires à Playa del Carmen, Tulum, Lake Norman et ailleurs.', 'Plus de Réservations. Moins de Vacance.', 'Gestion professionnelle et promotion multiplateforme pour augmenter vos revenus avec moins de travail.'],
+    '/about': ['À propos d’IPM | Gestion Internationale de Propriétés', 'Découvrez comment IPM associe expertise locale, standards mondiaux et systèmes professionnels d’hospitalité.', 'À propos d’IPM', 'Nous aidons les propriétaires à maximiser leurs résultats et à offrir des expériences fiables.'],
+    '/services': ['Services de Gestion de Locations de Vacances | IPM', 'Découvrez la gestion complète, l’optimisation des revenus, le service client et la diffusion multiplateforme d’IPM.', 'Nos Services', 'Des services complets conçus pour maximiser le potentiel de votre propriété et votre tranquillité.'],
+    '/properties': ['Locations de Vacances de Luxe | Propriétés IPM', 'Découvrez les locations gérées par IPM, consultez les disponibilités et réservez directement.', 'Nos Propriétés', 'Découvrez des locations de vacances gérées professionnellement dans des destinations privilégiées.'],
+    '/real-estate': ['Propriétés d’Investissement de Luxe | IPM', 'Découvrez des opportunités immobilières sélectionnées à Playa del Carmen et dans les Caraïbes mexicaines.', 'Propriétés de Luxe', 'Résidences exceptionnelles et opportunités d’investissement dans des lieux recherchés.'],
+    '/insights': ['Conseils pour Hôtes de Locations de Vacances | IPM', 'Lisez des guides pratiques sur les frais, l’automatisation et les opérations rentables.', 'IPM Insights', 'Expertise, conseils transparents et stratégies professionnelles pour les propriétaires.'],
+    '/news': ['Actualités du Marché des Locations de Vacances | IPM', 'Actualités sur l’occupation, les prix, la réglementation et l’hospitalité au Quintana Roo.', 'Actualités du Marché des Locations de Vacances', 'Dernières nouvelles du marché des locations de vacances et de l’hôtellerie au Quintana Roo.'],
+    '/contact': ['Contacter IPM | Consultation en Gestion de Propriétés', 'Contactez IPM pour la gestion locative, l’évaluation, les réservations et les consultations.', 'Nous Contacter', 'Échangez avec notre équipe pour des solutions personnalisées de gestion de propriétés.'],
+  },
+  vi: {
+    '/vietnam': ['Quản Lý Bất Động Sản Đà Nẵng | Quản Lý Căn Hộ Cho Thuê Việt Nam | IPM', 'IPM cung cấp dịch vụ quản lý Airbnb và cho thuê ngắn hạn chuyên nghiệp tại Đà Nẵng, Việt Nam.', 'Quản Lý Bất Động Sản tại Đà Nẵng, Việt Nam', 'Quản lý căn hộ cho thuê, quảng bá đa nền tảng và hỗ trợ chủ sở hữu tại Việt Nam.'],
+  },
+};
+
+export const LOCALIZED_ROUTE_PATHS = Object.freeze({
+  es: Object.keys(localizedSeoRoutes.es),
+  fr: Object.keys(localizedSeoRoutes.fr),
+  vi: Object.keys(localizedSeoRoutes.vi),
+});
+
+const localizedMetadata = Object.fromEntries(
+  Object.entries(localizedSeoRoutes).map(([locale, routes]) => [
+    locale,
+    Object.fromEntries(Object.entries(routes).map(([path, [title, description, h1, intro]]) => [
+      path,
+      { title, description, h1, intro },
+    ])),
+  ]),
+);
+
 export const INDEXABLE_SEO_ROUTES = {
   ...staticSeoRoutes,
   ...insightSeoRoutes,
@@ -155,6 +197,32 @@ export const normalizePathname = (pathname = '/') => {
   return `/${path.replace(/^\/+|\/+$/g, '')}`;
 };
 
+export const getLocaleRouteInfo = (pathname = '/') => {
+  const normalized = normalizePathname(pathname);
+  const match = normalized.match(/^\/(es|fr|vi)(\/.*|$)/);
+  if (!match) return { locale: 'en', routePath: normalized, localized: false };
+  const routePath = normalizePathname(match[2] || '/');
+  const locale = match[1];
+  return {
+    locale,
+    routePath,
+    localized: Boolean(localizedMetadata[locale]?.[routePath]),
+  };
+};
+
+export const localizeRoutePath = (routePath, locale = 'en') =>
+  locale === 'en' ? normalizePathname(routePath) : `/${locale}${normalizePathname(routePath) === '/' ? '' : normalizePathname(routePath)}`;
+
+const getAlternates = (routePath) => {
+  const locales = ['es', 'fr', 'vi'].filter((locale) => localizedMetadata[locale]?.[routePath]);
+  if (!locales.length) return [];
+  return [
+    { hreflang: 'en', href: `${SITE_URL}${routePath === '/' ? '/' : routePath}` },
+    ...locales.map((locale) => ({ hreflang: locale, href: `${SITE_URL}${localizeRoutePath(routePath, locale)}` })),
+    { hreflang: 'x-default', href: `${SITE_URL}${routePath === '/' ? '/' : routePath}` },
+  ];
+};
+
 const humanizeSlug = (slug) =>
   decodeURIComponent(slug)
     .replace(/[-_]+/g, ' ')
@@ -162,9 +230,20 @@ const humanizeSlug = (slug) =>
 
 export const getSeoMetadata = (pathname, options = {}) => {
   const path = normalizePathname(pathname);
-  const exact = INDEXABLE_SEO_ROUTES[path];
+  const { locale, routePath, localized } = getLocaleRouteInfo(path);
+  if (locale !== 'en' && !localized) return null;
+  const exact = locale === 'en'
+    ? INDEXABLE_SEO_ROUTES[routePath]
+    : localizedMetadata[locale]?.[routePath];
   if (exact) {
-    return { ...exact, canonical: `${SITE_URL}${path === '/' ? '/' : path}`, indexable: true };
+    return {
+      ...exact,
+      canonical: `${SITE_URL}${path === '/' ? '/' : path}`,
+      indexable: true,
+      locale,
+      routePath,
+      alternates: getAlternates(routePath),
+    };
   }
 
   if (path === '/404') {
@@ -242,7 +321,7 @@ export const createSeoShell = (metadata, pathname = '/', options = {}) => {
     <h1 style="margin:0 0 1.25rem;font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.25rem,6vw,4.5rem);line-height:1.1">${escape(metadata.h1)}</h1>
     <p style="max-width:52rem;margin:0;color:#C9D2DE;font-size:1.2rem;line-height:1.7">${escape(metadata.intro)}</p>
   </header>
-  ${createSeoRouteContent(normalizePathname(pathname), metadata, options)}
+  ${createSeoRouteContent(metadata.routePath || normalizePathname(pathname), metadata, { ...options, locale: metadata.locale || 'en' })}
 </main>`;
 };
 
@@ -269,6 +348,12 @@ export const injectSeoMetadataIntoHtml = (html, pathname, options = {}) => {
   output = upsertMeta(output, 'property', 'og:url', metadata.canonical);
   output = upsertMeta(output, 'property', 'og:title', metadata.title);
   output = upsertMeta(output, 'property', 'og:description', metadata.description);
+  output = upsertMeta(output, 'property', 'og:locale', {
+    en: 'en_US',
+    es: 'es_ES',
+    fr: 'fr_FR',
+    vi: 'vi_VN',
+  }[metadata.locale || 'en']);
   output = upsertMeta(output, 'name', 'twitter:url', metadata.canonical);
   output = upsertMeta(output, 'name', 'twitter:title', metadata.title);
   output = upsertMeta(output, 'name', 'twitter:description', metadata.description);
@@ -277,6 +362,13 @@ export const injectSeoMetadataIntoHtml = (html, pathname, options = {}) => {
   output = /<link\s+rel="canonical"[^>]*>/i.test(output)
     ? output.replace(/<link\s+rel="canonical"[^>]*>/i, canonicalTag)
     : output.replace('</head>', `    ${canonicalTag}\n  </head>`);
+
+  output = output.replace(/\s*<link[^>]*data-seo-alternate[^>]*>/gi, '');
+  const alternateTags = (metadata.alternates || [])
+    .map(({ hreflang, href }) => `<link rel="alternate" hreflang="${hreflang}" href="${escapeAttribute(href)}" data-seo-alternate />`)
+    .join('\n    ');
+  if (alternateTags) output = output.replace('</head>', `    ${alternateTags}\n  </head>`);
+  output = output.replace(/<html\b[^>]*\blang=["'][^"']*["']/i, `<html lang="${metadata.locale || 'en'}"`);
 
   // Build output may already contain a nested SEO route shell (the homepage
   // document is also the production fallback source). Match the complete
@@ -289,7 +381,11 @@ export const injectSeoMetadataIntoHtml = (html, pathname, options = {}) => {
   return output;
 };
 
-export const getIndexableRoutePaths = () => Object.keys(INDEXABLE_SEO_ROUTES);
+export const getIndexableRoutePaths = () => [
+  ...Object.keys(INDEXABLE_SEO_ROUTES),
+  ...Object.entries(LOCALIZED_ROUTE_PATHS).flatMap(([locale, paths]) =>
+    paths.map((path) => localizeRoutePath(path, locale))),
+];
 
 export const getRealEstateSeoMetadata = (pathname, listing) =>
   getSeoMetadata(pathname, { realEstateListing: listing });
@@ -298,12 +394,12 @@ export const getDynamicPropertySeoMetadata = (pathname, property) =>
   getSeoMetadata(pathname, { property });
 
 export const getPropertySlugFromPath = (pathname) => {
-  const match = normalizePathname(pathname).match(/^\/properties\/([^/]+)$/);
+  const match = getLocaleRouteInfo(pathname).routePath.match(/^\/properties\/([^/]+)$/);
   return match ? decodeURIComponent(match[1]) : null;
 };
 
 export const getRealEstateSlugFromPath = (pathname) => {
-  const match = normalizePathname(pathname).match(/^\/real-estate\/([^/]+)$/);
+  const match = getLocaleRouteInfo(pathname).routePath.match(/^\/real-estate\/([^/]+)$/);
   return match ? decodeURIComponent(match[1]) : null;
 };
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   Globe, TrendingUp, Users, ShieldCheck, Sparkles, CheckCircle2,
@@ -6,6 +6,7 @@ import {
   Sofa, UtensilsCrossed, Bath, Lock, Star, HeartHandshake, Laptop,
   Briefcase, CalendarClock, MapPin, Phone, Mail, Home
 } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const LANGUAGES = [
   { code: 'en', label: '🇺🇸 English' },
@@ -353,24 +354,14 @@ const fadeUp = {
 };
 
 export default function Vietnam() {
-  const [lang, setLang] = useState('en');
+  const { language: selectedLanguage, toggleLanguage } = useLanguage();
+  const lang = selectedLanguage === 'vi' ? 'vi' : 'en';
   const t = content[lang];
 
   const [form, setForm] = useState({
     name: '', phone: '', email: '', address: '', bedrooms: '', platform: '', message: '',
   });
   const [status, setStatus] = useState('idle'); // idle | sending | success | error | invalid
-
-  useEffect(() => {
-    document.title = t.metaTitle;
-    let meta = document.querySelector('meta[name="description"]');
-    if (!meta) {
-      meta = document.createElement('meta');
-      meta.setAttribute('name', 'description');
-      document.head.appendChild(meta);
-    }
-    meta.setAttribute('content', t.metaDescription);
-  }, [t]);
 
   const onChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
@@ -424,7 +415,7 @@ export default function Vietnam() {
             <button
               key={l.code}
               aria-pressed={lang === l.code}
-              onClick={() => setLang(l.code)}
+              onClick={() => toggleLanguage(l.code)}
               className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-colors ${
                 lang === l.code
                   ? 'bg-[#D4AF37] text-[#06121F]'
@@ -729,7 +720,7 @@ export default function Vietnam() {
                     value={form.message}
                     onChange={onChange}
                     placeholder={t.form.fields.messagePlaceholder}
-                    className="w-full rounded-lg border border-[#D4AF37]/25 bg-[#0A1A30] px-4 py-3 text-white placeholder-[#C9D2DE]/40 focus:border-[#D4AF37] focus:outline-none transition-colors"
+                    className="w-full rounded-lg border border-[#D4AF37]/25 bg-[#0A1A30] px-4 py-3 text-white placeholder:text-[#AEB9C7] focus:border-[#D4AF37] focus:outline-none transition-colors"
                   />
                 </div>
                 <div aria-live="polite">
@@ -769,7 +760,7 @@ function Field({ label, name, value, onChange, icon: Icon, type = 'text', requir
           value={value}
           onChange={onChange}
           placeholder={placeholder}
-          className="w-full rounded-lg border border-[#D4AF37]/25 bg-[#0A1A30] pl-11 pr-4 py-3 text-white placeholder-[#C9D2DE]/40 focus:border-[#D4AF37] focus:outline-none transition-colors"
+          className="w-full rounded-lg border border-[#D4AF37]/25 bg-[#0A1A30] pl-11 pr-4 py-3 text-white placeholder:text-[#AEB9C7] focus:border-[#D4AF37] focus:outline-none transition-colors"
         />
       </div>
     </div>

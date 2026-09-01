@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Menu, X, Globe } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
+import { getLocaleRouteInfo, LOCALIZED_ROUTE_PATHS } from '../lib/seo.js'
 
 const Header = () => {
   const location = useLocation()
@@ -11,6 +12,12 @@ const Header = () => {
   const [showLanguageMenu, setShowLanguageMenu] = useState(false)
 
   const [showInsightsDropdown, setShowInsightsDropdown] = useState(false)
+  const routePath = getLocaleRouteInfo(location.pathname).routePath
+  const languageOptions = routePath === '/vietnam'
+    ? ['en', 'vi']
+    : LOCALIZED_ROUTE_PATHS.es.includes(routePath)
+      ? ['en', 'es', 'fr']
+      : ['en']
 
   const navItems = [
     { name: 'Services', path: '/services', color: 'bg-[#D4AF37] text-[#06121F]' },
@@ -56,7 +63,7 @@ const Header = () => {
           <nav className="hidden md:flex items-center space-x-2">
             {navItems.map((item) => {
               if (item.hasDropdown) {
-                const isActive = location.pathname.startsWith(item.path)
+                const isActive = routePath.startsWith(item.path)
                 return (
                   <div
                     key={item.name}
@@ -131,7 +138,7 @@ const Header = () => {
                   <Link
                     to={item.path}
                     className={`px-4 py-2 rounded-md text-sm font-medium transition-colors focus-visible:ring-1 focus-visible:ring-[#D4AF37]/40 focus-visible:ring-offset-0 ${
-                      location.pathname === item.path
+                    routePath === item.path
                         ? item.color
                         : 'text-[#CFCFCF] hover:text-[#D4AF37] hover:bg-[#D4AF37]/10'
                     }`}
@@ -158,7 +165,7 @@ const Header = () => {
               </Button>
               {showLanguageMenu && (
                 <div className="absolute right-0 mt-1 w-32 bg-[#0A1A30] border border-[#D4AF37]/20 rounded-md shadow-lg z-50">
-                  {['en', 'es', 'fr'].map((lang) => (
+                  {languageOptions.map((lang) => (
                     <button
                       key={lang}
                       onClick={() => {
@@ -174,6 +181,7 @@ const Header = () => {
                       {lang === 'en' && 'English'}
                       {lang === 'es' && 'Español'}
                       {lang === 'fr' && 'Français'}
+                      {lang === 'vi' && 'Tiếng Việt'}
                     </button>
                   ))}
                 </div>
@@ -211,7 +219,7 @@ const Header = () => {
         <div id="mobile-navigation" className="md:hidden bg-[#0A1A30] border-t border-[#D4AF37]/15 shadow-lg">
           <div className="px-4 pt-2 pb-3 space-y-1">
             {navItems.map((item) => {
-              const isActive = item.hasDropdown ? location.pathname.startsWith(item.path) : location.pathname === item.path
+              const isActive = item.hasDropdown ? routePath.startsWith(item.path) : routePath === item.path
               
               if (item.hasDropdown) {
                 return (
@@ -234,7 +242,7 @@ const Header = () => {
                           to={subItem.path}
                           onClick={() => setIsMobileMenuOpen(false)}
                           className={`block px-3 py-2 rounded-md text-sm transition-colors ${
-                            location.pathname === subItem.path
+                            routePath === subItem.path
                               ? 'bg-[#D4AF37]/15 text-[#E6C978]'
                               : 'text-[#B8B8B8] hover:text-[#D4AF37] hover:bg-[#D4AF37]/10'
                           }`}
@@ -280,7 +288,7 @@ const Header = () => {
             <div className="pt-4 border-t border-[#D4AF37]/15 mb-4">
               <div className="px-3 py-2 text-xs font-semibold text-[#CFCFCF] mb-2">Language</div>
               <div className="flex gap-2 px-3">
-                {['en', 'es', 'fr'].map((lang) => (
+                {languageOptions.map((lang) => (
                   <button
                     key={lang}
                     onClick={() => {
@@ -296,6 +304,7 @@ const Header = () => {
                     {lang === 'en' && 'EN'}
                     {lang === 'es' && 'ES'}
                     {lang === 'fr' && 'FR'}
+                    {lang === 'vi' && 'VI'}
                   </button>
                 ))}
               </div>

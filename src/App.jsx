@@ -84,6 +84,17 @@ function AppLayout() {
           <Route path="/owner-portal" element={<OwnerPortal />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          {['es', 'fr'].flatMap((locale) => [
+            <Route key={`${locale}-home`} path={`/${locale}/`} element={<Home />} />,
+            <Route key={`${locale}-about`} path={`/${locale}/about`} element={<About />} />,
+            <Route key={`${locale}-services`} path={`/${locale}/services`} element={<Services />} />,
+            <Route key={`${locale}-properties`} path={`/${locale}/properties`} element={<Properties />} />,
+            <Route key={`${locale}-real-estate`} path={`/${locale}/real-estate`} element={<RealEstate />} />,
+            <Route key={`${locale}-insights`} path={`/${locale}/insights`} element={<Insights />} />,
+            <Route key={`${locale}-news`} path={`/${locale}/news`} element={<News />} />,
+            <Route key={`${locale}-contact`} path={`/${locale}/contact`} element={<Contact />} />,
+          ])}
+          <Route path="/vi/vietnam" element={<Vietnam />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
@@ -110,13 +121,13 @@ function App() {
   const basename = import.meta.env.BASE_URL;
 
   return (
-    <LanguageProvider>
-      <AudioProvider>
-        <Router basename={basename}>
+    <Router basename={basename}>
+      <LanguageProvider>
+        <AudioProvider>
           <AppLayout />
-        </Router>
-      </AudioProvider>
-    </LanguageProvider>
+        </AudioProvider>
+      </LanguageProvider>
+    </Router>
   )
 }
 

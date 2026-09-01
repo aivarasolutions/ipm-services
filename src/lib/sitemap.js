@@ -1,4 +1,4 @@
-import { INDEXABLE_SEO_ROUTES, SITE_URL } from './seo.js';
+import { getIndexableRoutePaths, SITE_URL } from './seo.js';
 import { REAL_ESTATE_SCHEMA_LISTINGS } from './structuredData.js';
 
 const escapeXml = (value) =>
@@ -11,7 +11,7 @@ const escapeXml = (value) =>
   }[character]));
 
 export const getSitemapEntries = (properties = []) => {
-  const entries = Object.keys(INDEXABLE_SEO_ROUTES).map((path) => ({
+  const entries = getIndexableRoutePaths().map((path) => ({
     path,
     changefreq: path === '/' || path === '/properties' || path === '/insights' ? 'weekly' : 'monthly',
     priority: path === '/' ? '1.0' : ['/', '/services', '/properties'].includes(path) ? '0.9' : '0.7',

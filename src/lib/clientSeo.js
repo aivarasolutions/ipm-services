@@ -18,6 +18,12 @@ export const applySeoMetadataToDocument = (metadata) => {
   setMeta('meta[property="og:url"]', 'property', 'og:url', metadata.canonical);
   setMeta('meta[property="og:title"]', 'property', 'og:title', metadata.title);
   setMeta('meta[property="og:description"]', 'property', 'og:description', metadata.description);
+  setMeta('meta[property="og:locale"]', 'property', 'og:locale', {
+    en: 'en_US',
+    es: 'es_ES',
+    fr: 'fr_FR',
+    vi: 'vi_VN',
+  }[metadata.locale || 'en']);
   setMeta('meta[name="twitter:url"]', 'name', 'twitter:url', metadata.canonical);
   setMeta('meta[name="twitter:title"]', 'name', 'twitter:title', metadata.title);
   setMeta('meta[name="twitter:description"]', 'name', 'twitter:description', metadata.description);
@@ -29,4 +35,15 @@ export const applySeoMetadataToDocument = (metadata) => {
     document.head.appendChild(canonical);
   }
   canonical.href = metadata.canonical;
+
+  document.head.querySelectorAll('[data-seo-alternate]').forEach((link) => link.remove());
+  (metadata.alternates || []).forEach(({ hreflang, href }) => {
+    const link = document.createElement('link');
+    link.rel = 'alternate';
+    link.hreflang = hreflang;
+    link.href = href;
+    link.dataset.seoAlternate = '';
+    document.head.appendChild(link);
+  });
+  document.documentElement.lang = metadata.locale || 'en';
 };

@@ -408,6 +408,30 @@ const propertyCards = (properties = []) => properties
 
 export const createSeoRouteContent = (pathname, metadata, options = {}) => {
   let content = STATIC_ROUTE_CONTENT[pathname];
+  if (options.locale && options.locale !== 'en') {
+    const localizedLabels = {
+      es: {
+        heading: 'Información y servicios de IPM',
+        links: ['Conozca nuestros servicios', 'Explore nuestras propiedades', 'Contacte a IPM'],
+      },
+      fr: {
+        heading: 'Informations et services IPM',
+        links: ['Découvrez nos services', 'Explorez nos propriétés', 'Contactez IPM'],
+      },
+      vi: {
+        heading: 'Dịch vụ và thông tin IPM',
+        links: ['Tìm hiểu dịch vụ', 'Khám phá bất động sản', 'Liên hệ IPM'],
+      },
+    }[options.locale];
+    content = {
+      sections: [section(localizedLabels.heading, [metadata.intro])],
+      links: [
+        { href: '/services', label: localizedLabels.links[0] },
+        { href: '/properties', label: localizedLabels.links[1] },
+        { href: '/contact', label: localizedLabels.links[2] },
+      ],
+    };
+  }
   if (options.property) content = propertyContent(options.property);
   if (options.realEstateListing) content = realEstateContent(options.realEstateListing);
 
