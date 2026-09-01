@@ -20,7 +20,6 @@ Canonical site: https://www.ipm.services/
 - [PMS API connections and hidden costs](https://www.ipm.services/insights/api-costs)
 - [How to avoid Airbnb's 15.5% fee](https://www.ipm.services/insights/avoid-fees)
 - [Professional check-in system design](https://www.ipm.services/insights/checkin-system)
-- [Vacation rental training video library](https://www.ipm.services/insights/video-library)
 
 ## Real estate listings
 

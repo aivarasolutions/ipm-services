@@ -131,14 +131,6 @@ const insightSeoRoutes = {
     intro:
       'The IPM method for clean, scalable, and brand-consistent guest check-in workflows.',
   },
-  '/insights/video-library': {
-    title: 'Vacation Rental Training Video Library | IPM Insights',
-    description:
-      'Explore IPM’s educational video library with short-term rental system breakdowns, tutorials, and expert host training.',
-    h1: 'IPM Video Library',
-    intro:
-      'Educational videos, system breakdowns, tutorials, and expert host training for vacation rental operators.',
-  },
 };
 
 export const INDEXABLE_SEO_ROUTES = {

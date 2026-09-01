@@ -47,12 +47,6 @@ export const INSIGHT_ITEMS = [
       'Our professional, API-free system for guest communication, data collection, and automation. Clean, scalable, brand-consistent, and completely under your control.',
     path: '/insights/checkin-system',
   },
-  {
-    title: 'IPM Video Library',
-    description:
-      'A growing collection of educational videos, system breakdowns, tutorials, and expert host training designed to help you operate with clarity and confidence.',
-    path: '/insights/video-library',
-  },
 ];
 
 // These dates are the publication dates displayed on the News page. No

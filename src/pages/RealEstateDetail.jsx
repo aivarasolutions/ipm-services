@@ -238,7 +238,7 @@ const RealEstateDetail = () => {
                   marginBottom: '20px',
                   border: '1px solid rgba(212,175,55,0.3)'
                 }}>
-                  <h4 style={{color: '#F2D98D', marginBottom: '15px'}}>{listing.specialContent.title}</h4>
+                  <h2 style={{color: '#F2D98D', marginBottom: '15px'}}>{listing.specialContent.title}</h2>
                   <ul style={{color: '#C9D2DE', lineHeight: '1.6'}}>
                     {listing.specialContent.highlights.map((highlight, index) => (
                       <li key={index}>• <strong>{highlight.split(' - ')[0]}</strong>{highlight.includes(' - ') ? ` - ${highlight.split(' - ')[1]}` : ''}</li>
@@ -275,7 +275,7 @@ const RealEstateDetail = () => {
               
               <div className="property-details-grid">
                 <div className="detail-section">
-                  <h3>Property Details</h3>
+                  <h2>Property Details</h2>
                   <ul>
                     <li><strong>Bedrooms:</strong> {listing.details.bedrooms}</li>
                     <li><strong>Bathrooms:</strong> {listing.details.bathrooms}</li>
@@ -290,7 +290,7 @@ const RealEstateDetail = () => {
                 </div>
                 
                 <div className="detail-section">
-                  <h3>Investment Details</h3>
+                  <h2>Investment Details</h2>
                   <ul>
                     <li><strong>Down Payment:</strong> ${listing.investment.downPayment.toLocaleString()}</li>
                     <li><strong>Monthly Payment:</strong> ${listing.investment.monthlyPayment.toLocaleString()}</li>
@@ -301,7 +301,7 @@ const RealEstateDetail = () => {
               </div>
               
               <div className="amenities-section">
-                <h3>Amenities</h3>
+                <h2>Amenities</h2>
                 <div className="amenities-grid">
                   {listing.details.amenities.map((amenity, index) => (
                     <span key={index} className="amenity-tag">{amenity}</span>
@@ -310,7 +310,7 @@ const RealEstateDetail = () => {
               </div>
               
               <div className="features-section">
-                <h3>Key Features</h3>
+                <h2>Key Features</h2>
                 <div className="listing-features">
                   {listing.features.map((feature, index) => (
                     <span key={index} className="feature-tag">{feature}</span>

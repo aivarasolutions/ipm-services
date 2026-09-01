@@ -44,6 +44,31 @@ export default function AirbnbFees() {
             and why many hosts unknowingly lose thousands per year.
           </p>
 
+          <aside className="bg-[#0F2440] border border-[#D4AF37]/20 rounded-xl p-6 my-8 not-prose" aria-label="Editorial information">
+            <p className="text-sm text-[#C9D2DE] mb-2">
+              <strong className="text-white">Reviewed by:</strong> IPM Operations &amp; Revenue Team
+            </p>
+            <p className="text-sm text-[#C9D2DE] mb-2">
+              <strong className="text-white">Last reviewed:</strong>{' '}
+              <time dateTime="2026-09-01">September 1, 2026</time>
+            </p>
+            <p className="text-sm text-[#C9D2DE] mb-0">
+              <strong className="text-white">Sources:</strong>{' '}
+              <a
+                href="https://www.airbnb.com/help/article/1857"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#F2D98D] underline hover:text-white"
+              >
+                Airbnb Help Center: Airbnb service fees
+              </a>
+            </p>
+            <p className="text-xs text-[#9CA9B8] mt-3 mb-0">
+              Airbnb fee policies can change. IPM reviews this guide against first-party documentation during
+              scheduled editorial reviews.
+            </p>
+          </aside>
+
           <section className="bg-white rounded-xl shadow-lg p-8 my-10">
             <h2 className="text-3xl font-bold text-[#0A1A30] mb-6 flex items-center gap-3">
               <DollarSign className="w-8 h-8 text-[#D4AF37]" />
@@ -217,12 +242,12 @@ export default function AirbnbFees() {
             <p className="text-lg mb-6 opacity-90">
               Optimize your property, reduce costs, and increase profits. Click below to get started.
             </p>
-            <a
-              href="#"
+            <Link
+              to="/contact"
               className="inline-block bg-[#06121F] text-[#F2D98D] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#0A1A30] transition-colors shadow-lg"
             >
               Schedule a Call →
-            </a>
+            </Link>
           </section>
         </motion.div>
       </div>

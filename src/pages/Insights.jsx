@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
-import { DollarSign, Link as LinkIcon, Shield, Smartphone, Video, ArrowRight, CheckCircle } from 'lucide-react';
+import { DollarSign, Link as LinkIcon, Shield, Smartphone, ArrowRight, CheckCircle } from 'lucide-react';
 
 export default function Insights() {
   const { language } = useLanguage();
@@ -68,12 +68,6 @@ export default function Insights() {
           path: '/insights/checkin-system',
           color: 'purple'
         },
-        {
-          title: 'IPM Video Library',
-          description: 'A growing collection of educational videos, system breakdowns, tutorials, and expert host training designed to help you operate with clarity and confidence.',
-          path: '/insights/video-library',
-          color: 'red'
-        }
       ]
     },
     es: {
@@ -137,12 +131,6 @@ export default function Insights() {
           path: '/insights/checkin-system',
           color: 'purple'
         },
-        {
-          title: 'Biblioteca de Videos de IPM',
-          description: 'Una colección creciente de videos educativos, desglose de sistemas, tutoriales y capacitación de expertos en hosting diseñados para ayudarle a operar con claridad y confianza.',
-          path: '/insights/video-library',
-          color: 'red'
-        }
       ]
     },
     fr: {
@@ -206,18 +194,12 @@ export default function Insights() {
           path: '/insights/checkin-system',
           color: 'purple'
         },
-        {
-          title: 'Bibliothèque Vidéo IPM',
-          description: 'Une collection croissante de vidéos éducatives, de ventilations de systèmes, de tutoriels et de formation d\'experts en hébergement conçus pour vous aider à opérer avec clarté et confiance.',
-          path: '/insights/video-library',
-          color: 'red'
-        }
       ]
     }
   };
 
   const t = translations[language] || translations.en;
-  const iconMap = { DollarSign, LinkIcon, Shield, Smartphone, Video };
+  const iconMap = { DollarSign, LinkIcon, Shield, Smartphone };
 
   return (
     <div lang={language} className="min-h-screen bg-[#06121F]">
@@ -238,7 +220,7 @@ export default function Insights() {
           <h2 className="text-3xl font-bold text-white mb-8 text-center">{t.whatYouFind}</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {t.topics.map((topic, index) => {
-              const IconComponent = iconMap[['DollarSign', 'LinkIcon', 'Shield', 'Smartphone', 'Video'][index]];
+              const IconComponent = iconMap[['DollarSign', 'LinkIcon', 'Shield', 'Smartphone'][index]];
               const colorClasses = {
                 blue: 'from-[#D4AF37] to-[#F2D98D] hover:from-[#F2D98D] hover:to-[#D4AF37]',
                 indigo: 'from-[#D4AF37] to-[#F2D98D] hover:from-[#F2D98D] hover:to-[#D4AF37]',

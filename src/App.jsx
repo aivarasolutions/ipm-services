@@ -22,7 +22,6 @@ import AirbnbFees from './pages/insights/AirbnbFees'
 import ApiCosts from './pages/insights/ApiCosts'
 import AvoidFees from './pages/insights/AvoidFees'
 import CheckinSystem from './pages/insights/CheckinSystem'
-import VideoLibrary from './pages/insights/VideoLibrary'
 import CharlotteProposal from './pages/CharloetteProposal'
 import TampaProposal from './pages/TampaProposal'
 import TimberbrookProposal from './pages/TimberbrookProposal'
@@ -78,7 +77,6 @@ function AppLayout() {
           <Route path="/insights/api-costs" element={<ApiCosts />} />
           <Route path="/insights/avoid-fees" element={<AvoidFees />} />
           <Route path="/insights/checkin-system" element={<CheckinSystem />} />
-          <Route path="/insights/video-library" element={<VideoLibrary />} />
           <Route path="/news" element={<News />} />
           <Route path="/vietnam" element={<Vietnam />} />
           <Route path="/location-guide" element={<LocationGuide />} />
