@@ -575,21 +575,22 @@ const sendRouteDocument = async (req, res, next, distPath) => {
   return res.send(document);
 };
 
+app.get('/sitemap.xml', async (_req, res) => {
+  try {
+    const properties = isHostawayConfigured() ? await getListings() : [];
+    res.type('application/xml').send(createSitemapXml(properties));
+  } catch (error) {
+    // A sitemap should remain available during a booking API outage. The
+    // static route and real-estate inventory still provide useful coverage.
+    console.warn('[seo] live sitemap inventory unavailable:', error.message);
+    res.type('application/xml').send(createSitemapXml());
+  }
+});
+
 // In production (Replit autoscale), serve the built static site if it exists
 if (process.env.NODE_ENV === 'production' || process.env.REPLIT_DEPLOYMENT === '1') {
   const distPath = path.join(__dirname, '..', 'dist');
   if (fs.existsSync(path.join(distPath, 'index.html'))) {
-    app.get('/sitemap.xml', async (_req, res) => {
-      try {
-        const properties = isHostawayConfigured() ? await getListings() : [];
-        res.type('application/xml').send(createSitemapXml(properties));
-      } catch (error) {
-        // A sitemap should remain available during a booking API outage. The
-        // static route and real-estate inventory still provide useful coverage.
-        console.warn('[seo] live sitemap inventory unavailable:', error.message);
-        res.type('application/xml').send(createSitemapXml());
-      }
-    });
     app.get('/properties/:slug', (req, res, next) =>
       sendRouteDocument(req, res, next, distPath),
     );

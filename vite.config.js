@@ -2,15 +2,50 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
-import { injectStructuredDataIntoHtml } from './src/lib/structuredData.js'
+import {
+  REAL_ESTATE_SCHEMA_LISTINGS,
+  injectStructuredDataIntoHtml,
+} from './src/lib/structuredData.js'
+import {
+  getPropertySlugFromPath,
+  getRealEstateSlugFromPath,
+  injectSeoMetadataIntoHtml,
+} from './src/lib/seo.js'
+import { getListing, getListings } from './server/hostawayService.js'
 
 const routeStructuredDataPlugin = () => ({
-  name: 'route-structured-data',
+  name: 'route-source-content',
   transformIndexHtml: {
     order: 'post',
-    handler(html, ctx) {
-      const pathname = new URL(ctx.originalUrl || ctx.path || '/', 'https://www.ipm.services').pathname
-      return injectStructuredDataIntoHtml(html, pathname)
+    async handler(html, ctx) {
+      const requestedPath = new URL(ctx.originalUrl || ctx.path || '/', 'https://www.ipm.services').pathname
+      const pathname = requestedPath === '/index.html' ? '/' : requestedPath
+      const options = {}
+      const propertySlug = getPropertySlugFromPath(pathname)
+      const realEstateSlug = getRealEstateSlugFromPath(pathname)
+
+      if (pathname === '/properties' || propertySlug) {
+        try {
+          if (pathname === '/properties') {
+            options.properties = await getListings()
+          } else {
+            options.property = await getListing(propertySlug)
+          }
+        } catch (error) {
+          console.warn(`[seo] development property source unavailable for ${pathname}:`, error.message)
+        }
+      }
+
+      if (realEstateSlug) {
+        options.realEstateListing = REAL_ESTATE_SCHEMA_LISTINGS.find((listing) => listing.slug === realEstateSlug)
+      }
+
+      const seoHtml = injectSeoMetadataIntoHtml(html, pathname, options) || html
+      return injectStructuredDataIntoHtml(
+        seoHtml,
+        pathname,
+        options,
+      )
     },
   },
 })
@@ -37,6 +72,10 @@ export default defineConfig(({ command, mode }) => {
       },
       proxy: {
         '/api': {
+          target: 'http://localhost:3001',
+          changeOrigin: true,
+        },
+        '/sitemap.xml': {
           target: 'http://localhost:3001',
           changeOrigin: true,
         },

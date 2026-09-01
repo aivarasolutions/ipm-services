@@ -37,12 +37,11 @@ export const getSitemapEntries = (properties = []) => {
   return [...unique.values()];
 };
 
-export const createSitemapXml = (properties = [], lastmod = '2026-09-01') => {
+export const createSitemapXml = (properties = []) => {
   const urls = getSitemapEntries(properties)
     .map(
       ({ path, changefreq, priority }) => `  <url>
     <loc>${escapeXml(`${SITE_URL}${path === '/' ? '/' : path}`)}</loc>
-    <lastmod>${lastmod}</lastmod>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
   </url>`,

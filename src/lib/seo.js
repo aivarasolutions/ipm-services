@@ -1,3 +1,5 @@
+import { createSeoRouteContent } from './seoContent.js';
+
 export const SITE_URL = 'https://www.ipm.services';
 
 const staticSeoRoutes = {
@@ -223,7 +225,7 @@ export const getSeoMetadata = (pathname, options = {}) => {
 export const getPropertySeoMetadata = (pathname, property) =>
   getSeoMetadata(pathname, { property });
 
-export const createSeoShell = (metadata) => {
+export const createSeoShell = (metadata, pathname = '/', options = {}) => {
   if (!metadata) return '';
   const escape = (value) =>
     String(value).replace(/[&<>"']/g, (character) => ({
@@ -234,10 +236,13 @@ export const createSeoShell = (metadata) => {
       "'": '&#39;',
     }[character]));
 
-  return `<main class="seo-route-shell" style="box-sizing:border-box;max-width:72rem;margin:0 auto;padding:5rem 1.5rem;font-family:Montserrat,Arial,sans-serif;background:#06121F;color:#fff">
-  <p style="margin:0 0 1rem;color:#F2D98D;font-size:.75rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase">International Property Management</p>
-  <h1 style="margin:0 0 1.25rem;font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.25rem,6vw,4.5rem);line-height:1.1">${escape(metadata.h1)}</h1>
-  <p style="max-width:52rem;margin:0;color:#C9D2DE;font-size:1.2rem;line-height:1.7">${escape(metadata.intro)}</p>
+  return `<main class="seo-route-shell" style="box-sizing:border-box;max-width:72rem;margin:0 auto;padding:3rem 1.5rem 5rem;font-family:Montserrat,Arial,sans-serif;background:#06121F;color:#fff">
+  <header style="padding:2rem 0 2.5rem">
+    <p style="margin:0 0 1rem;color:#F2D98D;font-size:.75rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase">International Property Management</p>
+    <h1 style="margin:0 0 1.25rem;font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.25rem,6vw,4.5rem);line-height:1.1">${escape(metadata.h1)}</h1>
+    <p style="max-width:52rem;margin:0;color:#C9D2DE;font-size:1.2rem;line-height:1.7">${escape(metadata.intro)}</p>
+  </header>
+  ${createSeoRouteContent(normalizePathname(pathname), metadata, options)}
 </main>`;
 };
 
@@ -254,7 +259,8 @@ const upsertMeta = (html, attribute, key, value) => {
 };
 
 export const injectSeoMetadataIntoHtml = (html, pathname, options = {}) => {
-  const metadata = getSeoMetadata(pathname, options);
+  const path = normalizePathname(pathname);
+  const metadata = getSeoMetadata(path, options);
   if (!metadata) return null;
   let output = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${metadata.title}</title>`);
   output = upsertMeta(output, 'name', 'title', metadata.title);
@@ -272,9 +278,13 @@ export const injectSeoMetadataIntoHtml = (html, pathname, options = {}) => {
     ? output.replace(/<link\s+rel="canonical"[^>]*>/i, canonicalTag)
     : output.replace('</head>', `    ${canonicalTag}\n  </head>`);
 
-  const rootPattern = /<div id="root">[\s\S]*?<\/div>/i;
+  // Build output may already contain a nested SEO route shell (the homepage
+  // document is also the production fallback source). Match the complete
+  // known shell rather than stopping at the first nested closing div.
+  const rootPattern =
+    /<div id="root">(?:\s*<main class="seo-route-shell"[\s\S]*?<\/main>\s*)?<\/div>/i;
   output = rootPattern.test(output)
-    ? output.replace(rootPattern, `<div id="root">${createSeoShell(metadata)}</div>`)
+    ? output.replace(rootPattern, `<div id="root">${createSeoShell(metadata, path, options)}</div>`)
     : output;
   return output;
 };

@@ -44,8 +44,18 @@ const getPropertyInventory = async () => {
   // can still emit the current live property URLs.
   if (process.env.HOSTAWAY_ACCOUNT_ID && process.env.HOSTAWAY_CLIENT_SECRET) {
     try {
-      const { getListings } = await import('../server/hostawayService.js');
-      return await getListings();
+      const { getListing, getListings } = await import('../server/hostawayService.js');
+      const listings = await getListings();
+      return await Promise.all(
+        listings.map(async (listing) => {
+          try {
+            return await getListing(listing.slug);
+          } catch (error) {
+            console.warn(`[seo] property detail unavailable for ${listing.slug}:`, error.message);
+            return listing;
+          }
+        }),
+      );
     } catch (error) {
       console.warn('[seo] live property inventory unavailable:', error.message);
     }
@@ -82,6 +92,7 @@ for (const route of routes) {
     ? properties.find((candidate) => candidate.slug === route.split('/').pop())
     : undefined;
   const metadataHtml = injectSeoMetadataIntoHtml(sourceHtml, route, {
+    properties,
     ...(listing ? { realEstateListing: listing } : {}),
     ...(property ? { property } : {}),
   });
