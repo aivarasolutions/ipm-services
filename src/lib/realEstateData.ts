@@ -9,6 +9,7 @@ export type RealEstateListing = {
   expectedROI: number;
   status: 'Pre-Sale' | 'Ready' | 'Under Construction';
   image: string;
+  imageVariants?: ResponsiveImage;
   description: string;
   features: string[];
   featured: boolean;
@@ -27,10 +28,7 @@ export type RealEstateListing = {
     appreciation: string;
   };
   gallery?: {
-    images: Array<{
-      src: string;
-      alt: string;
-    }>;
+    images: GalleryImage[];
   };
   specialContent?: {
     title: string;
@@ -41,6 +39,93 @@ export type RealEstateListing = {
     }>;
   };
 };
+
+export type ResponsiveImageSource = {
+  src: string;
+  srcSet: string;
+  webpSrcSet: string;
+  avifSrcSet: string;
+  sizes: string;
+  width: number;
+  height: number;
+};
+
+export type ResponsiveImage = ResponsiveImageSource & {
+  alt: string;
+  card: ResponsiveImageSource;
+  thumbnail: ResponsiveImageSource;
+};
+
+type GalleryImage = {
+  src: string;
+  alt: string;
+  variants?: ResponsiveImage;
+};
+
+const createJoshuaImageSource = (
+  name: string,
+  sourceWidth: number,
+  sourceHeight: number,
+  widths: number[],
+  sizes: string,
+): ResponsiveImageSource => {
+  const base = `/images/joshua/${name}`;
+  const outputWidths = widths.map((width) => Math.min(width, sourceWidth));
+  const largestWidth = outputWidths[outputWidths.length - 1];
+  const height = Math.round((sourceHeight * largestWidth) / sourceWidth);
+  const srcSet = (extension: string) =>
+    outputWidths
+      .map((width) => `${base}-${width}.${extension} ${width}w`)
+      .join(', ');
+
+  return {
+    src: `${base}-${largestWidth}.jpg`,
+    srcSet: srcSet('jpg'),
+    webpSrcSet: srcSet('webp'),
+    avifSrcSet: srcSet('avif'),
+    sizes,
+    width: largestWidth,
+    height,
+  };
+};
+
+const createJoshuaImage = (
+  name: string,
+  alt: string,
+  sourceWidth: number,
+  sourceHeight: number,
+): ResponsiveImage => ({
+  alt,
+  ...createJoshuaImageSource(
+    name,
+    sourceWidth,
+    sourceHeight,
+    [320, 640, 1200],
+    '(max-width: 900px) 100vw, 800px',
+  ),
+  card: createJoshuaImageSource(
+    name,
+    sourceWidth,
+    sourceHeight,
+    [320, 640],
+    '(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 400px',
+  ),
+  thumbnail: createJoshuaImageSource(
+    name,
+    sourceWidth,
+    sourceHeight,
+    [320],
+    '(max-width: 900px) 25vw, 180px',
+  ),
+});
+
+const joshuaRooftop = createJoshuaImage('joshua-rooftop', 'Joshua Condos rooftop pool and terrace', 7680, 4320);
+const joshuaLivingKitchen = createJoshuaImage('joshua-living-kitchen', 'Living Area & Kitchen', 7680, 4320);
+const joshuaBedroom = createJoshuaImage('joshua-bedroom', 'Bedroom', 3000, 1688);
+const joshuaExterior = createJoshuaImage('joshua-exterior', 'Exterior View', 3977, 4320);
+const joshuaGroundFloor = createJoshuaImage('joshua-ground-floor', 'Ground Floor Plan', 1818, 3000);
+const joshuaUpperLevel = createJoshuaImage('joshua-upper-level', 'Upper Level Plan', 1620, 3000);
+const joshuaRoofLayout = createJoshuaImage('joshua-roof-layout', 'Roof Layout', 1571, 3000);
 
 export function getRealEstateListings(): RealEstateListing[] {
   return [
@@ -99,7 +184,8 @@ export function getRealEstateListings(): RealEstateListing[] {
       price: 140700,
       expectedROI: 12,
       status: "Pre-Sale",
-      image: "/joshua-rooftop.jpg",
+      image: joshuaRooftop.src,
+      imageVariants: joshuaRooftop,
       description: "Contemporary condos with spacious layouts, rooftop amenities, and modern finishes in prime Playa del Carmen location",
       features: ["Pre-Sale Pricing", "Spacious Layout", "Rooftop Pool", "Prime Location"],
       featured: true,
@@ -117,12 +203,12 @@ export function getRealEstateListings(): RealEstateListing[] {
       },
       gallery: {
         images: [
-          { src: "/joshua-living-kitchen.jpg", alt: "Living Area & Kitchen" },
-          { src: "/joshua-bedroom.jpg", alt: "Bedroom" },
-          { src: "/joshua-exterior.jpg", alt: "Exterior View" },
-          { src: "/joshua-ground-floor.jpg", alt: "Ground Floor Plan" },
-          { src: "/joshua-upper-level.jpg", alt: "Upper Level Plan" },
-          { src: "/joshua-roof-layout.jpg", alt: "Roof Layout" }
+          { src: joshuaLivingKitchen.src, alt: joshuaLivingKitchen.alt, variants: joshuaLivingKitchen },
+          { src: joshuaBedroom.src, alt: joshuaBedroom.alt, variants: joshuaBedroom },
+          { src: joshuaExterior.src, alt: joshuaExterior.alt, variants: joshuaExterior },
+          { src: joshuaGroundFloor.src, alt: joshuaGroundFloor.alt, variants: joshuaGroundFloor },
+          { src: joshuaUpperLevel.src, alt: joshuaUpperLevel.alt, variants: joshuaUpperLevel },
+          { src: joshuaRoofLayout.src, alt: joshuaRoofLayout.alt, variants: joshuaRoofLayout }
         ]
       },
       specialContent: {

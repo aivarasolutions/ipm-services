@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import LeadCaptureForm from '../components/LeadCaptureForm';
+import ResponsiveImage from '../components/ResponsiveImage';
 import { getRealEstateListings } from '../lib/realEstateData';
 import { Building2, TrendingUp, Shield, Users, Phone, Mail, MapPin, CheckCircle, ArrowRight } from 'lucide-react';
 
@@ -235,11 +236,13 @@ const RealEstate = () => {
                   <div className="absolute top-3 md:top-4 left-3 md:left-4 bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-bold z-10 shadow-lg">
                     {listing.status}
                   </div>
-                  <img 
-                    src={listing.image} 
+                  <ResponsiveImage
+                    image={listing.imageVariants || { src: listing.image, alt: listing.title }}
+                    variant={listing.imageVariants ? "card" : "main"}
                     alt={listing.title}
                     className="w-full h-56 md:h-72 object-cover transition-transform duration-700 group-hover:scale-110"
                     loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#06121F]/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>

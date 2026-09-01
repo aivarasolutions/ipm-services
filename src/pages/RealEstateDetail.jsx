@@ -2,6 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import Container from '../components/Container';
 import LeadCaptureForm from '../components/LeadCaptureForm';
+import ResponsiveImage from '../components/ResponsiveImage';
 import { getRealEstateListing } from '../lib/realEstateData';
 
 const RealEstateDetail = () => {
@@ -84,9 +85,9 @@ const RealEstateDetail = () => {
 
   const getAllImages = () => {
     if (!listing) return [];
-    const images = [{ src: listing.image, alt: listing.title }];
+    const images = [listing.imageVariants || { src: listing.image, alt: listing.title }];
     if (listing.gallery) {
-      images.push(...listing.gallery.images);
+      images.push(...listing.gallery.images.map((image) => image.variants || image));
     }
     return images;
   };
@@ -94,6 +95,9 @@ const RealEstateDetail = () => {
   if (!listing) {
     return null;
   }
+
+  const allImages = getAllImages();
+  const mainImage = allImages[0];
 
   return (
     <Container>
@@ -138,9 +142,12 @@ const RealEstateDetail = () => {
                         cursor: 'pointer'
                       }}
                     >
-                      <img
-                        src={listing.image}
-                        alt={listing.title}
+                      <ResponsiveImage
+                        image={mainImage}
+                        alt={mainImage.alt}
+                        loading="eager"
+                        decoding="async"
+                        fetchPriority="high"
                         style={{
                           display: 'block',
                           width: '100%',
@@ -173,9 +180,12 @@ const RealEstateDetail = () => {
                           cursor: 'pointer'
                         }}
                       >
-                        <img
-                          src={image.src}
+                        <ResponsiveImage
+                          image={image.variants || image}
+                          variant={image.variants ? 'thumbnail' : 'main'}
                           alt={image.alt}
+                          loading="lazy"
+                          decoding="async"
                           style={{
                             display: 'block',
                             width: '100%',
@@ -204,9 +214,12 @@ const RealEstateDetail = () => {
                     cursor: 'pointer'
                   }}
                 >
-                  <img 
-                    src={listing.image} 
-                    alt={listing.title} 
+                  <ResponsiveImage
+                    image={mainImage}
+                    alt={mainImage.alt}
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority="high"
                     style={{
                       display: 'block',
                       width: '100%', 
@@ -359,9 +372,11 @@ const RealEstateDetail = () => {
               maxHeight: '90vh'
             }}
           >
-            <img 
-              src={getAllImages()[currentImageIndex]?.src}
-              alt={getAllImages()[currentImageIndex]?.alt}
+            <ResponsiveImage
+              image={allImages[currentImageIndex]}
+              alt={allImages[currentImageIndex]?.alt}
+              loading="eager"
+              decoding="async"
               style={{
                 maxWidth: '100%',
                 maxHeight: '90vh',

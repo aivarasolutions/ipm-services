@@ -124,15 +124,43 @@
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
     
-    <!-- IPM Chatbot Widget -->
-    <script src="https://ipm-chatbot.replit.app/widget.js"></script>
+    <!-- IPM Chatbot Widget: nonessential, load only after the page is ready. -->
     <script>
-      IPMChatbot.init({
-        apiUrl: 'https://ipm-chatbot.replit.app/api',
-        theme: 'light',
-        language: 'en',
-        position: 'bottom-right'
-      });
+      (() => {
+        const loadChatbot = () => {
+          const script = document.createElement('script');
+          script.src = 'https://ipm-chatbot.replit.app/widget.js';
+          script.async = true;
+          script.onload = () => {
+            try {
+              if (window.IPMChatbot && typeof window.IPMChatbot.init === 'function') {
+                window.IPMChatbot.init({
+                  apiUrl: 'https://ipm-chatbot.replit.app/api',
+                  theme: 'light',
+                  language: 'en',
+                  position: 'bottom-right'
+                });
+              }
+            } catch (error) {
+              console.warn('IPM chatbot failed to initialize.', error);
+            }
+          };
+          script.onerror = () => {
+            console.warn('IPM chatbot is unavailable.');
+          };
+          document.body.appendChild(script);
+        };
+
+        const scheduleChatbot = () => {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(loadChatbot, { timeout: 5000 });
+          } else {
+            window.setTimeout(loadChatbot, 1000);
+          }
+        };
+
+        window.addEventListener('load', scheduleChatbot, { once: true });
+      })();
     </script>
   </body>
 </html>

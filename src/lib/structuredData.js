@@ -113,12 +113,12 @@ export const REAL_ESTATE_SCHEMA_LISTINGS = [
     location: 'Playa del Carmen, Mexico',
     price: 140700,
     status: 'Pre-Sale',
-    image: '/joshua-rooftop.jpg',
+    image: '/images/joshua/joshua-rooftop-1200.jpg',
     description:
       'Contemporary condos with spacious layouts, rooftop amenities, and modern finishes in prime Playa del Carmen location',
     features: ['Pre-Sale Pricing', 'Spacious Layout', 'Rooftop Pool', 'Prime Location'],
     details: { bedrooms: 2, bathrooms: 2, sqft: 592, amenities: ['Rooftop Pool', 'Modern Kitchen', 'Premium Finishes', 'Elevator', 'Security', 'Parking'] },
-    gallery: ['/joshua-living-kitchen.jpg', '/joshua-bedroom.jpg', '/joshua-exterior.jpg', '/joshua-ground-floor.jpg', '/joshua-upper-level.jpg', '/joshua-roof-layout.jpg'],
+    gallery: ['/images/joshua/joshua-living-kitchen-1200.jpg', '/images/joshua/joshua-bedroom-1200.jpg', '/images/joshua/joshua-exterior-1200.jpg', '/images/joshua/joshua-ground-floor-1200.jpg', '/images/joshua/joshua-upper-level-1200.jpg', '/images/joshua/joshua-roof-layout-1200.jpg'],
   },
   {
     slug: 'ukana-condos',
