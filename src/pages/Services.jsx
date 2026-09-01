@@ -125,19 +125,19 @@ const Services = () => {
   const t = translations[language] || translations.en
 
   return (
-    <div className="min-h-screen">
+    <div lang={language} className="min-h-screen">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-[#06121F] via-[#0A1A30] to-[#0F2440] text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">{t.ourServices}</h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-[#C9D2DE]">{t.description}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact">
-              <Button size="lg" className="bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] font-bold hover:from-[#F2D98D] hover:to-[#D4AF37]">{t.getStarted}</Button>
-            </Link>
-            <Link to="/properties">
-              <Button size="lg" className="border-2 border-[#D4AF37]/50 bg-transparent text-white hover:bg-[#D4AF37]/10">{t.viewProperties}</Button>
-            </Link>
+            <Button asChild size="lg" className="bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] font-bold hover:from-[#F2D98D] hover:to-[#D4AF37]">
+              <Link to="/contact">{t.getStarted}</Link>
+            </Button>
+            <Button asChild size="lg" className="border-2 border-[#D4AF37]/50 bg-transparent text-white hover:bg-[#D4AF37]/10">
+              <Link to="/properties">{t.viewProperties}</Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -229,15 +229,15 @@ const Services = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">{t.ready}</h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto text-[#C9D2DE]">{t.readyDesc}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact">
-              <Button size="lg" className="bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] font-bold hover:from-[#F2D98D] hover:to-[#D4AF37]">{t.scheduleConsultation}</Button>
-            </Link>
-            <a href="tel:+13104000032">
-              <Button size="lg" className="border-2 border-[#D4AF37]/50 bg-transparent text-white hover:bg-[#D4AF37]/10">
+            <Button asChild size="lg" className="bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] font-bold hover:from-[#F2D98D] hover:to-[#D4AF37]">
+              <Link to="/contact">{t.scheduleConsultation}</Link>
+            </Button>
+            <Button asChild size="lg" className="border-2 border-[#D4AF37]/50 bg-transparent text-white hover:bg-[#D4AF37]/10">
+              <a href="tel:+13104000032">
                 <Phone className="h-5 w-5 mr-2" />
                 {t.callPhone}
-              </Button>
-            </a>
+              </a>
+            </Button>
           </div>
         </div>
       </section>

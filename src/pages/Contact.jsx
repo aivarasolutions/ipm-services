@@ -295,7 +295,7 @@ const Contact = () => {
   }
 
   return (
-    <div className="min-h-screen">
+    <div lang={language} className="min-h-screen">
       <section className="bg-[#06121F] py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -437,11 +437,9 @@ const Contact = () => {
           <h2 className="text-4xl font-bold text-white mb-6">{t.ready}</h2>
           <p className="text-xl text-[#C9D2DE] mb-8 max-w-3xl mx-auto">{t.readyDesc}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact">
-              <Button className="bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] font-bold hover:from-[#F2D98D] hover:to-[#D4AF37] px-8 py-3 text-lg">
-                {t.scheduleConsultation}
-              </Button>
-            </Link>
+            <Button asChild className="bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] font-bold hover:from-[#F2D98D] hover:to-[#D4AF37] px-8 py-3 text-lg">
+              <Link to="/contact">{t.scheduleConsultation}</Link>
+            </Button>
           </div>
         </div>
       </section>

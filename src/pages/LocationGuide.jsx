@@ -485,16 +485,12 @@ const LocationGuide = () => {
               Let our local experts help you find the perfect property and navigate your relocation to Mexico's Caribbean coast.
             </p>
             <div className="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
-              <Link to="/contact">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto border-2 border-[#D4AF37]/50 bg-transparent text-white hover:bg-[#D4AF37]/10">
-                  Schedule Consultation
-                </Button>
-              </Link>
-              <Link to="/real-estate">
-                <Button size="lg" className="w-full sm:w-auto bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] font-bold hover:from-[#F2D98D] hover:to-[#D4AF37]">
-                  View Properties
-                </Button>
-              </Link>
+              <Button asChild size="lg" variant="outline" className="w-full sm:w-auto border-2 border-[#D4AF37]/50 bg-transparent text-white hover:bg-[#D4AF37]/10">
+                <Link to="/contact">Schedule Consultation</Link>
+              </Button>
+              <Button asChild size="lg" className="w-full sm:w-auto bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] font-bold hover:from-[#F2D98D] hover:to-[#D4AF37]">
+                <Link to="/real-estate">View Properties</Link>
+              </Button>
             </div>
           </div>
         </Container>

@@ -193,7 +193,7 @@ const RealEstate = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div lang={language} className="min-h-screen">
       {/* Luxury Navy Hero Section */}
       <section className="relative bg-[#06121F] py-16 md:py-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#06121F] via-[#0A1A30] to-[#06121F]"></div>

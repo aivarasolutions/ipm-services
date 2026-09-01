@@ -50,7 +50,7 @@ const Properties = () => {
   const t = translations[language] || translations.en
 
   return (
-    <div className="min-h-screen">
+    <div lang={language} className="min-h-screen">
       <section className="bg-gradient-to-br from-[#06121F] via-[#0A1A30] to-[#0F2440] py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -75,16 +75,12 @@ const Properties = () => {
           <h2 className="text-4xl font-bold text-white mb-6">{t.notFound}</h2>
           <p className="text-xl text-[#C9D2DE] mb-8 max-w-3xl mx-auto">{t.notFoundDesc}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact">
-              <Button className="bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] font-bold hover:from-[#F2D98D] hover:to-[#D4AF37] px-8 py-3 text-lg">
-                {t.contactUs}
-              </Button>
-            </Link>
-            <Link to="/contact">
-              <Button className="border-2 border-[#D4AF37]/50 bg-transparent text-white hover:bg-[#D4AF37]/10 px-8 py-3 text-lg">
-                {t.propertyEvaluation}
-              </Button>
-            </Link>
+            <Button asChild className="bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] font-bold hover:from-[#F2D98D] hover:to-[#D4AF37] px-8 py-3 text-lg">
+              <Link to="/contact">{t.contactUs}</Link>
+            </Button>
+            <Button asChild className="border-2 border-[#D4AF37]/50 bg-transparent text-white hover:bg-[#D4AF37]/10 px-8 py-3 text-lg">
+              <Link to="/contact">{t.propertyEvaluation}</Link>
+            </Button>
           </div>
         </div>
       </section>

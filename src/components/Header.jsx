@@ -59,30 +59,52 @@ const Header = () => {
               if (item.hasDropdown) {
                 const isActive = location.pathname.startsWith(item.path)
                 return (
-                  <div 
-                    key={item.name} 
+                  <div
+                    key={item.name}
                     className="relative"
                     onMouseEnter={() => setShowInsightsDropdown(true)}
                     onMouseLeave={() => setShowInsightsDropdown(false)}
+                    onFocus={() => setShowInsightsDropdown(true)}
+                    onBlur={(event) => {
+                      if (!event.currentTarget.contains(event.relatedTarget)) {
+                        setShowInsightsDropdown(false)
+                      }
+                    }}
                   >
-                    <Link to={item.path}>
-                      <Button
-                        variant="ghost"
-                        className={`px-4 py-2 rounded-md text-sm font-medium transition-colors focus-visible:ring-1 focus-visible:ring-[#D4AF37]/40 focus-visible:ring-offset-0 ${
+                    <div className="flex items-center">
+                      <Link
+                        to={item.path}
+                        className={`px-4 py-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D4AF37]/40 focus-visible:ring-offset-0 ${
                           isActive
                             ? item.color
                             : 'text-[#CFCFCF] hover:text-[#D4AF37] hover:bg-[#D4AF37]/10'
                         }`}
                       >
-                        {item.name} ▾
+                        {item.name}
+                      </Link>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        aria-label={`Toggle ${item.name} submenu`}
+                        aria-expanded={showInsightsDropdown}
+                        aria-controls="insights-submenu"
+                        onClick={() => setShowInsightsDropdown((open) => !open)}
+                        className={`px-2 py-2 rounded-md text-sm font-medium transition-colors focus-visible:ring-1 focus-visible:ring-[#D4AF37]/40 focus-visible:ring-offset-0 ${
+                          isActive
+                            ? item.color
+                            : 'text-[#CFCFCF] hover:text-[#D4AF37] hover:bg-[#D4AF37]/10'
+                        }`}
+                      >
+                        <span aria-hidden="true">▾</span>
                       </Button>
-                    </Link>
+                    </div>
                     {showInsightsDropdown && (
-                      <div className="absolute left-0 mt-2 w-64 bg-[#0A1A30] rounded-md shadow-lg border border-[#D4AF37]/20 py-2 z-50">
+                      <div id="insights-submenu" className="absolute left-0 mt-2 w-64 bg-[#0A1A30] rounded-md shadow-lg border border-[#D4AF37]/20 py-2 z-50">
                         {item.dropdownItems.map((subItem) => (
                           <Link 
                             key={subItem.path} 
                             to={subItem.path}
+                            onClick={() => setShowInsightsDropdown(false)}
                             className="block px-4 py-2 text-sm text-[#CFCFCF] hover:bg-[#D4AF37]/10 hover:text-[#E6C978] transition-colors"
                           >
                             {subItem.name}
@@ -95,20 +117,20 @@ const Header = () => {
               }
               if (item.external) {
                 return (
-                  <a key={item.name} href={item.path} target="_blank" rel="noopener noreferrer">
-                    <Button
-                      variant="ghost"
-                      className="px-4 py-2 rounded-md text-sm font-medium transition-colors text-[#CFCFCF] hover:text-[#D4AF37] hover:bg-[#D4AF37]/10"
-                    >
-                      {item.name}
-                    </Button>
-                  </a>
+                  <Button
+                    key={item.name}
+                    asChild
+                    variant="ghost"
+                    className="px-4 py-2 rounded-md text-sm font-medium transition-colors text-[#CFCFCF] hover:text-[#D4AF37] hover:bg-[#D4AF37]/10"
+                  >
+                    <a href={item.path} target="_blank" rel="noopener noreferrer">{item.name}</a>
+                  </Button>
                 )
               }
               return (
-                <Link key={item.name} to={item.path}>
-                  <Button
-                    variant="ghost"
+                <Button key={item.name} asChild variant="ghost">
+                  <Link
+                    to={item.path}
                     className={`px-4 py-2 rounded-md text-sm font-medium transition-colors focus-visible:ring-1 focus-visible:ring-[#D4AF37]/40 focus-visible:ring-offset-0 ${
                       location.pathname === item.path
                         ? item.color
@@ -116,8 +138,8 @@ const Header = () => {
                     }`}
                   >
                     {item.name}
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               )
             })}
           </nav>
@@ -159,11 +181,9 @@ const Header = () => {
               )}
             </div>
 
-            <Link to="/contact">
-              <Button className="bg-[#D4AF37] hover:bg-[#E6C978] text-[#06121F] px-6 py-2 rounded-md text-sm font-medium">
-                Get Started
-              </Button>
-            </Link>
+            <Button asChild className="bg-[#D4AF37] hover:bg-[#E6C978] text-[#06121F] px-6 py-2 rounded-md text-sm font-medium">
+              <Link to="/contact">Get Started</Link>
+            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -172,12 +192,15 @@ const Header = () => {
               variant="ghost"
               size="sm"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-navigation"
               className="p-2"
             >
               {isMobileMenuOpen ? (
-                <X className="h-6 w-6 text-[#CFCFCF]" />
+                <X aria-hidden="true" className="h-6 w-6 text-[#CFCFCF]" />
               ) : (
-                <Menu className="h-6 w-6 text-[#CFCFCF]" />
+                <Menu aria-hidden="true" className="h-6 w-6 text-[#CFCFCF]" />
               )}
             </Button>
           </div>
@@ -186,7 +209,7 @@ const Header = () => {
 
       {/* Mobile Navigation Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-[#0A1A30] border-t border-[#D4AF37]/15 shadow-lg">
+        <div id="mobile-navigation" className="md:hidden bg-[#0A1A30] border-t border-[#D4AF37]/15 shadow-lg">
           <div className="px-4 pt-2 pb-3 space-y-1">
             {navItems.map((item) => {
               const isActive = item.hasDropdown ? location.pathname.startsWith(item.path) : location.pathname === item.path
@@ -281,14 +304,16 @@ const Header = () => {
 
             {/* Mobile CTA Button */}
             <div className="pt-2">
-              <Link
+              <Button asChild
+                className="w-full bg-[#D4AF37] hover:bg-[#E6C978] text-[#06121F] px-6 py-2 rounded-md text-sm font-medium"
+              >
+                <Link
                 to="/contact"
                 onClick={() => setIsMobileMenuOpen(false)}
-              >
-                <Button className="w-full bg-[#D4AF37] hover:bg-[#E6C978] text-[#06121F] px-6 py-2 rounded-md text-sm font-medium">
+                >
                   Get Started
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </div>
           </div>
         </div>

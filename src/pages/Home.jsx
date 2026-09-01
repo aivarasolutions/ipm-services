@@ -244,7 +244,7 @@ const Home = () => {
   const serviceIcons = [Globe, BarChart3, Shield, Building2]
 
   return (
-    <div className="min-h-screen bg-[#06121F]">
+    <div lang={language} className="min-h-screen bg-[#06121F]">
 
       {/* ── 1. HERO (ad-style, left aligned) ─────────────────── */}
       <section className="relative min-h-[92vh] flex items-center overflow-hidden">
@@ -299,17 +299,15 @@ const Home = () => {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/contact">
-                <Button className="bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] hover:from-[#F2D98D] hover:to-[#D4AF37] text-[#06121F] font-bold px-8 py-4 text-base rounded-md shadow-lg shadow-[#D4AF37]/25 transition-all duration-200 hover:scale-[1.02]">
+              <Button asChild className="bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] hover:from-[#F2D98D] hover:to-[#D4AF37] text-[#06121F] font-bold px-8 py-4 text-base rounded-md shadow-lg shadow-[#D4AF37]/25 transition-all duration-200 hover:scale-[1.02]">
+                <Link to="/contact">
                   {t.cta1}
                   <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-              <Link to="/contact">
-                <Button className="bg-white/5 border-2 border-[#D4AF37]/50 text-white hover:bg-[#D4AF37]/10 hover:border-[#D4AF37]/80 font-semibold px-8 py-4 text-base rounded-md transition-all duration-200 backdrop-blur-sm">
-                  {t.cta2}
-                </Button>
-              </Link>
+                </Link>
+              </Button>
+              <Button asChild className="bg-white/5 border-2 border-[#D4AF37]/50 text-white hover:bg-[#D4AF37]/10 hover:border-[#D4AF37]/80 font-semibold px-8 py-4 text-base rounded-md transition-all duration-200 backdrop-blur-sm">
+                <Link to="/contact">{t.cta2}</Link>
+              </Button>
             </div>
 
             {/* Commission line */}
@@ -386,11 +384,9 @@ const Home = () => {
                   </li>
                 ))}
               </ul>
-              <Link to="/contact" className="block">
-                <Button className="w-full border-2 border-[#D4AF37]/60 bg-transparent text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#06121F] font-bold py-3 rounded-lg transition-all duration-200">
-                  {t.plan1Cta}
-                </Button>
-              </Link>
+              <Button asChild className="w-full border-2 border-[#D4AF37]/60 bg-transparent text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#06121F] font-bold py-3 rounded-lg transition-all duration-200">
+                <Link to="/contact">{t.plan1Cta}</Link>
+              </Button>
             </div>
 
             {/* Plan 2 */}
@@ -414,11 +410,9 @@ const Home = () => {
                   </li>
                 ))}
               </ul>
-              <Link to="/contact" className="block">
-                <Button className="w-full bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] hover:from-[#F2D98D] hover:to-[#D4AF37] font-bold py-3 rounded-lg shadow-lg shadow-[#D4AF37]/20 transition-all duration-200 hover:scale-[1.02]">
-                  {t.plan2Cta}
-                </Button>
-              </Link>
+              <Button asChild className="w-full bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] hover:from-[#F2D98D] hover:to-[#D4AF37] font-bold py-3 rounded-lg shadow-lg shadow-[#D4AF37]/20 transition-all duration-200 hover:scale-[1.02]">
+                <Link to="/contact">{t.plan2Cta}</Link>
+              </Button>
             </div>
           </div>
         </div>
@@ -507,17 +501,15 @@ const Home = () => {
           <h2 className="font-display text-4xl md:text-5xl font-bold text-white mb-6">{t.ctaHeading}</h2>
           <p className="text-xl text-[#C9D2DE] mb-10 max-w-2xl mx-auto leading-relaxed">{t.ctaSub}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact">
-              <Button className="bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] hover:from-[#F2D98D] hover:to-[#D4AF37] font-bold px-10 py-4 text-base rounded-md shadow-lg shadow-[#D4AF37]/25 hover:scale-[1.02] transition-all duration-200">
+            <Button asChild className="bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] hover:from-[#F2D98D] hover:to-[#D4AF37] font-bold px-10 py-4 text-base rounded-md shadow-lg shadow-[#D4AF37]/25 hover:scale-[1.02] transition-all duration-200">
+              <Link to="/contact">
                 {t.ctaBtn1}
                 <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-            <Link to="/contact">
-              <Button className="bg-transparent border-2 border-[#D4AF37]/50 text-white hover:bg-[#D4AF37]/10 hover:border-[#D4AF37]/80 font-semibold px-10 py-4 text-base rounded-md transition-all duration-200">
-                {t.ctaBtn2}
-              </Button>
-            </Link>
+              </Link>
+            </Button>
+            <Button asChild className="bg-transparent border-2 border-[#D4AF37]/50 text-white hover:bg-[#D4AF37]/10 hover:border-[#D4AF37]/80 font-semibold px-10 py-4 text-base rounded-md transition-all duration-200">
+              <Link to="/contact">{t.ctaBtn2}</Link>
+            </Button>
           </div>
         </div>
       </section>

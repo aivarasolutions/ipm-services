@@ -268,7 +268,7 @@ export default function News() {
   const currentContent = content[language] || content.en;
 
   return (
-    <div className="min-h-screen bg-[#06121F]">
+    <div lang={language} className="min-h-screen bg-[#06121F]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="mb-12">
           <motion.h1

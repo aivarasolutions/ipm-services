@@ -371,7 +371,7 @@ const css = `
 .ipm-lp-eyebrow {
   display: inline-block;
   font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-  color: #B8912E; font-weight: 600; margin-bottom: 10px;
+  color: #765900; font-weight: 600; margin-bottom: 10px;
 }
 .ipm-lp-title {
   font-family: 'Playfair Display', serif;
@@ -447,7 +447,7 @@ const css = `
 .ipm-lp-btn:active { transform: translateY(1px); }
 .ipm-lp-btn:disabled { opacity: 0.6; cursor: default; }
 
-.ipm-lp-fineprint { text-align: center; font-size: 11px; color: #8A95A2; margin: 12px 0 0; }
+.ipm-lp-fineprint { text-align: center; font-size: 11px; color: #536170; margin: 12px 0 0; }
 
 .ipm-lp-success { text-align: center; padding: 14px 6px 6px; }
 .ipm-lp-check {

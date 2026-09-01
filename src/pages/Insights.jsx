@@ -220,7 +220,7 @@ export default function Insights() {
   const iconMap = { DollarSign, LinkIcon, Shield, Smartphone, Video };
 
   return (
-    <div className="min-h-screen bg-[#06121F]">
+    <div lang={language} className="min-h-screen bg-[#06121F]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">{t.title}</h1>

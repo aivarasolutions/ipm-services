@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Container from '../components/Container';
 import LeadCaptureForm from '../components/LeadCaptureForm';
 import { getRealEstateListing } from '../lib/realEstateData';
@@ -10,6 +10,9 @@ const RealEstateDetail = () => {
   const listing = getRealEstateListing(slug);
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const modalRef = useRef(null);
+  const closeButtonRef = useRef(null);
+  const modalTriggerRef = useRef(null);
 
   useEffect(() => {
     if (!listing) {
@@ -17,7 +20,46 @@ const RealEstateDetail = () => {
     }
   }, [listing, navigate]);
 
+  useEffect(() => {
+    if (!modalOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const animationFrame = requestAnimationFrame(() => closeButtonRef.current?.focus());
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setModalOpen(false);
+        return;
+      }
+
+      if (event.key !== 'Tab' || !modalRef.current) return;
+      const focusable = [...modalRef.current.querySelectorAll('button:not([disabled]), [href], [tabindex]:not([tabindex="-1"])')];
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', handleKeyDown);
+      modalTriggerRef.current?.focus();
+    };
+  }, [modalOpen]);
+
   const openModal = (index) => {
+    modalTriggerRef.current = document.activeElement;
     setCurrentImageIndex(index);
     setModalOpen(true);
   };
@@ -82,57 +124,99 @@ const RealEstateDetail = () => {
             {listing.gallery ? (
               <div className="property-gallery" style={{marginBottom: '30px'}}>
                 <div className="gallery-main">
+                    <button
+                      type="button"
+                      aria-label={`Open ${listing.title} photo 1`}
+                      onClick={() => openModal(0)}
+                      style={{
+                        display: 'block',
+                        width: '100%',
+                        padding: 0,
+                        border: 0,
+                        borderRadius: '12px',
+                        background: 'transparent',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      <img
+                        src={listing.image}
+                        alt={listing.title}
+                        style={{
+                          display: 'block',
+                          width: '100%',
+                          height: '400px',
+                          objectFit: 'cover',
+                          borderRadius: '12px'
+                        }}
+                      />
+                    </button>
+                  </div>
+                  <div className="gallery-thumbnails" style={{
+                    display: 'grid',
+                    gridTemplateColumns: `repeat(${Math.min(listing.gallery.images.length, 4)}, 1fr)`,
+                    gap: '10px',
+                    marginTop: '15px'
+                  }}>
+                    {listing.gallery.images.map((image, index) => (
+                      <button
+                        key={index}
+                        type="button"
+                        aria-label={`Open ${listing.title} photo ${index + 2}`}
+                        onClick={() => openModal(index + 1)}
+                        style={{
+                          display: 'block',
+                          width: '100%',
+                          padding: 0,
+                          border: 0,
+                          borderRadius: '8px',
+                          background: 'transparent',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        <img
+                          src={image.src}
+                          alt={image.alt}
+                          style={{
+                            display: 'block',
+                            width: '100%',
+                            height: '100px',
+                            objectFit: 'cover',
+                            borderRadius: '8px'
+                          }}
+                        />
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  aria-label={`Open ${listing.title} photo 1`}
+                  onClick={() => openModal(0)}
+                  style={{
+                    display: 'block',
+                    width: '100%',
+                    padding: 0,
+                    border: 0,
+                    borderRadius: '12px',
+                    marginBottom: '30px',
+                    background: 'transparent',
+                    cursor: 'pointer'
+                  }}
+                >
                   <img 
                     src={listing.image} 
                     alt={listing.title} 
-                    onClick={() => openModal(0)}
                     style={{
+                      display: 'block',
                       width: '100%', 
                       height: '400px', 
                       objectFit: 'cover',
-                      borderRadius: '12px',
-                      cursor: 'pointer'
+                      borderRadius: '12px'
                     }}
                   />
-                </div>
-                <div className="gallery-thumbnails" style={{
-                  display: 'grid', 
-                  gridTemplateColumns: `repeat(${Math.min(listing.gallery.images.length, 4)}, 1fr)`, 
-                  gap: '10px', 
-                  marginTop: '15px'
-                }}>
-                  {listing.gallery.images.map((image, index) => (
-                    <img 
-                      key={index}
-                      src={image.src} 
-                      alt={image.alt}
-                      onClick={() => openModal(index + 1)}
-                      style={{
-                        width: '100%', 
-                        height: '100px', 
-                        objectFit: 'cover',
-                        borderRadius: '8px',
-                        cursor: 'pointer'
-                      }}
-                    />
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <img 
-                src={listing.image} 
-                alt={listing.title} 
-                onClick={() => openModal(0)}
-                style={{
-                  width: '100%', 
-                  height: '400px', 
-                  objectFit: 'cover',
-                  borderRadius: '12px', 
-                  marginBottom: '30px',
-                  cursor: 'pointer'
-                }}
-              />
-            )}
+                </button>
+              )}
             
             <div className="property-overview">
               <div className="price-roi-section">
@@ -262,7 +346,11 @@ const RealEstateDetail = () => {
             zIndex: 1000
           }}
         >
-          <div 
+          <div
+            ref={modalRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${listing.title} photo gallery`}
             className="modal-content"
             onClick={(e) => e.stopPropagation()}
             style={{
@@ -284,6 +372,9 @@ const RealEstateDetail = () => {
             
             {/* Close Button */}
             <button
+              ref={closeButtonRef}
+              type="button"
+              aria-label="Close photo gallery"
               onClick={closeModal}
               style={{
                 position: 'absolute',
@@ -306,6 +397,8 @@ const RealEstateDetail = () => {
             {getAllImages().length > 1 && (
               <>
                 <button
+                  type="button"
+                  aria-label="Show previous photo"
                   onClick={prevImage}
                   style={{
                     position: 'absolute',
@@ -325,6 +418,8 @@ const RealEstateDetail = () => {
                   ‹
                 </button>
                 <button
+                  type="button"
+                  aria-label="Show next photo"
                   onClick={nextImage}
                   style={{
                     position: 'absolute',

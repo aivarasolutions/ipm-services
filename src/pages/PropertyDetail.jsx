@@ -248,7 +248,7 @@ const PropertyDetail = () => {
 
   if (error || !property) return (
     <div className="flex min-h-[70vh] items-center justify-center bg-[#06121F] px-4 text-center">
-      <div><h1 className="mb-3 text-3xl font-bold text-white">Property unavailable</h1><p className="mb-7 text-[#C9D2DE]">{error || 'This property could not be found.'}</p><Link to="/properties"><Button className="bg-[#D4AF37] text-[#06121F]">Back to Properties</Button></Link></div>
+      <div><h1 className="mb-3 text-3xl font-bold text-white">Property unavailable</h1><p className="mb-7 text-[#C9D2DE]">{error || 'This property could not be found.'}</p><Button asChild className="bg-[#D4AF37] text-[#06121F]"><Link to="/properties">Back to Properties</Link></Button></div>
     </div>
   )
 
@@ -439,7 +439,53 @@ const PropertyDetail = () => {
                 </form>
 
                 {quoteLoading && <div className="mt-6 rounded-xl border border-[#D4AF37]/30 bg-[#F8F5EF] p-4 text-center text-sm text-[#475569]">Getting the live price for your stay…</div>}
-                {quote && <form onSubmit={reserve} className="mt-6 space-y-4 border-t border-slate-200 pt-6"><div className="rounded-xl bg-[#F8F5EF] p-4"><div className="flex items-center justify-between text-lg font-bold text-[#0A1A30]"><span>Total</span><span>{quote.total == null ? 'Confirmed at booking' : money(quote.total, quote.currency)}</span></div>{quote.components?.length > 0 && <div className="mt-3 space-y-1 border-t border-[#0A1A30]/10 pt-3 text-sm text-[#475569]">{quote.components.map((component, index) => <div key={`${component.name}-${index}`} className="flex items-center justify-between gap-3"><span>{component.name}</span><span>{money(component.total, quote.currency)}</span></div>)}</div>}<p className="mt-2 text-xs text-[#64748B]">Taxes and required fees included in the Hostaway quote.</p></div><div className="grid grid-cols-2 gap-3"><input required placeholder="First name" value={guest.firstName} onChange={(e) => setGuest({ ...guest, firstName: e.target.value })} className="rounded-lg border border-slate-300 bg-white p-3 text-[#0A1A30] placeholder:text-[#94A3B8] outline-none focus:border-[#B28B17] focus:ring-2 focus:ring-[#D4AF37]/30" /><input required placeholder="Last name" value={guest.lastName} onChange={(e) => setGuest({ ...guest, lastName: e.target.value })} className="rounded-lg border border-slate-300 bg-white p-3 text-[#0A1A30] placeholder:text-[#94A3B8] outline-none focus:border-[#B28B17] focus:ring-2 focus:ring-[#D4AF37]/30" /></div><input required type="email" placeholder="Email" value={guest.email} onChange={(e) => setGuest({ ...guest, email: e.target.value })} className="w-full rounded-lg border border-slate-300 bg-white p-3 text-[#0A1A30] placeholder:text-[#94A3B8] outline-none focus:border-[#B28B17] focus:ring-2 focus:ring-[#D4AF37]/30" /><input required type="tel" placeholder="Phone" value={guest.phone} onChange={(e) => setGuest({ ...guest, phone: e.target.value })} className="w-full rounded-lg border border-slate-300 bg-white p-3 text-[#0A1A30] placeholder:text-[#94A3B8] outline-none focus:border-[#B28B17] focus:ring-2 focus:ring-[#D4AF37]/30" /><textarea placeholder="Message or special request (optional)" value={guest.message} onChange={(e) => setGuest({ ...guest, message: e.target.value })} className="min-h-24 w-full rounded-lg border border-slate-300 bg-white p-3 text-[#0A1A30] placeholder:text-[#94A3B8] outline-none focus:border-[#B28B17] focus:ring-2 focus:ring-[#D4AF37]/30" /><input name="website" tabIndex="-1" autoComplete="off" aria-hidden="true" className="hidden" /><Button type="submit" disabled={booking || quote.total == null} className="w-full bg-[#0A1A30] py-3 font-bold text-white hover:bg-[#0F2440]">{booking ? 'Submitting…' : 'Reserve & pay securely'}</Button><p className="text-center text-xs text-[#64748B]">Next, Hostaway will open a secure hosted payment portal for this reservation. Card details are never collected on this website.</p></form>}
+                {quote && (
+                  <form onSubmit={reserve} className="mt-6 space-y-4 border-t border-slate-200 pt-6">
+                    <div className="rounded-xl bg-[#F8F5EF] p-4">
+                      <div className="flex items-center justify-between text-lg font-bold text-[#0A1A30]">
+                        <span>Total</span>
+                        <span>{quote.total == null ? 'Confirmed at booking' : money(quote.total, quote.currency)}</span>
+                      </div>
+                      {quote.components?.length > 0 && (
+                        <div className="mt-3 space-y-1 border-t border-[#0A1A30]/10 pt-3 text-sm text-[#475569]">
+                          {quote.components.map((component, index) => (
+                            <div key={`${component.name}-${index}`} className="flex items-center justify-between gap-3">
+                              <span>{component.name}</span>
+                              <span>{money(component.total, quote.currency)}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      <p className="mt-2 text-xs text-[#64748B]">Taxes and required fees included in the Hostaway quote.</p>
+                    </div>
+                    <div className="grid grid-cols-2 gap-3">
+                      <label htmlFor="reservation-first-name" className="block text-sm font-semibold text-[#334155]">
+                        First name
+                        <input id="reservation-first-name" name="firstName" required autoComplete="given-name" value={guest.firstName} onChange={(e) => setGuest({ ...guest, firstName: e.target.value })} className="mt-1 w-full rounded-lg border border-slate-300 bg-white p-3 font-normal text-[#0A1A30] placeholder:text-[#94A3B8] outline-none focus:border-[#B28B17] focus:ring-2 focus:ring-[#D4AF37]/30" />
+                      </label>
+                      <label htmlFor="reservation-last-name" className="block text-sm font-semibold text-[#334155]">
+                        Last name
+                        <input id="reservation-last-name" name="lastName" required autoComplete="family-name" value={guest.lastName} onChange={(e) => setGuest({ ...guest, lastName: e.target.value })} className="mt-1 w-full rounded-lg border border-slate-300 bg-white p-3 font-normal text-[#0A1A30] placeholder:text-[#94A3B8] outline-none focus:border-[#B28B17] focus:ring-2 focus:ring-[#D4AF37]/30" />
+                      </label>
+                    </div>
+                    <label htmlFor="reservation-email" className="block text-sm font-semibold text-[#334155]">
+                      Email
+                      <input id="reservation-email" name="email" required type="email" autoComplete="email" value={guest.email} onChange={(e) => setGuest({ ...guest, email: e.target.value })} className="mt-1 w-full rounded-lg border border-slate-300 bg-white p-3 font-normal text-[#0A1A30] placeholder:text-[#94A3B8] outline-none focus:border-[#B28B17] focus:ring-2 focus:ring-[#D4AF37]/30" />
+                    </label>
+                    <label htmlFor="reservation-phone" className="block text-sm font-semibold text-[#334155]">
+                      Phone
+                      <input id="reservation-phone" name="phone" required type="tel" autoComplete="tel" value={guest.phone} onChange={(e) => setGuest({ ...guest, phone: e.target.value })} className="mt-1 w-full rounded-lg border border-slate-300 bg-white p-3 font-normal text-[#0A1A30] placeholder:text-[#94A3B8] outline-none focus:border-[#B28B17] focus:ring-2 focus:ring-[#D4AF37]/30" />
+                    </label>
+                    <label htmlFor="reservation-message" className="block text-sm font-semibold text-[#334155]">
+                      Message <span className="font-normal text-[#64748B]">(optional)</span>
+                      <textarea id="reservation-message" name="message" aria-describedby="reservation-message-help" placeholder="Message or special request" value={guest.message} onChange={(e) => setGuest({ ...guest, message: e.target.value })} className="mt-1 min-h-24 w-full rounded-lg border border-slate-300 bg-white p-3 font-normal text-[#0A1A30] placeholder:text-[#94A3B8] outline-none focus:border-[#B28B17] focus:ring-2 focus:ring-[#D4AF37]/30" />
+                      <span id="reservation-message-help" className="mt-1 block text-xs font-normal text-[#64748B]">Optional special requests or notes for your stay.</span>
+                    </label>
+                    <input name="website" tabIndex="-1" autoComplete="off" aria-hidden="true" className="hidden" />
+                    <Button type="submit" disabled={booking || quote.total == null} className="w-full bg-[#0A1A30] py-3 font-bold text-white hover:bg-[#0F2440]">{booking ? 'Submitting…' : 'Reserve & pay securely'}</Button>
+                    <p className="text-center text-xs text-[#64748B]">Next, Hostaway will open a secure hosted payment portal for this reservation. Card details are never collected on this website.</p>
+                  </form>
+                )}
                 {bookingError && <p role="alert" className="mt-4 rounded-lg bg-red-50 p-3 text-sm text-red-700">{bookingError}</p>}
                 <div className="mt-6 flex items-center justify-center gap-2 border-t border-slate-200 pt-5 text-sm text-[#64748B]"><Wifi className="h-4 w-4 text-[#D4AF37]" />Secure, live booking connection</div>
               </>
