@@ -36,6 +36,7 @@ import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 import LeadPopup from './components/LeadPopup'
 import RouteStructuredData from './components/RouteStructuredData'
+import RouteSeo from './components/RouteSeo'
 import { AudioProvider } from './contexts/AudioContext'
 import { LanguageProvider } from './contexts/LanguageContext'
 
@@ -43,7 +44,7 @@ const STANDALONE_ROUTES = ['/proposal/charlotte-downhaul', '/proposal/tampa-audr
 
 function AppLayout() {
   const location = useLocation();
-  const isStandalone = STANDALONE_ROUTES.some(r => location.pathname.startsWith(r));
+  const isStandalone = STANDALONE_ROUTES.includes(location.pathname);
 
   if (isStandalone) {
     return (
@@ -60,6 +61,7 @@ function AppLayout() {
   return (
     <div className="min-h-screen bg-[#06121F] flex flex-col">
       <ScrollToTop />
+      <RouteSeo />
       <RouteStructuredData />
       <Header />
       <main className="flex-1">
@@ -84,10 +86,24 @@ function AppLayout() {
           <Route path="/owner-portal" element={<OwnerPortal />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
       <LeadPopup />
+    </div>
+  );
+}
+
+function NotFound() {
+  return (
+    <div className="flex min-h-[70vh] items-center justify-center bg-[#06121F] px-6 text-center text-white">
+      <div>
+        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#F2D98D]">IPM International Property Management</p>
+        <h1 className="mb-4 font-display text-4xl font-bold">Page not found</h1>
+        <p className="mb-8 max-w-xl text-[#C9D2DE]">The page you requested is not available.</p>
+        <a href="/" className="inline-flex rounded-lg bg-[#D4AF37] px-6 py-3 font-bold text-[#06121F] hover:bg-[#F2D98D]">Return home</a>
+      </div>
     </div>
   );
 }

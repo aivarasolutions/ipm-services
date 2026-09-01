@@ -312,9 +312,13 @@ export function serializeStructuredDataScripts(schemas) {
 
 export function injectStructuredDataIntoHtml(html, pathname) {
   const schemas = getRouteStructuredData(pathname);
-  if (!schemas.length) return html;
+  const withoutRouteSchemas = html.replace(
+    /\s*<script[^>]*data-route-structured-data[^>]*>[\s\S]*?<\/script>/gi,
+    '',
+  );
+  if (!schemas.length) return withoutRouteSchemas;
 
-  return html.replace(
+  return withoutRouteSchemas.replace(
     '</head>',
     `    ${serializeStructuredDataScripts(schemas)}\n  </head>`,
   );

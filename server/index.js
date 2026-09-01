@@ -1,3 +1,4 @@
+/* global process */
 import express from 'express';
 import pg from 'pg';
 import path from 'path';
@@ -6,6 +7,17 @@ import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import { sendFormEmails } from './emailService.js';
 import { addToMailchimp } from './mailchimpService.js';
+import {
+  getIndexableRoutePaths,
+  getPropertySlugFromPath,
+  getRealEstateSlugFromPath,
+  getSeoMetadata,
+  NON_INDEXABLE_ROUTES,
+  normalizePathname,
+  injectSeoMetadataIntoHtml,
+} from '../src/lib/seo.js';
+import { createSitemapXml } from '../src/lib/sitemap.js';
+import { REAL_ESTATE_SCHEMA_LISTINGS } from '../src/lib/structuredData.js';
 import {
   calculateQuote,
   createReservation,
@@ -503,22 +515,95 @@ app.delete('/api/checklist/:id/items/:itemId', async (req, res, next) => {
   }
 });
 
+const indexableRoutes = new Set(getIndexableRoutePaths());
+const nonIndexableRoutes = new Set(NON_INDEXABLE_ROUTES);
+const realEstateListings = new Map(
+  REAL_ESTATE_SCHEMA_LISTINGS.map((listing) => [listing.slug, listing]),
+);
+
+const routeDocumentPath = (distPath, pathname) =>
+  pathname === '/'
+    ? path.join(distPath, 'index.html')
+    : path.join(distPath, pathname.slice(1), 'index.html');
+
+const sendNotFoundDocument = (res, distPath) => {
+  const notFoundPath = path.join(distPath, '404.html');
+  if (fs.existsSync(notFoundPath)) return res.status(404).sendFile(notFoundPath);
+  return res.status(404).send('Page not found');
+};
+
+const sendRouteDocument = async (req, res, next, distPath) => {
+  const pathname = normalizePathname(req.path);
+  const propertySlug = getPropertySlugFromPath(pathname);
+  let property;
+
+  // A property slug is valid only when it is present in the live Hostaway
+  // inventory. This prevents stale or fabricated detail URLs from becoming
+  // indexable 200 responses.
+  if (propertySlug) {
+    try {
+      property = await getListing(propertySlug);
+    } catch (error) {
+      if (error.status === 404) return sendNotFoundDocument(res, distPath);
+      return next(error);
+    }
+  }
+
+  const realEstateSlug = getRealEstateSlugFromPath(pathname);
+  const realEstateListing = realEstateSlug ? realEstateListings.get(realEstateSlug) : undefined;
+  const isKnownRoute =
+    indexableRoutes.has(pathname) ||
+    nonIndexableRoutes.has(pathname) ||
+    Boolean(property) ||
+    Boolean(realEstateListing);
+
+  if (!isKnownRoute) return sendNotFoundDocument(res, distPath);
+
+  const staticDocument = routeDocumentPath(distPath, pathname);
+  if (fs.existsSync(staticDocument)) return res.sendFile(staticDocument);
+
+  const sourceDocument = path.join(distPath, 'index.html');
+  const sourceHtml = await fs.promises.readFile(sourceDocument, 'utf8');
+  const metadata = getSeoMetadata(pathname, {
+    ...(property ? { property } : {}),
+    ...(realEstateListing ? { realEstateListing } : {}),
+  });
+  const document = metadata ? injectSeoMetadataIntoHtml(sourceHtml, pathname, {
+    ...(property ? { property } : {}),
+    ...(realEstateListing ? { realEstateListing } : {}),
+  }) : sourceHtml;
+  return res.send(document);
+};
+
 // In production (Replit autoscale), serve the built static site if it exists
 if (process.env.NODE_ENV === 'production' || process.env.REPLIT_DEPLOYMENT === '1') {
   const distPath = path.join(__dirname, '..', 'dist');
   if (fs.existsSync(path.join(distPath, 'index.html'))) {
-    app.use(express.static(distPath));
-    app.get(/^(?!\/api\/).*/, (req, res) => {
-      res.sendFile(path.join(distPath, 'index.html'), (err) => {
-        if (err) res.status(500).send('static asset error');
-      });
+    app.get('/sitemap.xml', async (_req, res) => {
+      try {
+        const properties = isHostawayConfigured() ? await getListings() : [];
+        res.type('application/xml').send(createSitemapXml(properties));
+      } catch (error) {
+        // A sitemap should remain available during a booking API outage. The
+        // static route and real-estate inventory still provide useful coverage.
+        console.warn('[seo] live sitemap inventory unavailable:', error.message);
+        res.type('application/xml').send(createSitemapXml());
+      }
     });
+    app.get('/properties/:slug', (req, res, next) =>
+      sendRouteDocument(req, res, next, distPath),
+    );
+    app.use(express.static(distPath, { redirect: false }));
+    app.get(/^(?!\/api(?:\/|$)).*/, (req, res, next) =>
+      sendRouteDocument(req, res, next, distPath),
+    );
   } else {
     console.warn('[api] dist/ not found — running as API-only');
   }
 }
 
 app.use((err, req, res, next) => {
+  void next;
   console.error('API error:', err);
   res.status(err.status || 500).json({ error: err.message || 'server error' });
 });

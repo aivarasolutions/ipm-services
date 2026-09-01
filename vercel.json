@@ -1,5 +1,7 @@
 {
   "rewrites": [
+    { "source": "/sitemap.xml", "destination": "https://ipm-services-kevinajackson21.replit.app/sitemap.xml" },
+    { "source": "/properties/:slug", "destination": "https://ipm-services-kevinajackson21.replit.app/properties/:slug" },
     { "source": "/api/:path*", "destination": "https://ipm-services-kevinajackson21.replit.app/api/:path*" }
   ]
 }

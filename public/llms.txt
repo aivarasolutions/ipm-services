@@ -1,0 +1,31 @@
+# International Property Management (IPM)
+
+> IPM provides professional vacation rental management, multi-platform listing promotion, direct booking, and real estate investment guidance in Mexico, the United States, Vietnam, and other international markets.
+
+Canonical site: https://www.ipm.services/
+
+## Priority public pages
+
+- [Vacation rental management services](https://www.ipm.services/services)
+- [Vacation rental properties](https://www.ipm.services/properties)
+- [Luxury real estate opportunities](https://www.ipm.services/real-estate)
+- [Riviera Maya location guide](https://www.ipm.services/location-guide)
+- [Da Nang, Vietnam property management](https://www.ipm.services/vietnam)
+- [Vacation rental market news](https://www.ipm.services/news)
+- [IPM hosting insights](https://www.ipm.services/insights)
+
+## Educational guides
+
+- [Airbnb fees explained](https://www.ipm.services/insights/airbnb-fees)
+- [PMS API connections and hidden costs](https://www.ipm.services/insights/api-costs)
+- [How to avoid Airbnb's 15.5% fee](https://www.ipm.services/insights/avoid-fees)
+- [Professional check-in system design](https://www.ipm.services/insights/checkin-system)
+- [Vacation rental training video library](https://www.ipm.services/insights/video-library)
+
+## Real estate listings
+
+- [Paulus Condos](https://www.ipm.services/real-estate/paulus-condos)
+- [Joshua Condos](https://www.ipm.services/real-estate/joshua-condos)
+- [UKANA Condos](https://www.ipm.services/real-estate/ukana-condos)
+
+Sitemap: https://www.ipm.services/sitemap.xml

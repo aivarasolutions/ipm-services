@@ -7,9 +7,16 @@
   PNPM_VERSION = "8"
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = "/sitemap.xml"
+  to = "https://ipm-services-kevinajackson21.replit.app/sitemap.xml"
   status = 200
+  force = true
+
+[[redirects]]
+  from = "/properties/:slug"
+  to = "https://ipm-services-kevinajackson21.replit.app/properties/:slug"
+  status = 200
+  force = true
 
 [dev]
   command = "pnpm run dev"

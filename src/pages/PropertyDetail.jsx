@@ -7,6 +7,8 @@ import {
 import { Button } from '@/components/ui/button'
 import { Calendar as BookingCalendar } from '@/components/ui/calendar'
 import { fetchCalendar, fetchProperty, fetchQuote, fetchReviews, submitReservation } from '../services/hostawayApi'
+import { applySeoMetadataToDocument } from '../lib/clientSeo.js'
+import { getSeoMetadata } from '../lib/seo.js'
 
 const today = new Date().toISOString().slice(0, 10)
 const addDays = (date, days) => {
@@ -98,6 +100,11 @@ const PropertyDetail = () => {
       })
     return () => { active = false }
   }, [slug])
+
+  useEffect(() => {
+    if (!property) return
+    applySeoMetadataToDocument(getSeoMetadata(`/properties/${slug}`, { property }))
+  }, [property, slug])
 
   const averageRating = useMemo(() => {
     if (property?.rating) return property.rating
