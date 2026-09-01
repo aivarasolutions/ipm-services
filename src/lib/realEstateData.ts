@@ -62,14 +62,18 @@ type GalleryImage = {
   variants?: ResponsiveImage;
 };
 
-const createJoshuaImageSource = (
+const createRealEstateImageSource = (
+  slug: string,
   name: string,
   sourceWidth: number,
   sourceHeight: number,
   widths: number[],
   sizes: string,
 ): ResponsiveImageSource => {
-  const base = `/images/joshua/${name}`;
+  const assetDirectory = slug === 'joshua'
+    ? '/images/joshua'
+    : `/images/real-estate/${slug}`;
+  const base = `${assetDirectory}/${name}`;
   const outputWidths = widths.map((width) => Math.min(width, sourceWidth));
   const largestWidth = outputWidths[outputWidths.length - 1];
   const height = Math.round((sourceHeight * largestWidth) / sourceWidth);
@@ -89,28 +93,32 @@ const createJoshuaImageSource = (
   };
 };
 
-const createJoshuaImage = (
+const createRealEstateImage = (
+  slug: string,
   name: string,
   alt: string,
   sourceWidth: number,
   sourceHeight: number,
 ): ResponsiveImage => ({
   alt,
-  ...createJoshuaImageSource(
+  ...createRealEstateImageSource(
+    slug,
     name,
     sourceWidth,
     sourceHeight,
     [320, 640, 1200],
     '(max-width: 900px) 100vw, 800px',
   ),
-  card: createJoshuaImageSource(
+  card: createRealEstateImageSource(
+    slug,
     name,
     sourceWidth,
     sourceHeight,
     [320, 640],
     '(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 400px',
   ),
-  thumbnail: createJoshuaImageSource(
+  thumbnail: createRealEstateImageSource(
+    slug,
     name,
     sourceWidth,
     sourceHeight,
@@ -119,13 +127,31 @@ const createJoshuaImage = (
   ),
 });
 
-const joshuaRooftop = createJoshuaImage('joshua-rooftop', 'Joshua Condos rooftop pool and terrace', 7680, 4320);
-const joshuaLivingKitchen = createJoshuaImage('joshua-living-kitchen', 'Living Area & Kitchen', 7680, 4320);
-const joshuaBedroom = createJoshuaImage('joshua-bedroom', 'Bedroom', 3000, 1688);
-const joshuaExterior = createJoshuaImage('joshua-exterior', 'Exterior View', 3977, 4320);
-const joshuaGroundFloor = createJoshuaImage('joshua-ground-floor', 'Ground Floor Plan', 1818, 3000);
-const joshuaUpperLevel = createJoshuaImage('joshua-upper-level', 'Upper Level Plan', 1620, 3000);
-const joshuaRoofLayout = createJoshuaImage('joshua-roof-layout', 'Roof Layout', 1571, 3000);
+const joshuaRooftop = createRealEstateImage('joshua', 'joshua-rooftop', 'Joshua Condos rooftop pool and terrace', 7680, 4320);
+const joshuaLivingKitchen = createRealEstateImage('joshua', 'joshua-living-kitchen', 'Living Area & Kitchen', 7680, 4320);
+const joshuaBedroom = createRealEstateImage('joshua', 'joshua-bedroom', 'Bedroom', 3000, 1688);
+const joshuaExterior = createRealEstateImage('joshua', 'joshua-exterior', 'Exterior View', 3977, 4320);
+const joshuaGroundFloor = createRealEstateImage('joshua', 'joshua-ground-floor', 'Ground Floor Plan', 1818, 3000);
+const joshuaUpperLevel = createRealEstateImage('joshua', 'joshua-upper-level', 'Upper Level Plan', 1620, 3000);
+const joshuaRoofLayout = createRealEstateImage('joshua', 'joshua-roof-layout', 'Roof Layout', 1571, 3000);
+
+const paulusRooftopMain = createRealEstateImage('paulus', 'paulus-rooftop-main', 'Paulus Condos rooftop terrace', 1280, 720);
+const paulusKitchen = createRealEstateImage('paulus', 'paulus-kitchen1', 'Paulus Condos kitchen and living area', 1024, 1280);
+const paulusRooftop = createRealEstateImage('paulus', 'paulus-rooftop', 'Paulus Condos rooftop terrace', 1280, 720);
+const paulusFloorplan = createRealEstateImage('paulus', 'paulus-floorplan', 'Paulus Condos floor plan', 3840, 2160);
+const paulusKitchenDetail = createRealEstateImage('paulus', 'paulus-kitchen3', 'Paulus Condos kitchen detail', 1920, 1080);
+
+const ukanaMain = createRealEstateImage('ukana', 'ukana-main', 'UKANA Condos exterior and amenities', 2000, 1336);
+const ukanaDiningKitchen = createRealEstateImage('ukana', 'ukana-gallery-1', 'UKANA dining and kitchen area', 2000, 1336);
+const ukanaLiving = createRealEstateImage('ukana', 'ukana-gallery-2', 'UKANA living space', 2000, 1336);
+const ukanaKitchenDetail = createRealEstateImage('ukana', 'ukana-gallery-3', 'UKANA kitchen detail', 2000, 1336);
+const ukanaDining = createRealEstateImage('ukana', 'ukana-gallery-4', 'UKANA dining area', 2000, 1336);
+const ukanaModernLiving = createRealEstateImage('ukana', 'ukana-gallery-5', 'UKANA modern living space', 2000, 1336);
+const ukanaLivingRoom = createRealEstateImage('ukana', 'ukana-gallery-6', 'UKANA spacious living room', 2000, 1336);
+const ukanaBedroom = createRealEstateImage('ukana', 'ukana-gallery-7', 'UKANA bedroom suite', 2000, 1336);
+const ukanaBathroom = createRealEstateImage('ukana', 'ukana-gallery-8', 'UKANA modern bathroom', 2000, 1336);
+const ukanaExterior = createRealEstateImage('ukana', 'ukana-exterior', 'UKANA development exterior', 2000, 1498);
+const ukanaAerial = createRealEstateImage('ukana', 'ukana-aerial', 'UKANA aerial view', 2000, 1498);
 
 export function getRealEstateListings(): RealEstateListing[] {
   return [
@@ -137,7 +163,8 @@ export function getRealEstateListings(): RealEstateListing[] {
       price: 162000,
       expectedROI: 11,
       status: "Pre-Sale",
-      image: "/paulus-rooftop-main.jpg",
+      image: paulusRooftopMain.src,
+      imageVariants: paulusRooftopMain,
       description: "Modern luxury condos with premium finishes and rooftop terrace in the heart of Playa del Carmen",
       features: ["Pre-Sale Pricing", "Modern Design", "Rooftop Terrace", "Downtown Location"],
       featured: true,
@@ -155,10 +182,10 @@ export function getRealEstateListings(): RealEstateListing[] {
       },
       gallery: {
         images: [
-          { src: "/paulus-kitchen1.jpg", alt: "Kitchen & Living Area" },
-          { src: "/paulus-rooftop.jpg", alt: "Rooftop Terrace" },
-          { src: "/paulus-floorplan.jpg", alt: "Floorplan" },
-          { src: "/paulus-kitchen3.jpg", alt: "Kitchen Detail" }
+          { src: paulusKitchen.src, alt: paulusKitchen.alt, variants: paulusKitchen },
+          { src: paulusRooftop.src, alt: paulusRooftop.alt, variants: paulusRooftop },
+          { src: paulusFloorplan.src, alt: paulusFloorplan.alt, variants: paulusFloorplan },
+          { src: paulusKitchenDetail.src, alt: paulusKitchenDetail.alt, variants: paulusKitchenDetail }
         ]
       },
       specialContent: {
@@ -235,7 +262,8 @@ export function getRealEstateListings(): RealEstateListing[] {
       price: 185000,
       expectedROI: 13,
       status: "Pre-Sale",
-      image: "/ukana-main.jpg",
+      image: ukanaMain.src,
+      imageVariants: ukanaMain,
       description: "Exclusive development of 33 luxury condominiums with modern design, premium finishes, and exceptional amenities in the heart of Playa del Carmen",
       features: ["Pre-Sale Pricing", "Exclusive Development", "Modern Design", "Premium Location"],
       featured: true,
@@ -253,16 +281,16 @@ export function getRealEstateListings(): RealEstateListing[] {
       },
       gallery: {
         images: [
-          { src: "/ukana-gallery-1.jpg", alt: "Dining & Kitchen Area" },
-          { src: "/ukana-gallery-2.jpg", alt: "Living Space" },
-          { src: "/ukana-gallery-3.jpg", alt: "Kitchen Detail" },
-          { src: "/ukana-gallery-4.jpg", alt: "Dining Area" },
-          { src: "/ukana-gallery-5.jpg", alt: "Modern Living Space" },
-          { src: "/ukana-gallery-6.jpg", alt: "Spacious Living Room" },
-          { src: "/ukana-gallery-7.jpg", alt: "Bedroom Suite" },
-          { src: "/ukana-gallery-8.jpg", alt: "Modern Bathroom" },
-          { src: "/ukana-exterior.jpg", alt: "Development Exterior" },
-          { src: "/ukana-aerial.jpg", alt: "Aerial View" }
+          { src: ukanaDiningKitchen.src, alt: ukanaDiningKitchen.alt, variants: ukanaDiningKitchen },
+          { src: ukanaLiving.src, alt: ukanaLiving.alt, variants: ukanaLiving },
+          { src: ukanaKitchenDetail.src, alt: ukanaKitchenDetail.alt, variants: ukanaKitchenDetail },
+          { src: ukanaDining.src, alt: ukanaDining.alt, variants: ukanaDining },
+          { src: ukanaModernLiving.src, alt: ukanaModernLiving.alt, variants: ukanaModernLiving },
+          { src: ukanaLivingRoom.src, alt: ukanaLivingRoom.alt, variants: ukanaLivingRoom },
+          { src: ukanaBedroom.src, alt: ukanaBedroom.alt, variants: ukanaBedroom },
+          { src: ukanaBathroom.src, alt: ukanaBathroom.alt, variants: ukanaBathroom },
+          { src: ukanaExterior.src, alt: ukanaExterior.alt, variants: ukanaExterior },
+          { src: ukanaAerial.src, alt: ukanaAerial.alt, variants: ukanaAerial }
         ]
       },
       specialContent: {

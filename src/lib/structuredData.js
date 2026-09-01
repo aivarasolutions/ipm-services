@@ -100,12 +100,18 @@ export const REAL_ESTATE_SCHEMA_LISTINGS = [
     location: 'Playa del Carmen, Mexico',
     price: 162000,
     status: 'Pre-Sale',
-    image: '/paulus-rooftop-main.jpg',
+    image: '/images/real-estate/paulus/paulus-rooftop-main-1200.jpg',
+    cardImage: '/images/real-estate/paulus/paulus-rooftop-main-640.jpg',
     description:
       'Modern luxury condos with premium finishes and rooftop terrace in the heart of Playa del Carmen',
     features: ['Pre-Sale Pricing', 'Modern Design', 'Rooftop Terrace', 'Downtown Location'],
     details: { bedrooms: 1, bathrooms: 1, sqft: 485, amenities: ['Rooftop Terrace', 'Modern Kitchen', 'Premium Finishes', 'Elevator', 'Security'] },
-    gallery: ['/paulus-kitchen1.jpg', '/paulus-rooftop.jpg', '/paulus-floorplan.jpg', '/paulus-kitchen3.jpg'],
+    gallery: [
+      '/images/real-estate/paulus/paulus-kitchen1-1024.jpg',
+      '/images/real-estate/paulus/paulus-rooftop-1200.jpg',
+      '/images/real-estate/paulus/paulus-floorplan-1200.jpg',
+      '/images/real-estate/paulus/paulus-kitchen3-1200.jpg',
+    ],
   },
   {
     slug: 'joshua-condos',
@@ -126,12 +132,24 @@ export const REAL_ESTATE_SCHEMA_LISTINGS = [
     location: 'Playa del Carmen, Mexico',
     price: 185000,
     status: 'Pre-Sale',
-    image: '/ukana-main.jpg',
+    image: '/images/real-estate/ukana/ukana-main-1200.jpg',
+    cardImage: '/images/real-estate/ukana/ukana-main-640.jpg',
     description:
       'Exclusive development of 33 luxury condominiums with modern design, premium finishes, and exceptional amenities in the heart of Playa del Carmen',
     features: ['Pre-Sale Pricing', 'Exclusive Development', 'Modern Design', 'Premium Location'],
     details: { bedrooms: 2, bathrooms: 2, sqft: 764, amenities: ['Elevator', 'Rooftop Pool', 'Jacuzzi', 'Gym', 'Solarium', 'Lobby', 'Security'] },
-    gallery: ['/ukana-gallery-1.jpg', '/ukana-gallery-2.jpg', '/ukana-gallery-3.jpg', '/ukana-gallery-4.jpg', '/ukana-gallery-5.jpg', '/ukana-gallery-6.jpg', '/ukana-gallery-7.jpg', '/ukana-gallery-8.jpg', '/ukana-exterior.jpg', '/ukana-aerial.jpg'],
+    gallery: [
+      '/images/real-estate/ukana/ukana-gallery-1-1200.jpg',
+      '/images/real-estate/ukana/ukana-gallery-2-1200.jpg',
+      '/images/real-estate/ukana/ukana-gallery-3-1200.jpg',
+      '/images/real-estate/ukana/ukana-gallery-4-1200.jpg',
+      '/images/real-estate/ukana/ukana-gallery-5-1200.jpg',
+      '/images/real-estate/ukana/ukana-gallery-6-1200.jpg',
+      '/images/real-estate/ukana/ukana-gallery-7-1200.jpg',
+      '/images/real-estate/ukana/ukana-gallery-8-1200.jpg',
+      '/images/real-estate/ukana/ukana-exterior-1200.jpg',
+      '/images/real-estate/ukana/ukana-aerial-1200.jpg',
+    ],
   },
 ];
 

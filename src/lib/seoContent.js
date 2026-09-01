@@ -418,7 +418,7 @@ export const createSeoRouteContent = (pathname, metadata, options = {}) => {
         paragraphs: [listing.description, `${listing.location} · From $${listing.price.toLocaleString('en-US')} USD`],
         items: listing.features,
         link: { href: `/real-estate/${listing.slug}`, label: `View ${listing.title}` },
-        image: listing.image,
+        image: listing.cardImage || listing.image,
       }))
     : [];
   const cards = [...listingCards, ...realEstateCards];
