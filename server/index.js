@@ -17,7 +17,10 @@ import {
   injectSeoMetadataIntoHtml,
 } from '../src/lib/seo.js';
 import { createSitemapXml } from '../src/lib/sitemap.js';
-import { REAL_ESTATE_SCHEMA_LISTINGS } from '../src/lib/structuredData.js';
+import {
+  injectStructuredDataIntoHtml,
+  REAL_ESTATE_SCHEMA_LISTINGS,
+} from '../src/lib/structuredData.js';
 import {
   calculateQuote,
   createReservation,
@@ -568,10 +571,14 @@ const sendRouteDocument = async (req, res, next, distPath) => {
     ...(property ? { property } : {}),
     ...(realEstateListing ? { realEstateListing } : {}),
   });
-  const document = metadata ? injectSeoMetadataIntoHtml(sourceHtml, pathname, {
+  const routeOptions = {
     ...(property ? { property } : {}),
     ...(realEstateListing ? { realEstateListing } : {}),
-  }) : sourceHtml;
+  };
+  const metadataDocument = metadata
+    ? injectSeoMetadataIntoHtml(sourceHtml, pathname, routeOptions)
+    : sourceHtml;
+  const document = injectStructuredDataIntoHtml(metadataDocument, pathname, routeOptions);
   return res.send(document);
 };
 

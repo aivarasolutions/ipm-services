@@ -9,6 +9,10 @@ import { Calendar as BookingCalendar } from '@/components/ui/calendar'
 import { fetchCalendar, fetchProperty, fetchQuote, fetchReviews, submitReservation } from '../services/hostawayApi'
 import { applySeoMetadataToDocument } from '../lib/clientSeo.js'
 import { getSeoMetadata } from '../lib/seo.js'
+import {
+  createVacationRentalStructuredData,
+  serializeStructuredDataScripts,
+} from '../lib/structuredData.js'
 
 const today = new Date().toISOString().slice(0, 10)
 const addDays = (date, days) => {
@@ -74,6 +78,7 @@ const PropertyDetail = () => {
 
   useEffect(() => {
     let active = true
+    setProperty(null)
     setLoading(true)
     setAvailabilityLoading(true)
     setAvailabilityError('')
@@ -102,8 +107,18 @@ const PropertyDetail = () => {
   }, [slug])
 
   useEffect(() => {
-    if (!property) return
+    if (!property || property.slug !== slug) return
     applySeoMetadataToDocument(getSeoMetadata(`/properties/${slug}`, { property }))
+
+    const schema = createVacationRentalStructuredData(property)
+    if (!schema) return
+
+    document.head.querySelectorAll('[data-route-structured-data]').forEach((script) => {
+      script.remove()
+    })
+    const template = document.createElement('template')
+    template.innerHTML = serializeStructuredDataScripts([schema])
+    document.head.append(...template.content.childNodes)
   }, [property, slug])
 
   const averageRating = useMemo(() => {

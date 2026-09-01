@@ -15,6 +15,23 @@ import { getListing, getListings } from './server/hostawayService.js'
 
 const routeStructuredDataPlugin = () => ({
   name: 'route-source-content',
+  configureServer(server) {
+    server.middlewares.use(async (request, response, next) => {
+      const pathname = new URL(request.url || '/', 'https://www.ipm.services').pathname
+      const propertySlug = getPropertySlugFromPath(pathname)
+      if (!propertySlug) return next()
+
+      try {
+        await getListing(propertySlug)
+        return next()
+      } catch (error) {
+        if (error.status !== 404) return next(error)
+        response.statusCode = 404
+        response.setHeader('Content-Type', 'text/html; charset=utf-8')
+        response.end('<!doctype html><html lang="en"><head><meta name="robots" content="noindex, nofollow"><title>Page Not Found | IPM</title></head><body><main><h1>Page not found</h1><p>The requested property is not in the current IPM portfolio.</p><a href="/properties">View available properties</a></main></body></html>')
+      }
+    })
+  },
   transformIndexHtml: {
     order: 'post',
     async handler(html, ctx) {

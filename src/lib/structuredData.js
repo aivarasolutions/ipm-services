@@ -90,6 +90,38 @@ export const NEWS_ITEMS = [
   },
 ];
 
+const INSIGHT_GUIDE_EDITORIAL = {
+  '/insights/airbnb-fees': {
+    reviewedBy: 'IPM Operations & Revenue Team',
+    dateModified: '2026-09-01',
+    citations: ['https://www.airbnb.com/help/article/1857'],
+  },
+  '/insights/api-costs': {
+    reviewedBy: 'IPM Operations & Revenue Team',
+    dateModified: '2026-09-01',
+    citations: [
+      'https://www.airbnb.com/help/article/1857',
+      'https://www.airbnb.com/resources/hosting-homes/a/simplifying-airbnb-service-fees-746',
+    ],
+  },
+  '/insights/avoid-fees': {
+    reviewedBy: 'IPM Operations & Revenue Team',
+    dateModified: '2026-09-01',
+    citations: [
+      'https://www.airbnb.com/help/article/1857',
+      'https://www.airbnb.com/help/article/99',
+    ],
+  },
+  '/insights/checkin-system': {
+    reviewedBy: 'IPM Guest Operations Team',
+    dateModified: '2026-09-01',
+    citations: [
+      'https://www.airbnb.com/resources/hosting-homes/a/getting-the-most-out-of-the-messages-tab-678',
+      'https://www.airbnb.com/help/article/99',
+    ],
+  },
+};
+
 // Keep this small, schema-focused projection in plain JavaScript so the same
 // route heads can be generated during the Vite build without a TypeScript
 // runtime. The displayed source of truth remains realEstateData.ts.
@@ -256,10 +288,118 @@ export function createNewsArticleStructuredData(article) {
   };
 }
 
+export function createInsightArticleStructuredData(pathname) {
+  const editorial = INSIGHT_GUIDE_EDITORIAL[pathname];
+  const guide = INSIGHT_ITEMS.find((item) => item.path === pathname);
+  if (!editorial || !guide) return null;
+
+  const url = absoluteUrl(pathname);
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    '@id': `${url}#article`,
+    url,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': url,
+    },
+    headline: guide.title,
+    description: guide.description,
+    inLanguage: 'en',
+    dateModified: editorial.dateModified,
+    author: organizationReference,
+    publisher: organizationReference,
+    reviewedBy: {
+      '@type': 'Organization',
+      name: editorial.reviewedBy,
+      parentOrganization: organizationReference,
+    },
+    citation: editorial.citations,
+  };
+}
+
+const plainText = (value) =>
+  String(value || '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+export function createVacationRentalStructuredData(property) {
+  if (!property?.slug || !property?.name) return null;
+
+  const url = absoluteUrl(`/properties/${property.slug}`);
+  const image = (property.images || [])
+    .map((item) => item?.url)
+    .filter(Boolean);
+  if (!image.length && property.thumbnailUrl) image.push(property.thumbnailUrl);
+
+  const address = {
+    '@type': 'PostalAddress',
+    ...(property.city ? { addressLocality: property.city } : {}),
+    ...(property.state ? { addressRegion: property.state } : {}),
+    ...(property.country ? { addressCountry: property.country } : {}),
+  };
+  const hasAddress = Object.keys(address).length > 1;
+  const hasGeo = Number.isFinite(property.latitude) && Number.isFinite(property.longitude);
+  const accommodation = {
+    '@type': 'Accommodation',
+    name: property.name,
+    ...(property.guests
+      ? {
+          occupancy: {
+            '@type': 'QuantitativeValue',
+            maxValue: property.guests,
+          },
+        }
+      : {}),
+    ...(property.bedrooms ? { numberOfBedrooms: property.bedrooms } : {}),
+    ...(property.bathrooms ? { numberOfBathroomsTotal: property.bathrooms } : {}),
+    ...(property.amenities?.length
+      ? {
+          amenityFeature: property.amenities.map((amenity) => ({
+            '@type': 'LocationFeatureSpecification',
+            name: amenity,
+            value: true,
+          })),
+        }
+      : {}),
+  };
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'VacationRental',
+    '@id': `${url}#vacation-rental`,
+    url,
+    name: property.name,
+    ...(plainText(property.description)
+      ? { description: plainText(property.description) }
+      : {}),
+    ...(image.length ? { image: image.map(absoluteUrl) } : {}),
+    ...(hasAddress ? { address } : {}),
+    ...(hasGeo
+      ? {
+          geo: {
+            '@type': 'GeoCoordinates',
+            latitude: property.latitude,
+            longitude: property.longitude,
+          },
+        }
+      : {}),
+    containsPlace: accommodation,
+    provider: organizationReference,
+  };
+}
+
 export function getRouteStructuredData(pathname, options = {}) {
   const path = pathname.replace(/\/+$/, '') || '/';
   const listings = options.listings || REAL_ESTATE_SCHEMA_LISTINGS;
   const listingMatch = path.match(/^\/real-estate\/([^/]+)$/);
+  const propertyMatch = path.match(/^\/properties\/([^/]+)$/);
+
+  if (propertyMatch) {
+    const schema = createVacationRentalStructuredData(options.property);
+    return schema ? [schema] : [];
+  }
 
   if (path === '/real-estate') {
     return [
@@ -295,6 +435,11 @@ export function getRouteStructuredData(pathname, options = {}) {
     ];
   }
 
+  if (INSIGHT_GUIDE_EDITORIAL[path]) {
+    const schema = createInsightArticleStructuredData(path);
+    return schema ? [schema] : [];
+  }
+
   if (path === '/news') {
     return [
       createItemListStructuredData({
@@ -322,8 +467,8 @@ export function serializeStructuredDataScripts(schemas) {
     .join('\n');
 }
 
-export function injectStructuredDataIntoHtml(html, pathname) {
-  const schemas = getRouteStructuredData(pathname);
+export function injectStructuredDataIntoHtml(html, pathname, options = {}) {
+  const schemas = getRouteStructuredData(pathname, options);
   const withoutRouteSchemas = html.replace(
     /\s*<script[^>]*data-route-structured-data[^>]*>[\s\S]*?<\/script>/gi,
     '',

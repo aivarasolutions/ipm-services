@@ -96,7 +96,9 @@ for (const route of routes) {
     ...(listing ? { realEstateListing: listing } : {}),
     ...(property ? { property } : {}),
   });
-  const routeHtml = injectStructuredDataIntoHtml(metadataHtml, route);
+  const routeHtml = injectStructuredDataIntoHtml(metadataHtml, route, {
+    ...(property ? { property } : {}),
+  });
   await fs.writeFile(path.join(routeDirectory, 'index.html'), routeHtml);
 }
 
