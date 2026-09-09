@@ -2,7 +2,7 @@ modules = ["nodejs-20", "web", "python-3.11", "postgresql-16"]
 
 [nix]
 channel = "stable-25_05"
-packages = ["imagemagick"]
+packages = ["freetype", "gumbo", "harfbuzz", "imagemagick", "jbig2dec", "libjpeg_turbo", "mupdf", "openjpeg", "swig", "xcbuild"]
 
 [agent]
 expertMode = true

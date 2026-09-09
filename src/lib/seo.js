@@ -83,6 +83,14 @@ const staticSeoRoutes = {
     intro:
       'Get in touch with IPM’s expert team for personalized property management and vacation rental solutions.',
   },
+  '/onboarding': {
+    title: 'Client Onboarding | International Property Management',
+    description:
+      'Submit property details and schedule a client onboarding call with International Property Management.',
+    h1: 'Client Onboarding',
+    intro:
+      'Provide the information IPM needs to prepare your property and coordinate a secure onboarding call.',
+  },
   '/privacy-policy': {
     title: 'Privacy Policy | IPM International Property Management',
     description:
@@ -145,6 +153,7 @@ const localizedSeoRoutes = {
     '/insights': ['Guías para Anfitriones de Alquileres Vacacionales | IPM', 'Lea guías prácticas sobre tarifas, automatización y operaciones rentables de alquileres vacacionales.', 'IPM Insights', 'Conocimiento experto, orientación transparente y estrategias profesionales para anfitriones.'],
     '/news': ['Noticias del Mercado de Rentas Vacacionales | IPM', 'Actualizaciones sobre ocupación, precios, regulación y hospitalidad en Quintana Roo.', 'Noticias del Mercado de Rentas Vacacionales', 'Últimas noticias del mercado de rentas vacacionales y hotelería en Quintana Roo.'],
     '/contact': ['Contacte a IPM | Consulta de Gestión de Propiedades', 'Contacte a IPM para gestión de alquileres, evaluación de propiedades, reservas y consultas.', 'Contáctenos', 'Hable con nuestro equipo para obtener soluciones personalizadas de gestión de propiedades.'],
+    '/onboarding': ['Incorporación de Cliente | International Property Management', 'Envíe los datos de su propiedad y programe una llamada de incorporación con International Property Management.', 'Incorporación de Cliente', 'Proporcione la información necesaria para preparar su propiedad y coordinar una incorporación segura.'],
   },
   fr: {
     '/': ['IPM | Gestion Internationale de Propriétés et Locations de Vacances', 'Gestion professionnelle de locations de vacances pour les propriétaires à Playa del Carmen, Tulum, Lake Norman et ailleurs.', 'Plus de Réservations. Moins de Vacance.', 'Gestion professionnelle et promotion multiplateforme pour augmenter vos revenus avec moins de travail.'],

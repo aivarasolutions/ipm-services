@@ -383,6 +383,83 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
+app.post('/api/onboarding', async (req, res) => {
+  try {
+    if ('airbnbPassword' in req.body || 'password' in req.body) {
+      return res.status(400).json({ error: 'Airbnb passwords are not accepted by this form.' });
+    }
+
+    const fullName = cleanText(req.body.fullName, 120);
+    const email = cleanText(req.body.email, 160).toLowerCase();
+    const phone = cleanText(req.body.phone, 40);
+    const propertyAddress = cleanText(req.body.propertyAddress, 300);
+    const airbnbListingUrl = cleanText(req.body.airbnbListingUrl, 500);
+    const airbnbUsername = cleanText(req.body.airbnbUsername, 160);
+    const meetingDate = cleanText(req.body.meetingDate, 10);
+    const meetingTime = cleanText(req.body.meetingTime, 5);
+    const timeZone = cleanText(req.body.timeZone, 80);
+    const meetingTiming = cleanText(req.body.meetingTiming, 10);
+    const language = req.body.language === 'es' ? 'Spanish' : 'English';
+    const bedrooms = Number(req.body.bedrooms);
+    const bathrooms = Number(req.body.bathrooms);
+
+    const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const validDate = /^\d{4}-\d{2}-\d{2}$/.test(meetingDate);
+    const futureOrToday = validDate && meetingDate >= new Date().toISOString().slice(0, 10);
+    const validTime = /^([01]\d|2[0-3]):[0-5]\d$/.test(meetingTime);
+    const validTiming = ['before', 'during', 'after'].includes(meetingTiming);
+    let validTimeZone = false;
+    try {
+      new Intl.DateTimeFormat('en-US', { timeZone }).format();
+      validTimeZone = true;
+    } catch {
+      validTimeZone = false;
+    }
+
+    if (
+      !fullName || !validEmail || phone.length < 7 || !propertyAddress ||
+      !Number.isFinite(bedrooms) || bedrooms < 0 ||
+      !Number.isFinite(bathrooms) || bathrooms < 0 ||
+      !/^https?:\/\//i.test(airbnbListingUrl) || !airbnbUsername ||
+      !req.body.accessMethodAcknowledged || !futureOrToday || !validTime ||
+      !validTimeZone || !validTiming
+    ) {
+      return res.status(400).json({ error: 'Please complete all required onboarding fields.' });
+    }
+
+    const meetingLabel = `${meetingDate} at ${meetingTime} (${timeZone})`;
+    const emailResult = await sendFormEmails({
+      customerEmail: email,
+      customerName: fullName,
+      source: `Client Onboarding — ${language}`,
+      subject: `New IPM Client Onboarding — ${fullName}`,
+      fields: {
+        'Client full name': fullName,
+        'Email': email,
+        'Phone': phone,
+        'Property address': propertyAddress,
+        'Bedrooms': String(bedrooms),
+        'Bathrooms': String(bathrooms),
+        'Airbnb listing URL': airbnbListingUrl,
+        'Airbnb username / email': airbnbUsername,
+        'Secure access method': 'Client acknowledged co-host invitation / secure access instructions',
+        'Meeting date and time': meetingLabel,
+        'Client time zone': timeZone,
+        'Meeting timing': meetingTiming,
+        'Form language': language,
+      },
+    });
+
+    if (!emailResult.ok) {
+      return res.status(502).json({ error: 'We could not deliver the onboarding notification. Please try again.' });
+    }
+    res.json({ ok: true });
+  } catch (error) {
+    console.error('[/api/onboarding] Unexpected error:', error);
+    res.status(500).json({ error: 'Failed to submit onboarding information.' });
+  }
+});
+
 // ─── Relocation guide form ────────────────────────────────────────────────────
 app.post('/api/relocation-guide', async (req, res) => {
   try {

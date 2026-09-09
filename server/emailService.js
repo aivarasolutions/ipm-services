@@ -1,3 +1,4 @@
+/* global process */
 // server/emailService.js
 // Centralized email handler for all IPM website form submissions.
 // Uses the Resend npm package with RESEND_API_KEY from Replit Secrets.
@@ -21,6 +22,15 @@ const ADMIN_TO     = 'Kevin@AivaraSolutions.com';
 const FROM_ADDRESS = 'notifications@ipm.services';
 const FROM_LABEL   = `IPM Notifications <${FROM_ADDRESS}>`;
 
+const escapeHtml = (value) =>
+  String(value ?? '').replace(/[&<>"']/g, (character) => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  }[character]));
+
 function getResend() {
   const key = process.env.RESEND_API_KEY;
   if (!key) throw new Error('RESEND_API_KEY is not set — add it in Replit Secrets.');
@@ -31,8 +41,8 @@ function getResend() {
 function buildAdminHtml(fields, source) {
   const rows = Object.entries(fields).map(([k, v]) =>
     `<tr>
-      <td style="padding:10px 16px;font-weight:600;color:#0A1A30;border-right:3px solid #D4AF37;background:#F8F5EF;white-space:nowrap;">${k}</td>
-      <td style="padding:10px 16px;color:#334155;">${v || '—'}</td>
+      <td style="padding:10px 16px;font-weight:600;color:#0A1A30;border-right:3px solid #D4AF37;background:#F8F5EF;white-space:nowrap;">${escapeHtml(k)}</td>
+      <td style="padding:10px 16px;color:#334155;">${escapeHtml(v || '—')}</td>
     </tr>`
   ).join('');
 
@@ -46,7 +56,7 @@ function buildAdminHtml(fields, source) {
         <tr>
           <td style="background:linear-gradient(135deg,#06121F 0%,#0A1A30 100%);padding:28px 36px;text-align:center;">
             <h1 style="margin:0;color:#D4AF37;font-size:20px;letter-spacing:1px;">International Property Management</h1>
-            <p style="margin:8px 0 0;color:#C9D2DE;font-size:13px;">New Website Lead — ${source}</p>
+            <p style="margin:8px 0 0;color:#C9D2DE;font-size:13px;">New Website Lead — ${escapeHtml(source)}</p>
           </td>
         </tr>
         <tr><td style="background:#D4AF37;height:3px;"></td></tr>
@@ -88,7 +98,7 @@ function buildAdminHtml(fields, source) {
  * @param {string}  [opts.customerName]
  * @param {string}  [opts.source]
  */
-export async function sendFormEmails({ fields, customerEmail, customerName, source = 'Website Form' }) {
+export async function sendFormEmails({ fields, customerEmail, source = 'Website Form', subject = 'New IPM Website Lead' }) {
   const resend = getResend();
   const errors = [];
 
@@ -98,7 +108,7 @@ export async function sendFormEmails({ fields, customerEmail, customerName, sour
       from:     FROM_LABEL,
       to:       [ADMIN_TO],
       reply_to: customerEmail || undefined,
-      subject:  'New IPM Website Lead',
+      subject,
       html:     buildAdminHtml(fields, source),
       text:     Object.entries(fields).map(([k, v]) => `${k}: ${v || '—'}`).join('\n'),
     });

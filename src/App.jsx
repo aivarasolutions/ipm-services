@@ -28,6 +28,7 @@ import TimberbrookProposal from './pages/TimberbrookProposal'
 import StAugustineProposal from './pages/StAugustineProposal'
 import TegucigalpaChecklist from './pages/TegucigalpaChecklist'
 import Vietnam from './pages/Vietnam'
+import Onboarding from './pages/Onboarding'
 
 // Import components
 import Header from './components/Header'
@@ -39,7 +40,7 @@ import RouteSeo from './components/RouteSeo'
 import { AudioProvider } from './contexts/AudioContext'
 import { LanguageProvider } from './contexts/LanguageContext'
 
-const STANDALONE_ROUTES = ['/proposal/charlotte-downhaul', '/proposal/tampa-audrey', '/proposal/charlotte-timberbrook', '/proposal/staugustine-crossroad', '/insights/tegucigalpa-checklist'];
+const STANDALONE_ROUTES = ['/proposal/charlotte-downhaul', '/proposal/tampa-audrey', '/proposal/charlotte-timberbrook', '/proposal/staugustine-crossroad', '/insights/tegucigalpa-checklist', '/onboarding', '/es/onboarding'];
 
 function AppLayout() {
   const location = useLocation();
@@ -47,13 +48,18 @@ function AppLayout() {
 
   if (isStandalone) {
     return (
-      <Routes>
-        <Route path="/proposal/charlotte-downhaul" element={<CharlotteProposal />} />
-        <Route path="/proposal/tampa-audrey" element={<TampaProposal />} />
-        <Route path="/proposal/charlotte-timberbrook" element={<TimberbrookProposal />} />
-        <Route path="/proposal/staugustine-crossroad" element={<StAugustineProposal />} />
-        <Route path="/insights/tegucigalpa-checklist" element={<TegucigalpaChecklist />} />
-      </Routes>
+      <>
+        <RouteSeo />
+        <Routes>
+          <Route path="/proposal/charlotte-downhaul" element={<CharlotteProposal />} />
+          <Route path="/proposal/tampa-audrey" element={<TampaProposal />} />
+          <Route path="/proposal/charlotte-timberbrook" element={<TimberbrookProposal />} />
+          <Route path="/proposal/staugustine-crossroad" element={<StAugustineProposal />} />
+          <Route path="/insights/tegucigalpa-checklist" element={<TegucigalpaChecklist />} />
+          <Route path="/onboarding" element={<Onboarding />} />
+          <Route path="/es/onboarding" element={<Onboarding />} />
+        </Routes>
+      </>
     );
   }
 

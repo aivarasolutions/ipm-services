@@ -3,3 +3,4 @@
 - [Vercel npm deploy](vercel-npm-deploy.md) — keep `.npmrc` (audit/fund off), vite/@vitejs/plugin-react/tw-animate-css in `dependencies`, engines.node 20.x; or Vercel install crashes & "vite not found".
 - [Hostaway image quality](hostaway-image-quality.md) — thumbnailUrl can be tiny; public cards and galleries should prefer ordered full listingImages URLs.
 - [Vite route-head transforms](vite-route-head-transforms.md) — SPA fallback head transforms must read the original request URL or every direct route is treated as `/index.html`.
+- [Onboarding credential safety](onboarding-credential-safety.md) — never collect, store, or email Airbnb passwords; use co-host invitations or a separately coordinated secure-access method.
