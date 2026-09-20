@@ -50,6 +50,25 @@ For email integration, add to your `.env.local`:
 RESEND_API_KEY=your_resend_api_key_here
 ```
 
+## IPM Host & Owner Club integration
+
+The Replit-hosted Express API receives signed Whop membership webhooks and synchronizes only the configured membership roles in Discord. PostgreSQL stores account links, current membership snapshots, webhook deduplication records, and a role audit trail. IPM Team and unrelated Discord roles are never managed by this automation.
+
+Copy the placeholders in `.env.example` into Replit Secrets. Do not commit real credentials. The public webhook URL is:
+
+`https://www.ipm.services/api/webhooks/whop`
+
+Whop events: `membership.activated`, `membership.cancel_at_period_end_changed`, and `membership.deactivated`.
+
+Operational endpoints:
+
+- `GET /api/integrations/community/health` — safe configuration state and counts; no secrets.
+- `POST /api/integrations/community/link` — link verified Whop/Discord IDs and immediately reconcile roles.
+- `POST /api/integrations/community/reconcile` — reconcile one linked member from current Whop state.
+- `POST /api/community/property-review-leads` — store consented property-review leads separately from Discord identity data.
+
+The two POST endpoints require `Authorization: Bearer <INTEGRATION_CRON_SECRET>`.
+
 ### 5. Test the Implementation
 
 1. Start your development server: `npm run dev`
@@ -134,4 +153,3 @@ The real estate page is designed to:
 - Provide comprehensive investment information
 
 All forms are ready for CRM integration and email automation.
-
