@@ -1,4 +1,4 @@
-/* global process */
+/* global process, Buffer */
 import express from 'express';
 import pg from 'pg';
 import path from 'path';
@@ -7,6 +7,7 @@ import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import { sendFormEmails } from './emailService.js';
 import { addToMailchimp } from './mailchimpService.js';
+import { createCommunityIntegration } from './community/integration.js';
 import {
   getIndexableRoutePaths,
   getPropertySlugFromPath,
@@ -38,7 +39,14 @@ const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
 const app = express();
 app.set('trust proxy', 1);
-app.use(express.json({ limit: '1mb' }));
+app.use(express.json({
+  limit: '1mb',
+  verify: (req, _res, buffer) => {
+    if (req.originalUrl === '/api/webhooks/whop') req.rawBody = Buffer.from(buffer);
+  },
+}));
+
+createCommunityIntegration({ pool }).register(app);
 
 const VALID_CHECKLISTS = new Set(['tegucigalpa']);
 const assertChecklist = (id) => {
