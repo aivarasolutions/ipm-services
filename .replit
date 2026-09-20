@@ -52,12 +52,19 @@ externalPort = 3002
 deploymentTarget = "autoscale"
 run = ["npm", "run", "start"]
 build = ["npm", "run", "build"]
-publicDir = "dist"
 
 [userenv]
 
 [userenv.shared]
 MAILCHIMP_LIST_ID = "a090381f0a"
+WHOP_API_VERSION_DATE = "2026-09-15"
+WHOP_ACCOUNT_ID = "biz_tdAP8i9chimoH0"
+WHOP_FREE_PRODUCT_ID = "prod_l5NFKgPqbjDnG"
+DISCORD_GUILD_ID = "1551161248052420678"
+DISCORD_COMMUNITY_ROLE_ID = "1551180940565286912"
+DISCORD_PRO_ROLE_ID = "1551181384578506855"
+DISCORD_TEAM_ROLE_ID = "1551181820442316891"
+DISCORD_MEMBERSHIP_LOG_CHANNEL_ID = "1551183999731240990"
 
 [postMerge]
 path = "scripts/post-merge.sh"
