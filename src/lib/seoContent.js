@@ -245,26 +245,21 @@ const STATIC_ROUTE_CONTENT = {
   },
   '/insights/airbnb-fees': {
     sections: [
-      section('The Two Airbnb Fee Models', [
-        'Airbnb commonly uses a split-fee model or a host-only fee model. The structure determines how much the host pays and how the guest sees service charges.',
-      ], ['Split-fee pricing', 'Host-only pricing', 'Guest-facing service fees']),
-      section('How Fees Affect Rental Income', [
-        'Owners should compare the advertised nightly rate, guest total, host payout, taxes, and software-related channel costs before evaluating performance.',
-      ]),
-      section('Review Your Current Setup', [
-        'Check the fee model on each listing and understand whether a PMS or channel-manager connection changes the host payout.',
+      section('Airbnb’s Updated Host-Paid Fee', [
+        'Airbnb is transitioning affected hosts from split fees to a single host-paid fee. Most hosts on the single-fee structure pay 15.5%, although rates vary by listing and region.',
+        'Compare the total price guests see, your Airbnb payout, and the local market before adjusting your rates.',
       ]),
     ],
     links: [
       { href: '/insights/api-costs', label: 'Understand API connection costs' },
-      { href: '/insights/avoid-fees', label: 'Read the fee-reduction strategy' },
+      { href: '/insights/avoid-fees', label: 'See how to offset the host fee' },
       { href: '/insights', label: 'Back to IPM Insights' },
     ],
   },
   '/insights/api-costs': {
     sections: [
       section('What an API Connection Changes', [
-        'Property-management systems and channel managers can centralize calendars, messages, and rates, but their connection model may also change platform fees and payout calculations.',
+        'Property-management systems and channel managers can centralize calendars, messages, and rates. Airbnb’s single host-paid fee now applies to many hosts whether or not they use an API connection.',
       ]),
       section('Costs to Evaluate', [], [
         'Software subscription fees',
@@ -279,23 +274,18 @@ const STATIC_ROUTE_CONTENT = {
     ],
     links: [
       { href: '/insights/airbnb-fees', label: 'Review Airbnb fee models' },
-      { href: '/insights/avoid-fees', label: 'Explore a lower-fee approach' },
+      { href: '/insights/avoid-fees', label: 'Explore a market-based pricing approach' },
       { href: '/insights', label: 'Back to IPM Insights' },
     ],
   },
   '/insights/avoid-fees': {
     sections: [
-      section('A Practical Fee Strategy', [
-        'Hosts can review how listings connect to Airbnb, remove unnecessary dependencies, and compare the operational value of automation against the cost of host-only fees.',
-      ]),
-      section('Keep Essential Operations Organized', [], [
-        'Maintain reliable calendar synchronization',
-        'Preserve guest communication workflows',
-        'Track reservations and payouts',
-        'Test changes before disconnecting production systems',
+      section('How to Offset Airbnb’s Host Fee', [
+        'The single host-paid service fee is mandatory for many affected listings. Disconnecting a PMS or switching to iCal does not guarantee a return to a 3% host fee.',
+        'IPM checks your actual fee and target payout, compares local listings and demand, then adjusts nightly prices where the market supports it.',
       ]),
       section('Protect Listing Performance', [
-        'Fee changes should not come at the expense of availability accuracy, response time, guest service, or reservation reliability.',
+        'At a 15.5% fee, a $100 subtotal nets $84.50 before other costs. A target $100 payout requires about $118.34 before other costs. Monitor occupancy and guest-facing prices: a markup alone cannot guarantee revenue.',
       ]),
     ],
     links: [

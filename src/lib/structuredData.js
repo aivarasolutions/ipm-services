@@ -26,19 +26,19 @@ export const INSIGHT_ITEMS = [
   {
     title: 'Airbnb Fees Explained',
     description:
-      'A direct, professional breakdown of how Airbnb fees actually work today — including the split-fee model, host-only fee model, and how hosts lose thousands per year without realizing it.',
+      'Understand Airbnb’s updated host-paid fee, how it affects guest prices and your payout, and what to check on your listing.',
     path: '/insights/airbnb-fees',
   },
   {
-    title: 'API Connections & Hidden Costs',
+    title: 'API Connections & Operating Costs',
     description:
-      "A deeper look at PMS and channel manager integrations. Learn why an API connection triggers Airbnb's 15.5% host-only fee, why Airbnb keeps this quiet, and what it means for your earnings.",
+      'Compare software costs and automation benefits alongside Airbnb’s host-paid fee without relying on outdated API workarounds.',
     path: '/insights/api-costs',
   },
   {
-    title: 'How to Avoid the 15.5% Fee',
+    title: 'How to Offset Airbnb’s Host Fee',
     description:
-      'A proven, step-by-step strategy to return your listings to the 3% fee model, eliminate unnecessary charges, and maintain full automation — safely and correctly.',
+      'Review your market and adjust nightly prices to protect your target payout under Airbnb’s updated host-paid fee.',
     path: '/insights/avoid-fees',
   },
   {
@@ -93,23 +93,23 @@ export const NEWS_ITEMS = [
 const INSIGHT_GUIDE_EDITORIAL = {
   '/insights/airbnb-fees': {
     reviewedBy: 'IPM Operations & Revenue Team',
-    dateModified: '2026-09-01',
-    citations: ['https://www.airbnb.com/help/article/1857'],
+    dateModified: '2026-09-27',
+    citations: ['https://www.airbnb.com/help/article/1857', 'https://www.airbnb.com/resources/hosting-homes/a/simplifying-service-fees-on-airbnb-771'],
   },
   '/insights/api-costs': {
     reviewedBy: 'IPM Operations & Revenue Team',
-    dateModified: '2026-09-01',
+    dateModified: '2026-09-27',
     citations: [
       'https://www.airbnb.com/help/article/1857',
-      'https://www.airbnb.com/resources/hosting-homes/a/simplifying-airbnb-service-fees-746',
+      'https://www.airbnb.com/resources/hosting-homes/a/simplifying-service-fees-on-airbnb-771',
     ],
   },
   '/insights/avoid-fees': {
     reviewedBy: 'IPM Operations & Revenue Team',
-    dateModified: '2026-09-01',
+    dateModified: '2026-09-27',
     citations: [
       'https://www.airbnb.com/help/article/1857',
-      'https://www.airbnb.com/help/article/99',
+      'https://www.airbnb.com/resources/hosting-homes/a/simplifying-service-fees-on-airbnb-771',
     ],
   },
   '/insights/checkin-system': {

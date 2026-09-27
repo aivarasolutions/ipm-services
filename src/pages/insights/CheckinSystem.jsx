@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars -- JSX member expressions are not tracked by the base rule.
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Smartphone, CheckCircle, ArrowLeft, XCircle, Users, Mail, Calendar } from 'lucide-react';
@@ -13,7 +14,7 @@ export default function CheckinSystem() {
   ];
 
   const advantages = [
-    { text: 'You keep 97% of your Airbnb payout', subtext: '(no 15.5% fee)' },
+    { text: 'You can tailor guest communication', subtext: '(independent of your Airbnb fee structure)' },
     { text: 'Messages come directly from Airbnb', subtext: '(highest delivery rate, no duplicates)' },
     { text: 'Your branding stays on your website', subtext: '(not a PMS-branded portal)' },
     { text: 'Your form captures only what you need', subtext: '(no long forms, no friction)' },
@@ -34,7 +35,7 @@ export default function CheckinSystem() {
     'Eliminates PMS dependency',
     'Works with Airbnb + Booking.com + Vrbo',
     'Seamless across all platforms',
-    'No risk of Airbnb API fee trigger',
+    'Choose software based on operational needs, not fee avoidance',
     'Ability to add videos, photos, maps, door codes',
     'Totally customizable to your brand',
     'Scales to 1 or 100 properties'
@@ -69,11 +70,11 @@ export default function CheckinSystem() {
         >
           <div className="bg-[#F8F5EF] border-l-4 border-[#D4AF37] p-6 rounded-r-lg mb-8">
             <p className="text-lg text-[#334155] m-0">
-              Disconnecting your PMS API doesn't mean losing automation.
+              A professional check-in workflow does not have to depend on one PMS.
             </p>
             <p className="text-lg text-[#334155] mt-3 m-0">
               In fact, IPM teaches hosts how to build a <strong>cleaner, more reliable, and more flexible check-in
-              system</strong> that works everywhere — without paying Airbnb 15.5% or relying on PMS limitations.
+              system</strong> that works across channels. This workflow does not change the Airbnb service fee on your listing.
             </p>
           </div>
 

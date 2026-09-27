@@ -112,26 +112,26 @@ const insightSeoRoutes = {
   '/insights/airbnb-fees': {
     title: 'Airbnb Fees Explained | IPM Insights',
     description:
-      'Understand Airbnb’s split-fee and host-only fee models, including how API-connected listings can affect vacation rental payouts.',
+      'Understand Airbnb’s updated host-paid service fee, what it means for guest prices and your nightly payout, and how to respond.',
     h1: 'Airbnb Fees Explained',
     intro:
-      'Understanding the true cost of hosting — what Airbnb does not tell you.',
+      'How the updated host-paid fee affects guest prices and your payout.',
   },
   '/insights/api-costs': {
-    title: 'PMS API Connections & Hidden Costs | IPM Insights',
+    title: 'API Connections & Operating Costs | IPM Insights',
     description:
-      'Learn how PMS and channel-manager API connections affect Airbnb fees, automation, and short-term rental earnings.',
-    h1: 'API Connections & Hidden Costs',
+      'Compare PMS and channel-manager subscriptions, automation benefits, and Airbnb host fees without relying on an outdated workaround.',
+    h1: 'API Connections & Operating Costs',
     intro:
-      'How property-management software integrations can change your fees and payouts.',
+      'Evaluate your tools for the work they do, not as a fee loophole.',
   },
   '/insights/avoid-fees': {
-    title: 'How to Avoid Airbnb’s 15.5% Fee | IPM Insights',
+    title: 'How to Offset Airbnb’s Host Fee | IPM Insights',
     description:
-      'Follow IPM’s practical strategy for reducing unnecessary Airbnb host fees while keeping short-term rental operations organized.',
-    h1: 'How to Avoid the 15.5% Fee',
+      'See how IPM reviews comparable listings and adjusts your nightly rate to protect your payout under Airbnb’s host-paid fee.',
+    h1: 'How to Offset Airbnb’s Host Fee',
     intro:
-      'A practical strategy to reduce unnecessary charges and protect your hosting revenue.',
+      'Price for your target payout while staying competitive in your local market.',
   },
   '/insights/checkin-system': {
     title: 'Professional Vacation Rental Check-In System | IPM Insights',

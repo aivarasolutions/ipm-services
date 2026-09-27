@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars -- JSX member expressions are not tracked by the base rule.
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -11,9 +12,9 @@ export default function Insights() {
       title: 'INSIGHTS',
       subtitle: 'Expert Knowledge, Transparent Guidance, and Professional Hosting Strategies',
       intro: 'Welcome to the IPM Insights Hub — the industry\'s most direct and transparent educational resource for short-term rental hosts.',
-      mainDesc1: 'Airbnb, PMS platforms, and channel managers often keep hosts in the dark about how fees work, how systems interact, and how API connections can dramatically impact your payouts. At IPM, we believe hosts deserve clarity, control, and modern tools that protect their profits.',
+      mainDesc1: 'Airbnb’s newer single-fee structure changes how hosts should set their nightly prices. At IPM, we explain the fee, review your market, and help you protect your net payout with the right pricing and operating tools.',
       mainDesc2: 'This section of our website provides professional, no-nonsense explanations of how the industry really works, based on what we teach our global property management clients every day.',
-      mainDesc3: 'Whether you\'re a new host or managing multiple properties, these guides will help you upgrade your operations, avoid hidden fees, and build systems that keep you in full control of your business.',
+      mainDesc3: 'Whether you\'re a new host or managing multiple properties, these guides will help you understand platform fees, price for your target payout, and build systems that keep you in control of your business.',
       whatYouFind: 'What You\'ll Find in IPM Insights',
       learnMore: 'Learn more',
       whyCreate: 'Why IPM Creates These Resources',
@@ -30,7 +31,7 @@ export default function Insights() {
       advantages: 'Our Expertise — Your Advantage',
       advantagesDesc: 'Through IPM Insights, you will learn:',
       advList: [
-        'How to prevent Airbnb from taking 15–20% of your income',
+        'How to price for Airbnb’s host fee while staying competitive',
         'How to automate your hosting systems without expensive PMS software',
         'How to build a professional guest check-in workflow',
         'How to collect and control your own guest data',
@@ -46,25 +47,25 @@ export default function Insights() {
       topics: [
         {
           title: 'Airbnb Fees Explained',
-          description: 'A direct, professional breakdown of how Airbnb fees actually work today — including the split-fee model, host-only fee model, and how hosts lose thousands per year without realizing it.',
+          description: 'Understand Airbnb’s move toward a single host-paid fee, how it affects guest prices and your payout, and what to check on your listing.',
           path: '/insights/airbnb-fees',
           color: 'blue'
         },
         {
-          title: 'API Connections & Hidden Costs',
-          description: 'A deeper look at PMS and channel manager integrations. Learn why an API connection triggers Airbnb\'s 15.5% host-only fee, why Airbnb keeps this quiet, and what it means for your earnings.',
+          title: 'API Connections & Operating Costs',
+          description: 'Compare software costs, automation benefits, and Airbnb’s host fee without relying on outdated API fee workarounds.',
           path: '/insights/api-costs',
           color: 'indigo'
         },
         {
-          title: 'How to Avoid the 15.5% Fee',
-          description: 'A proven, step-by-step strategy to return your listings to the 3% fee model, eliminate unnecessary charges, and maintain full automation — safely and correctly.',
+          title: 'How to Offset Airbnb’s Host Fee',
+          description: 'See how we review your market and adjust nightly rates to protect your target payout under the updated host-paid fee.',
           path: '/insights/avoid-fees',
           color: 'green'
         },
         {
           title: 'Check-In System Design (IPM Method)',
-          description: 'Our professional, API-free system for guest communication, data collection, and automation. Clean, scalable, brand-consistent, and completely under your control.',
+          description: 'A flexible guest check-in workflow for communication and data collection. Use it for better operations, not as a way to avoid Airbnb fees.',
           path: '/insights/checkin-system',
           color: 'purple'
         },
@@ -74,9 +75,9 @@ export default function Insights() {
       title: 'INSIGHTS',
       subtitle: 'Conocimiento Experto, Orientación Transparente y Estrategias Profesionales de Hosting',
       intro: 'Bienvenido al Centro de Insights de IPM — el recurso educativo más directo y transparente de la industria para anfitriones de alquileres a corto plazo.',
-      mainDesc1: 'Airbnb, las plataformas PMS y los gestores de canales a menudo mantienen a los anfitriones a oscuras sobre cómo funcionan las tarifas, cómo interactúan los sistemas y cómo las conexiones API pueden impactar dramáticamente sus pagos. En IPM, creemos que los anfitriones merecen claridad, control y herramientas modernas que protejan sus ganancias.',
+      mainDesc1: 'La nueva estructura de tarifa única de Airbnb cambia la forma de fijar los precios por noche. En IPM explicamos la tarifa, analizamos su mercado y le ayudamos a proteger sus ingresos netos con precios adecuados.',
       mainDesc2: 'Esta sección de nuestro sitio web proporciona explicaciones profesionales y directas sobre cómo funciona realmente la industria, basadas en lo que enseñamos a nuestros clientes de gestión de propiedades globales todos los días.',
-      mainDesc3: 'Ya sea que sea un anfitrión nuevo o esté administrando múltiples propiedades, estas guías le ayudarán a mejorar sus operaciones, evitar tarifas ocultas y crear sistemas que lo mantengan en control total de su negocio.',
+      mainDesc3: 'Ya sea que sea un anfitrión nuevo o administre varias propiedades, estas guías le ayudarán a comprender las tarifas, fijar precios según sus ingresos deseados y mantener el control de su negocio.',
       whatYouFind: 'Lo Que Encontrará en IPM Insights',
       learnMore: 'Aprende más',
       whyCreate: 'Por Qué IPM Crea Estos Recursos',
@@ -93,7 +94,7 @@ export default function Insights() {
       advantages: 'Nuestra Experiencia — Su Ventaja',
       advantagesDesc: 'A través de IPM Insights, aprenderá:',
       advList: [
-        'Cómo evitar que Airbnb se lleve el 15–20% de sus ingresos',
+        'Cómo ajustar sus precios para compensar la tarifa de Airbnb sin perder competitividad',
         'Cómo automatizar sus sistemas de hosting sin software PMS costoso',
         'Cómo crear un flujo de trabajo profesional de check-in de huéspedes',
         'Cómo recopilar y controlar sus propios datos de huéspedes',
@@ -109,25 +110,25 @@ export default function Insights() {
       topics: [
         {
           title: 'Tarifas de Airbnb Explicadas',
-          description: 'Un desglose directo y profesional de cómo funcionan realmente las tarifas de Airbnb hoy — incluyendo el modelo de tarifa dividida, el modelo de tarifa solo para anfitriones y cómo los anfitriones pierden miles por año sin darse cuenta.',
+          description: 'Comprenda el cambio hacia una tarifa única a cargo del anfitrión y cómo afecta al precio para los huéspedes y a sus ingresos netos.',
           path: '/insights/airbnb-fees',
           color: 'blue'
         },
         {
-          title: 'Conexiones API y Costos Ocultos',
-          description: 'Un análisis más profundo de integraciones PMS y gestores de canales. Aprenda por qué una conexión API desencadena la tarifa solo para anfitriones del 15.5% de Airbnb, por qué Airbnb lo mantiene en secreto y qué significa para sus ganancias.',
+          title: 'Conexiones API y Costos Operativos',
+          description: 'Compare los costos del software y los beneficios de la automatización sin depender de métodos obsoletos para evitar la tarifa de Airbnb.',
           path: '/insights/api-costs',
           color: 'indigo'
         },
         {
-          title: 'Cómo Evitar la Tarifa del 15.5%',
-          description: 'Una estrategia comprobada paso a paso para devolver sus anuncios al modelo de tarifa del 3%, eliminar cargos innecesarios y mantener automatización completa, de forma segura y correcta.',
+          title: 'Cómo Compensar la Tarifa de Airbnb',
+          description: 'Descubra cómo analizamos su mercado y ajustamos las tarifas por noche para proteger los ingresos netos que desea obtener.',
           path: '/insights/avoid-fees',
           color: 'green'
         },
         {
           title: 'Diseño del Sistema de Check-In (Método IPM)',
-          description: 'Nuestro sistema profesional sin API para comunicación con huéspedes, recopilación de datos y automatización. Limpio, escalable, coherente con la marca y completamente bajo su control.',
+          description: 'Un sistema flexible de llegada y comunicación con huéspedes para mejorar la operación, no para evitar las tarifas de Airbnb.',
           path: '/insights/checkin-system',
           color: 'purple'
         },
@@ -137,9 +138,9 @@ export default function Insights() {
       title: 'INSIGHTS',
       subtitle: 'Connaissance d\'Expert, Orientation Transparente et Stratégies d\'Hébergement Professionnelles',
       intro: 'Bienvenue au Centre IPM Insights — la ressource éducative la plus directe et transparente de l\'industrie pour les hôtes de location de vacances à court terme.',
-      mainDesc1: 'Airbnb, les plateformes PMS et les gestionnaires de canaux gardent souvent les hôtes dans l\'ignorance sur le fonctionnement des frais, l\'interaction des systèmes et l\'impact dramatique des connexions API sur vos revenus. Chez IPM, nous croyons que les hôtes méritent la clarté, le contrôle et les outils modernes qui protègent leurs profits.',
+      mainDesc1: 'La nouvelle structure de frais uniques d’Airbnb change la façon de fixer les prix par nuit. IPM explique ces frais, analyse votre marché et vous aide à protéger votre revenu net grâce à une tarification adaptée.',
       mainDesc2: 'Cette section de notre site Web fournit des explications professionnelles et directes sur le fonctionnement réel de l\'industrie, basées sur ce que nous enseignons à nos clients de gestion de propriété mondiaux chaque jour.',
-      mainDesc3: 'Que vous soyez un nouvel hôte ou que vous gériez plusieurs propriétés, ces guides vous aideront à améliorer vos opérations, à éviter les frais cachés et à créer des systèmes qui vous maintiennent en contrôle total de votre entreprise.',
+      mainDesc3: 'Que vous débutiez ou gériez plusieurs biens, ces guides vous aident à comprendre les frais de plateforme, à fixer vos tarifs selon votre revenu cible et à garder le contrôle de vos opérations.',
       whatYouFind: 'Ce Que Vous Trouverez dans IPM Insights',
       learnMore: 'En savoir plus',
       whyCreate: 'Pourquoi IPM Crée Ces Ressources',
@@ -156,7 +157,7 @@ export default function Insights() {
       advantages: 'Notre Expertise — Votre Avantage',
       advantagesDesc: 'À travers IPM Insights, vous apprendrez:',
       advList: [
-        'Comment empêcher Airbnb de prendre 15–20% de vos revenus',
+        'Comment ajuster vos tarifs pour compenser les frais Airbnb tout en restant compétitif',
         'Comment automatiser vos systèmes d\'hébergement sans logiciel PMS coûteux',
         'Comment construire un flux de travail professionnel d\'arrivée des clients',
         'Comment collecter et contrôler vos propres données de clients',
@@ -172,25 +173,25 @@ export default function Insights() {
       topics: [
         {
           title: 'Frais Airbnb Expliqués',
-          description: 'Une ventilation directe et professionnelle de la façon dont les frais Airbnb fonctionnent réellement aujourd\'hui, y compris le modèle de frais partagés, le modèle de frais réservés aux hôtes et comment les hôtes perdent des milliers par an sans s\'en rendre compte.',
+          description: 'Comprenez le passage aux frais uniques payés par l’hôte et leur effet sur le prix des voyageurs et votre revenu net.',
           path: '/insights/airbnb-fees',
           color: 'blue'
         },
         {
-          title: 'Connexions API et Coûts Cachés',
-          description: 'Un regard plus approfondi sur les intégrations PMS et les gestionnaires de canaux. Découvrez pourquoi une connexion API déclenche les frais réservés aux hôtes de 15,5% d\'Airbnb, pourquoi Airbnb le garde secret et ce que cela signifie pour vos revenus.',
+          title: 'Connexions API et Coûts Opérationnels',
+          description: 'Comparez les coûts des logiciels et les avantages de l’automatisation sans compter sur d’anciennes astuces pour éviter les frais Airbnb.',
           path: '/insights/api-costs',
           color: 'indigo'
         },
         {
-          title: 'Comment Éviter les Frais de 15,5%',
-          description: 'Une stratégie étape par étape éprouvée pour ramener vos annonces au modèle de frais de 3%, éliminer les frais inutiles et maintenir une automatisation complète, en toute sécurité et correctement.',
+          title: 'Comment Compenser les Frais Airbnb',
+          description: 'Découvrez comment nous analysons votre marché et adaptons vos tarifs par nuit pour protéger votre revenu net cible.',
           path: '/insights/avoid-fees',
           color: 'green'
         },
         {
           title: 'Conception du Système d\'Arrivée (Méthode IPM)',
-          description: 'Notre système professionnel sans API pour la communication avec les clients, la collecte de données et l\'automatisation. Propre, évolutif, cohérent avec la marque et entièrement sous votre contrôle.',
+          description: 'Un système d’arrivée et de communication flexible pour améliorer les opérations, pas pour éviter les frais Airbnb.',
           path: '/insights/checkin-system',
           color: 'purple'
         },

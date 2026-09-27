@@ -1,256 +1,69 @@
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { DollarSign, AlertTriangle, TrendingDown, CheckCircle, ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ArrowRight, DollarSign, TrendingUp } from 'lucide-react';
 
 export default function AirbnbFees() {
   return (
-    <div className="min-h-screen bg-[#06121F]">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <Link to="/insights" className="inline-flex items-center text-[#D4AF37] hover:text-[#F2D98D] mb-8">
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Insights
-        </Link>
+    <div className="min-h-screen bg-[#06121F] text-[#C9D2DE]">
+      <article className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <Link to="/insights" className="inline-flex items-center gap-2 text-[#D4AF37] hover:text-[#F2D98D] mb-8"><ArrowLeft size={18} /> Back to Insights</Link>
+        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">Airbnb Fees Explained</h1>
+        <p className="text-xl text-[#D4AF37] font-semibold mb-10">What the updated host-paid fee means for your payout</p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-12"
-        >
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Airbnb Fees Explained
-          </h1>
-          <p className="text-xl text-[#D4AF37] font-semibold">
-            Understanding the True Cost of Hosting — What Airbnb Doesn't Tell You
+        <section className="bg-[#0F2440] border border-[#D4AF37]/25 rounded-xl p-6 sm:p-8 my-8">
+          <h2 className="text-2xl font-bold text-white mb-4">Airbnb’s fee structure is changing</h2>
+          <p className="leading-relaxed">
+            Under the traditional split-fee structure, hosts typically paid about 3% while guests paid a
+            separate service fee. Airbnb is transitioning affected listings to a single host-paid fee:
+            the guest does not see a separate Airbnb service fee, and the full service fee is deducted
+            from the host payout. Most hosts on the single-fee structure pay <strong className="text-white">15.5%</strong>;
+            others typically pay 14%–16%, including 16% for listings in Brazil and Mexico.
+            Airbnb still documents some split-fee listings, so check the actual fee on your account.
           </p>
-        </motion.div>
+        </section>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="prose prose-lg max-w-none"
-        >
-          <div className="bg-[#F8F5EF] border-l-4 border-[#D4AF37] p-6 rounded-r-lg mb-8">
-            <p className="text-lg text-[#334155] m-0">
-              Most hosts believe Airbnb only takes a small percentage from each booking.
-              In reality, depending on how your listings are set up, <strong>Airbnb may be taking 15.5% or more</strong> of
-              your revenue before you even see your payout.
-            </p>
+        <section className="bg-white text-[#334155] rounded-xl p-6 sm:p-8 my-8">
+          <h2 className="text-2xl font-bold text-[#0A1A30] mb-5 flex items-center gap-3"><DollarSign className="text-[#B89025]" /> Compare the guest price and your payout</h2>
+          <div className="grid sm:grid-cols-2 gap-5">
+            <div className="bg-[#F8F5EF] rounded-lg p-5">
+              <h3 className="font-bold text-lg text-[#0A1A30] mb-2">Earlier split-fee example</h3>
+              <p>$100 nightly subtotal − 3% host fee = <strong>$97 payout</strong> before other costs.
+                A separate guest service fee could increase the total guests paid.</p>
+            </div>
+            <div className="bg-[#F8F5EF] rounded-lg p-5">
+              <h3 className="font-bold text-lg text-[#0A1A30] mb-2">15.5% single-fee example</h3>
+              <p>$115 guest-facing subtotal − 15.5% host fee = <strong>about $97.18 payout</strong> before other costs.
+                The guest no longer sees a separate Airbnb service fee.</p>
+            </div>
           </div>
-
-          <p className="text-[#C9D2DE] leading-relaxed">
-            At IPM – International Property Management, we analyze Airbnb fee structures across hundreds
-            of properties worldwide. This page explains the real fee models, how they affect your profits,
-            and why many hosts unknowingly lose thousands per year.
+          <p className="mt-5 leading-relaxed">
+            These are illustrations, not a universal rate recommendation. Airbnb’s service-fee calculation can
+            include host-added fees; discounts, taxes, and local rules can change the final amount.
           </p>
+        </section>
 
-          <aside className="bg-[#0F2440] border border-[#D4AF37]/20 rounded-xl p-6 my-8 not-prose" aria-label="Editorial information">
-            <p className="text-sm text-[#C9D2DE] mb-2">
-              <strong className="text-white">Reviewed by:</strong> IPM Operations &amp; Revenue Team
-            </p>
-            <p className="text-sm text-[#C9D2DE] mb-2">
-              <strong className="text-white">Last reviewed:</strong>{' '}
-              <time dateTime="2026-09-01">September 1, 2026</time>
-            </p>
-            <p className="text-sm text-[#C9D2DE] mb-0">
-              <strong className="text-white">Sources:</strong>{' '}
-              <a
-                href="https://www.airbnb.com/help/article/1857"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#F2D98D] underline hover:text-white"
-              >
-                Airbnb Help Center: Airbnb service fees
-              </a>
-            </p>
-            <p className="text-xs text-[#9CA9B8] mt-3 mb-0">
-              Airbnb fee policies can change. IPM reviews this guide against first-party documentation during
-              scheduled editorial reviews.
-            </p>
-          </aside>
+        <section className="bg-[#0F2440] border border-[#D4AF37]/25 rounded-xl p-6 sm:p-8 my-8">
+          <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-3"><TrendingUp className="text-[#D4AF37]" /> A better response than trying to bypass the fee</h2>
+          <p className="leading-relaxed mb-5">
+            Disconnecting an API or switching calendars does not guarantee a return to the old split-fee
+            structure. IPM first checks the fee actually applied to your listing, then compares competing
+            homes and local demand. We add a suitable percentage to the guest-facing nightly rate where the
+            market supports it and keep monitoring occupancy and net payout.
+          </p>
+          <Link to="/insights/avoid-fees" className="inline-flex items-center gap-2 text-[#F2D98D] underline hover:text-white">
+            See how IPM offsets the host fee <ArrowRight size={16} />
+          </Link>
+        </section>
 
-          <section className="bg-white rounded-xl shadow-lg p-8 my-10">
-            <h2 className="text-3xl font-bold text-[#0A1A30] mb-6 flex items-center gap-3">
-              <DollarSign className="w-8 h-8 text-[#D4AF37]" />
-              The Two Airbnb Fee Models
-            </h2>
-            <p className="text-[#334155] mb-6">
-              Airbnb uses two different service fee models, but they rarely explain how they apply to hosts:
-            </p>
-
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
-              <div className="bg-green-50 border-2 border-green-200 rounded-lg p-6">
-                <h3 className="text-2xl font-bold text-green-800 mb-4">A. Split-Fee Model (The Old Standard)</h3>
-                <div className="space-y-3">
-                  <p className="text-lg"><strong>Host pays:</strong> ~3%</p>
-                  <p className="text-lg"><strong>Guest pays:</strong> ~12–15%</p>
-                </div>
-                <p className="text-[#334155] mt-4">
-                  This was the traditional system where guests pay a large "Airbnb service fee" and hosts pay a smaller "host service fee." Everyone shares the cost.
-                </p>
-                <p className="text-green-800 font-semibold mt-3">
-                  ✓ Most hosts prefer this model because the host's fee is low and predictable.
-                </p>
-              </div>
-
-              <div className="bg-red-50 border-2 border-red-200 rounded-lg p-6">
-                <h3 className="text-2xl font-bold text-red-800 mb-4">B. Host-Only Fee Model (15.5%+)</h3>
-                <div className="space-y-3">
-                  <p className="text-lg"><strong>Host pays:</strong> 14–16%</p>
-                  <p className="text-lg"><strong>Guest pays:</strong> 0%</p>
-                </div>
-                <p className="text-[#334155] mt-4">
-                  This is the model Airbnb automatically applies to:
-                </p>
-                <ul className="list-disc list-inside text-[#334155] mt-3 space-y-1">
-                  <li>Hosts who use API-connected software</li>
-                  <li>Property managers using PMS platforms</li>
-                  <li>Software-connected listings (Lodgify, Guesty, Hostaway, etc.)</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="bg-red-100 border-l-4 border-red-500 p-6 rounded-r-lg">
-              <p className="text-red-900 font-bold text-lg m-0">
-                ⚠️ What Airbnb doesn't advertise: Hosts pay 5x more under this model.
-              </p>
-              <p className="text-red-900 mt-3 m-0">
-                If you use ANY software that connects to Airbnb via API, Airbnb forces you into this high-fee
-                structure — with no option to switch back unless you disconnect the API entirely.
-              </p>
-            </div>
-          </section>
-
-          <section className="bg-white rounded-xl shadow-lg p-8 my-10">
-            <h2 className="text-3xl font-bold text-[#0A1A30] mb-6 flex items-center gap-3">
-              <AlertTriangle className="w-8 h-8 text-[#D4AF37]" />
-              Why Airbnb Charges More When You Use a PMS
-            </h2>
-            <p className="text-[#334155] mb-4">
-              Here's the direct truth most hosts never hear:
-            </p>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-[#D4AF37] flex-shrink-0 mt-1" />
-                <div>
-                  <p className="text-[#0A1A30] font-semibold">Airbnb classifies API-connected hosts as "professional hosts"</p>
-                  <p className="text-[#475569]">→ Therefore, they shift the entire service fee onto the host.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-[#D4AF37] flex-shrink-0 mt-1" />
-                <div>
-                  <p className="text-[#0A1A30] font-semibold">Airbnb wants guests to see "no service fee"</p>
-                  <p className="text-[#475569]">→ Cleaner pricing for guests, higher conversion rates for Airbnb.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-[#D4AF37] flex-shrink-0 mt-1" />
-                <div>
-                  <p className="text-[#0A1A30] font-semibold">Airbnb still wants to earn the same total revenue</p>
-                  <p className="text-[#475569]">→ So the host absorbs the cost.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-[#D4AF37] flex-shrink-0 mt-1" />
-                <div>
-                  <p className="text-[#0A1A30] font-semibold">Airbnb does not provide extra support for the higher fee</p>
-                  <p className="text-[#475569]">→ No additional services, no extra protection, no higher priority.</p>
-                </div>
-              </div>
-            </div>
-            <div className="bg-[#0A1A30] rounded-lg p-6 mt-6">
-              <p className="text-xl font-bold text-white">
-                The result? Hosts pay dramatically more for the exact same Airbnb features.
-              </p>
-            </div>
-          </section>
-
-          <section className="bg-white rounded-xl shadow-lg p-8 my-10">
-            <h2 className="text-3xl font-bold text-[#0A1A30] mb-6 flex items-center gap-3">
-              <TrendingDown className="w-8 h-8 text-red-600" />
-              Your Payout Under Each Model (Real Numbers, Real Loss)
-            </h2>
-            <p className="text-[#334155] mb-4">If a booking is:</p>
-            <div className="bg-[#F8F5EF] rounded-lg p-6 mb-6">
-              <ul className="space-y-2 text-lg text-[#334155]">
-                <li>Nightly rate: <strong>$1,446</strong></li>
-                <li>Cleaning fee: <strong>$170</strong></li>
-                <li>Extra guests: <strong>$240</strong></li>
-                <li>Pet fee: <strong>$300</strong></li>
-                <li className="pt-3 border-t-2 border-[#D4AF37]/20">Total host earnings: <strong>$2,156</strong></li>
-              </ul>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-green-100 border-2 border-green-400 rounded-lg p-6">
-                <h3 className="text-xl font-bold text-green-800 mb-3">Under the 3% model:</h3>
-                <p className="text-lg">Host fee: <strong className="text-red-600">–$64.68</strong></p>
-                <p className="text-2xl font-bold text-green-800 mt-2">Payout: $2,091.32</p>
-              </div>
-
-              <div className="bg-red-100 border-2 border-red-400 rounded-lg p-6">
-                <h3 className="text-xl font-bold text-red-800 mb-3">Under the 15.5% host-only model:</h3>
-                <p className="text-lg">Host fee: <strong className="text-red-600">–$334.18</strong></p>
-                <p className="text-2xl font-bold text-red-800 mt-2">Payout: $1,821.82</p>
-              </div>
-            </div>
-
-            <div className="bg-red-600 text-white rounded-lg p-6 mt-6 text-center">
-              <p className="text-3xl font-bold">You lose $269 PER BOOKING</p>
-              <p className="text-lg mt-3">
-                Multiply that across 10–20 bookings a month, and most hosts lose <strong>$3,000–$8,000 per property
-                per year</strong> — often without realizing it.
-              </p>
-            </div>
-          </section>
-
-          <section className="bg-white rounded-xl shadow-lg p-8 my-10">
-            <h2 className="text-3xl font-bold text-[#0A1A30] mb-6">
-              Key Takeaways for Hosts
-            </h2>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                <p className="text-[#334155] font-medium">If you use an API-connected PMS → Airbnb charges you 15.5%</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                <p className="text-[#334155] font-medium">If you disconnect and use iCal → your fee drops back to 3%</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                <p className="text-[#334155] font-medium">Airbnb does NOT provide extra support for the higher fee</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                <p className="text-[#334155] font-medium">Most hosts lose thousands per year without knowing</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                <p className="text-[#334155] font-medium">There are safer, smarter ways to run your property without an API</p>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                <p className="text-[#334155] font-medium">IPM can set up the entire system for you</p>
-              </div>
-            </div>
-          </section>
-
-          <section className="bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] rounded-2xl shadow-2xl p-8 text-center text-[#06121F] my-10">
-            <h2 className="text-3xl font-bold mb-4">Book a Consultation with IPM</h2>
-            <p className="text-lg mb-6 opacity-90">
-              Optimize your property, reduce costs, and increase profits. Click below to get started.
-            </p>
-            <Link
-              to="/contact"
-              className="inline-block bg-[#06121F] text-[#F2D98D] px-8 py-4 rounded-lg font-bold text-lg hover:bg-[#0A1A30] transition-colors shadow-lg"
-            >
-              Schedule a Call →
-            </Link>
-          </section>
-        </motion.div>
-      </div>
+        <aside className="text-sm border border-[#D4AF37]/20 rounded-xl p-6 my-8 leading-relaxed">
+          <p><strong className="text-white">Last reviewed:</strong> <time dateTime="2026-09-27">September 27, 2026</time></p>
+          <p className="mt-2"><strong className="text-white">Sources:</strong>{' '}
+            <a className="text-[#F2D98D] underline" href="https://www.airbnb.com/help/article/1857" target="_blank" rel="noopener noreferrer">Airbnb service fees</a>
+            {' · '}
+            <a className="text-[#F2D98D] underline" href="https://www.airbnb.com/resources/hosting-homes/a/simplifying-service-fees-on-airbnb-771" target="_blank" rel="noopener noreferrer">Airbnb price-adjustment guidance</a>
+          </p>
+        </aside>
+        <Link to="/contact" className="inline-flex items-center gap-2 bg-[#D4AF37] text-[#06121F] px-7 py-3 rounded-lg font-bold hover:bg-[#F2D98D]">Review My Pricing with IPM <ArrowRight size={18} /></Link>
+      </article>
     </div>
   );
 }

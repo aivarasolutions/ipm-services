@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Menu, X, Globe } from 'lucide-react'
@@ -12,6 +12,16 @@ const Header = () => {
   const [showLanguageMenu, setShowLanguageMenu] = useState(false)
 
   const [showInsightsDropdown, setShowInsightsDropdown] = useState(false)
+  const insightsCloseTimer = useRef(null)
+  useEffect(() => () => clearTimeout(insightsCloseTimer.current), [])
+  const openInsights = () => {
+    clearTimeout(insightsCloseTimer.current)
+    setShowInsightsDropdown(true)
+  }
+  const closeInsightsSoon = () => {
+    clearTimeout(insightsCloseTimer.current)
+    insightsCloseTimer.current = setTimeout(() => setShowInsightsDropdown(false), 350)
+  }
   const routePath = getLocaleRouteInfo(location.pathname).routePath
   const languageOptions = routePath === '/vietnam'
     ? ['en', 'vi']
@@ -31,14 +41,9 @@ const Header = () => {
       dropdownItems: [
         { name: 'Insights Hub', path: '/insights' },
         { name: 'Airbnb Fees Explained', path: '/insights/airbnb-fees' },
-        { name: 'API Connections & Hidden Costs', path: '/insights/api-costs' },
-        { name: 'How to Avoid the 15.5% Fee', path: '/insights/avoid-fees' },
+        { name: 'API Connections & Operating Costs', path: '/insights/api-costs' },
+        { name: 'How to Offset Airbnb’s Host Fee', path: '/insights/avoid-fees' },
         { name: 'Check-In System Design', path: '/insights/checkin-system' },
-        { name: '🏠 Charlotte Owner Proposal', path: '/proposal/charlotte-downhaul' },
-        { name: '🌊 Tampa Owner Proposal', path: '/proposal/tampa-audrey' },
-        { name: '🏡 Charlotte Timberbrook Proposal', path: '/proposal/charlotte-timberbrook' },
-        { name: '🌊 St. Augustine Proposal', path: '/proposal/staugustine-crossroad' },
-        { name: '🏠 Tegucigalpa Launch Checklist', path: '/insights/tegucigalpa-checklist' }
       ]
     },
     { name: 'Vietnam', path: '/vietnam', color: 'bg-[#D4AF37] text-[#06121F]' },
@@ -70,9 +75,9 @@ const Header = () => {
                   <div
                     key={item.name}
                     className="relative"
-                    onMouseEnter={() => setShowInsightsDropdown(true)}
-                    onMouseLeave={() => setShowInsightsDropdown(false)}
-                    onFocus={() => setShowInsightsDropdown(true)}
+                     onMouseEnter={openInsights}
+                     onMouseLeave={closeInsightsSoon}
+                     onFocus={openInsights}
                     onBlur={(event) => {
                       if (!event.currentTarget.contains(event.relatedTarget)) {
                         setShowInsightsDropdown(false)
@@ -107,17 +112,22 @@ const Header = () => {
                       </Button>
                     </div>
                     {showInsightsDropdown && (
-                      <div id="insights-submenu" className="absolute left-0 mt-2 w-64 bg-[#0A1A30] rounded-md shadow-lg border border-[#D4AF37]/20 py-2 z-50">
+                       <div id="insights-submenu" className="absolute left-0 top-full pt-2 w-64 z-50">
+                         <div className="bg-[#0A1A30] rounded-md shadow-lg border border-[#D4AF37]/20 py-2">
                         {item.dropdownItems.map((subItem) => (
                           <Link 
                             key={subItem.path} 
                             to={subItem.path}
-                            onClick={() => setShowInsightsDropdown(false)}
+                             onClick={() => {
+                               clearTimeout(insightsCloseTimer.current)
+                               setShowInsightsDropdown(false)
+                             }}
                             className="block px-4 py-2 text-sm text-[#CFCFCF] hover:bg-[#D4AF37]/10 hover:text-[#E6C978] transition-colors"
                           >
                             {subItem.name}
                           </Link>
                         ))}
+                         </div>
                       </div>
                     )}
                   </div>
