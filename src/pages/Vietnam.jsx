@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { createElement, useState } from 'react';
+// eslint-disable-next-line no-unused-vars -- JSX member expressions are not tracked by the base rule.
 import { motion } from 'framer-motion';
 import {
   Globe, TrendingUp, Users, ShieldCheck, Sparkles, CheckCircle2,
@@ -7,6 +8,7 @@ import {
   Briefcase, CalendarClock, MapPin, Phone, Mail, Home
 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import ListingPromotionSection from '../components/ListingPromotionSection';
 
 const LANGUAGES = [
   { code: 'en', label: '🇺🇸 English' },
@@ -52,8 +54,9 @@ const content = {
         {
           name: 'Listing Promotion',
           rate: '10%',
-          rateLabel: 'Commission',
+          rateLabel: 'on IPM-generated bookings',
           tagline: 'Perfect for owners who manage their own property but want more bookings.',
+          rateFootnote: 'Or choose an agreed guaranteed nightly rate. See the plan details below.',
           features: [
             'Professional listing optimization',
             'International marketing',
@@ -217,8 +220,9 @@ const content = {
         {
           name: 'Quảng Bá Chỗ Nghỉ',
           rate: '10%',
-          rateLabel: 'Hoa Hồng',
+          rateLabel: 'trên đặt phòng do IPM mang lại',
           tagline: 'Phù hợp với chủ nhà tự quản lý nhưng muốn có thêm lượt đặt phòng.',
+          rateFootnote: 'Hoặc chọn mức giá đảm bảo theo đêm đã thỏa thuận. Xem chi tiết gói bên dưới.',
           features: [
             'Tối ưu hóa tin đăng chuyên nghiệp',
             'Tiếp thị quốc tế',
@@ -368,6 +372,9 @@ export default function Vietnam() {
   const scrollToForm = () => {
     document.getElementById('vn-consult')?.scrollIntoView({ behavior: 'smooth' });
   };
+  const scrollToPromotion = () => {
+    document.getElementById('listing-promotion')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -400,7 +407,7 @@ export default function Vietnam() {
       });
       if (!res.ok) throw new Error('Server error');
       setStatus('success');
-      if (typeof gtag === 'function') gtag('event', 'book_click', {});
+      if (typeof window.gtag === 'function') window.gtag('event', 'book_click', {});
     } catch {
       setStatus('error');
     }
@@ -518,11 +525,12 @@ export default function Vietnam() {
                   </span>
                 )}
                 <h3 className="font-display text-2xl font-bold text-white">{plan.name}</h3>
-                <div className="mt-4 flex items-baseline gap-2">
+                <div className="mt-4 flex flex-wrap items-baseline gap-2">
                   <span className="text-5xl font-bold text-[#D4AF37]">{plan.rate}</span>
                   <span className="text-lg text-[#C9D2DE]">{plan.rateLabel}</span>
                 </div>
                 <p className="mt-4 text-sm leading-relaxed">{plan.tagline}</p>
+                {plan.rateFootnote && <p className="mt-2 text-sm font-semibold text-[#F2D98D]">{plan.rateFootnote}</p>}
                 <ul className="mt-6 space-y-3 flex-1">
                   {plan.features.map((f, j) => (
                     <li key={j} className="flex items-start gap-3 text-sm">
@@ -532,7 +540,7 @@ export default function Vietnam() {
                   ))}
                 </ul>
                 <button
-                  onClick={scrollToForm}
+                  onClick={i === 0 ? scrollToPromotion : scrollToForm}
                   className={`mt-8 w-full py-3.5 rounded-lg font-bold transition-colors ${
                     plan.featured
                       ? 'bg-[#D4AF37] text-[#06121F] hover:bg-[#F2D98D]'
@@ -546,6 +554,8 @@ export default function Vietnam() {
           </div>
         </div>
       </section>
+
+      <ListingPromotionSection language={lang} source="Vietnam Owners Page — Listing Promotion (10%)" />
 
       {/* IPM Verified */}
       <section className="py-20 bg-[#0A1A30]">
@@ -751,7 +761,7 @@ function Field({ label, name, value, onChange, icon: Icon, type = 'text', requir
         {label} {required && <span className="text-[#D4AF37]">*</span>}
       </label>
       <div className="relative">
-        <Icon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-[#D4AF37]/60 pointer-events-none" />
+        {createElement(Icon, { className: 'absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-[#D4AF37]/60 pointer-events-none' })}
         <input
           id={id}
           type={type}

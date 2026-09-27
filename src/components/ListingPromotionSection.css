@@ -1,4 +1,4 @@
-.listing-promotion{background:#071523;color:#fff;padding:88px 20px 96px;border-top:1px solid #d4af3740;border-bottom:1px solid #d4af3740}
+.listing-promotion{background:#071523;color:#fff;padding:88px 20px 96px;border-top:1px solid #d4af3740;border-bottom:1px solid #d4af3740;scroll-margin-top:5rem}
 .listing-promotion__inner{max-width:1120px;margin:auto}
 .listing-promotion__heading{text-align:center;max-width:760px;margin:0 auto 38px}
 .listing-promotion__eyebrow{display:inline-flex;align-items:center;gap:9px;color:#e9c66a;font-size:12px;font-weight:700;letter-spacing:.19em}

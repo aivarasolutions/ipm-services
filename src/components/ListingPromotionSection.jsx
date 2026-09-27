@@ -80,11 +80,36 @@ const copy = {
     howTitle: 'Comment ça marche',
     steps: ['Envoyez votre annonce', 'IPM la promeut', 'Nous apportons des réservations', 'Vous êtes payé'],
   },
+  vi: {
+    eyebrow: 'GÓI QUẢNG BÁ CHỖ NGHỈ',
+    title: 'Tăng Lượt Đặt Phòng Mà Không Cần Trả Phí Trước',
+    intro: 'IPM giúp quảng bá chỗ nghỉ của bạn trên các kênh đặt phòng khác. Bạn chỉ trả phí khi chúng tôi giúp bạn tạo ra doanh thu.',
+    cards: [
+      { title: 'Không Có Chi Phí Ban Đầu', body: 'Không có phí thiết lập và không thu phí thuê bao trong 2 tháng đầu tiên.', highlight: 'Miễn phí thuê bao 2 tháng đầu', icon: CalendarDays },
+      { title: 'Lựa Chọn Cách Nhận Doanh Thu', body: 'Chọn trả IPM 10% giá trị các lượt đặt phòng do IPM mang lại, hoặc thỏa thuận mức giá đảm bảo theo đêm. IPM có thể cộng thêm phần chênh lệch; bạn vẫn nhận đúng mức giá theo đêm đã thỏa thuận.', highlight: '10% hoặc giá theo đêm đã thỏa thuận', icon: Percent },
+      { title: 'Chỉ Trả Từ Doanh Thu Chúng Tôi Mang Lại', body: 'Từ tháng thứ 3, gói có phí thuê bao $40 mỗi tháng. Khi có thể, khoản phí này được trừ từ doanh thu đặt phòng do IPM mang lại để bạn không phải tự bỏ tiền túi.', highlight: '$40/tháng từ tháng thứ 3', icon: DollarSign },
+    ],
+    reassuranceTitle: 'Nếu IPM không mang lại đủ lượt đặt phòng thì sao?',
+    reassurance: 'Nếu doanh thu do IPM mang lại không đủ để chi trả phí thuê bao hằng tháng, bạn không phải tự bỏ tiền túi để trả khoản phí này.',
+    trialTitle: 'Dùng Thử Trong 2 Tháng',
+    trial: 'Hai tháng đầu không thu phí thuê bao hằng tháng. Đầu tháng thứ 3, bạn có thể xem lại kết quả. Nếu dịch vụ không mang lại đủ giá trị cho chỗ nghỉ, bạn có thể ',
+    trialEmphasis: 'chấm dứt mà không mất phí.',
+    independence: 'IPM không thu hoa hồng đối với các lượt đặt phòng do bạn tự tìm được. Hoa hồng của IPM chỉ áp dụng cho các lượt đặt phòng do IPM mang lại.',
+    email: 'Email của bạn',
+    listing: 'Đường dẫn tin đăng Airbnb',
+    cta: 'Bắt Đầu Quảng Bá Chỗ Nghỉ',
+    sending: 'Đang gửi…',
+    sent: 'Cảm ơn bạn! Chúng tôi đã nhận được tin đăng và sẽ sớm liên hệ.',
+    error: 'Không thể gửi tin đăng. Vui lòng thử lại.',
+    support: 'Gửi đường dẫn tin đăng Airbnb và email của bạn để bắt đầu.',
+    howTitle: 'Cách thức hoạt động',
+    steps: ['Gửi tin đăng', 'IPM quảng bá', 'Chúng tôi mang lại lượt đặt phòng', 'Bạn nhận tiền'],
+  },
 }
 
 const icons = [ArrowRight, TrendingUp, CalendarDays, Check]
 
-export default function ListingPromotionSection({ language = 'en' }) {
+export default function ListingPromotionSection({ language = 'en', source = 'Homepage — Listing Promotion (10%)' }) {
   const t = copy[language] || copy.en
   const reducedMotion = useReducedMotion()
   const [status, setStatus] = useState('idle')
@@ -104,7 +129,7 @@ export default function ListingPromotionSection({ language = 'en' }) {
           subject: 'Listing Promotion Plan inquiry',
           message: `Airbnb listing URL: ${data.get('listingUrl')}`,
           propertyType: 'Listing Promotion',
-          source: 'Homepage — Listing Promotion (10%)',
+          source,
         }),
       })
       if (!response.ok) throw new Error('Submission failed')
