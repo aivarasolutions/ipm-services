@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '../contexts/LanguageContext'
 import PropertyGrid from '../components/PropertyGrid'
+import ListingPromotionSection from '../components/ListingPromotionSection'
 import {
   Building2, TrendingUp, Shield, DollarSign,
   BarChart3, Globe, Calendar, Zap, HeartHandshake,
@@ -38,7 +39,7 @@ const Home = () => {
       heroBullets:     ['More Exposure', 'More Reservations', 'Higher Occupancy', 'Calendar Sync', 'No Double Bookings'],
       cta1:            'Get Listed Worldwide',
       cta2:            'Request Full Management',
-      commissionNote:  'Only 10% Commission',
+      commissionNote:  '10% on IPM-generated reservations, or an agreed nightly rate',
       statsLabel:      ['Properties Managed', 'Average Occupancy', 'Years Experience', 'Owner Support'],
       statsNum:        ['30+', '75–85%', '10+', '24/7'],
       platformHeading: 'Global Exposure for Your Property',
@@ -48,7 +49,7 @@ const Home = () => {
       pricingSub:      'Two ways to work with IPM — choose the level of support that fits your needs.',
       plan1Title:      'Multi-Platform Listing Promotion',
       plan1Price:      '10%',
-      plan1Unit:       'commission only',
+      plan1Unit:       'on IPM-generated reservations, or an agreed nightly rate',
       plan1Features:   [
         'Listed on Airbnb, Booking.com, VRBO & more',
         'Calendar sync & no double bookings',
@@ -107,7 +108,7 @@ const Home = () => {
       heroBullets:     ['Más Exposición', 'Más Reservas', 'Mayor Ocupación', 'Sincronización', 'Sin Dobles Reservas'],
       cta1:            'Publique su Propiedad',
       cta2:            'Solicitar Gestión Completa',
-      commissionNote:  'Solo 10% de Comisión',
+      commissionNote:  '10% sobre reservas generadas por IPM, o tarifa nocturna acordada',
       statsLabel:      ['Propiedades Gestionadas', 'Ocupación Promedio', 'Años de Experiencia', 'Soporte al Propietario'],
       statsNum:        ['30+', '75–85%', '10+', '24/7'],
       platformHeading: 'Exposición Global para su Propiedad',
@@ -117,7 +118,7 @@ const Home = () => {
       pricingSub:      'Dos formas de trabajar con IPM — elija el nivel de servicio que necesita.',
       plan1Title:      'Promoción Multi-Plataforma',
       plan1Price:      '10%',
-      plan1Unit:       'solo comisión',
+      plan1Unit:       'en reservas generadas por IPM, o tarifa nocturna acordada',
       plan1Features:   [
         'Listado en Airbnb, Booking.com, VRBO y más',
         'Sincronización de calendario sin dobles reservas',
@@ -176,7 +177,7 @@ const Home = () => {
       heroBullets:     ['Plus de Visibilité', 'Plus de Réservations', 'Meilleure Occupation', 'Synchronisation', 'Pas de Doubles Réservations'],
       cta1:            'Référencer ma Propriété',
       cta2:            'Demander la Gestion Complète',
-      commissionNote:  'Seulement 10% de Commission',
+      commissionNote:  '10 % sur les réservations générées par IPM, ou tarif par nuit convenu',
       statsLabel:      ['Propriétés Gérées', 'Taux d\'Occupation Moyen', 'Années d\'Expérience', 'Support Propriétaire'],
       statsNum:        ['30+', '75–85%', '10+', '24/7'],
       platformHeading: 'Exposition Mondiale pour Votre Propriété',
@@ -186,7 +187,7 @@ const Home = () => {
       pricingSub:      'Deux façons de travailler avec IPM.',
       plan1Title:      'Promotion Multi-Plateformes',
       plan1Price:      '10%',
-      plan1Unit:       'commission uniquement',
+      plan1Unit:       'sur les réservations IPM, ou tarif par nuit convenu',
       plan1Features:   [
         'Référencé sur Airbnb, Booking.com, VRBO et plus',
         'Synchronisation calendrier, pas de doubles réservations',
@@ -312,7 +313,7 @@ const Home = () => {
 
             {/* Commission line */}
             <div className="mt-9 gold-rule max-w-md">
-              <span className="text-[#F2D98D] text-sm font-semibold tracking-wide whitespace-nowrap">
+              <span className="text-[#F2D98D] text-sm font-semibold tracking-wide">
                 {t.commissionNote}
               </span>
             </div>
@@ -371,9 +372,9 @@ const Home = () => {
               <div className="mb-6">
                 <p className="text-[#D4AF37] text-sm font-semibold tracking-widest uppercase mb-2">Listing</p>
                 <h3 className="font-display text-2xl font-bold text-white mb-4">{t.plan1Title}</h3>
-                <div className="flex items-end gap-2 mb-1">
+                <div className="flex flex-wrap items-end gap-2 mb-1">
                   <span className="font-display text-6xl font-bold text-gold-gradient">{t.plan1Price}</span>
-                  <span className="text-[#C9D2DE] mb-2">{t.plan1Unit}</span>
+                  <span className="text-[#C9D2DE] mb-2 text-sm max-w-[15rem]">{t.plan1Unit}</span>
                 </div>
               </div>
               <ul className="space-y-3 mb-8 flex-1">
@@ -417,6 +418,8 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <ListingPromotionSection language={language} />
 
       {/* ── 5. SERVICES ──────────────────────────────────────── */}
       <section className="bg-[#06121F] py-24">

@@ -22,6 +22,12 @@ const STATIC_ROUTE_CONTENT = {
       section('Global Exposure for Your Property', [
         'IPM promotes vacation rentals across Airbnb, Booking.com, VRBO, Expedia, Hotels.com, Google Vacation Rentals, and direct-booking channels.',
       ]),
+      section('Get More Reservations Without Paying Upfront', [
+        'IPM helps promote your property across additional booking channels. You only pay when we help generate revenue for you.',
+        'No setup fee and no subscription for the first 2 months. Owners can choose either 10% of reservations generated through IPM or an agreed guaranteed nightly rate that IPM may mark up while the owner still receives the agreed amount.',
+        'From month 3, the listing promotion plan includes a $40 monthly subscription, deducted from IPM-generated reservations whenever possible. If IPM does not generate enough revenue to cover it, the owner is not charged the subscription out of pocket.',
+        'At the start of month 3, owners can review results and end the service at no cost if it is not providing enough value. IPM does not take commission from reservations owners generate independently.',
+      ], ['Send your listing', 'IPM promotes it', 'We bring reservations', 'You get paid']),
       section('What We Handle for Owners', [
         'Our international property management team coordinates listing optimization, dynamic pricing, guest verification, communications, cleaning, maintenance, and transparent owner reporting.',
       ], ['Multi-platform listing promotion', 'Revenue optimization', 'Guest support and verification', 'Owner dashboards and reports']),
