@@ -252,7 +252,7 @@ const Home = () => {
         {/* Background villa image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/luxury_beachfront_resort.webp')" }}
+          style={{ backgroundImage: "url('/luxury_beachfront_resort-optimized.webp')" }}
         />
         {/* Navy gradient — heavy on the left for text legibility */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#06121F] via-[#06121F]/92 to-[#06121F]/30" />
@@ -260,7 +260,7 @@ const Home = () => {
 
         {/* Content */}
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-28">
-          <div className="max-w-3xl animate-fade-up">
+          <div className="max-w-3xl">
             {/* Eyebrow */}
             <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-[#D4AF37]/40 bg-[#D4AF37]/10">
               <Crown className="w-4 h-3 text-[#D4AF37]" />
@@ -282,7 +282,7 @@ const Home = () => {
             <div className="flex flex-wrap gap-2.5 mb-8">
               {PLATFORMS.map(p => (
                 <div key={p.name} className="platform-pill">
-                  {p.logo && <img src={p.logo} alt={p.name} loading="lazy" />}
+                  {p.logo && <img src={p.logo} alt={p.name} width="18" height="18" />}
                   <span>{p.name}</span>
                 </div>
               ))}
@@ -346,7 +346,7 @@ const Home = () => {
           <div className="flex flex-wrap justify-center gap-3">
             {PLATFORMS.map(p => (
               <div key={p.name} className="platform-pill !py-3 !px-6">
-                {p.logo && <img src={p.logo} alt={p.name} loading="lazy" />}
+                {p.logo && <img src={p.logo} alt={p.name} width="18" height="18" loading="lazy" />}
                 <span className="!text-base">{p.name}</span>
               </div>
             ))}

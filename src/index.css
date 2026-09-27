@@ -103,7 +103,7 @@ body {
 }
 .platform-pill img {
   height: 18px;
-  width: auto;
+  width: 18px;
 }
 .platform-pill span {
   color: #fff;

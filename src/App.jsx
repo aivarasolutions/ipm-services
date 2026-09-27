@@ -1,34 +1,35 @@
+import { lazy, Suspense } from 'react'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import './App.css'
 import './real-estate-styles.css'
 import './audio-styles.css'
 
-// Import pages
+// Keep the homepage in the initial bundle; load other pages only when visited.
 import Home from './pages/Home'
-import About from './pages/About'
-import Services from './pages/Services'
-import Properties from './pages/Properties'
-import PropertyDetail from './pages/PropertyDetail'
-import Contact from './pages/Contact'
-import OwnerPortal from './pages/OwnerPortal'
-import RealEstate from './pages/RealEstate'
-import RealEstateDetail from './pages/RealEstateDetail'
-import LocationGuide from './pages/LocationGuide'
-import News from './pages/News'
-import PrivacyPolicy from './pages/PrivacyPolicy'
-import TermsAndConditions from './pages/TermsAndConditions'
-import Insights from './pages/Insights'
-import AirbnbFees from './pages/insights/AirbnbFees'
-import ApiCosts from './pages/insights/ApiCosts'
-import AvoidFees from './pages/insights/AvoidFees'
-import CheckinSystem from './pages/insights/CheckinSystem'
-import CharlotteProposal from './pages/CharloetteProposal'
-import TampaProposal from './pages/TampaProposal'
-import TimberbrookProposal from './pages/TimberbrookProposal'
-import StAugustineProposal from './pages/StAugustineProposal'
-import TegucigalpaChecklist from './pages/TegucigalpaChecklist'
-import Vietnam from './pages/Vietnam'
-import Onboarding from './pages/Onboarding'
+const About = lazy(() => import('./pages/About'))
+const Services = lazy(() => import('./pages/Services'))
+const Properties = lazy(() => import('./pages/Properties'))
+const PropertyDetail = lazy(() => import('./pages/PropertyDetail'))
+const Contact = lazy(() => import('./pages/Contact'))
+const OwnerPortal = lazy(() => import('./pages/OwnerPortal'))
+const RealEstate = lazy(() => import('./pages/RealEstate'))
+const RealEstateDetail = lazy(() => import('./pages/RealEstateDetail'))
+const LocationGuide = lazy(() => import('./pages/LocationGuide'))
+const News = lazy(() => import('./pages/News'))
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
+const TermsAndConditions = lazy(() => import('./pages/TermsAndConditions'))
+const Insights = lazy(() => import('./pages/Insights'))
+const AirbnbFees = lazy(() => import('./pages/insights/AirbnbFees'))
+const ApiCosts = lazy(() => import('./pages/insights/ApiCosts'))
+const AvoidFees = lazy(() => import('./pages/insights/AvoidFees'))
+const CheckinSystem = lazy(() => import('./pages/insights/CheckinSystem'))
+const CharlotteProposal = lazy(() => import('./pages/CharloetteProposal'))
+const TampaProposal = lazy(() => import('./pages/TampaProposal'))
+const TimberbrookProposal = lazy(() => import('./pages/TimberbrookProposal'))
+const StAugustineProposal = lazy(() => import('./pages/StAugustineProposal'))
+const TegucigalpaChecklist = lazy(() => import('./pages/TegucigalpaChecklist'))
+const Vietnam = lazy(() => import('./pages/Vietnam'))
+const Onboarding = lazy(() => import('./pages/Onboarding'))
 
 // Import components
 import Header from './components/Header'
@@ -50,6 +51,7 @@ function AppLayout() {
     return (
       <>
         <RouteSeo />
+        <Suspense fallback={<div className="min-h-[70vh] bg-[#06121F]" />}>
         <Routes>
           <Route path="/proposal/charlotte-downhaul" element={<CharlotteProposal />} />
           <Route path="/proposal/tampa-audrey" element={<TampaProposal />} />
@@ -59,6 +61,7 @@ function AppLayout() {
           <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/es/onboarding" element={<Onboarding />} />
         </Routes>
+        </Suspense>
       </>
     );
   }
@@ -70,6 +73,7 @@ function AppLayout() {
       <RouteStructuredData />
       <Header />
       <main className="flex-1">
+        <Suspense fallback={<div className="min-h-[70vh] bg-[#06121F]" />}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -103,6 +107,7 @@ function AppLayout() {
           <Route path="/vi/vietnam" element={<Vietnam />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </Suspense>
       </main>
       <Footer />
       <LeadPopup />

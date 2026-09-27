@@ -53,8 +53,10 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center shrink-0 mr-4">
             <img
-              src="/images/ipm-logo-new.png"
+              src="/images/ipm-logo-new-optimized.webp"
               alt="IPM International Property Management"
+              width="48"
+              height="48"
               className="h-12 w-auto shrink-0 object-contain"
             />
           </Link>

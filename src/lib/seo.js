@@ -324,6 +324,74 @@ export const createSeoShell = (metadata, pathname = '/', options = {}) => {
       "'": '&#39;',
     }[character]));
 
+  // The source-visible homepage must look like the homepage before React takes
+  // over. The generic text-only SEO shell caused a conspicuous first-paint flash.
+  if (metadata.routePath === '/' || normalizePathname(pathname) === '/') {
+    const locale = metadata.locale || 'en';
+    const home = {
+      en: {
+        first: 'More Bookings.', second: 'Less Vacancy.',
+        intro: 'Get your property listed where travelers are searching. IPM promotes your home across every major booking platform and manages the details — so you earn more with less work.',
+        benefits: ['More Exposure', 'More Reservations', 'Higher Occupancy', 'Calendar Sync', 'No Double Bookings'],
+        cta: 'Get Listed Worldwide', secondary: 'Request Full Management',
+        note: '10% on IPM-generated reservations, or an agreed nightly rate',
+      },
+      es: {
+        first: 'Más Reservas.', second: 'Menos Vacantes.',
+        intro: 'Publique su propiedad donde los viajeros están buscando. IPM la promueve en todas las plataformas principales y gestiona los detalles — gana más con menos trabajo.',
+        benefits: ['Más Exposición', 'Más Reservas', 'Mayor Ocupación', 'Sincronización', 'Sin Dobles Reservas'],
+        cta: 'Publique su Propiedad', secondary: 'Solicitar Gestión Completa',
+        note: '10% sobre reservas generadas por IPM, o tarifa nocturna acordada',
+      },
+      fr: {
+        first: 'Plus de Réservations.', second: 'Moins de Vacances.',
+        intro: 'Référencez votre propriété là où les voyageurs cherchent. IPM la promeut sur toutes les grandes plateformes et gère les détails — gagnez plus avec moins d’effort.',
+        benefits: ['Plus de Visibilité', 'Plus de Réservations', 'Meilleure Occupation', 'Synchronisation', 'Pas de Doubles Réservations'],
+        cta: 'Référencer ma Propriété', secondary: 'Demander la Gestion Complète',
+        note: '10 % sur les réservations générées par IPM, ou tarif par nuit convenu',
+      },
+    }[locale] || null;
+    if (home) {
+      const prefix = locale === 'en' ? '' : `/${locale}`;
+      return `<main class="seo-route-shell" style="background:#06121F;color:#fff;font-family:Montserrat,system-ui,sans-serif">
+<style>
+.seo-route-shell{margin:0}.seo-route-shell *{box-sizing:border-box}
+.seo-route-shell .seo-nav{height:64px;background:#0A1A30;border-bottom:1px solid #d4af3733;display:flex;align-items:center;justify-content:space-between;padding:0 max(24px,calc((100vw - 1280px)/2))}
+.seo-route-shell .seo-nav img{width:48px;height:48px;object-fit:contain}
+.seo-route-shell .seo-nav-links{display:flex;gap:20px;align-items:center}
+.seo-route-shell a{color:inherit;text-decoration:none}
+.seo-route-shell .seo-nav-links a{font-size:13px;font-weight:600}
+.seo-route-shell .seo-hero{min-height:92vh;display:flex;align-items:center;background:linear-gradient(0deg,#06121F,transparent 52%,#06121F66),linear-gradient(90deg,#06121F,#06121Feb 50%,#06121F4d),url('/luxury_beachfront_resort-optimized.webp') center/cover}
+.seo-route-shell .seo-hero-inner{width:100%;max-width:1280px;margin:auto;padding:112px 48px}
+.seo-route-shell .seo-hero-copy{max-width:760px}
+.seo-route-shell .seo-eyebrow{display:inline-block;border:1px solid #d4af3766;border-radius:99px;background:#d4af371a;padding:8px 16px;color:#F2D98D;font-size:12px;font-weight:700;letter-spacing:.17em;text-transform:uppercase}
+.seo-route-shell h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(48px,6vw,72px);line-height:1.12;margin:24px 0;font-weight:800}
+.seo-route-shell h1 span{display:block;color:#F2D98D}
+.seo-route-shell .seo-intro{font-size:18px;line-height:1.65;color:#C9D2DE;max-width:670px;margin:0 0 28px}
+.seo-route-shell .seo-pills,.seo-route-shell .seo-benefits,.seo-route-shell .seo-actions{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px}
+.seo-route-shell .seo-pills span{border:1px solid #d4af3788;border-radius:99px;background:#0a1a3088;padding:8px 14px;font-size:13px}
+.seo-route-shell .seo-benefits span{font-size:13px;font-weight:600;margin-right:10px}.seo-route-shell .seo-benefits span::before{content:'✓';color:#D4AF37;margin-right:8px}
+.seo-route-shell .seo-actions a{border-radius:6px;padding:13px 25px;font-size:16px;font-weight:700}
+.seo-route-shell .seo-actions a:first-child{background:#D4AF37;color:#06121F}.seo-route-shell .seo-actions a:last-child{border:2px solid #d4af3788;background:#ffffff0d}
+.seo-route-shell .seo-note{color:#F2D98D;font-size:14px;font-weight:600;margin:30px 0 0}
+.seo-route-shell .seo-content{max-width:72rem;margin:0 auto;padding:3rem 1.5rem 5rem}
+@media(max-width:767px){.seo-route-shell .seo-nav-links{display:none}.seo-route-shell .seo-hero-inner{padding:80px 24px}.seo-route-shell .seo-hero{background-position:center}.seo-route-shell .seo-actions{flex-direction:column}.seo-route-shell .seo-actions a{text-align:center}.seo-route-shell .seo-intro{font-size:18px}}
+</style>
+<div class="seo-nav"><a href="${prefix || '/'}"><img src="/images/ipm-logo-new-optimized.webp" width="48" height="48" alt="IPM International Property Management"></a><nav class="seo-nav-links"><a href="${prefix}/services">Services</a><a href="${prefix}/properties">Properties</a><a href="${prefix}/real-estate">Real Estate</a><a href="${prefix}/insights">Insights</a><a href="${prefix}/contact">Contact</a></nav></div>
+<header class="seo-hero"><div class="seo-hero-inner"><div class="seo-hero-copy">
+<div class="seo-eyebrow">International Property Management</div>
+<h1>${escape(home.first)}<span>${escape(home.second)}</span></h1>
+<p class="seo-intro">${escape(home.intro)}</p>
+<div class="seo-pills">${['Airbnb', 'Booking.com', 'Vrbo', 'Expedia', 'Google'].map((name) => `<span>${name}</span>`).join('')}</div>
+<div class="seo-benefits">${home.benefits.map((label) => `<span>${escape(label)}</span>`).join('')}</div>
+<div class="seo-actions"><a href="${prefix}/contact">${escape(home.cta)}</a><a href="${prefix}/contact">${escape(home.secondary)}</a></div>
+<p class="seo-note">${escape(home.note)}</p>
+</div></div></header>
+<div class="seo-content">${createSeoRouteContent('/', metadata, { ...options, locale })}</div>
+</main>`;
+    }
+  }
+
   return `<main class="seo-route-shell" style="box-sizing:border-box;max-width:72rem;margin:0 auto;padding:3rem 1.5rem 5rem;font-family:Montserrat,Arial,sans-serif;background:#06121F;color:#fff">
   <header style="padding:2rem 0 2.5rem">
     <p style="margin:0 0 1rem;color:#F2D98D;font-size:.75rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase">International Property Management</p>
@@ -378,6 +446,9 @@ export const injectSeoMetadataIntoHtml = (html, pathname, options = {}) => {
     .join('\n    ');
   if (alternateTags) output = output.replace('</head>', `    ${alternateTags}\n  </head>`);
   output = output.replace(/<html\b[^>]*\blang=["'][^"']*["']/i, `<html lang="${metadata.locale || 'en'}"`);
+  if (metadata.routePath === '/') {
+    output = output.replace('</head>', '    <link rel="preload" as="image" href="/luxury_beachfront_resort-optimized.webp" fetchpriority="high" />\n  </head>');
+  }
 
   // Build output may already contain a nested SEO route shell (the homepage
   // document is also the production fallback source). Match the complete
