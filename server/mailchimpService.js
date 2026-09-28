@@ -50,8 +50,10 @@ async function getListId(client) {
 /**
  * Add or update a contact in the IPM Mailchimp audience.
  *
- * Captured fields: First Name, Last Name, Email, Phone, Property Location,
- *                  Form Source, Date Submitted.
+ * Audience merge fields: First Name, Last Name, Email, Phone.
+ * Property location and form source stay in the team email; the source also
+ * determines Mailchimp tags. Do not send unconfigured custom merge fields:
+ * Mailchimp rejects the entire subscriber update when a field is missing.
  *
  * Baseline tags (every lead): Website Lead, IPM Inquiry, Property Owner, Management Inquiry
  * Conditional tags (by form type): Contact Form, Listing Promotion Inquiry, Full Management Inquiry
@@ -61,10 +63,9 @@ async function getListId(client) {
  * @param {string}   [opts.firstName]
  * @param {string}   [opts.lastName]
  * @param {string}   [opts.phone]
- * @param {string}   [opts.propertyLocation]
  * @param {string}   [opts.formSource]
  */
-export async function addToMailchimp({ email, firstName, lastName, phone, propertyLocation, formSource }) {
+export async function addToMailchimp({ email, firstName, lastName, phone, formSource }) {
   if (!email) {
     console.warn('[mailchimp] No email — skipping audience sync');
     return { ok: false, reason: 'no email' };
@@ -100,9 +101,6 @@ export async function addToMailchimp({ email, firstName, lastName, phone, proper
         FNAME:    firstName        || '',
         LNAME:    lastName         || '',
         PHONE:    phone            || '',
-        LOCATION: propertyLocation || '',
-        SOURCE:   formSource       || 'Website Form',
-        SIGNDATE: new Date().toISOString().split('T')[0],
       },
     });
 
