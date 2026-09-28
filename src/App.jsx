@@ -41,7 +41,7 @@ import RouteSeo from './components/RouteSeo'
 import { AudioProvider } from './contexts/AudioContext'
 import { LanguageProvider } from './contexts/LanguageContext'
 
-const STANDALONE_ROUTES = ['/proposal/charlotte-downhaul', '/proposal/tampa-audrey', '/proposal/charlotte-timberbrook', '/proposal/staugustine-crossroad', '/insights/tegucigalpa-checklist', '/onboarding', '/es/onboarding'];
+const STANDALONE_ROUTES = ['/proposal/charlotte-downhaul', '/proposal/tampa-audrey', '/proposal/charlotte-timberbrook', '/proposal/staugustine-crossroad', '/insights/tegucigalpa-checklist', '/onboarding', '/es/onboarding', '/vi/onboarding'];
 
 function AppLayout() {
   const location = useLocation();
@@ -60,6 +60,7 @@ function AppLayout() {
           <Route path="/insights/tegucigalpa-checklist" element={<TegucigalpaChecklist />} />
           <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/es/onboarding" element={<Onboarding />} />
+          <Route path="/vi/onboarding" element={<Onboarding />} />
         </Routes>
         </Suspense>
       </>

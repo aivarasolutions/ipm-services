@@ -7,6 +7,7 @@ import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import { sendFormEmails } from './emailService.js';
 import { addToMailchimp } from './mailchimpService.js';
+import { onboardingEmailCopies, onboardingSource } from './onboardingEmails.js';
 import { createCommunityIntegration } from './community/integration.js';
 import {
   getIndexableRoutePaths,
@@ -351,7 +352,7 @@ app.post('/api/properties/:identifier/reservations', guardReservationRequest, as
 });
 
 // ─── Contact form ─────────────────────────────────────────────────────────────
-// Sends admin notification to Kevin@AivaraSolutions.com (reply_to set to visitor).
+// Sends admin notification to both team inboxes (reply_to set to visitor).
 // Customer-facing thank-you is sent by Mailchimp Customer Journey (not here).
 // DNS forwarding must be set up at the domain provider separately.
 app.post('/api/contact', async (req, res) => {
@@ -382,8 +383,11 @@ app.post('/api/contact', async (req, res) => {
         formSource:       source || 'Contact Form',
       }),
     ]);
-    if (emailResult.status === 'rejected') console.error('[/api/contact] Email error:', emailResult.reason);
-    if (mcResult.status === 'rejected')    console.error('[/api/contact] Mailchimp error:', mcResult.reason);
+    if (emailResult.status === 'rejected' || !emailResult.value?.ok) console.error('[/api/contact] Email error:', emailResult.reason || emailResult.value?.errors);
+    if (mcResult.status === 'rejected' || !mcResult.value?.ok) console.error('[/api/contact] Mailchimp error:', mcResult.reason || mcResult.value?.error);
+    if (emailResult.status !== 'fulfilled' || !emailResult.value?.ok || mcResult.status !== 'fulfilled' || !mcResult.value?.ok) {
+      return res.status(502).json({ error: 'We could not complete delivery to the team and mailing list. Please try again.' });
+    }
     res.json({ ok: true, message: 'Message received. We will get back to you shortly.' });
   } catch (err) {
     console.error('[/api/contact] Unexpected error:', err);
@@ -407,7 +411,8 @@ app.post('/api/onboarding', async (req, res) => {
     const meetingTime = cleanText(req.body.meetingTime, 5);
     const timeZone = cleanText(req.body.timeZone, 80);
     const meetingTiming = cleanText(req.body.meetingTiming, 10);
-    const language = req.body.language === 'es' ? 'Spanish' : 'English';
+    const language = ['en', 'es', 'vi'].includes(req.body.language) ? req.body.language : '';
+    const plan = cleanText(req.body.plan, 40);
     const bedrooms = Number(req.body.bedrooms);
     const bathrooms = Number(req.body.bathrooms);
 
@@ -430,36 +435,32 @@ app.post('/api/onboarding', async (req, res) => {
       !Number.isFinite(bathrooms) || bathrooms < 0 ||
       !/^https?:\/\//i.test(airbnbListingUrl) || !airbnbUsername ||
       !req.body.accessMethodAcknowledged || !futureOrToday || !validTime ||
-      !validTimeZone || !validTiming
+      !validTimeZone || !validTiming || !language ||
+      !['listing-promotion', 'full-management'].includes(plan)
     ) {
       return res.status(400).json({ error: 'Please complete all required onboarding fields.' });
     }
 
-    const meetingLabel = `${meetingDate} at ${meetingTime} (${timeZone})`;
-    const emailResult = await sendFormEmails({
-      customerEmail: email,
-      customerName: fullName,
-      source: `Client Onboarding — ${language}`,
-      subject: `New IPM Client Onboarding — ${fullName}`,
-      fields: {
-        'Client full name': fullName,
-        'Email': email,
-        'Phone': phone,
-        'Property address': propertyAddress,
-        'Bedrooms': String(bedrooms),
-        'Bathrooms': String(bathrooms),
-        'Airbnb listing URL': airbnbListingUrl,
-        'Airbnb username / email': airbnbUsername,
-        'Secure access method': 'Client acknowledged co-host invitation / secure access instructions',
-        'Meeting date and time': meetingLabel,
-        'Client time zone': timeZone,
-        'Meeting timing': meetingTiming,
-        'Form language': language,
-      },
-    });
-
-    if (!emailResult.ok) {
-      return res.status(502).json({ error: 'We could not deliver the onboarding notification. Please try again.' });
+    const submission = {
+      fullName, email, phone, propertyAddress, bedrooms, bathrooms, airbnbListingUrl,
+      airbnbUsername, meetingDate, meetingTime, timeZone, meetingTiming, plan, language,
+    };
+    const copies = onboardingEmailCopies(submission);
+    const [emailResults, mailchimpResult] = await Promise.all([
+      Promise.allSettled(copies.map((copy) => sendFormEmails({
+        ...copy, customerEmail: email, customerName: fullName,
+      }))),
+      addToMailchimp({
+        email, firstName: fullName.split(' ')[0],
+        lastName: fullName.split(' ').slice(1).join(' '),
+        phone, propertyLocation: propertyAddress, formSource: onboardingSource(plan),
+      }),
+    ]);
+    const deliveryFailed = emailResults.some((result) => result.status !== 'fulfilled' || !result.value?.ok);
+    if (deliveryFailed) console.error('[/api/onboarding] Notification delivery failed:', emailResults.map((r) => r.reason || r.value?.errors));
+    if (!mailchimpResult.ok) console.error('[/api/onboarding] Mailchimp sync failed:', mailchimpResult.error);
+    if (deliveryFailed || !mailchimpResult.ok) {
+      return res.status(502).json({ error: 'We could not complete delivery to the team and mailing list. Please try again.' });
     }
     res.json({ ok: true });
   } catch (error) {
@@ -493,8 +494,11 @@ app.post('/api/relocation-guide', async (req, res) => {
         formSource: 'Relocation Guide Form',
       }),
     ]);
-    if (emailResult.status === 'rejected') console.error('[/api/relocation-guide] Email error:', emailResult.reason);
-    if (mcResult.status === 'rejected')    console.error('[/api/relocation-guide] Mailchimp error:', mcResult.reason);
+    if (emailResult.status === 'rejected' || !emailResult.value?.ok) console.error('[/api/relocation-guide] Email error:', emailResult.reason || emailResult.value?.errors);
+    if (mcResult.status === 'rejected' || !mcResult.value?.ok) console.error('[/api/relocation-guide] Mailchimp error:', mcResult.reason || mcResult.value?.error);
+    if (emailResult.status !== 'fulfilled' || !emailResult.value?.ok || mcResult.status !== 'fulfilled' || !mcResult.value?.ok) {
+      return res.status(502).json({ error: 'We could not complete delivery to the team and mailing list. Please try again.' });
+    }
     res.json({ ok: true, message: 'Request received. We will be in touch shortly.' });
   } catch (err) {
     console.error('[/api/relocation-guide] Unexpected error:', err);

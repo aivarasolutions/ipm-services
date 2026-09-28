@@ -167,6 +167,7 @@ const localizedSeoRoutes = {
   },
   vi: {
     '/vietnam': ['Quản Lý Bất Động Sản Đà Nẵng | Quản Lý Căn Hộ Cho Thuê Việt Nam | IPM', 'IPM cung cấp dịch vụ quản lý Airbnb và cho thuê ngắn hạn chuyên nghiệp tại Đà Nẵng, Việt Nam.', 'Quản Lý Bất Động Sản tại Đà Nẵng, Việt Nam', 'Quản lý căn hộ cho thuê, quảng bá đa nền tảng và hỗ trợ chủ sở hữu tại Việt Nam.'],
+    '/onboarding': ['Đăng Ký Dịch Vụ Cho Chủ Nhà | IPM', 'Gửi thông tin chỗ nghỉ, xem điều khoản Quảng Bá Chỗ Nghỉ và đặt lịch trao đổi với IPM.', 'Đăng Ký Dịch Vụ Cho Chủ Nhà', 'Chuẩn bị chỗ nghỉ và phối hợp cấp quyền truy cập Airbnb an toàn cùng IPM.'],
   },
 };
 

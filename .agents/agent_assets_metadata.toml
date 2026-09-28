@@ -11,57 +11,109 @@ id = "eK1f9iRX0rQVrrAkCsDUe"
 uri = "file://public/og-image.jpg"
 type = "image"
 title = "New SEO / Link Preview Image"
+logical_id = "71e9d422-3328-46a9-81d2-b111612a4bbb"
 
 [[outputs]]
 id = "Js1isnOhmzMtomvq85R2-"
 uri = "file://email-templates/MAILCHIMP_SETUP.md"
 type = "text"
 title = "Mailchimp Nurture Journey — Manual Setup Guide"
+logical_id = "31ee7bad-49aa-4d81-9d7f-754ca45edfe3"
 
 [[outputs]]
 id = "klCYUi4EGkL3GIEowD33E"
 uri = "file://attached_assets/stock_images/danang_skyline.jpg"
 type = "image"
 title = "Da Nang Vietnam beach city skyline aerial"
+logical_id = "66dec76d-c802-4fd3-a62b-ca73b7a7dd68"
 
 [[outputs]]
 id = "mbbKXKctSsrYlMvkC_awX"
 uri = "file://attached_assets/stock_images/luxury_interior.jpg"
 type = "image"
 title = "luxury modern apartment living room interior bright"
+logical_id = "5154b6cc-3ff0-42dd-b5b1-1a3caa00543a"
 
 [[outputs]]
 id = "D8R9iSWRhjAjpEDJWT0Qb"
 uri = "file://attached_assets/stock_images/housekeeping.jpg"
 type = "image"
 title = "hotel housekeeping professional cleaning luxury room"
+logical_id = "7ffbb6c3-7f4c-4f63-9167-c7a2c30a571f"
 
 [[outputs]]
 id = "Qw-F0fLCC3fp7mrxQDjqq"
 uri = "file://attached_assets/stock_images/guest_welcome.jpg"
 type = "image"
 title = "friendly host welcoming guests with keys apartment handshake"
+logical_id = "2268f7db-3ede-4ed3-9fbe-b90a335b1b93"
 
 [[outputs]]
 id = "y0fp0Neqs9K8ZPYza3flc"
 uri = "file://attached_assets/stock_images/housekeeping2_1.jpg"
 type = "image"
 title = "hotel staff making bed fresh white linens bright room"
+logical_id = "a9ee0eed-8bea-4790-ae3e-5f89e39342de"
 
 [[outputs]]
 id = "EGxfG5U7_rtIIOcY1ktLX"
 uri = "file://attached_assets/stock_images/housekeeping2_2.jpg"
 type = "image"
 title = "hotel staff making bed fresh white linens bright room"
+logical_id = "91bf51eb-59cf-4e8d-bb31-9e6db9763eaa"
 
 [[outputs]]
 id = "tQCWgGUJy7jj3612rdFeF"
 uri = "file://attached_assets/stock_images/villa_pool_1.jpg"
 type = "image"
 title = "tropical resort villa swimming pool palm trees luxury"
+logical_id = "7b3fc365-8c1a-439d-a317-f9cfb977be02"
 
 [[outputs]]
 id = "-PQTPbwrWNmW75LGU3fVv"
 uri = "file://attached_assets/stock_images/villa_pool_2.jpg"
 type = "image"
 title = "tropical resort villa swimming pool palm trees luxury"
+logical_id = "a1a18ecc-8400-4498-a2e3-301c67fd5c2b"
+
+[[outputs]]
+id = "Yd-WH90u5eCXtsNsgoIhH"
+uri = "file://public/onboarding/ipm-onboarding-en.pdf"
+type = "pdf"
+title = "English onboarding PDF"
+description = "Fillable, two-page English reference form with current plan terms and safe-access instructions."
+logical_id = "5e67549b-8e21-4662-b1ef-81d428d8537c"
+content_hash = "sha256:778de6ffca0b741c862a0393082237fe96f6573a835699e70e6e5c28f2eedbea"
+size = 587431
+mtime_ms = 1790618111654
+storage_uri = "gcs://replit-rams-assets-riker/rams/assets/repl:0647ac4f-02d3-46fa-afa9-3f214720d51b/5e67549b-8e21-4662-b1ef-81d428d8537c/6dfc3310-abe3-4f65-a1b5-145c8024a846"
+storage_version_token = "1790618426545405"
+content_type = "application/pdf"
+
+[[outputs]]
+id = "1YLFusmta3BWb6AFDlJjC"
+uri = "file://public/onboarding/ipm-onboarding-es.pdf"
+type = "pdf"
+title = "Spanish onboarding PDF"
+description = "Fillable, two-page Spanish reference form with current plan terms and safe-access instructions."
+logical_id = "b407a367-b6b4-47c2-8f22-82fe980e1cf1"
+content_hash = "sha256:23910765ae585f54c5b23d85449438b2f4254713de96c47f0bd48097ce0f81cb"
+size = 587937
+mtime_ms = 1790618111840
+storage_uri = "gcs://replit-rams-assets-riker/rams/assets/repl:0647ac4f-02d3-46fa-afa9-3f214720d51b/b407a367-b6b4-47c2-8f22-82fe980e1cf1/e2e6653c-5b32-4996-a2b0-6c36163cdd06"
+storage_version_token = "1790618427277826"
+content_type = "application/pdf"
+
+[[outputs]]
+id = "6BP4KUa0QB2yjDALsmqNM"
+uri = "file://public/onboarding/ipm-onboarding-vi.pdf"
+type = "pdf"
+title = "Vietnamese onboarding PDF"
+description = "Fillable, two-page Vietnamese reference form with current plan terms and safe-access instructions."
+logical_id = "958381c0-ff6e-4c4c-82db-03c1ffd41e63"
+content_hash = "sha256:05caad6daa7a90cf42becc0e9652957ac50334a0f29ff86257743db0a64ab33a"
+size = 587961
+mtime_ms = 1790618112096
+storage_uri = "gcs://replit-rams-assets-riker/rams/assets/repl:0647ac4f-02d3-46fa-afa9-3f214720d51b/958381c0-ff6e-4c4c-82db-03c1ffd41e63/ac1bea6e-71d9-4b43-93cd-c990c6f6a095"
+storage_version_token = "1790618427919664"
+content_type = "application/pdf"

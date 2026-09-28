@@ -1,12 +1,12 @@
 /* global process */
 // server/emailService.js
 // Centralized email handler for all IPM website form submissions.
-// Uses the Resend npm package with RESEND_API_KEY from Replit Secrets.
+// Uses the Resend API key where configured (e.g. Vercel) or the connected
+// Replit Resend integration in the development workspace.
 //
-// DNS / email forwarding must be configured at the domain/DNS provider:
-//   support@ipm.services       → Kevin@AivaraSolutions.com
-//   info@ipm.services          → Kevin@AivaraSolutions.com
-//   notifications@ipm.services → verified Resend sender domain
+// notifications@ipm.services must be a verified Resend sender domain.
+// Notifications are addressed directly to both team inboxes; no forwarding
+// rule is required for these form notifications.
 //
 // Customer-facing confirmation emails are sent exclusively by Mailchimp
 // (tag-triggered Customer Journey). This file sends only the internal
@@ -15,10 +15,8 @@
 import { Resend } from 'resend';
 
 // ─── Config ───────────────────────────────────────────────────────────────────
-// Admin notifications go directly to Kevin's inbox.
-// Once email forwarding is live on ipm.services, this can be changed back to
-// support@ipm.services — but direct delivery is more reliable long-term.
-const ADMIN_TO     = 'Kevin@AivaraSolutions.com';
+// Send one notification to both requested inboxes.
+const ADMIN_TO     = ['Kevin@AivaraSolutions.com', 'info@richaf.global'];
 const FROM_ADDRESS = 'notifications@ipm.services';
 const FROM_LABEL   = `IPM Notifications <${FROM_ADDRESS}>`;
 
@@ -31,10 +29,24 @@ const escapeHtml = (value) =>
     "'": '&#39;',
   }[character]));
 
-function getResend() {
+async function deliverNotification(payload) {
   const key = process.env.RESEND_API_KEY;
-  if (!key) throw new Error('RESEND_API_KEY is not set — add it in Replit Secrets.');
-  return new Resend(key);
+  if (key) {
+    const { error } = await new Resend(key).emails.send(payload);
+    if (error) throw new Error(`Resend rejected the email: ${error.message}`);
+    return;
+  }
+  // The connector supplies credentials in Replit without exposing an API key.
+  // A non-Replit host (such as Vercel) must set RESEND_API_KEY.
+  const { ReplitConnectors } = await import('@replit/connectors-sdk');
+  const response = await new ReplitConnectors().proxy('resend', '/emails', {
+    method: 'POST',
+    body: payload,
+  });
+  if (!response.ok) {
+    const result = await response.json().catch(() => ({}));
+    throw new Error(`Resend rejected the email: ${result.message || response.status}`);
+  }
 }
 
 // ─── HTML: admin notification ─────────────────────────────────────────────────
@@ -98,21 +110,20 @@ function buildAdminHtml(fields, source) {
  * @param {string}  [opts.customerName]
  * @param {string}  [opts.source]
  */
-export async function sendFormEmails({ fields, customerEmail, source = 'Website Form', subject = 'New IPM Website Lead' }) {
-  const resend = getResend();
+export async function sendFormEmails({ fields, customerEmail, source = 'Website Form', subject = 'New IPM Website Lead', deliver = deliverNotification }) {
   const errors = [];
 
-  // Admin notification — reply_to set to the visitor so Kevin can reply directly
+  // Admin notification — reply_to lets either recipient respond to the visitor.
   try {
-    await resend.emails.send({
+    await deliver({
       from:     FROM_LABEL,
-      to:       [ADMIN_TO],
+      to:       ADMIN_TO,
       reply_to: customerEmail || undefined,
       subject,
       html:     buildAdminHtml(fields, source),
       text:     Object.entries(fields).map(([k, v]) => `${k}: ${v || '—'}`).join('\n'),
     });
-    console.log(`[emailService] Admin notification → ${ADMIN_TO} (${source})`);
+    console.log(`[emailService] Admin notification accepted for ${ADMIN_TO.join(', ')} (${source})`);
   } catch (err) {
     console.error('[emailService] Admin notification failed:', err.message);
     errors.push({ type: 'admin', message: err.message });

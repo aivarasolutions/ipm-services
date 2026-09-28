@@ -1,5 +1,6 @@
 - [shadcn theme tokens are navy](shadcn-card-tokens.md) — `--card`/`--muted`/`--popover` in src/App.css are DARK navy w/ light foreground; bare `<Card>`/muted text renders light-on-navy, NOT light-on-white.
 - [Lead form → Mailchimp tags](lead-form-mailchimp-tags.md) — new lead forms must put plan keywords (10%/20%/listing/full) in the `source` field to trigger the right Mailchimp tag & nurture journey.
+- [Mailchimp connector permissions](mailchimp-connector-permissions.md) — the connected Mailchimp OAuth grants read access only; audience upserts and welcome-flow tags need an API key or write-enabled OAuth.
 - [Vercel npm deploy](vercel-npm-deploy.md) — keep `.npmrc` (audit/fund off), vite/@vitejs/plugin-react/tw-animate-css in `dependencies`, engines.node 20.x; or Vercel install crashes & "vite not found".
 - [Hostaway image quality](hostaway-image-quality.md) — thumbnailUrl can be tiny; public cards and galleries should prefer ordered full listingImages URLs.
 - [Vite route-head transforms](vite-route-head-transforms.md) — SPA fallback head transforms must read the original request URL or every direct route is treated as `/index.html`.

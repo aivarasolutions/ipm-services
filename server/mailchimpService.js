@@ -1,11 +1,12 @@
+/* global process */
 // server/mailchimpService.js
 // Adds/updates IPM website leads in the Mailchimp audience.
 // Uses @mailchimp/mailchimp_marketing with MAILCHIMP_API_KEY from Replit Secrets.
 // The server prefix (e.g. "us18") is parsed from the API key automatically.
 //
 // Target audience is controlled by MAILCHIMP_LIST_ID (set to the dedicated
-// "IPM - International Property Management" audience). Falls back to a name match
-// on "IPM" / "International Property", then the first audience.
+// "IPM - International Property Management" audience). Otherwise match its name;
+// never add contacts to an unrelated audience.
 
 import mailchimp from '@mailchimp/mailchimp_marketing';
 import crypto from 'crypto';
@@ -33,13 +34,14 @@ async function getListId(client) {
     return _listIdCache;
   }
 
-  // 2. Match by name, then fall back to the first audience
+  // 2. Match by name. Never silently use another audience.
   const res = await client.lists.getAllLists({ count: 50 });
   if (!res.lists?.length) throw new Error('No Mailchimp audiences found.');
   const ipm = res.lists.find(l =>
     /ipm|international property/i.test(l.name)
   );
-  const chosen = ipm || res.lists[0];
+  if (!ipm) throw new Error('IPM Mailchimp audience not found; set MAILCHIMP_LIST_ID.');
+  const chosen = ipm;
   _listIdCache = chosen.id;
   console.log(`[mailchimp] Using audience: ${chosen.name} (${_listIdCache})`);
   return _listIdCache;
@@ -114,6 +116,7 @@ export async function addToMailchimp({ email, firstName, lastName, phone, proper
       });
     } catch (tagErr) {
       console.error('[mailchimp] Tag apply error:', tagErr.response?.body || tagErr.message);
+      return { ok: false, error: 'Subscriber was added but the welcome-flow tags could not be applied.' };
     }
 
     console.log(`[mailchimp] Synced: ${email} → ${member.status} | tags: ${uniqueTags.join(', ')}`);
