@@ -19,6 +19,22 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Keep route-specific SEO content in the HTML, but do not paint the
+         generic text shell before the actual client page is ready. -->
+    <style>
+      html.ipm-app-loading,
+      html.ipm-app-loading body { background: #06121F; margin: 0; }
+      html.ipm-app-loading #root > .seo-route-shell:not(.seo-home-shell) { display: none; }
+    </style>
+    <script>
+      document.documentElement.classList.add('ipm-app-loading');
+      // If the app fails to start, reveal the source page instead of staying blank.
+      window.setTimeout(() => {
+        if (document.querySelector('#root > .seo-route-shell:not(.seo-home-shell)')) {
+          document.documentElement.classList.remove('ipm-app-loading');
+        }
+      }, 15000);
+    </script>
 
     <!-- Luxury Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -354,7 +354,7 @@ export const createSeoShell = (metadata, pathname = '/', options = {}) => {
     }[locale] || null;
     if (home) {
       const prefix = locale === 'en' ? '' : `/${locale}`;
-      return `<main class="seo-route-shell" style="background:#06121F;color:#fff;font-family:Montserrat,system-ui,sans-serif">
+       return `<main class="seo-route-shell seo-home-shell" style="background:#06121F;color:#fff;font-family:Montserrat,system-ui,sans-serif">
 <style>
 .seo-route-shell{margin:0}.seo-route-shell *{box-sizing:border-box}
 .seo-route-shell .seo-nav{height:64px;background:#0A1A30;border-bottom:1px solid #d4af3733;display:flex;align-items:center;justify-content:space-between;padding:0 max(24px,calc((100vw - 1280px)/2))}
@@ -455,7 +455,7 @@ export const injectSeoMetadataIntoHtml = (html, pathname, options = {}) => {
   // document is also the production fallback source). Match the complete
   // known shell rather than stopping at the first nested closing div.
   const rootPattern =
-    /<div id="root">(?:\s*<main class="seo-route-shell"[\s\S]*?<\/main>\s*)?<\/div>/i;
+    /<div id="root">(?:\s*<main class="seo-route-shell(?:\s[^"]*)?"[\s\S]*?<\/main>\s*)?<\/div>/i;
   output = rootPattern.test(output)
     ? output.replace(rootPattern, `<div id="root">${createSeoShell(metadata, path, options)}</div>`)
     : output;
