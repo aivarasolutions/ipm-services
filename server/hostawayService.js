@@ -1,5 +1,6 @@
 /* global process */
 const HOSTAWAY_BASE_URL = 'https://api.hostaway.com/v1';
+const BOOKING_WEBSITE_URL = 'https://stay.richaf.global';
 const LISTINGS_TTL_MS = 5 * 60 * 1000;
 const DETAILS_TTL_MS = 5 * 60 * 1000;
 
@@ -41,17 +42,30 @@ const getAccessToken = async () => {
     scope: 'general',
   });
 
-  const response = await fetch(`${HOSTAWAY_BASE_URL}/accessTokens`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Cache-Control': 'no-cache',
-    },
-    body,
-  });
+  let response;
+  try {
+    response = await fetch(`${HOSTAWAY_BASE_URL}/accessTokens`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Cache-Control': 'no-cache',
+      },
+      body,
+      signal: AbortSignal.timeout(20_000),
+    });
+  } catch (error) {
+    console.error('[hostaway] authentication request failed', { name: error.name, code: error.cause?.code });
+    throw new Error('Unable to connect to the booking system');
+  }
   const data = await response.json().catch(() => ({}));
   if (!response.ok || !data.access_token) {
-    console.error('[hostaway] authentication failed', { status: response.status });
+    console.error('[hostaway] authentication failed', {
+      endpoint: '/v1/accessTokens',
+      status: response.status,
+      reason: typeof data.error === 'string' && /^[a-z_]{1,60}$/.test(data.error)
+        ? data.error
+        : 'token_not_issued',
+    });
     const error = new Error('Unable to connect to the booking system');
     error.status = 502;
     throw error;
@@ -66,15 +80,26 @@ const getAccessToken = async () => {
 
 const request = async (path, options = {}, retry = true) => {
   const token = await getAccessToken();
-  const response = await fetch(`${HOSTAWAY_BASE_URL}${path}`, {
-    ...options,
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Cache-Control': 'no-cache',
-      ...(options.body ? { 'Content-Type': 'application/json' } : {}),
-      ...options.headers,
-    },
-  });
+  let response;
+  try {
+    response = await fetch(`${HOSTAWAY_BASE_URL}${path}`, {
+      ...options,
+      signal: options.signal || (options.method === 'POST' ? undefined : AbortSignal.timeout(20_000)),
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Cache-Control': 'no-cache',
+        ...(options.body ? { 'Content-Type': 'application/json' } : {}),
+        ...options.headers,
+      },
+    });
+  } catch (error) {
+    console.error('[hostaway] API request failed', {
+      endpoint: new URL(`${HOSTAWAY_BASE_URL}${path}`).pathname,
+      name: error.name,
+      code: error.cause?.code,
+    });
+    throw new Error('The booking system could not complete this request.');
+  }
 
   if (response.status === 401 && retry) {
     tokenCache = { token: null, expiresAt: 0 };
@@ -83,6 +108,10 @@ const request = async (path, options = {}, retry = true) => {
 
   const data = await response.json().catch(() => ({}));
   if (!response.ok || data.status === 'fail') {
+    console.error('[hostaway] API response failed', {
+      endpoint: new URL(`${HOSTAWAY_BASE_URL}${path}`).pathname,
+      status: response.status,
+    });
     const error = new Error(
       response.status === 429
         ? 'The booking system is busy. Please try again shortly.'
@@ -107,6 +136,22 @@ const normalizeRating = (rating) => {
   const value = Number(rating);
   if (!Number.isFinite(value) || value <= 0) return null;
   return value > 5 ? Math.round((value / 2) * 10) / 10 : Math.round(value * 10) / 10;
+};
+
+const listingBookingUrl = (listing) => {
+  for (const item of listing.bookingEngineUrls || []) {
+    const value = typeof item === 'string' ? item : item?.url;
+    if (!value) continue;
+    try {
+      const url = new URL(value);
+      if (url.protocol === 'https:' && ['stay.richaf.global', 'book.richaf.global'].includes(url.hostname)) {
+        return url.toString();
+      }
+    } catch {
+      // Ignore malformed provider links and use the verified Pro website route.
+    }
+  }
+  return `${BOOKING_WEBSITE_URL}/listings/${encodeURIComponent(String(listing.id))}`;
 };
 
 const hostedUrl = (value) => {
@@ -156,13 +201,12 @@ const normalizeListing = (listing, detailed = false) => {
     beds: Number(listing.bedsNumber || 0),
     rating: normalizeRating(listing.averageReviewRating),
     currency: listing.currencyCode || 'USD',
+    nightlyPrice: Number(listing.price) > 0 && Number.isFinite(Number(listing.price))
+      ? Number(listing.price)
+      : null,
     thumbnailUrl: listing.thumbnailUrl || images[0]?.url || null,
     images: detailed ? images : images.slice(0, 1),
-    bookingEngineUrl:
-      listing.bookingEngineUrls?.[0]?.url ||
-      listing.bookingEngineUrls?.[0] ||
-      listing.googleVrListingUrl ||
-      null,
+    bookingEngineUrl: listingBookingUrl(listing),
   };
 
   if (detailed) {
@@ -187,8 +231,18 @@ const normalizeListing = (listing, detailed = false) => {
 const getRawListings = async () => {
   const cached = cacheGet('listings:raw');
   if (cached) return cached;
-  const listings = await request('/listings?limit=100&offset=0&includeResources=1');
-  return cacheSet('listings:raw', Array.isArray(listings) ? listings : [], LISTINGS_TTL_MS);
+  const listings = [];
+  const limit = 100;
+  for (let offset = 0; ; offset += limit) {
+    const page = await request(`/listings?limit=${limit}&offset=${offset}&includeResources=1&specialStatus%5B%5D=active`);
+    if (!Array.isArray(page)) {
+      console.error('[hostaway] unexpected listings response', { offset });
+      throw new Error('The booking system returned invalid property data.');
+    }
+    listings.push(...page);
+    if (page.length < limit) break;
+  }
+  return cacheSet('listings:raw', listings, LISTINGS_TTL_MS);
 };
 
 export const getListings = async () =>

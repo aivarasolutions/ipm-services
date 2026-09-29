@@ -1,9 +1,8 @@
-import { Link } from 'react-router-dom'
 import { Bath, BedDouble, MapPin, Star, Users } from 'lucide-react'
 
 const PropertyCard = ({ property }) => (
-  <Link
-    to={`/properties/${property.slug}`}
+  <a
+    href={property.bookingEngineUrl}
     className="group overflow-hidden rounded-2xl border border-[#0A1A30]/10 bg-white text-left shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
   >
     <div className="relative aspect-[4/3] overflow-hidden bg-[#E8E4DC]">
@@ -38,11 +37,18 @@ const PropertyCard = ({ property }) => (
         <span className="flex items-center gap-1"><BedDouble className="h-4 w-4" />{property.bedrooms} bd</span>
         <span className="flex items-center gap-1"><Bath className="h-4 w-4" />{property.bathrooms} ba</span>
       </div>
+      {property.nightlyPrice != null && (
+        <p className="mt-4 text-sm text-[#475569]">
+          From <span className="font-semibold text-[#0A1A30]">
+            {new Intl.NumberFormat('en-US', { style: 'currency', currency: property.currency }).format(property.nightlyPrice)}
+          </span> / night
+        </p>
+      )}
       <div className="mt-5 font-semibold text-[#B28B17] group-hover:text-[#8E6C0F]">
-        View dates & details <span aria-hidden="true">→</span>
+        View property &amp; book <span aria-hidden="true">→</span>
       </div>
     </div>
-  </Link>
+  </a>
 )
 
 export default PropertyCard
