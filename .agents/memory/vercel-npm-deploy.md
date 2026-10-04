@@ -29,3 +29,11 @@ field is present, prefer `npm@<stable>` — a `pnpm@...` value makes Vercel/Core
 try to provision pnpm for this npm project and breaks the install. `packageManager: npm@...`
 is optional and carries minor Corepack risk; if the crash ever returns, try removing
 it first while keeping `.npmrc` + `engines`.
+
+## Live-site verification
+
+For changes intended for IPM.services, verify the Vercel deployment status and the actual public frontend before describing the change as live.
+
+**Why:** The user expects Git sync to update Vercel. A successful Git sync or Replit publish can coexist with failed Vercel builds, leaving the public site on an older version.
+
+**How to apply:** Distinguish source sync, Replit publishing, and Vercel build success. When the user cannot see a change, check the commit's Vercel status and the public route/assets rather than relying on preview verification.
