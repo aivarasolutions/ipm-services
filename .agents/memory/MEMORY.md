@@ -2,7 +2,7 @@
 - [Lead form → Mailchimp tags](lead-form-mailchimp-tags.md) — new lead forms must put plan keywords (10%/20%/listing/full) in the `source` field to trigger the right Mailchimp tag & nurture journey.
 - [Mailchimp connector permissions](mailchimp-connector-permissions.md) — the connected Mailchimp OAuth grants read access only; audience upserts and welcome-flow tags need an API key or write-enabled OAuth.
 - [Mailchimp audience merge fields](mailchimp-audience-merge-fields.md) — verify custom fields on the target audience before sending them; unknown fields reject the whole lead upsert.
-- [Vercel npm deploy](vercel-npm-deploy.md) — keep `.npmrc` (audit/fund off), vite/@vitejs/plugin-react/tw-animate-css in `dependencies`, engines.node 20.x; or Vercel install crashes & "vite not found".
+- [Vercel npm deploy](vercel-npm-deploy.md) — Vercel requires Node 24; keep `.npmrc` audit/fund off and build tools in dependencies to avoid npm/install failures.
 - [Hostaway image quality](hostaway-image-quality.md) — thumbnailUrl can be tiny; public cards and galleries should prefer ordered full listingImages URLs.
 - [Vite route-head transforms](vite-route-head-transforms.md) — SPA fallback head transforms must read the original request URL or every direct route is treated as `/index.html`.
 - [Cold Vite preview captures](vite-cold-preview.md) — a capture during dependency optimization may show a transient hook failure, not the settled app.

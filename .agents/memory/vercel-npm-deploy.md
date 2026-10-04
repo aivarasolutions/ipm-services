@@ -16,7 +16,7 @@ The crash left node_modules incomplete, so the build then failed with
 2. Build-time tools must live in `dependencies`, NOT `devDependencies`
    (Vercel can install in production mode and skip devDeps): `vite`,
    `@vitejs/plugin-react`, `tw-animate-css`.
-3. `engines.node: "20.x"` to stop Vercel flip-flopping Node 22<->20.
+3. `engines.node: "24.x"` and a matching Node 24 development toolchain. Vercel now rejects Node 20 before installation or compilation.
 
 **Why:** the "Exit handler never called" npm crash is commonly triggered by
 npm's audit/fund network step during install; disabling both via `.npmrc`
@@ -29,6 +29,8 @@ field is present, prefer `npm@<stable>` — a `pnpm@...` value makes Vercel/Core
 try to provision pnpm for this npm project and breaks the install. `packageManager: npm@...`
 is optional and carries minor Corepack risk; if the crash ever returns, try removing
 it first while keeping `.npmrc` + `engines`.
+
+**Runtime update:** Vercel's failed-build screenshots explicitly reported that Node 20 is discontinued and required Node 24. The former Node 20 recommendation is stale; do not restore it.
 
 ## Live-site verification
 
