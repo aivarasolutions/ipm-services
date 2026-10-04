@@ -14,3 +14,9 @@ If Hostaway inventory works in development but the published backend rejects aut
 **Why:** Development inventory requests succeeded while the published API returned authentication failures. Replit production secrets are managed separately from development secrets.
 
 **How to apply:** Check both endpoints and production configuration. Have the user verify production credentials through the secure publishing interface; never read or copy secret values into chat. Do not replace a working development key or assume a confirmed credential mismatch without evidence.
+
+After a Hostaway key update, test a fresh connection and restart the preview service before treating “Token is deactivated” as a problem with the new key.
+
+**Why:** A running preview retained a deactivated token while a fresh process using the updated configuration successfully loaded inventory. Restarting restored the preview without another credential replacement.
+
+**How to apply:** Verify the updated key through the existing server module without exposing credentials, restart the workflow once, and check inventory again. This does not restart or update the published backend.
