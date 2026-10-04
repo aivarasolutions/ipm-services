@@ -5,6 +5,12 @@ description: How new lead-capture forms must signal plan interest so Mailchimp t
 
 # Lead form `source` drives Mailchimp tagging
 
+All public contact entry points, including the official 10% Listing Promotion and 20% Full Management pages, must keep the same Mailchimp lead flow in English and Spanish.
+
+**Why:** The user explicitly asked to retain the same lead flow across the website when making these two plans official services.
+
+**How to apply:** Preserve plan interest when a visitor switches language or continues to the contact page. Do not create a separate audience or unrelated submission pipeline for either plan.
+
 Any new lead form that POSTs to `/api/contact` must put plan/intent keywords in the
 `source` field. The server (`server/mailchimpService.js`) keys conditional tags off
 case-insensitive substring matches in `source`:

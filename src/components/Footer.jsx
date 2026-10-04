@@ -1,9 +1,18 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Instagram, Facebook, Linkedin } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
+import { getLocaleRouteInfo, localizeRoutePath, LOCALIZED_ROUTE_PATHS } from '../lib/seo.js'
+import { getContactPlan } from '../services/contactLead.js'
 
 const Footer = () => {
   const { language } = useLanguage()
+  const location = useLocation()
+  const { routePath } = getLocaleRouteInfo(location.pathname)
+  const pagePlan = routePath.slice(1)
+  const plan = getContactPlan(pagePlan) ? pagePlan : new URLSearchParams(location.search).get('plan')
+  const contactLocale = LOCALIZED_ROUTE_PATHS[language]?.includes('/contact') ? language : 'en'
+  const contactPath = localizeRoutePath('/contact', contactLocale) +
+    (getContactPlan(plan) ? `?plan=${plan}` : '')
   const services = [
     'Property Management',
     'Revenue Optimization',
@@ -123,7 +132,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link 
-                  to="/contact" 
+                  to={contactPath}
                   className="text-[#CFCFCF] hover:text-[#E6C978] transition-colors text-sm"
                 >
                   Property Evaluations

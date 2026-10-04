@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { useLanguage } from '../contexts/LanguageContext'
+import { getContactPlan, getContactSource } from '../services/contactLead.js'
 import { 
   Phone, 
   Mail, 
@@ -17,6 +18,9 @@ import {
 
 const Contact = () => {
   const { language } = useLanguage()
+  const location = useLocation()
+  const plan = new URLSearchParams(location.search).get('plan')
+  const selectedPlan = getContactPlan(plan)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -27,6 +31,15 @@ const Contact = () => {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+
+  useEffect(() => {
+    setFormData(previous => ({
+      ...previous,
+      subject: selectedPlan ? (selectedPlan[language] || selectedPlan.en) : previous.subject,
+      propertyType: selectedPlan ? 'management' : previous.propertyType,
+    }))
+    setIsSubmitted(false)
+  }, [selectedPlan, language])
 
   const translations = {
     en: {
@@ -201,7 +214,10 @@ const Contact = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          ...formData,
+          source: getContactSource(plan, formData.propertyType),
+        })
       })
 
       const result = await response.json()
@@ -209,7 +225,7 @@ const Contact = () => {
       if (response.ok) {
         console.log('Form submitted successfully:', result)
         setIsSubmitted(true)
-        if (typeof gtag === 'function') gtag('event', 'book_click', {});
+        if (typeof window.gtag === 'function') window.gtag('event', 'book_click', {});
         setFormData({
           name: '',
           email: '',

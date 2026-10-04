@@ -26,6 +26,14 @@ const Services = () => {
       description: 'Comprehensive vacation rental management services designed to maximize your property\'s potential and your peace of mind.',
       getStarted: 'Get Started Today',
       viewProperties: 'View Our Properties',
+      plansHeading: 'Choose the support that fits your property',
+      planListing: '10% Listing Promotion',
+      planManagement: '20% Full Management',
+      listingTerms: 'on IPM-generated reservations, or an agreed nightly rate',
+      managementTerms: 'commission + monthly fee',
+      planListingFeatures: ['Listed on Airbnb, Booking.com, VRBO & more', 'Calendar sync & no double bookings', 'Professional listing creation', 'Photo uploads & rate setup', 'Platform integration & optimization', 'Higher occupancy potential'],
+      planManagementFeatures: ['Everything in Listing Promotion', 'Guest communication & check-in coordination', 'Cleaning & maintenance coordination', 'Revenue optimization strategy', 'Owner support & monthly reporting', 'Multi-platform management & updates'],
+      choosePlan: 'Explore plan',
       complete: 'Complete Property Management Solutions',
       completeDesc: 'From listing optimization to guest services, we handle every aspect of your vacation rental business so you can focus on what matters most.',
       servicesList: [
@@ -59,6 +67,14 @@ const Services = () => {
       description: 'Servicios integrales de gestión de alquileres vacacionales diseñados para maximizar el potencial de su propiedad y su tranquilidad.',
       getStarted: 'Comenzar Hoy',
       viewProperties: 'Ver Nuestras Propiedades',
+      plansHeading: 'Elija el servicio que mejor se adapte a su propiedad',
+      planListing: 'Promoción de Anuncios 10%',
+      planManagement: 'Gestión Completa 20%',
+      listingTerms: 'en reservas generadas por IPM, o tarifa nocturna acordada',
+      managementTerms: 'comisión + cuota mensual',
+      planListingFeatures: ['Listado en Airbnb, Booking.com, VRBO y más', 'Sincronización de calendario sin dobles reservas', 'Creación profesional de anuncio', 'Carga de fotos y configuración de tarifas', 'Integración y optimización de plataformas', 'Mayor potencial de ocupación'],
+      planManagementFeatures: ['Todo lo incluido en Promoción de Anuncios', 'Comunicación con huéspedes y coordinación de check-in', 'Coordinación de limpieza y mantenimiento', 'Estrategia de optimización de ingresos', 'Soporte al propietario e informes mensuales', 'Gestión y actualizaciones multi-plataforma'],
+      choosePlan: 'Ver el plan',
       complete: 'Soluciones Completas de Gestión de Propiedades',
       completeDesc: 'Desde la optimización de anuncios hasta los servicios para huéspedes, manejamos cada aspecto de su negocio de alquiler vacacional para que usted se enfoque en lo que importa.',
       servicesList: [
@@ -92,6 +108,14 @@ const Services = () => {
       description: 'Services complets de gestion de locations de vacances conçus pour maximiser le potentiel de votre propriété et votre tranquillité d\'esprit.',
       getStarted: 'Commencer Aujourd\'hui',
       viewProperties: 'Voir Nos Propriétés',
+      plansHeading: 'Choisissez le niveau de service adapté à votre propriété',
+      planListing: 'Promotion d’annonces 10 %',
+      planManagement: 'Gestion complète 20 %',
+      listingTerms: 'sur les réservations générées par IPM, ou tarif par nuit convenu',
+      managementTerms: 'commission + frais mensuels',
+      planListingFeatures: ['Référencé sur Airbnb, Booking.com, VRBO et plus', 'Synchronisation calendrier, pas de doubles réservations', 'Création professionnelle d’annonce', 'Photos et configuration des tarifs', 'Intégration et optimisation des plateformes', 'Potentiel d’occupation plus élevé'],
+      planManagementFeatures: ['Tout inclus dans la promotion d’annonces', 'Communication clients et coordination check-in', 'Coordination ménage et maintenance', 'Stratégie d’optimisation des revenus', 'Support propriétaire et rapports mensuels', 'Gestion et mises à jour multi-plateformes'],
+      choosePlan: 'Découvrir le plan',
       complete: 'Solutions Complètes de Gestion de Propriétés',
       completeDesc: 'De l\'optimisation des annonces aux services aux clients, nous gérons tous les aspects de votre entreprise de location de vacances pour que vous puissiez vous concentrer sur ce qui compte.',
       servicesList: [
@@ -143,6 +167,31 @@ const Services = () => {
       </section>
 
       {/* Services Grid */}
+      <section className="py-16 bg-[#0A1A30] border-y border-[#D4AF37]/20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-center text-2xl md:text-3xl font-bold text-white mb-10">{t.plansHeading}</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              { title: t.planListing, rate: '10%', terms: t.listingTerms, features: t.planListingFeatures, path: language === 'es' ? '/es/listing-promotion' : '/listing-promotion' },
+              { title: t.planManagement, rate: '20%', terms: t.managementTerms, features: t.planManagementFeatures, path: language === 'es' ? '/es/full-management' : '/full-management' },
+            ].map((plan) => (
+              <Card key={plan.path} className="p-7 bg-[#0F2440] border border-[#D4AF37]/30 shadow-lg shadow-[#06121F]/20">
+                <CardContent className="p-0 flex flex-col h-full">
+                  <p className="text-[#D4AF37] text-sm font-semibold tracking-widest uppercase mb-2">{plan.rate}</p>
+                  <h3 className="text-2xl font-bold text-white mb-3">{plan.title}</h3>
+                  <p className="text-[#C9D2DE] mb-5">{plan.terms}</p>
+                  <ul className="space-y-2 mb-7 flex-1">
+                    {plan.features.map((feature) => <li key={feature} className="flex items-start gap-2 text-sm text-[#C9D2DE]"><CheckCircle aria-hidden="true" className="h-4 w-4 mt-0.5 text-[#D4AF37] shrink-0" /><span>{feature}</span></li>)}
+                  </ul>
+                  <Button asChild className="w-full bg-[#D4AF37] hover:bg-[#E6C978] text-[#06121F] font-semibold"><Link to={plan.path}>{t.choosePlan}</Link></Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Existing service catalog */}
       <section className="py-20 bg-[#F8F5EF]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">

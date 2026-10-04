@@ -9,6 +9,7 @@ import Home from './pages/Home'
 const About = lazy(() => import('./pages/About'))
 const Services = lazy(() => import('./pages/Services'))
 const ListingPromotion = lazy(() => import('./pages/ListingPromotion'))
+const FullManagement = lazy(() => import('./pages/FullManagement'))
 const Faq = lazy(() => import('./pages/Faq'))
 const Properties = lazy(() => import('./pages/Properties'))
 const PropertyDetail = lazy(() => import('./pages/PropertyDetail'))
@@ -83,6 +84,8 @@ function AppLayout() {
           <Route path="/services" element={<Services />} />
           <Route path="/listing-promotion" element={<ListingPromotion />} />
           <Route path="/es/listing-promotion" element={<ListingPromotion />} />
+          <Route path="/full-management" element={<FullManagement />} />
+          <Route path="/es/full-management" element={<FullManagement />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/es/faq" element={<Faq />} />
           <Route path="/properties" element={<Properties />} />

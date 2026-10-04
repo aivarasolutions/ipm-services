@@ -386,7 +386,7 @@ const Home = () => {
                 ))}
               </ul>
               <Button asChild className="w-full border-2 border-[#D4AF37]/60 bg-transparent text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#06121F] font-bold py-3 rounded-lg transition-all duration-200">
-                <Link to={language === 'es' ? '/es/listing-promotion' : language === 'en' ? '/listing-promotion' : '/contact'}>{t.plan1Cta}</Link>
+                <Link to={language === 'es' ? '/es/listing-promotion' : '/listing-promotion'}>{t.plan1Cta}</Link>
               </Button>
             </div>
 
@@ -412,7 +412,7 @@ const Home = () => {
                 ))}
               </ul>
               <Button asChild className="w-full bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] hover:from-[#F2D98D] hover:to-[#D4AF37] font-bold py-3 rounded-lg shadow-lg shadow-[#D4AF37]/20 transition-all duration-200 hover:scale-[1.02]">
-                <Link to="/contact">{t.plan2Cta}</Link>
+                <Link to={language === 'es' ? '/es/full-management' : '/full-management'}>{t.plan2Cta}</Link>
               </Button>
             </div>
           </div>

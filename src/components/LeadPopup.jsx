@@ -1,4 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { getLocaleRouteInfo } from '../lib/seo.js';
+import { getContactPlan } from '../services/contactLead.js';
 
 const STORAGE_KEY = 'ipm_lead_popup_v2';
 const SHOW_DELAY_MS = 45000;       // fallback: 45s on page with no scroll
@@ -23,14 +26,25 @@ const PLANS = {
 };
 
 export default function LeadPopup() {
+  const location = useLocation();
+  const pagePlan = getLocaleRouteInfo(location.pathname).routePath.slice(1);
+  const incomingPlan = getContactPlan(pagePlan)
+    ? pagePlan
+    : new URLSearchParams(location.search).get('plan');
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState('idle'); // idle | sending | success | error
-  const [plan, setPlan] = useState('full');
+  const [plan, setPlan] = useState(incomingPlan === 'listing-promotion' ? 'promotion' : 'full');
   const [form, setForm] = useState({ name: '', email: '', phone: '' });
   const [errors, setErrors] = useState({});
   const dialogRef = useRef(null);
   const firedRef = useRef(false);
   const lastFocusRef = useRef(null);
+
+  useEffect(() => {
+    if (getContactPlan(incomingPlan)) {
+      setPlan(incomingPlan === 'listing-promotion' ? 'promotion' : 'full');
+    }
+  }, [incomingPlan]);
 
   // Decide whether to show
   useEffect(() => {
@@ -186,7 +200,7 @@ export default function LeadPopup() {
       if (!res.ok) throw new Error('Server error');
       setStatus('success');
       markDone();
-      if (typeof gtag === 'function') gtag('event', 'book_click', {});
+      if (typeof window.gtag === 'function') window.gtag('event', 'book_click', {});
     } catch {
       setStatus('error');
     }
