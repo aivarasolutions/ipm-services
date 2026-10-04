@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { OWNER_TAX_POLICY } from '../lib/ownerFaq.js'
 import './Onboarding.css'
 
 const initialForm = {
@@ -55,7 +56,9 @@ const copy = {
       ['Full Property Management', 'The advertised rate is 20% commission. IPM coordinates guest communication, check-in, cleaning, maintenance, inspections, and reporting. Review your individual management agreement for the exact scope and terms.'],
     ],
     commissions: 'Platform commissions, fees & taxes',
-    commissionsText: 'Platform commissions, fees, and taxes are deducted or remitted as needed before the owner payout.',
+    commissionsText: 'Platform commissions, fees, applicable platform-collected taxes, and required withholding are reflected in the owner payout. This does not include preparing or filing an owner’s tax returns.',
+    ownerTaxes: 'Independent owner tax responsibilities & documents',
+    ownerTaxesText: OWNER_TAX_POLICY.en,
     payout: 'Final owner payout',
     payoutText: 'After the agreed plan charges, platform fees, taxes, and authorized deductions are accounted for, the remaining amount is paid to the owner.',
     weekly: 'Weekly payouts',
@@ -118,7 +121,9 @@ const copy = {
       ['Gestión Integral de la Propiedad', 'La tarifa anunciada es una comisión del 20%. IPM coordina la comunicación con huéspedes, llegada, limpieza, mantenimiento, inspecciones e informes. Consulte su contrato individual para conocer el alcance y las condiciones exactas.'],
     ],
     commissions: 'Comisiones, cargos e impuestos de las plataformas',
-    commissionsText: 'Las comisiones, cargos e impuestos de las plataformas se descuentan o remiten según sea necesario antes del pago al propietario.',
+    commissionsText: 'Las comisiones, cargos, impuestos recaudados por las plataformas y retenciones obligatorias se reflejan en el pago al propietario. Esto no incluye preparar ni presentar sus declaraciones fiscales.',
+    ownerTaxes: 'Responsabilidades y documentos fiscales del propietario',
+    ownerTaxesText: OWNER_TAX_POLICY.es,
     payout: 'Pago final al propietario',
     payoutText: 'Después de contabilizar los cargos del plan acordado, comisiones de plataformas, impuestos y deducciones autorizadas, se paga el saldo restante al propietario.',
     weekly: 'Pagos semanales',
@@ -181,7 +186,9 @@ const copy = {
       ['Quản Lý Toàn Diện', 'Mức phí được công bố là hoa hồng 20%. IPM điều phối liên lạc với khách, nhận phòng, dọn dẹp, bảo trì, kiểm tra và báo cáo. Vui lòng xem hợp đồng riêng để biết phạm vi và điều khoản cụ thể.'],
     ],
     commissions: 'Phí nền tảng và thuế',
-    commissionsText: 'Phí nền tảng và thuế được khấu trừ hoặc nộp theo quy định trước khi thanh toán cho chủ nhà.',
+    commissionsText: 'Phí nền tảng, thuế do nền tảng thu và các khoản khấu trừ bắt buộc được thể hiện trong khoản thanh toán cho chủ nhà. Điều này không bao gồm việc lập hoặc nộp tờ khai thuế của chủ nhà.',
+    ownerTaxes: 'Trách nhiệm và tài liệu thuế riêng của chủ nhà',
+    ownerTaxesText: OWNER_TAX_POLICY.vi,
     payout: 'Khoản thanh toán cuối cùng',
     payoutText: 'Sau khi tính phí theo gói đã thỏa thuận, phí nền tảng, thuế và các khoản khấu trừ được chấp thuận, số tiền còn lại được thanh toán cho chủ nhà.',
     weekly: 'Thanh toán hằng tuần',
@@ -321,6 +328,7 @@ export default function Onboarding() {
           )}
           <ul className="ipm-billing">
             <li><strong>{t.commissions}</strong><span>{t.commissionsText}</span></li>
+            <li><strong>{t.ownerTaxes}</strong><span>{t.ownerTaxesText}</span></li>
             <li><strong>{t.payout}</strong><span>{t.payoutText}</span></li>
             <li><strong>{t.weekly}</strong><span>{t.weeklyText}</span></li>
             <li><strong>{t.portal}</strong><span>{t.portalText}</span></li>

@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import { FileText } from 'lucide-react';
+import { OWNER_TAX_POLICY } from '../lib/ownerFaq.js';
 
 export default function TermsAndConditions() {
-  const lastUpdated = 'June 2026';
+  const lastUpdated = 'October 5, 2026';
 
   return (
     <div className="min-h-screen bg-[#F8F5EF]">
@@ -46,6 +47,8 @@ export default function TermsAndConditions() {
                 Any property management relationship is established only through a separate written agreement that
                 defines the specific scope, fees, and responsibilities of both parties.
               </p>
+              <h3 className="font-display text-xl font-bold text-[#0A1A30] mt-5 mb-3">Owner Tax Responsibilities</h3>
+              <p className="text-[#334155] leading-relaxed">{OWNER_TAX_POLICY.en}</p>
             </div>
 
             <div>
@@ -56,7 +59,8 @@ export default function TermsAndConditions() {
                 Vacation Rentals.
               </p>
               <ul className="space-y-2 text-[#334155] leading-relaxed list-disc pl-6">
-                <li>Our listing and promotion service is available from a 10% commission.</li>
+                <li>Listing Promotion offers 10% on IPM-generated reservations or an agreed guaranteed nightly rate, with no setup fee or monthly subscription for the first two months.</li>
+                <li>From month three, Listing Promotion includes a $40 monthly subscription, deducted from IPM-generated revenue when possible. If that revenue is insufficient, the subscription is not charged out of pocket.</li>
                 <li>Full property management is available at 20% plus a competitive monthly fee.</li>
               </ul>
               <p className="text-[#334155] leading-relaxed mt-3">

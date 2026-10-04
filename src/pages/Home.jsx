@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { useLanguage } from '../contexts/LanguageContext'
 import PropertyGrid from '../components/PropertyGrid'
 import ListingPromotionSection from '../components/ListingPromotionSection'
+import OwnerFaqSection from '../components/OwnerFaqSection'
 import {
   Building2, TrendingUp, Shield, DollarSign,
   BarChart3, Globe, Calendar, Zap, HeartHandshake,
@@ -492,6 +493,8 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <OwnerFaqSection />
 
       {/* ── 8. FINAL CTA ─────────────────────────────────────── */}
       <section className="relative bg-[#06121F] py-28 overflow-hidden">

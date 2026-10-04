@@ -2,6 +2,7 @@ import ListingPromotionSection from '../components/ListingPromotionSection'
 import { useLanguage } from '../contexts/LanguageContext'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
+import OwnerFaqSection from '../components/OwnerFaqSection'
 
 export default function ListingPromotion() {
   const { language, toggleLanguage } = useLanguage()
@@ -26,6 +27,7 @@ export default function ListingPromotion() {
         headingLevel="h1"
         showVideos
       />
+      <OwnerFaqSection plan="listing" />
     </div>
   )
 }

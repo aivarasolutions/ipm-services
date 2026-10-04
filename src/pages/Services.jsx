@@ -16,6 +16,7 @@ import {
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import ReviewsSection from '../components/ReviewsSection'
+import OwnerFaqSection from '../components/OwnerFaqSection'
 
 const Services = () => {
   const { language } = useLanguage()
@@ -271,6 +272,8 @@ const Services = () => {
 
       {/* Reviews Section */}
       <ReviewsSection />
+
+      <OwnerFaqSection />
 
       {/* CTA Section */}
       <section className="py-20 bg-[#06121F] text-white">

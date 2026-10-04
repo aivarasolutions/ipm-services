@@ -18,7 +18,7 @@ const staticSeoRoutes = {
   },
   '/faq': {
     title: 'Property Owner FAQs | International Property Management',
-    description: 'Answers to property owners’ questions about IPM’s 10% commission, booking channels, calendar sync, owner portal, setup, and cancellation.',
+    description: 'Answers about IPM’s 10% Listing Promotion and 20% Full Management plans, subscription terms, booking channels, owner portal, independent owner taxes, setup, and cancellation.',
     h1: OWNER_FAQ_CONTENT.en.title,
     intro: 'Clear answers about listing your property and generating more reservations with IPM.',
   },
@@ -166,7 +166,7 @@ const localizedSeoRoutes = {
   es: {
     '/full-management': ['Gestión Integral del 20% | IPM', 'Conozca el plan de gestión integral del 20% de IPM: promoción, precios, atención al huésped, coordinación de limpieza e informes para propietarios.', 'Gestión Integral del 20%', 'Gestión profesional de alquileres vacacionales para propietarios que desean delegar las operaciones diarias a IPM.'],
     '/listing-promotion': ['Promoción de Anuncios del 10% | IPM', 'Genere más reservas con IPM: 10% de las reservas generadas por IPM o una tarifa nocturna acordada, sin costo de configuración ni suscripción los primeros dos meses.', 'Consiga Más Reservas Sin Pagar por Adelantado', 'IPM promociona su propiedad en canales de reserva adicionales. Solo paga cuando le ayudamos a generar ingresos.'],
-    '/faq': ['Preguntas Frecuentes para Propietarios | IPM', 'Respuestas sobre la comisión del 10%, plataformas de reserva, calendarios, portal de propietarios, activación y cancelación de los servicios de IPM.', OWNER_FAQ_CONTENT.es.title, 'Respuestas claras sobre cómo publicar su propiedad y generar más reservaciones con IPM.'],
+    '/faq': ['Preguntas Frecuentes para Propietarios | IPM', 'Respuestas sobre los planes del 10% y 20%, suscripción, plataformas de reserva, portal de propietarios, impuestos independientes, activación y cancelación.', OWNER_FAQ_CONTENT.es.title, 'Respuestas claras sobre cómo publicar su propiedad y generar más reservaciones con IPM.'],
     '/': ['IPM | Gestión Internacional de Propiedades y Alquileres Vacacionales', 'Gestión profesional de alquileres vacacionales para propietarios en Playa del Carmen, Tulum, Lake Norman y otros destinos.', 'Más Reservas. Menos Vacantes.', 'Gestión profesional y promoción multiplataforma para aumentar sus ingresos con menos trabajo.'],
     '/about': ['Acerca de IPM | Gestión Internacional de Propiedades', 'Conozca cómo IPM combina experiencia local, estándares globales y sistemas profesionales de hospitalidad.', 'Acerca de IPM', 'Ayudamos a propietarios a maximizar resultados y ofrecer experiencias consistentes a sus huéspedes.'],
     '/services': ['Servicios de Gestión de Alquileres Vacacionales | IPM', 'Explore la gestión integral, optimización de ingresos, atención al huésped y promoción multiplataforma de IPM.', 'Nuestros Servicios', 'Servicios integrales diseñados para maximizar el potencial de su propiedad y su tranquilidad.'],

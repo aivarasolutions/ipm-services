@@ -1,5 +1,5 @@
 import { INSIGHT_ITEMS, NEWS_ITEMS, REAL_ESTATE_SCHEMA_LISTINGS } from './structuredData.js';
-import { OWNER_FAQ_CONTENT } from './ownerFaq.js';
+import { OWNER_FAQ_CONTENT, getOwnerFaqItems, OWNER_TAX_POLICY } from './ownerFaq.js';
 
 const escapeHtml = (value) =>
   String(value ?? '').replace(/[&<>"']/g, (character) => ({
@@ -485,6 +485,41 @@ export const createSeoRouteContent = (pathname, metadata, options = {}) => {
       ],
       links: [{ href: locale === 'es' ? '/es/contact' : '/contact', label: faq.button }],
     };
+  }
+  if (['/', '/services', '/listing-promotion', '/full-management'].includes(pathname) &&
+    (!options.locale || ['en', 'es'].includes(options.locale))) {
+    const locale = options.locale === 'es' ? 'es' : 'en';
+    const plan = pathname === '/listing-promotion' ? 'listing'
+      : pathname === '/full-management' ? 'management' : 'common';
+    const base = content || { sections: [section(metadata.h1, [metadata.intro])], links: [] };
+    content = {
+      ...base,
+      sections: [
+        ...(base.sections || []),
+        ...getOwnerFaqItems(locale, plan).map(({ question, answer }) => section(question, [answer])),
+      ],
+      links: [
+        ...(base.links || []),
+        { href: locale === 'es' ? '/es/faq' : '/faq', label: OWNER_FAQ_CONTENT[locale].title },
+      ],
+    };
+  }
+  if (pathname === '/onboarding') {
+    const locale = ['es', 'vi'].includes(options.locale) ? options.locale : 'en';
+    const base = content || { sections: [section(metadata.h1, [metadata.intro])], links: [] };
+    content = {
+      ...base,
+      sections: [
+        ...(base.sections || []),
+        section(locale === 'es' ? 'Responsabilidades fiscales del propietario'
+          : locale === 'vi' ? 'Trách nhiệm thuế của chủ nhà' : 'Owner tax responsibilities',
+        [OWNER_TAX_POLICY[locale]]),
+      ],
+    };
+  }
+  if (pathname === '/terms-and-conditions') {
+    const base = content || { sections: [section(metadata.h1, [metadata.intro])], links: [] };
+    content = { ...base, sections: [...(base.sections || []), section('Owner tax responsibilities', [OWNER_TAX_POLICY.en])] };
   }
   if (options.property) content = propertyContent(options.property);
   if (options.realEstateListing) content = realEstateContent(options.realEstateListing);
