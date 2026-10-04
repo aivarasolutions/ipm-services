@@ -690,6 +690,16 @@ if (process.env.NODE_ENV === 'production' || process.env.REPLIT_DEPLOYMENT === '
     app.get('/properties/:slug', (req, res, next) =>
       sendRouteDocument(req, res, next, distPath),
     );
+    // This directory contains content-hashed MP4s/posters; keep them cached
+    // across the homepage and promotion page without caching route HTML.
+    app.use('/videos', express.static(path.join(distPath, 'videos'), {
+      maxAge: '1y',
+      immutable: true,
+      redirect: false,
+      setHeaders: (res, filePath) => {
+        if (filePath.endsWith('.mp4')) res.setHeader('Content-Type', 'video/mp4');
+      },
+    }));
     app.use(express.static(distPath, { redirect: false }));
     app.get(/^(?!\/api(?:\/|$)).*/, (req, res, next) =>
       sendRouteDocument(req, res, next, distPath),

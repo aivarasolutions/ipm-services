@@ -1,4 +1,18 @@
 {
+  "headers": [
+    {
+      "source": "/videos/:path*",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/videos/:path*.mp4",
+      "headers": [
+        { "key": "Content-Type", "value": "video/mp4" }
+      ]
+    }
+  ],
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "https://ipm-services-kevinajackson21.replit.app/sitemap.xml" },
     { "source": "/properties/:slug", "destination": "https://ipm-services-kevinajackson21.replit.app/properties/:slug" },

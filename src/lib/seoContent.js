@@ -18,6 +18,19 @@ const safeUrl = (value) => {
 const section = (heading, paragraphs = [], items = []) => ({ heading, paragraphs, items });
 
 const STATIC_ROUTE_CONTENT = {
+  '/listing-promotion': {
+    sections: [
+      section('Listing Promotion for Property Owners', [
+        'No setup fee and no subscription for the first 2 months. Choose 10% of reservations generated through IPM or an agreed guaranteed nightly rate.',
+        'From month 3, the $40 monthly subscription is deducted from IPM-generated revenue whenever possible. If IPM does not generate enough revenue to cover it, the owner is not charged out of pocket.',
+        'Review results at the start of month 3 and end the service at no cost if it is not providing enough value. IPM does not take commission on reservations you generate independently.',
+      ]),
+      section('See How IPM Works', [
+        'Learn how we help property owners and managers generate more reservations without changing what they already have in place.',
+      ]),
+    ],
+    links: [{ href: '/contact', label: 'Get Started With IPM' }],
+  },
   '/': {
     sections: [
       section('Global Exposure for Your Property', [
@@ -445,6 +458,21 @@ export const createSeoRouteContent = (pathname, metadata, options = {}) => {
         ], ['Gửi tin đăng', 'IPM quảng bá', 'Chúng tôi mang lại lượt đặt phòng', 'Bạn nhận tiền']),
       ],
       links: [{ href: '/vi/vietnam', label: 'Xem dịch vụ IPM tại Việt Nam' }],
+    };
+  }
+  if (pathname === '/listing-promotion' && options.locale === 'es') {
+    content = {
+      sections: [
+        section('Plan de Promoción de Anuncios', [
+          'No hay costo de configuración ni suscripción durante los primeros 2 meses. Elija pagar el 10% de las reservas generadas por IPM o acuerde una tarifa nocturna garantizada.',
+          'A partir del tercer mes, la suscripción de $40 al mes se descuenta de los ingresos generados por IPM cuando sea posible. Si IPM no genera ingresos suficientes, usted no paga la suscripción de su bolsillo.',
+          'Revise sus resultados al inicio del tercer mes y cancele sin costo si el servicio no aporta suficiente valor. IPM no cobra comisión por reservas que usted genere por su cuenta.',
+        ]),
+        section('Conozca Cómo Funciona IPM', [
+          'Conozca cómo ayudamos a propietarios y administradores a generar más reservaciones sin cambiar lo que ya tienen funcionando.',
+        ]),
+      ],
+      links: [{ href: '/es/contact', label: 'Comenzar con IPM' }],
     };
   }
   if (pathname === '/faq') {

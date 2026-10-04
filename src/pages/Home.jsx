@@ -386,7 +386,7 @@ const Home = () => {
                 ))}
               </ul>
               <Button asChild className="w-full border-2 border-[#D4AF37]/60 bg-transparent text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#06121F] font-bold py-3 rounded-lg transition-all duration-200">
-                <Link to="/contact">{t.plan1Cta}</Link>
+                <Link to={language === 'es' ? '/es/listing-promotion' : language === 'en' ? '/listing-promotion' : '/contact'}>{t.plan1Cta}</Link>
               </Button>
             </div>
 
@@ -419,7 +419,7 @@ const Home = () => {
         </div>
       </section>
 
-      <ListingPromotionSection language={language} />
+      <ListingPromotionSection language={language} showVideos />
 
       {/* ── 5. SERVICES ──────────────────────────────────────── */}
       <section className="bg-[#06121F] py-24">

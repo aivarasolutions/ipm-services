@@ -4,6 +4,12 @@ import { OWNER_FAQ_CONTENT } from './ownerFaq.js';
 export const SITE_URL = 'https://www.ipm.services';
 
 const staticSeoRoutes = {
+  '/listing-promotion': {
+    title: '10% Listing Promotion | International Property Management',
+    description: 'Fill available nights with IPM’s listing promotion: 10% on IPM-generated reservations or an agreed nightly rate, with no setup fee and two months free of subscription.',
+    h1: 'Get More Reservations Without Paying Upfront',
+    intro: 'IPM helps promote your property across additional booking channels. You only pay when we help generate revenue for you.',
+  },
   '/faq': {
     title: 'Property Owner FAQs | International Property Management',
     description: 'Answers to property owners’ questions about IPM’s 10% commission, booking channels, calendar sync, owner portal, setup, and cancellation.',
@@ -152,6 +158,7 @@ const insightSeoRoutes = {
 
 const localizedSeoRoutes = {
   es: {
+    '/listing-promotion': ['Promoción de Anuncios del 10% | IPM', 'Genere más reservas con IPM: 10% de las reservas generadas por IPM o una tarifa nocturna acordada, sin costo de configuración ni suscripción los primeros dos meses.', 'Consiga Más Reservas Sin Pagar por Adelantado', 'IPM promociona su propiedad en canales de reserva adicionales. Solo paga cuando le ayudamos a generar ingresos.'],
     '/faq': ['Preguntas Frecuentes para Propietarios | IPM', 'Respuestas sobre la comisión del 10%, plataformas de reserva, calendarios, portal de propietarios, activación y cancelación de los servicios de IPM.', OWNER_FAQ_CONTENT.es.title, 'Respuestas claras sobre cómo publicar su propiedad y generar más reservaciones con IPM.'],
     '/': ['IPM | Gestión Internacional de Propiedades y Alquileres Vacacionales', 'Gestión profesional de alquileres vacacionales para propietarios en Playa del Carmen, Tulum, Lake Norman y otros destinos.', 'Más Reservas. Menos Vacantes.', 'Gestión profesional y promoción multiplataforma para aumentar sus ingresos con menos trabajo.'],
     '/about': ['Acerca de IPM | Gestión Internacional de Propiedades', 'Conozca cómo IPM combina experiencia local, estándares globales y sistemas profesionales de hospitalidad.', 'Acerca de IPM', 'Ayudamos a propietarios a maximizar resultados y ofrecer experiencias consistentes a sus huéspedes.'],

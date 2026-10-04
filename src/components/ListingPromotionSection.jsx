@@ -3,6 +3,8 @@ import { createElement, useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight, CalendarDays, Check, DollarSign, Percent, ShieldCheck, TrendingUp } from 'lucide-react'
 import './ListingPromotionSection.css'
+import PromoVideoSection from './PromoVideoSection'
+import { PROMO_VIDEOS } from '../lib/promoVideos'
 
 const copy = {
   en: {
@@ -109,7 +111,12 @@ const copy = {
 
 const icons = [ArrowRight, TrendingUp, CalendarDays, Check]
 
-export default function ListingPromotionSection({ language = 'en', source = 'Homepage — Listing Promotion (10%)' }) {
+export default function ListingPromotionSection({
+  language = 'en',
+  source = 'Homepage — Listing Promotion (10%)',
+  headingLevel = 'h2',
+  showVideos = false,
+}) {
   const t = copy[language] || copy.en
   const reducedMotion = useReducedMotion()
   const [status, setStatus] = useState('idle')
@@ -145,7 +152,7 @@ export default function ListingPromotionSection({ language = 'en', source = 'Hom
       <div className="listing-promotion__inner">
         <div className="listing-promotion__heading">
           <span className="listing-promotion__eyebrow"><TrendingUp size={15} aria-hidden="true" />{t.eyebrow}</span>
-          <h2 id="listing-promotion-title">{t.title}</h2>
+          {createElement(headingLevel, { id: 'listing-promotion-title' }, t.title)}
           <p>{t.intro}</p>
         </div>
 
@@ -177,6 +184,8 @@ export default function ListingPromotionSection({ language = 'en', source = 'Hom
           <div><h3>{t.trialTitle}</h3><p>{t.trial}<strong>{t.trialEmphasis}</strong></p></div>
         </div>
         <p className="listing-promotion__independence"><Check size={19} aria-hidden="true" />{t.independence}</p>
+
+        {showVideos && <PromoVideoSection language={language} videos={PROMO_VIDEOS[language]} />}
 
         <div className="listing-promotion__action">
           <p>{t.support}</p>

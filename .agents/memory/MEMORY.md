@@ -9,3 +9,5 @@
 - [SEO shell first paint](seo-shell-first-paint.md) — source-visible SEO HTML is painted before React; the homepage shell must resemble the real hero or visitors see a false first screen.
 - [Onboarding credential safety](onboarding-credential-safety.md) — never collect, store, or email Airbnb passwords; use co-host invitations or a separately coordinated secure-access method.
 - [Archived owner proposals](archived-owner-proposals.md) — completed proposals and the Tegucigalpa checklist are hidden from Insights navigation, but direct URLs remain accessible.
+- [Promotional video rules](promotional-video-rules.md) — Karen videos are Spanish-only; preserve uploaded sources/captions and click-to-load playback without delaying the homepage hero.
+- [Native video test browser](native-video-test-browser.md) — automated Chromium can lack H.264/AAC; probe exact codecs before diagnosing valid MP4s as broken.
