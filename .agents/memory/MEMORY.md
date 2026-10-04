@@ -12,3 +12,4 @@
 - [Promotional video rules](promotional-video-rules.md) — Karen videos are Spanish-only; preserve uploaded sources/captions and click-to-load playback without delaying the homepage hero.
 - [Native video test browser](native-video-test-browser.md) — automated Chromium can lack H.264/AAC; probe exact codecs before diagnosing valid MP4s as broken.
 - [Hosting diagnostics](hosting-diagnostics.md) — Vercel connection validity is not team access; development inventory can work while production authentication fails.
+- [Hosted booking flow](hosted-booking-flow.md) — public browsing uses book.richaf.global; property reservations use stay.richaf.global, which blocks cross-origin embedding.
