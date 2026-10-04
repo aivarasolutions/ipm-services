@@ -11,3 +11,4 @@
 - [Archived owner proposals](archived-owner-proposals.md) — completed proposals and the Tegucigalpa checklist are hidden from Insights navigation, but direct URLs remain accessible.
 - [Promotional video rules](promotional-video-rules.md) — Karen videos are Spanish-only; preserve uploaded sources/captions and click-to-load playback without delaying the homepage hero.
 - [Native video test browser](native-video-test-browser.md) — automated Chromium can lack H.264/AAC; probe exact codecs before diagnosing valid MP4s as broken.
+- [Hosting diagnostics](hosting-diagnostics.md) — Vercel connection validity is not team access; development inventory can work while production authentication fails.
