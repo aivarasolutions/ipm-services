@@ -5,6 +5,7 @@
 - [Vercel npm deploy](vercel-npm-deploy.md) — keep `.npmrc` (audit/fund off), vite/@vitejs/plugin-react/tw-animate-css in `dependencies`, engines.node 20.x; or Vercel install crashes & "vite not found".
 - [Hostaway image quality](hostaway-image-quality.md) — thumbnailUrl can be tiny; public cards and galleries should prefer ordered full listingImages URLs.
 - [Vite route-head transforms](vite-route-head-transforms.md) — SPA fallback head transforms must read the original request URL or every direct route is treated as `/index.html`.
+- [Cold Vite preview captures](vite-cold-preview.md) — a capture during dependency optimization may show a transient hook failure, not the settled app.
 - [SEO shell first paint](seo-shell-first-paint.md) — source-visible SEO HTML is painted before React; the homepage shell must resemble the real hero or visitors see a false first screen.
 - [Onboarding credential safety](onboarding-credential-safety.md) — never collect, store, or email Airbnb passwords; use co-host invitations or a separately coordinated secure-access method.
 - [Archived owner proposals](archived-owner-proposals.md) — completed proposals and the Tegucigalpa checklist are hidden from Insights navigation, but direct URLs remain accessible.

@@ -8,6 +8,7 @@ import './audio-styles.css'
 import Home from './pages/Home'
 const About = lazy(() => import('./pages/About'))
 const Services = lazy(() => import('./pages/Services'))
+const Faq = lazy(() => import('./pages/Faq'))
 const Properties = lazy(() => import('./pages/Properties'))
 const PropertyDetail = lazy(() => import('./pages/PropertyDetail'))
 const Contact = lazy(() => import('./pages/Contact'))
@@ -79,6 +80,8 @@ function AppLayout() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/faq" element={<Faq />} />
+          <Route path="/es/faq" element={<Faq />} />
           <Route path="/properties" element={<Properties />} />
           <Route path="/properties/:slug" element={<PropertyDetail />} />
           <Route path="/real-estate" element={<RealEstate />} />

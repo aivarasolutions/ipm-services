@@ -1,3 +1,5 @@
+import { OWNER_FAQ_CONTENT } from './ownerFaq.js';
+
 export const SITE_URL = 'https://www.ipm.services';
 export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
@@ -392,6 +394,23 @@ export function createVacationRentalStructuredData(property) {
 
 export function getRouteStructuredData(pathname, options = {}) {
   const path = pathname.replace(/\/+$/, '') || '/';
+  if (path === '/faq' || path === '/es/faq') {
+    const locale = path === '/es/faq' ? 'es' : 'en';
+    const faq = OWNER_FAQ_CONTENT[locale];
+    return [{
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      '@id': `${SITE_URL}${path}#faq`,
+      url: `${SITE_URL}${path}`,
+      name: faq.title,
+      inLanguage: locale,
+      mainEntity: faq.items.map(({ question, answer }) => ({
+        '@type': 'Question',
+        name: question,
+        acceptedAnswer: { '@type': 'Answer', text: answer },
+      })),
+    }];
+  }
   const listings = options.listings || REAL_ESTATE_SCHEMA_LISTINGS;
   const listingMatch = path.match(/^\/real-estate\/([^/]+)$/);
   const propertyMatch = path.match(/^\/properties\/([^/]+)$/);

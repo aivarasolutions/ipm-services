@@ -1,8 +1,15 @@
 import { createSeoRouteContent } from './seoContent.js';
+import { OWNER_FAQ_CONTENT } from './ownerFaq.js';
 
 export const SITE_URL = 'https://www.ipm.services';
 
 const staticSeoRoutes = {
+  '/faq': {
+    title: 'Property Owner FAQs | International Property Management',
+    description: 'Answers to property owners’ questions about IPM’s 10% commission, booking channels, calendar sync, owner portal, setup, and cancellation.',
+    h1: OWNER_FAQ_CONTENT.en.title,
+    intro: 'Clear answers about listing your property and generating more reservations with IPM.',
+  },
   '/': {
     title: 'IPM | International Property Management & Vacation Rentals',
     description:
@@ -145,6 +152,7 @@ const insightSeoRoutes = {
 
 const localizedSeoRoutes = {
   es: {
+    '/faq': ['Preguntas Frecuentes para Propietarios | IPM', 'Respuestas sobre la comisión del 10%, plataformas de reserva, calendarios, portal de propietarios, activación y cancelación de los servicios de IPM.', OWNER_FAQ_CONTENT.es.title, 'Respuestas claras sobre cómo publicar su propiedad y generar más reservaciones con IPM.'],
     '/': ['IPM | Gestión Internacional de Propiedades y Alquileres Vacacionales', 'Gestión profesional de alquileres vacacionales para propietarios en Playa del Carmen, Tulum, Lake Norman y otros destinos.', 'Más Reservas. Menos Vacantes.', 'Gestión profesional y promoción multiplataforma para aumentar sus ingresos con menos trabajo.'],
     '/about': ['Acerca de IPM | Gestión Internacional de Propiedades', 'Conozca cómo IPM combina experiencia local, estándares globales y sistemas profesionales de hospitalidad.', 'Acerca de IPM', 'Ayudamos a propietarios a maximizar resultados y ofrecer experiencias consistentes a sus huéspedes.'],
     '/services': ['Servicios de Gestión de Alquileres Vacacionales | IPM', 'Explore la gestión integral, optimización de ingresos, atención al huésped y promoción multiplataforma de IPM.', 'Nuestros Servicios', 'Servicios integrales diseñados para maximizar el potencial de su propiedad y su tranquilidad.'],

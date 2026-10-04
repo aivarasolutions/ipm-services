@@ -1,4 +1,5 @@
 import { INSIGHT_ITEMS, NEWS_ITEMS, REAL_ESTATE_SCHEMA_LISTINGS } from './structuredData.js';
+import { OWNER_FAQ_CONTENT } from './ownerFaq.js';
 
 const escapeHtml = (value) =>
   String(value ?? '').replace(/[&<>"']/g, (character) => ({
@@ -444,6 +445,17 @@ export const createSeoRouteContent = (pathname, metadata, options = {}) => {
         ], ['Gửi tin đăng', 'IPM quảng bá', 'Chúng tôi mang lại lượt đặt phòng', 'Bạn nhận tiền']),
       ],
       links: [{ href: '/vi/vietnam', label: 'Xem dịch vụ IPM tại Việt Nam' }],
+    };
+  }
+  if (pathname === '/faq') {
+    const locale = options.locale === 'es' ? 'es' : 'en';
+    const faq = OWNER_FAQ_CONTENT[locale];
+    content = {
+      sections: [
+        ...faq.items.map(({ question, answer }) => section(question, [answer])),
+        section(faq.cta),
+      ],
+      links: [{ href: locale === 'es' ? '/es/contact' : '/contact', label: faq.button }],
     };
   }
   if (options.property) content = propertyContent(options.property);

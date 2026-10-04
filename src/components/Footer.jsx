@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
 import { Instagram, Facebook, Linkedin } from 'lucide-react'
+import { useLanguage } from '../contexts/LanguageContext'
 
 const Footer = () => {
+  const { language } = useLanguage()
   const services = [
     'Property Management',
     'Revenue Optimization',
@@ -125,6 +127,14 @@ const Footer = () => {
                   className="text-[#CFCFCF] hover:text-[#E6C978] transition-colors text-sm"
                 >
                   Property Evaluations
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={language === 'es' ? '/es/faq' : '/faq'}
+                  className="text-[#CFCFCF] hover:text-[#E6C978] transition-colors text-sm"
+                >
+                  {language === 'es' ? 'Preguntas frecuentes' : 'FAQs for Property Owners'}
                 </Link>
               </li>
               <li>
