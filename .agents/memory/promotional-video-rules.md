@@ -27,13 +27,13 @@ The Spanish owner-portal reel must also come first on the Spanish homepage, 10% 
 
 **How to apply:** Preserve the Spanish talking clips after the portal reel and the existing English placements. Never use the English portal reel as a Spanish fallback.
 
-The homepage also shows the matching English/Spanish portal reel on the right of the hero, over the house area. Keep the original hero text and buttons and the lower three-video section: the portal reel deliberately appears twice.
+The Spanish homepage shows its portal reel on the right of the hero, over the house area. The English homepage places the portal reel in a two-video row immediately below the hero, with the full-management case study to its right. Keep original hero text, buttons and the lower three-video section: the portal reel deliberately appears twice.
 
-**Why:** The user explicitly requested a second placement in the hero while leaving the existing homepage content unchanged.
+**Why:** The user requested a second portal placement and then rejected the full-management case study inside the pricing card, directing it below the hero beside the portal instead.
 
-**How to apply:** On desktop place the reel beside the existing copy; on mobile place it after the hero copy and CTAs. Reuse click-to-play playback and avoid mixed-language fallbacks.
+**How to apply:** Stack the English row portal-first on mobile. Preserve the Spanish hero placement, reuse click-to-play playback and avoid mixed-language fallbacks.
 
-The full-management case-study reel belongs beside the homepage's 20% full-management content and on the full-management page, separate from the portal-first promotion row.
+The full-management case-study reel belongs beside the English homepage's upper portal video and on the full-management page, separate from the lower portal-first promotion row. Do not put it inside the homepage pricing card.
 
 **Why:** The user explicitly requested both placements to explain full-management services and the case study, without slowing initial page loading.
 

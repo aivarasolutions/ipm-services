@@ -246,8 +246,12 @@ const Home = () => {
 
   const t = translations[language] || translations.en
   const serviceIcons = [Globe, BarChart3, Shield, Building2]
-  const heroOwnerPortalVideo = language === 'en' || language === 'es'
-    ? OWNER_PORTAL_VIDEOS[language]
+  const heroOwnerPortalVideo = language === 'es' ? OWNER_PORTAL_VIDEOS.es : null
+  const homepageVideoPair = language === 'en'
+    ? [
+        { video: OWNER_PORTAL_VIDEOS.en, label: 'Owner Portal' },
+        { video: FULL_MANAGEMENT_CASE_STUDY, label: 'Full Management case study' },
+      ]
     : null
 
   return (
@@ -331,6 +335,23 @@ const Home = () => {
           )}
         </div>
       </section>
+
+      {homepageVideoPair && (
+        <section aria-label="IPM video demonstrations" className="bg-[#06121F] px-6 py-12 sm:px-8 lg:px-12">
+          <div className="mx-auto grid max-w-4xl grid-cols-1 justify-items-center gap-8 md:grid-cols-2 md:gap-10">
+            {homepageVideoPair.map(({ video, label }) => (
+              <figure key={video.id} className="w-full max-w-[240px]">
+                <figcaption className="mb-3 flex min-h-8 items-center justify-center text-center text-xs font-semibold uppercase tracking-[0.18em] text-[#F2D98D]">
+                  {label}
+                </figcaption>
+                <div className="rounded-xl border border-[#D4AF37]/30 bg-[#0A1A30] p-1.5 shadow-xl shadow-[#06121F]/30">
+                  <ClickToPlayVideo video={video} language={language} />
+                </div>
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* ── 2. STATS BAR ─────────────────────────────────────── */}
       <section className="bg-[#0A1A30] border-y border-[#D4AF37]/20 py-14">
@@ -425,16 +446,6 @@ const Home = () => {
               <Button asChild className="w-full bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] hover:from-[#F2D98D] hover:to-[#D4AF37] font-bold py-3 rounded-lg shadow-lg shadow-[#D4AF37]/20 transition-all duration-200 hover:scale-[1.02]">
                 <Link to={language === 'es' ? '/es/full-management' : '/full-management'}>{t.plan2Cta}</Link>
               </Button>
-              {language === 'en' && (
-                <div className="mt-7 border-t border-[#D4AF37]/20 pt-6">
-                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#F2D98D]">
-                    Full Management case study
-                  </p>
-                  <div className="mx-auto w-full max-w-[220px] rounded-xl border border-[#D4AF37]/25 bg-[#06121F]/35 p-1.5 sm:max-w-[240px]">
-                    <ClickToPlayVideo video={FULL_MANAGEMENT_CASE_STUDY} language={language} />
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         </div>

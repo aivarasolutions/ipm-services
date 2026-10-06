@@ -35,9 +35,14 @@ test('Spanish homepage, promotion and services placements share the portal-first
   assert.match(services, /language === 'es'[\s\S]*?<PromoVideoSection language=\{language\} videos=\{getPromoVideos\(language, true\)\}/)
 })
 
-test('Homepage hero adds a locale-matching click-to-play reel while preserving the lower section', () => {
+test('Homepage upper videos preserve Spanish hero and the lower promotional section', () => {
   const home = readFileSync('src/pages/Home.jsx', 'utf8')
-  assert.match(home, /language === 'en' \|\| language === 'es'/)
+  assert.match(home, /heroOwnerPortalVideo = language === 'es'/)
+  assert.match(home, /homepageVideoPair = language === 'en'/)
+  assert.ok(home.indexOf('video: OWNER_PORTAL_VIDEOS.en') < home.indexOf('video: FULL_MANAGEMENT_CASE_STUDY'))
+  assert.match(home, /<ClickToPlayVideo video=\{video\} language=\{language\}/)
+  assert.ok(home.indexOf('homepageVideoPair &&') < home.indexOf('STATS BAR'))
+  assert.doesNotMatch(home.slice(home.indexOf('{/* Plan 2 */}')), /FULL_MANAGEMENT_CASE_STUDY/)
   assert.match(home, /<ClickToPlayVideo video=\{heroOwnerPortalVideo\} language=\{language\}/)
   assert.match(home, /<ListingPromotionSection[^>]*showVideos[^>]*includeOwnerPortal/)
   const player = readFileSync('src/components/ClickToPlayVideo.jsx', 'utf8')
@@ -49,7 +54,15 @@ test('Homepage first-paint shells match the new hero without eager video downloa
   for (const [locale, path] of [['en', '/'], ['es', '/es']]) {
     const html = createSeoShell(getSeoMetadata(path), path)
     const portal = OWNER_PORTAL_VIDEOS[locale]
-    assert.ok(html.includes('seo-hero-inner seo-hero-inner--portal'))
+    assert.equal(html.includes('seo-hero-inner seo-hero-inner--portal'), locale === 'es')
+    assert.equal(html.includes('<section class="seo-home-videos"'), locale === 'en')
+    if (locale === 'en') {
+      assert.ok(html.includes(FULL_MANAGEMENT_CASE_STUDY.poster))
+      assert.ok(html.indexOf('</header>') < html.indexOf('<section class="seo-home-videos"'))
+      assert.ok(html.indexOf(portal.poster) < html.indexOf(FULL_MANAGEMENT_CASE_STUDY.poster))
+    } else {
+      assert.ok(!html.includes(FULL_MANAGEMENT_CASE_STUDY.poster))
+    }
     assert.ok(html.includes(portal.poster))
     assert.ok(html.includes(`href="${portal.src}"`))
     assert.doesNotMatch(html, /<video|as="video"/)
@@ -67,7 +80,11 @@ test('Full-management case study uses web assets without changing the portal-fir
   }
   for (const page of ['Home', 'FullManagement']) {
     const source = readFileSync(`src/pages/${page}.jsx`, 'utf8')
-    assert.match(source, /<ClickToPlayVideo[\s\S]*?video=\{FULL_MANAGEMENT_CASE_STUDY\}/)
+    if (page === 'FullManagement') {
+      assert.match(source, /<ClickToPlayVideo[\s\S]*?video=\{FULL_MANAGEMENT_CASE_STUDY\}/)
+    } else {
+      assert.match(source, /video: FULL_MANAGEMENT_CASE_STUDY/)
+    }
     assert.doesNotMatch(source, /<video|autoPlay|preload="auto"/)
   }
 })

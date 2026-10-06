@@ -1,6 +1,6 @@
 import { createSeoRouteContent } from './seoContent.js';
 import { OWNER_FAQ_CONTENT } from './ownerFaq.js';
-import { OWNER_PORTAL_VIDEOS } from './promoVideos.js';
+import { FULL_MANAGEMENT_CASE_STUDY, OWNER_PORTAL_VIDEOS } from './promoVideos.js';
 
 export const SITE_URL = 'https://www.ipm.services';
 
@@ -384,7 +384,13 @@ export const createSeoShell = (metadata, pathname = '/', options = {}) => {
     }[locale] || null;
     if (home) {
       const prefix = locale === 'en' ? '' : `/${locale}`;
-      const portal = locale === 'en' || locale === 'es' ? OWNER_PORTAL_VIDEOS[locale] : null;
+      const portal = locale === 'es' ? OWNER_PORTAL_VIDEOS.es : null;
+      const homepageVideos = locale === 'en'
+        ? [
+            { video: OWNER_PORTAL_VIDEOS.en, label: 'Owner Portal' },
+            { video: FULL_MANAGEMENT_CASE_STUDY, label: 'Full Management case study' },
+          ]
+        : [];
        return `<main class="seo-route-shell seo-home-shell" style="background:#06121F;color:#fff;font-family:Montserrat,system-ui,sans-serif">
 <style>
 .seo-route-shell{margin:0}.seo-route-shell *{box-sizing:border-box}
@@ -401,7 +407,12 @@ export const createSeoShell = (metadata, pathname = '/', options = {}) => {
 .seo-route-shell .seo-portal img{display:block;width:100%;height:100%;object-fit:contain}
 .seo-route-shell .seo-portal-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80px;height:80px;border:1px solid #F2D98D;border-radius:50%;background:#D4AF37;display:flex;align-items:center;justify-content:center}
 .seo-route-shell .seo-portal-play::after{content:'';border-top:14px solid transparent;border-bottom:14px solid transparent;border-left:22px solid #06121F;margin-left:5px}
+.seo-route-shell .seo-home-videos{display:grid;grid-template-columns:1fr;justify-items:center;gap:32px;padding:48px 24px;background:#06121F}
+.seo-route-shell .seo-home-video{width:100%;max-width:240px}
+.seo-route-shell .seo-home-video-label{display:flex;min-height:32px;align-items:center;justify-content:center;margin:0 0 12px;text-align:center;color:#F2D98D;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+.seo-route-shell .seo-home-video .seo-portal{margin:0}
 @media(min-width:640px){.seo-route-shell .seo-portal{max-width:240px}}
+@media(min-width:768px){.seo-route-shell .seo-home-videos{grid-template-columns:repeat(2,minmax(0,240px));justify-content:center;gap:40px}}
 @media(min-width:1024px){.seo-route-shell .seo-hero-inner--portal{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:40px;align-items:center}.seo-route-shell .seo-portal{width:220px;margin:0;justify-self:end}}
 @media(min-width:1280px){.seo-route-shell .seo-hero-inner--portal{grid-template-columns:minmax(0,1fr) 260px}.seo-route-shell .seo-portal{width:240px}}
 .seo-route-shell .seo-eyebrow{display:inline-block;border:1px solid #d4af3766;border-radius:99px;background:#d4af371a;padding:8px 16px;color:#F2D98D;font-size:12px;font-weight:700;letter-spacing:.17em;text-transform:uppercase}
@@ -426,7 +437,8 @@ export const createSeoShell = (metadata, pathname = '/', options = {}) => {
 <div class="seo-benefits">${home.benefits.map((label) => `<span>${escape(label)}</span>`).join('')}</div>
 <div class="seo-actions"><a href="${prefix}/contact">${escape(home.cta)}</a><a href="${prefix}/contact">${escape(home.secondary)}</a></div>
 <p class="seo-note">${escape(home.note)}</p>
-</div>${portal ? `<div class="seo-portal"><a href="${escape(portal.src)}" aria-label="${locale === 'es' ? 'Reproducir video' : 'Play video'}: ${escape(portal.title)}"><img src="${escape(portal.poster)}" width="480" height="853" loading="lazy" decoding="async" alt="${escape(portal.title)}"><span class="seo-portal-play" aria-hidden="true"></span></a></div>` : ''}</div></header>
+</div>${portal ? `<div class="seo-portal"><a href="${escape(portal.src)}" aria-label="Reproducir video: ${escape(portal.title)}"><img src="${escape(portal.poster)}" width="480" height="853" loading="lazy" decoding="async" alt="${escape(portal.title)}"><span class="seo-portal-play" aria-hidden="true"></span></a></div>` : ''}</div></header>
+${homepageVideos.length ? `<section class="seo-home-videos" aria-label="IPM video demonstrations">${homepageVideos.map(({ video, label }) => `<div class="seo-home-video"><p class="seo-home-video-label">${escape(label)}</p><div class="seo-portal"><a href="${escape(video.src)}" aria-label="Play video: ${escape(video.title)}"><img src="${escape(video.poster)}" width="480" height="853" loading="lazy" decoding="async" alt="${escape(video.title)}"><span class="seo-portal-play" aria-hidden="true"></span></a></div></div>`).join('')}</section>` : ''}
 <div class="seo-content">${createSeoRouteContent('/', metadata, { ...options, locale })}</div>
 </main>`;
     }
