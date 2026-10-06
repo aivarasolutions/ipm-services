@@ -420,7 +420,7 @@ const Home = () => {
         </div>
       </section>
 
-      <ListingPromotionSection language={language} showVideos />
+      <ListingPromotionSection language={language} showVideos includeOwnerPortal />
 
       {/* ── 5. SERVICES ──────────────────────────────────────── */}
       <section className="bg-[#06121F] py-24">

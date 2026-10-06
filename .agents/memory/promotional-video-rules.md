@@ -15,8 +15,8 @@ Preserve the original uploads and their burned-in captions. Optimized web copies
 
 **How to apply:** Keep promotional video sections below the hero, defer posters until near the viewport, and retain user-initiated native playback when changing the implementation.
 
-The listing-promotion page should show the owner portal demo before the two existing talking videos, with three congruent cards across desktop and the same order stacked on mobile.
+Both the homepage and listing-promotion page should show the owner portal demo before the two existing talking videos, with three congruent cards across desktop and the same order stacked on mobile.
 
 **Why:** The user wants owners to see how the portal works first and confirmed the existing talking videos look good.
 
-**How to apply:** Preserve the approved talking clips when adjusting this layout. Keep language separation and click-to-load behavior.
+**How to apply:** Apply video placement updates to both pages, not only listing promotion. Preserve the approved talking clips when adjusting this layout. Keep language separation and click-to-load behavior.
