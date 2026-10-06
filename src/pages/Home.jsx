@@ -5,7 +5,7 @@ import PropertyGrid from '../components/PropertyGrid'
 import ListingPromotionSection from '../components/ListingPromotionSection'
 import OwnerFaqSection from '../components/OwnerFaqSection'
 import ClickToPlayVideo from '../components/ClickToPlayVideo'
-import { OWNER_PORTAL_VIDEOS } from '../lib/promoVideos'
+import { FULL_MANAGEMENT_CASE_STUDY, OWNER_PORTAL_VIDEOS } from '../lib/promoVideos'
 import {
   Building2, TrendingUp, Shield, DollarSign,
   BarChart3, Globe, Calendar, Zap, HeartHandshake,
@@ -425,6 +425,16 @@ const Home = () => {
               <Button asChild className="w-full bg-gradient-to-r from-[#D4AF37] to-[#F2D98D] text-[#06121F] hover:from-[#F2D98D] hover:to-[#D4AF37] font-bold py-3 rounded-lg shadow-lg shadow-[#D4AF37]/20 transition-all duration-200 hover:scale-[1.02]">
                 <Link to={language === 'es' ? '/es/full-management' : '/full-management'}>{t.plan2Cta}</Link>
               </Button>
+              {language === 'en' && (
+                <div className="mt-7 border-t border-[#D4AF37]/20 pt-6">
+                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#F2D98D]">
+                    Full Management case study
+                  </p>
+                  <div className="mx-auto w-full max-w-[220px] rounded-xl border border-[#D4AF37]/25 bg-[#06121F]/35 p-1.5 sm:max-w-[240px]">
+                    <ClickToPlayVideo video={FULL_MANAGEMENT_CASE_STUDY} language={language} />
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

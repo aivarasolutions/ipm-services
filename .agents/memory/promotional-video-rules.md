@@ -32,3 +32,9 @@ The homepage also shows the matching English/Spanish portal reel on the right of
 **Why:** The user explicitly requested a second placement in the hero while leaving the existing homepage content unchanged.
 
 **How to apply:** On desktop place the reel beside the existing copy; on mobile place it after the hero copy and CTAs. Reuse click-to-play playback and avoid mixed-language fallbacks.
+
+The full-management case-study reel belongs beside the homepage's 20% full-management content and on the full-management page, separate from the portal-first promotion row.
+
+**Why:** The user explicitly requested both placements to explain full-management services and the case study, without slowing initial page loading.
+
+**How to apply:** Preserve the original upload and captions, use optimized click-to-play media, and show only on matching-language pages. The supplied case-study reel is English.

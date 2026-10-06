@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { existsSync, readFileSync } from 'node:fs'
-import { getPromoVideos, PROMO_VIDEOS, OWNER_PORTAL_VIDEOS } from './promoVideos.js'
+import { getPromoVideos, PROMO_VIDEOS, OWNER_PORTAL_VIDEOS, FULL_MANAGEMENT_CASE_STUDY } from './promoVideos.js'
 import { createSeoShell, getSeoMetadata } from './seo.js'
 
 test('Each supported language puts its matching portal first without changing the talking clips', () => {
@@ -57,4 +57,17 @@ test('Homepage first-paint shells match the new hero without eager video downloa
   }
   const french = createSeoShell(getSeoMetadata('/fr'), '/fr')
   assert.doesNotMatch(french, /class="seo-portal"/)
+})
+
+test('Full-management case study uses web assets without changing the portal-first promotional rows', () => {
+  assert.ok(existsSync(`public${FULL_MANAGEMENT_CASE_STUDY.src}`))
+  assert.ok(existsSync(`public${FULL_MANAGEMENT_CASE_STUDY.poster}`))
+  for (const language of ['en', 'es']) {
+    assert.ok(!getPromoVideos(language, true).includes(FULL_MANAGEMENT_CASE_STUDY))
+  }
+  for (const page of ['Home', 'FullManagement']) {
+    const source = readFileSync(`src/pages/${page}.jsx`, 'utf8')
+    assert.match(source, /<ClickToPlayVideo[\s\S]*?video=\{FULL_MANAGEMENT_CASE_STUDY\}/)
+    assert.doesNotMatch(source, /<video|autoPlay|preload="auto"/)
+  }
 })

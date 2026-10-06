@@ -4,6 +4,8 @@ import { ArrowRight, Check, Mail, MapPin, Phone, UserRound } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '../contexts/LanguageContext'
 import OwnerFaqSection from '../components/OwnerFaqSection'
+import ClickToPlayVideo from '../components/ClickToPlayVideo'
+import { FULL_MANAGEMENT_CASE_STUDY } from '../lib/promoVideos'
 
 const copy = {
   en: {
@@ -158,6 +160,16 @@ export default function FullManagement() {
           <ul className="space-y-4">
             {t.features.map((feature) => <li key={feature} className="flex items-start gap-3 text-[#E1E6EC]"><span className="mt-0.5 rounded-full bg-[#D4AF37]/15 p-1 text-[#E6C978]"><Check className="h-4 w-4" aria-hidden="true" /></span><span>{feature}</span></li>)}
           </ul>
+          {!spanish && (
+            <div className="mt-9 border-t border-[#D4AF37]/20 pt-7">
+              <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-[#F2D98D]">
+                Full Management case study
+              </p>
+              <div className="w-full max-w-[260px] rounded-xl border border-[#D4AF37]/25 bg-[#0A1A30] p-1.5">
+                <ClickToPlayVideo video={FULL_MANAGEMENT_CASE_STUDY} language={language} />
+              </div>
+            </div>
+          )}
           <div className="mt-10 border-l-2 border-[#D4AF37] pl-5">
             <p className="text-[#C9D2DE] text-sm mb-2">{t.otherPlan}</p>
             <Link to={spanish ? '/es/listing-promotion' : '/listing-promotion'} className="text-[#F2D98D] font-semibold hover:text-white inline-flex items-center gap-2">{t.otherLink}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>

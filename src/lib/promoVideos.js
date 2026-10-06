@@ -1,5 +1,12 @@
 // Each public asset is content-hashed and reused on the home/promotion pages.
 // The source uploads remain unchanged in attached_assets.
+export const FULL_MANAGEMENT_CASE_STUDY = {
+  id: 'en-full-management-case-study',
+  title: '20% Full Management — Property Case Study',
+  src: '/videos/en-full-management-case-study.mp4',
+  poster: '/videos/en-full-management-case-study.webp',
+}
+
 export const OWNER_PORTAL_VIDEO = {
   id: 'en-owner-portal',
   title: 'IPM Owner Portal — See How It Works',
