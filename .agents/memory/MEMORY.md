@@ -15,3 +15,4 @@
 - [Hosted booking flow](hosted-booking-flow.md) — public browsing uses book.richaf.global; property reservations use stay.richaf.global, which blocks cross-origin embedding.
 - [Owner tax policy](owner-tax-policy.md) — global independent owner tax responsibility; IPM coordinates required paperwork, with Form 1099 limited to U.S. requirements.
 - [Owner lead approval](owner-lead-approval-policy.md) — require complete owner contact details and review the property before sending a PDF/online onboarding invitation.
+- [Payout calculator assumptions](payout-calculator-assumptions.md) — educational estimates, not contract policy; no guessed taxes or invented allocation of monthly fees.

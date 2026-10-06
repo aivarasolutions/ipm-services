@@ -4,6 +4,12 @@ import { OWNER_FAQ_CONTENT } from './ownerFaq.js';
 export const SITE_URL = 'https://www.ipm.services';
 
 const staticSeoRoutes = {
+  '/payout-calculator': {
+    title: 'Airbnb, Vrbo & Booking.com Payout Calculator | IPM',
+    description: "Estimate your Airbnb, Vrbo, Booking.com, Expedia or direct-booking payout after platform fees, taxes and other costs with IPM's free STR payout calculator.",
+    h1: 'Short-Term Rental Payout Calculator',
+    intro: 'Know what you’ll actually make from your booking. Estimate guest costs, platform fees, tax obligations and your potential owner payout. Free to use. No signup required.',
+  },
   '/full-management': {
     title: '20% Full Property Management | International Property Management',
     description: 'Explore IPM’s 20% full-management plan for vacation rentals, including listing promotion, pricing, guest communication, cleaning coordination, and owner reporting.',
@@ -164,6 +170,7 @@ const insightSeoRoutes = {
 
 const localizedSeoRoutes = {
   es: {
+    '/payout-calculator': ['Calculadora de Pagos de Airbnb, Vrbo y Booking.com | IPM', 'Estime su pago de Airbnb, Vrbo, Booking.com, Expedia o reservas directas después de comisiones, impuestos y otros costos con la calculadora gratuita de IPM.', 'Calculadora de Pagos de Alquileres Vacacionales', 'Conozca cuánto recibirá de su reserva. Estime los costos del huésped, las comisiones, los impuestos y su pago potencial. Gratis y sin registro.'],
     '/full-management': ['Gestión Integral del 20% | IPM', 'Conozca el plan de gestión integral del 20% de IPM: promoción, precios, atención al huésped, coordinación de limpieza e informes para propietarios.', 'Gestión Integral del 20%', 'Gestión profesional de alquileres vacacionales para propietarios que desean delegar las operaciones diarias a IPM.'],
     '/listing-promotion': ['Promoción de Anuncios del 10% | IPM', 'Genere más reservas con IPM: 10% de las reservas generadas por IPM o una tarifa nocturna acordada, sin costo de configuración ni suscripción los primeros dos meses.', 'Consiga Más Reservas Sin Pagar por Adelantado', 'IPM promociona su propiedad en canales de reserva adicionales. Solo paga cuando le ayudamos a generar ingresos.'],
     '/faq': ['Preguntas Frecuentes para Propietarios | IPM', 'Respuestas sobre los planes del 10% y 20%, suscripción, plataformas de reserva, portal de propietarios, impuestos independientes, activación y cancelación.', OWNER_FAQ_CONTENT.es.title, 'Respuestas claras sobre cómo publicar su propiedad y generar más reservaciones con IPM.'],

@@ -46,6 +46,7 @@ const Header = () => {
       name: 'Insights', path: '/insights', key: 'insights',
       dropdown: [
         { name: 'Insights Hub', path: '/insights' },
+        { name: language === 'es' ? 'Calculadora de Pagos' : 'Payout Calculator', path: '/payout-calculator' },
         { name: 'Airbnb Fees Explained', path: '/insights/airbnb-fees' },
         { name: 'API Connections & Operating Costs', path: '/insights/api-costs' },
         { name: 'How to Offset Airbnb’s Host Fee', path: '/insights/avoid-fees' },
@@ -83,7 +84,7 @@ const Header = () => {
 
           <nav className="hidden xl:flex items-center space-x-2" aria-label="Main navigation">
             {navItems.map((item) => {
-              const active = routePath === item.path || (item.key === 'services' && onPagePlan) || (item.key === 'insights' && routePath.startsWith('/insights'))
+              const active = routePath === item.path || (item.key === 'services' && onPagePlan) || (item.key === 'insights' && (routePath.startsWith('/insights') || routePath === '/payout-calculator'))
               const color = active ? 'bg-[#D4AF37] text-[#06121F]' : 'text-[#CFCFCF] hover:text-[#D4AF37] hover:bg-[#D4AF37]/10'
               if (item.dropdown) return (
                 <div key={item.name} className="relative" onMouseEnter={() => openSoon(item.key)} onMouseLeave={closeSoon} onFocus={(event) => { if (event.target.tagName === 'A') openSoon(item.key) }} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setOpenDropdown(null) }}>
@@ -128,7 +129,7 @@ const Header = () => {
       {isMobileMenuOpen && <div id="mobile-navigation" className="xl:hidden bg-[#0A1A30] border-t border-[#D4AF37]/15 shadow-lg">
         <div className="px-4 pt-2 pb-5 space-y-1">
           {navItems.map((item) => {
-            const active = routePath === item.path || (item.key === 'services' && onPagePlan) || (item.key === 'insights' && routePath.startsWith('/insights'))
+            const active = routePath === item.path || (item.key === 'services' && onPagePlan) || (item.key === 'insights' && (routePath.startsWith('/insights') || routePath === '/payout-calculator'))
             if (item.dropdown) return <div key={item.name} className="space-y-1">
               <div className="flex items-center">
                 <Link to={routeFor(item.path)} onClick={() => setIsMobileMenuOpen(false)} className={`flex-1 block px-3 py-2 rounded-md text-base font-medium ${active ? 'bg-[#D4AF37] text-[#06121F]' : 'text-[#CFCFCF] hover:text-[#D4AF37] hover:bg-[#D4AF37]/10'}`}>{item.name}</Link>

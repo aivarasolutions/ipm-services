@@ -90,6 +90,11 @@ const Footer = () => {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link to={localizeRoutePath('/payout-calculator', language === 'es' ? 'es' : 'en')} className="text-[#CFCFCF] hover:text-[#E6C978] transition-colors text-sm">
+                  {language === 'es' ? 'Calculadora de Pagos' : 'Payout Calculator'}
+                </Link>
+              </li>
             </ul>
           </div>
 

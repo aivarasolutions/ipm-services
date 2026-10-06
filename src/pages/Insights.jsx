@@ -46,6 +46,12 @@ export default function Insights() {
       scheduleCall: 'Schedule a Call →',
       topics: [
         {
+          title: 'IPM Payout Calculator',
+          description: 'Estimate guest costs, platform fees, taxes and owner payouts. Work backwards from a target payout and compare booking channels.',
+          path: '/payout-calculator',
+          color: 'green'
+        },
+        {
           title: 'Airbnb Fees Explained',
           description: 'Understand Airbnb’s move toward a single host-paid fee, how it affects guest prices and your payout, and what to check on your listing.',
           path: '/insights/airbnb-fees',
@@ -108,6 +114,12 @@ export default function Insights() {
       consultDesc: 'Optimice su propiedad, reduzca costos y aumente ganancias. Haga clic a continuación para comenzar.',
       scheduleCall: 'Agendar una Llamada →',
       topics: [
+        {
+          title: 'Calculadora de Pagos de IPM',
+          description: 'Estime costos del huésped, comisiones, impuestos y pagos al propietario. Calcule la tarifa necesaria y compare canales de reserva.',
+          path: '/es/payout-calculator',
+          color: 'green'
+        },
         {
           title: 'Tarifas de Airbnb Explicadas',
           description: 'Comprenda el cambio hacia una tarifa única a cargo del anfitrión y cómo afecta al precio para los huéspedes y a sus ingresos netos.',

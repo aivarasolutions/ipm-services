@@ -18,6 +18,25 @@ const safeUrl = (value) => {
 const section = (heading, paragraphs = [], items = []) => ({ heading, paragraphs, items });
 
 const STATIC_ROUTE_CONTENT = {
+  '/payout-calculator': {
+    sections: [
+      section('Estimate Your Booking Payout', [
+        'Use IPM’s free Short-Term Rental Payout Calculator to estimate guest costs, accommodation revenue, platform deductions, lodging taxes, payment processing and optional IPM management fees.',
+        'Enter your current nightly rate, or work backwards from the total owner payout you want to receive. Compare Airbnb, Vrbo, Booking.com, Expedia Group, Google Vacation Rentals and direct bookings with editable platform fees.',
+      ]),
+      section('Fees Are Not the Same as Markups', [
+        'To receive $250 after a 15.5% platform deduction alone, divide $250 by 0.845: the required selling price is approximately $295.86, an 18.34% increase. Adding 15.5% is not enough.',
+        'Platform presets are informational starting points, not universal contracted fees. Lodging taxes require a verified jurisdiction rate or manual entry and are never counted as owner profit.',
+      ]),
+      section('Estimate, Not Tax or Financial Advice', [
+        'Fees, taxes, payout methods and management agreements vary by property and reservation. Confirm all assumptions with your platform, local authority and agreement. Estimates exclude operating costs that you have not entered.',
+      ]),
+    ],
+    links: [
+      { href: '/listing-promotion', label: 'Explore IPM 10% Listing Promotion' },
+      { href: '/full-management', label: 'Explore IPM 20% Full Management' },
+    ],
+  },
   '/listing-promotion': {
     sections: [
       section('Listing Promotion for Property Owners', [
