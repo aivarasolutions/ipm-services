@@ -4,6 +4,8 @@ import { useLanguage } from '../contexts/LanguageContext'
 import PropertyGrid from '../components/PropertyGrid'
 import ListingPromotionSection from '../components/ListingPromotionSection'
 import OwnerFaqSection from '../components/OwnerFaqSection'
+import ClickToPlayVideo from '../components/ClickToPlayVideo'
+import { OWNER_PORTAL_VIDEOS } from '../lib/promoVideos'
 import {
   Building2, TrendingUp, Shield, DollarSign,
   BarChart3, Globe, Calendar, Zap, HeartHandshake,
@@ -244,6 +246,9 @@ const Home = () => {
 
   const t = translations[language] || translations.en
   const serviceIcons = [Globe, BarChart3, Shield, Building2]
+  const heroOwnerPortalVideo = language === 'en' || language === 'es'
+    ? OWNER_PORTAL_VIDEOS[language]
+    : null
 
   return (
     <div lang={language} className="min-h-screen bg-[#06121F]">
@@ -260,7 +265,7 @@ const Home = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-[#06121F] via-transparent to-[#06121F]/40" />
 
         {/* Content */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-28">
+        <div className={`relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-28${heroOwnerPortalVideo ? ' lg:grid lg:grid-cols-[minmax(0,1fr)_240px] xl:grid-cols-[minmax(0,1fr)_260px] lg:items-center lg:gap-10' : ''}`}>
           <div className="max-w-3xl">
             {/* Eyebrow */}
             <div className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-[#D4AF37]/40 bg-[#D4AF37]/10">
@@ -319,6 +324,11 @@ const Home = () => {
               </span>
             </div>
           </div>
+          {heroOwnerPortalVideo && (
+            <div className="mx-auto mt-10 w-full max-w-[220px] rounded-xl border border-[#D4AF37]/35 bg-[#06121F]/35 p-1.5 shadow-xl shadow-[#06121F]/30 sm:max-w-[240px] lg:mt-0 lg:w-[220px] lg:justify-self-end xl:w-[240px]">
+              <ClickToPlayVideo video={heroOwnerPortalVideo} language={language} />
+            </div>
+          )}
         </div>
       </section>
 

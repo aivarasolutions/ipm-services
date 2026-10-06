@@ -13,7 +13,7 @@ Preserve the original uploads and their burned-in captions. Optimized web copies
 
 **Why:** The user called initial-load performance “VERY IMPORTANT” and requires the homepage hero, navigation, text, and CTA to load before promotional media.
 
-**How to apply:** Keep promotional video sections below the hero, defer posters until near the viewport, and retain user-initiated native playback when changing the implementation.
+**How to apply:** Keep the lower promotional sections below the hero, defer posters until near the viewport, and retain user-initiated native playback. The explicitly requested portal reel in the homepage hero is an exception to below-hero placement, not to click-to-load playback.
 
 Both the homepage and listing-promotion page should show the owner portal demo before the two existing talking videos, with three congruent cards across desktop and the same order stacked on mobile.
 
@@ -26,3 +26,9 @@ The Spanish owner-portal reel must also come first on the Spanish homepage, 10% 
 **Why:** The user supplied the Spanish portal reel and explicitly named all three placements, not only the homepage and promotion page.
 
 **How to apply:** Preserve the Spanish talking clips after the portal reel and the existing English placements. Never use the English portal reel as a Spanish fallback.
+
+The homepage also shows the matching English/Spanish portal reel on the right of the hero, over the house area. Keep the original hero text and buttons and the lower three-video section: the portal reel deliberately appears twice.
+
+**Why:** The user explicitly requested a second placement in the hero while leaving the existing homepage content unchanged.
+
+**How to apply:** On desktop place the reel beside the existing copy; on mobile place it after the hero copy and CTAs. Reuse click-to-play playback and avoid mixed-language fallbacks.

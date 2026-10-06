@@ -1,5 +1,6 @@
 import { createSeoRouteContent } from './seoContent.js';
 import { OWNER_FAQ_CONTENT } from './ownerFaq.js';
+import { OWNER_PORTAL_VIDEOS } from './promoVideos.js';
 
 export const SITE_URL = 'https://www.ipm.services';
 
@@ -383,6 +384,7 @@ export const createSeoShell = (metadata, pathname = '/', options = {}) => {
     }[locale] || null;
     if (home) {
       const prefix = locale === 'en' ? '' : `/${locale}`;
+      const portal = locale === 'en' || locale === 'es' ? OWNER_PORTAL_VIDEOS[locale] : null;
        return `<main class="seo-route-shell seo-home-shell" style="background:#06121F;color:#fff;font-family:Montserrat,system-ui,sans-serif">
 <style>
 .seo-route-shell{margin:0}.seo-route-shell *{box-sizing:border-box}
@@ -394,6 +396,14 @@ export const createSeoShell = (metadata, pathname = '/', options = {}) => {
 .seo-route-shell .seo-hero{min-height:92vh;display:flex;align-items:center;background:linear-gradient(0deg,#06121F,transparent 52%,#06121F66),linear-gradient(90deg,#06121F,#06121Feb 50%,#06121F4d),url('/luxury_beachfront_resort-optimized.webp') center/cover}
 .seo-route-shell .seo-hero-inner{width:100%;max-width:1280px;margin:auto;padding:112px 48px}
 .seo-route-shell .seo-hero-copy{max-width:760px}
+.seo-route-shell .seo-portal{width:100%;max-width:220px;margin:40px auto 0;padding:6px;border:1px solid #d4af3759;border-radius:12px;background:#06121f59;box-shadow:0 20px 25px #06121f4d}
+.seo-route-shell .seo-portal a{display:block;position:relative;aspect-ratio:9/16;overflow:hidden;border-radius:12px;background:#06121F}
+.seo-route-shell .seo-portal img{display:block;width:100%;height:100%;object-fit:contain}
+.seo-route-shell .seo-portal-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80px;height:80px;border:1px solid #F2D98D;border-radius:50%;background:#D4AF37;display:flex;align-items:center;justify-content:center}
+.seo-route-shell .seo-portal-play::after{content:'';border-top:14px solid transparent;border-bottom:14px solid transparent;border-left:22px solid #06121F;margin-left:5px}
+@media(min-width:640px){.seo-route-shell .seo-portal{max-width:240px}}
+@media(min-width:1024px){.seo-route-shell .seo-hero-inner--portal{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:40px;align-items:center}.seo-route-shell .seo-portal{width:220px;margin:0;justify-self:end}}
+@media(min-width:1280px){.seo-route-shell .seo-hero-inner--portal{grid-template-columns:minmax(0,1fr) 260px}.seo-route-shell .seo-portal{width:240px}}
 .seo-route-shell .seo-eyebrow{display:inline-block;border:1px solid #d4af3766;border-radius:99px;background:#d4af371a;padding:8px 16px;color:#F2D98D;font-size:12px;font-weight:700;letter-spacing:.17em;text-transform:uppercase}
 .seo-route-shell h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(48px,6vw,72px);line-height:1.12;margin:24px 0;font-weight:800}
 .seo-route-shell h1 span{display:block;color:#F2D98D}
@@ -408,7 +418,7 @@ export const createSeoShell = (metadata, pathname = '/', options = {}) => {
 @media(max-width:767px){.seo-route-shell .seo-nav-links{display:none}.seo-route-shell .seo-hero-inner{padding:80px 24px}.seo-route-shell .seo-hero{background-position:center}.seo-route-shell .seo-actions{flex-direction:column}.seo-route-shell .seo-actions a{text-align:center}.seo-route-shell .seo-intro{font-size:18px}}
 </style>
 <div class="seo-nav"><a href="${prefix || '/'}"><img src="/images/ipm-logo-new-optimized.webp" width="48" height="48" alt="IPM International Property Management"></a><nav class="seo-nav-links"><a href="${prefix}/services">Services</a><a href="${prefix}/properties">Properties</a><a href="${prefix}/real-estate">Real Estate</a><a href="${prefix}/insights">Insights</a><a href="${prefix}/contact">Contact</a></nav></div>
-<header class="seo-hero"><div class="seo-hero-inner"><div class="seo-hero-copy">
+<header class="seo-hero"><div class="seo-hero-inner${portal ? ' seo-hero-inner--portal' : ''}"><div class="seo-hero-copy">
 <div class="seo-eyebrow">International Property Management</div>
 <h1>${escape(home.first)}<span>${escape(home.second)}</span></h1>
 <p class="seo-intro">${escape(home.intro)}</p>
@@ -416,7 +426,7 @@ export const createSeoShell = (metadata, pathname = '/', options = {}) => {
 <div class="seo-benefits">${home.benefits.map((label) => `<span>${escape(label)}</span>`).join('')}</div>
 <div class="seo-actions"><a href="${prefix}/contact">${escape(home.cta)}</a><a href="${prefix}/contact">${escape(home.secondary)}</a></div>
 <p class="seo-note">${escape(home.note)}</p>
-</div></div></header>
+</div>${portal ? `<div class="seo-portal"><a href="${escape(portal.src)}" aria-label="${locale === 'es' ? 'Reproducir video' : 'Play video'}: ${escape(portal.title)}"><img src="${escape(portal.poster)}" width="480" height="853" loading="lazy" decoding="async" alt="${escape(portal.title)}"><span class="seo-portal-play" aria-hidden="true"></span></a></div>` : ''}</div></header>
 <div class="seo-content">${createSeoRouteContent('/', metadata, { ...options, locale })}</div>
 </main>`;
     }

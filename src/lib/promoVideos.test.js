@@ -2,6 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { existsSync, readFileSync } from 'node:fs'
 import { getPromoVideos, PROMO_VIDEOS, OWNER_PORTAL_VIDEOS } from './promoVideos.js'
+import { createSeoShell, getSeoMetadata } from './seo.js'
 
 test('Each supported language puts its matching portal first without changing the talking clips', () => {
   for (const language of ['en', 'es']) {
@@ -32,4 +33,28 @@ test('Spanish homepage, promotion and services placements share the portal-first
   assert.match(promotion, /<ListingPromotionSection[\s\S]*?showVideos[\s\S]*?includeOwnerPortal/)
   assert.match(listing, /videos=\{getPromoVideos\(language, includeOwnerPortal\)\}/)
   assert.match(services, /language === 'es'[\s\S]*?<PromoVideoSection language=\{language\} videos=\{getPromoVideos\(language, true\)\}/)
+})
+
+test('Homepage hero adds a locale-matching click-to-play reel while preserving the lower section', () => {
+  const home = readFileSync('src/pages/Home.jsx', 'utf8')
+  assert.match(home, /language === 'en' \|\| language === 'es'/)
+  assert.match(home, /<ClickToPlayVideo video=\{heroOwnerPortalVideo\} language=\{language\}/)
+  assert.match(home, /<ListingPromotionSection[^>]*showVideos[^>]*includeOwnerPortal/)
+  const player = readFileSync('src/components/ClickToPlayVideo.jsx', 'utf8')
+  assert.match(player, /preload="none"/)
+  assert.doesNotMatch(player.match(/<video[\s\S]*?\/>/)[0], /\bsrc=|autoPlay/)
+})
+
+test('Homepage first-paint shells match the new hero without eager video downloads', () => {
+  for (const [locale, path] of [['en', '/'], ['es', '/es']]) {
+    const html = createSeoShell(getSeoMetadata(path), path)
+    const portal = OWNER_PORTAL_VIDEOS[locale]
+    assert.ok(html.includes('seo-hero-inner seo-hero-inner--portal'))
+    assert.ok(html.includes(portal.poster))
+    assert.ok(html.includes(`href="${portal.src}"`))
+    assert.doesNotMatch(html, /<video|as="video"/)
+    assert.ok(!html.includes(OWNER_PORTAL_VIDEOS[locale === 'en' ? 'es' : 'en'].poster))
+  }
+  const french = createSeoShell(getSeoMetadata('/fr'), '/fr')
+  assert.doesNotMatch(french, /class="seo-portal"/)
 })
