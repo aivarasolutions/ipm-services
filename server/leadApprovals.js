@@ -1,5 +1,5 @@
 import express from 'express'
-import { createHmac } from 'node:crypto'
+import { createHmac, randomBytes } from 'node:crypto'
 import { escapeHtml } from './emailService.js'
 import { sendOnboardingInvitation } from './onboardingInvitation.js'
 
@@ -18,7 +18,8 @@ export function createLeadApprovalRouter({ store, send = sendOnboardingInvitatio
   const router = express.Router()
   router.use((_req, res, next) => {
     res.set({
-      'Cache-Control': 'no-store', 'Referrer-Policy': 'no-referrer',
+      // no-referrer makes browser form POSTs use Origin: null, rejecting genuine approvals.
+      'Cache-Control': 'no-store', 'Referrer-Policy': 'same-origin',
       'X-Robots-Tag': 'noindex, nofollow, noarchive',
       'Content-Security-Policy': "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'",
     })
@@ -47,18 +48,41 @@ export function createLeadApprovalRouter({ store, send = sendOnboardingInvitatio
           '<p>No additional invitation will be sent by opening this link.</p>'))
       }
       const lead = record.lead
+      const autoApprove = req.get('sec-fetch-user') === '?1' && req.get('sec-fetch-mode') === 'navigate'
+      const nonce = randomBytes(18).toString('base64')
+      res.set('Content-Security-Policy', `default-src 'none'; style-src 'unsafe-inline'; script-src 'nonce-${nonce}'; connect-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'`)
       const fields = {
         'First name': lead.firstName, 'Last name': lead.lastName,
         Email: lead.email, 'Phone (with country code)': lead.phone,
         Plan: lead.plan === 'full-management' ? 'Full Management (20%)' : 'Listing Promotion (10%)',
         'Email language': lead.language.toUpperCase(),
       }
-      return res.send(page('Review & approve this property', `
+      return res.send(page(autoApprove ? 'Sending onboarding invitation…' : 'Approve this property', `
+        <p id="approval-status" role="status">${autoApprove ? 'Your email-button click approved this listing. Sending the personalized onboarding invitation and PDF now…' : 'Opening a link preview does not approve this listing. Use the button below to approve and send the onboarding invitation.'}</p>
         <dl>${Object.entries(fields).map(([key, value]) => `<dt>${escapeHtml(key)}</dt><dd>${escapeHtml(value)}</dd>`).join('')}
         <dt>Property listing</dt><dd><a href="${escapeHtml(lead.listingUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(lead.listingUrl)}</a></dd></dl>
         <p>Approval sends a personalized onboarding email to the owner above, with the matching PDF attached and a link to complete onboarding online. This does not create a management agreement.</p>
-        <form method="post"><label><input type="checkbox" name="confirm" value="yes" required> I reviewed this listing and approve sending the onboarding invitation.</label>
+        <form method="post" id="approval-form"${autoApprove ? ' hidden' : ''}><input type="hidden" name="confirm" value="yes">
         <button type="submit">Approve & send onboarding email</button></form>
+        ${autoApprove ? `<noscript><p>Your browser has JavaScript disabled. Enable JavaScript and reopen the email link, or submit below.</p><form method="post"><input type="hidden" name="confirm" value="yes"><button type="submit">Send onboarding email</button></form></noscript>
+        <script nonce="${nonce}">
+        (async function () {
+          try {
+            const response = await fetch(window.location.pathname, {
+              method: 'POST', credentials: 'same-origin',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: 'confirm=yes'
+            });
+            const result = new DOMParser().parseFromString(await response.text(), 'text/html');
+            if (!result.querySelector('main')) throw new Error('Invalid response');
+            document.title = result.title;
+            document.querySelector('main').replaceWith(result.querySelector('main'));
+          } catch {
+            document.querySelector('#approval-status').textContent = 'The connection was interrupted. Retry below; an already-sent invitation will not be sent twice.';
+            document.querySelector('#approval-form').hidden = false;
+          }
+        })();
+        </script>` : ''}
         <p><small>This private link expires 14 days after submission. Do not forward it to the owner or share it publicly.</small></p>`))
     } catch {
       return res.status(503).send(page('Review temporarily unavailable', '<p>Please try again later. No onboarding email was sent.</p>'))
@@ -79,9 +103,10 @@ export function createLeadApprovalRouter({ store, send = sendOnboardingInvitatio
       delivered = true
       await store.finish(record.id)
       return res.send(page('Onboarding email sent', `<p>The personalized invitation and PDF were accepted for delivery to <strong>${escapeHtml(record.lead.email)}</strong>.</p><p>You can close this page. Opening or approving this link again will not send another invitation.</p>`))
-    } catch {
+    } catch (error) {
       // Never unlock a delivered invitation if recording the result failed.
       if (record && !delivered) await store.fail(record.id).catch(() => {})
+      console.error('[leadApproval] Invitation failed', { id: record?.id, phase: delivered ? 'recording delivery' : 'sending', message: error.message })
       return res.status(502).send(page('Unable to confirm delivery',
         '<p>We could not confirm the invitation was sent. Reopen the original approval link to check its status. If it is still awaiting approval, you can retry; repeat attempts use the same email delivery key.</p>'))
     }

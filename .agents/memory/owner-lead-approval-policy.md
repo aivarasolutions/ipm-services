@@ -9,8 +9,20 @@ Owner leads must include first and last name, phone number with country code, em
 
 **How to apply:** Keep the existing Mailchimp lead flow, but make the personalized onboarding invitation a separate, explicit approval. Provide both a PDF attachment and an online completion option. Keep private team approval links separate from owner-facing onboarding links.
 
-Opening the team's approval link must not send an email; require a separate confirmation.
+The team email button must approve and send the invitation in one click, without a second checkbox or confirmation step.
 
-**Why:** Email security scanners and previews can open links without a human decision. Owner-facing links must not authorize staff approval.
+**Why:** The user explicitly corrected the extra confirmation step: the email-button click is their confirmation after reviewing the listing. Basic email security scanners and previews must not approve with a plain GET.
 
-**How to apply:** Preserve the read-only review step and one-time approval behavior. Use opaque owner invitation links instead of putting owner contact details directly into URLs.
+**How to apply:** Keep GET read-only, and use an activated browser navigation to initiate the approval POST automatically. Preview/non-activated requests show a fallback approval button. Keep duplicate-send protection and opaque owner invitation links. Do not claim protection against every browser-based scanner.
+
+Owner notification emails should show first and last name, not an additional combined Name row, and show the listing URL only once.
+
+**Why:** The user explicitly requested removal of both duplicate displays.
+
+**How to apply:** Retain the combined name internally for personalized onboarding emails. Preserve other message details when removing a duplicate listing URL.
+
+Avoid `Referrer-Policy: no-referrer` on HTML approval forms guarded by an Origin check.
+
+**Why:** Browsers may send `Origin: null` on form POSTs under that policy, rejecting genuine approvals.
+
+**How to apply:** Use `same-origin` on private approval pages and `rel="noreferrer"` for external listing links; retain strict rejection of cross-origin POSTs.

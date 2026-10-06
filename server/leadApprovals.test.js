@@ -3,7 +3,8 @@ import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import express from 'express'
 import pg from 'pg'
-import { normalizeContactLead } from './contactLead.js'
+import { get as httpGet } from 'node:http'
+import { normalizeContactLead, buildContactLeadFields } from './contactLead.js'
 import { LeadApprovalStore } from './leadApprovalStore.js'
 import { createLeadApprovalRouter } from './leadApprovals.js'
 import { buildOnboardingInvitation, sendOnboardingInvitation } from './onboardingInvitation.js'
@@ -33,17 +34,22 @@ test('owner leads require both names, international phone, email, and a safe lis
 test('admin notifications include separate lead details and a private review button', async () => {
   let payload
   const result = await sendFormEmails({
-    fields: { 'First Name': lead.firstName, 'Last Name': lead.lastName, Phone: lead.phone, 'Property Listing Link': lead.listingUrl },
+    fields: buildContactLeadFields({ ...lead, message: `Airbnb listing URL: ${lead.listingUrl}` }),
     approvalUrl: 'https://example.com/api/lead-approvals/private-test-link',
     customerEmail: lead.email,
     deliver: async value => { payload = value },
   })
   assert.ok(result.ok)
   assert.equal(payload.reply_to, lead.email)
-  assert.match(payload.html, /Review &amp; approve property/)
+  assert.match(payload.html, /Approve &amp; send onboarding email/)
   assert.match(payload.text, /Private team link/)
   assert.match(payload.html, /Test Owner/)
   assert.match(payload.html, /Property Listing Link/)
+  assert.doesNotMatch(payload.html, />Name</)
+  assert.equal(payload.html.split(lead.listingUrl).length - 1, 2) // one link: href and label
+  assert.equal(payload.text.split(lead.listingUrl).length - 1, 1)
+  assert.doesNotMatch(payload.html, />Message</)
+  assert.equal(buildContactLeadFields({ ...lead, message: `Bedrooms: 3\nAirbnb listing URL: ${lead.listingUrl}\nPlease call me.` }).Message, 'Bedrooms: 3\nPlease call me.')
 })
 
 test('approved invitations personalize names, choose matching PDFs, and use opaque online links', async () => {
@@ -88,15 +94,26 @@ test('private review never sends on GET, requires explicit confirmation, and sen
     const review = await fetch(url)
     assert.equal(review.status, 200)
     assert.equal(review.headers.get('cache-control'), 'no-store')
-    assert.equal(review.headers.get('referrer-policy'), 'no-referrer')
+    assert.equal(review.headers.get('referrer-policy'), 'same-origin')
     assert.match(await review.text(), /Approve & send onboarding email/)
     assert.equal(sends, 0)
+    const activated = await new Promise((resolve, reject) => {
+      httpGet(url, { headers: { 'Sec-Fetch-User': '?1', 'Sec-Fetch-Mode': 'navigate' } }, response => {
+        let text = ''
+        response.on('data', chunk => { text += chunk })
+        response.on('end', () => resolve({ text, headers: response.headers }))
+      }).on('error', reject)
+    })
+    assert.match(activated.text, /body: 'confirm=yes'/)
+    assert.match(activated.headers['content-security-policy'], /script-src 'nonce-/)
+    assert.equal(sends, 0) // GET remains read-only; the activated browser performs a POST.
     const post = (body, origin) => fetch(url, {
       method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded', ...(origin ? { Origin: origin } : {}) }, body,
     })
     assert.equal((await post('')).status, 403)
     assert.equal((await post('confirm=yes', 'https://untrusted.example')).status, 403)
-    const responses = await Promise.all([post('confirm=yes'), post('confirm=yes')])
+    assert.equal((await post('confirm=yes', 'null')).status, 403)
+    const responses = await Promise.all([post('confirm=yes', 'https://example.com'), post('confirm=yes', 'https://example.com')])
     assert.deepEqual(responses.map(r => r.status).sort(), [200, 409])
     assert.equal(sends, 1)
     assert.equal((await post('confirm=yes')).status, 409)

@@ -83,7 +83,7 @@ function buildAdminHtml(fields, source, approvalUrl) {
                    style="border-collapse:collapse;border-radius:8px;overflow:hidden;border:1px solid #E2E8F0;">
               ${rows}
             </table>
-            ${approvalUrl ? `<p style="margin:24px 0"><a href="${escapeHtml(approvalUrl)}" style="display:inline-block;background:#D4AF37;color:#06121F;padding:14px 22px;border-radius:6px;text-decoration:none;font-weight:bold;">Review &amp; approve property</a></p><p style="font-size:13px;color:#334155;">Review the listing before confirming. Approval sends the owner a personalized onboarding email with the PDF attached and an online form link. This private approval link expires in 14 days; do not forward it to the owner.</p>` : ''}
+            ${approvalUrl ? `<p style="margin:24px 0"><a href="${escapeHtml(approvalUrl)}" style="display:inline-block;background:#D4AF37;color:#06121F;padding:14px 22px;border-radius:6px;text-decoration:none;font-weight:bold;">Approve &amp; send onboarding email</a></p><p style="font-size:13px;color:#334155;">Review the listing above first. Clicking this button approves the property and opens a delivery-status page while the owner's personalized onboarding email is sent with the PDF and online form link. This private approval link expires in 14 days; do not forward it to the owner.</p>` : ''}
             <p style="margin:16px 0 0;font-size:12px;color:#94A3B8;line-height:1.6;">
               Reply-To is set to the visitor's email — reply directly from your inbox.<br/>
               Submitted: ${new Date().toLocaleString('en-US', { dateStyle: 'full', timeStyle: 'short' })}
@@ -128,7 +128,7 @@ export async function sendFormEmails({ fields, customerEmail, source = 'Website 
       subject,
       html:     buildAdminHtml(fields, source, approvalUrl),
       text:     Object.entries(fields).map(([k, v]) => `${k}: ${v || '—'}`).join('\n') +
-        (approvalUrl ? `\n\nReview & approve property: ${approvalUrl}\nPrivate team link — do not forward to the owner. Confirming sends their onboarding email and PDF.` : ''),
+        (approvalUrl ? `\n\nApprove & send onboarding email: ${approvalUrl}\nPrivate team link — do not forward to the owner. Clicking approves the listing and sends their onboarding email and PDF.` : ''),
     });
     console.log(`[emailService] Admin notification accepted for ${ADMIN_TO.join(', ')} (${source})`);
   } catch (err) {

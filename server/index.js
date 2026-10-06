@@ -9,7 +9,7 @@ import { sendFormEmails } from './emailService.js';
 import { addToMailchimp } from './mailchimpService.js';
 import { onboardingEmailCopies, onboardingSource } from './onboardingEmails.js';
 import { createCommunityIntegration } from './community/integration.js';
-import { normalizeContactLead } from './contactLead.js';
+import { normalizeContactLead, buildContactLeadFields } from './contactLead.js';
 import { LeadApprovalStore } from './leadApprovalStore.js';
 import { createLeadApprovalRouter, APPROVAL_ORIGIN } from './leadApprovals.js';
 import {
@@ -368,19 +368,9 @@ app.post('/api/contact', async (req, res) => {
     return res.status(400).json({ error: error.message });
   }
   try {
-    const { name, firstName, lastName, email, phone, subject, message, propertyType, source, listingUrl } = lead;
+    const { name, firstName, lastName, email, phone, propertyType, source } = lead;
     const approvalToken = lead.plan ? await leadApprovalStore.create(lead) : null;
-    const fields = {
-      'Name':          name          || '—',
-      ...(firstName ? { 'First Name': firstName, 'Last Name': lastName } : {}),
-      'Email':         email         || '—',
-      'Phone':         phone         || '—',
-      'Subject':       subject       || '—',
-      'Property Type': propertyType  || '—',
-      'Message':       message       || '—',
-      'Source':        source        || 'Contact Form',
-      ...(listingUrl ? { 'Property Listing Link': listingUrl } : {}),
-    };
+    const fields = buildContactLeadFields(lead);
     const [emailResult, mcResult] = await Promise.allSettled([
       sendFormEmails({
         fields,

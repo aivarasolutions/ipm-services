@@ -1,3 +1,17 @@
+export function buildContactLeadFields(lead) {
+  const message = lead.message.split('\n').map(line =>
+    (lead.listingUrl ? line.split(lead.listingUrl).join('') : line).trim()
+  ).filter(line => line && !/^(?:airbnb\s+)?(?:property\s+)?(?:listing|url)(?:\s+(?:url|link))?\s*:\s*$/i.test(line)).join('\n')
+  return {
+    ...(lead.firstName ? { 'First Name': lead.firstName, 'Last Name': lead.lastName } : { Name: lead.name || '—' }),
+    Email: lead.email, Phone: lead.phone || '—', Subject: lead.subject || '—',
+    'Property Type': lead.propertyType || '—',
+    ...(message ? { Message: message } : {}),
+    Source: lead.source,
+    ...(lead.listingUrl ? { 'Property Listing Link': lead.listingUrl } : {}),
+  }
+}
+
 export function normalizeContactLead(body = {}) {
   const text = (value, max = 200) => typeof value === 'string' ? value.trim().slice(0, max) : ''
   const source = text(body.source) || 'Contact Form'
