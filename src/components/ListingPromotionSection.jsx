@@ -23,6 +23,11 @@ const copy = {
     trialEmphasis: 'end it at no cost.',
     independence: 'IPM does not take commission from reservations you generate independently. Our commission applies only to reservations generated through IPM.',
     email: 'Your email',
+    firstName: 'First name *',
+    lastName: 'Last name *',
+    phone: 'Phone number *',
+    phoneHint: 'Include country code, e.g. +1 555 123 4567',
+    phoneError: 'Enter a valid international phone number with country code.',
     listing: 'Airbnb listing URL',
     cta: 'Start Promoting My Property',
     sending: 'Sending…',
@@ -48,6 +53,11 @@ const copy = {
     trialEmphasis: 'cancelarlo sin costo.',
     independence: 'IPM no cobra comisión por reservas que usted genere por su cuenta. Nuestra comisión solo se aplica a las reservas generadas mediante IPM.',
     email: 'Su correo electrónico',
+    firstName: 'Nombre *',
+    lastName: 'Apellido *',
+    phone: 'Teléfono *',
+    phoneHint: 'Incluya el código de país, por ejemplo +1 555 123 4567',
+    phoneError: 'Ingrese un teléfono internacional válido con código de país.',
     listing: 'Enlace de su anuncio en Airbnb',
     cta: 'Empezar a Promocionar Mi Propiedad',
     sending: 'Enviando…',
@@ -73,6 +83,11 @@ const copy = {
     trialEmphasis: 'l’arrêter sans frais.',
     independence: 'IPM ne prélève aucune commission sur les réservations que vous obtenez par vous-même. Notre commission ne concerne que les réservations générées par IPM.',
     email: 'Votre adresse e-mail',
+    firstName: 'Prénom *',
+    lastName: 'Nom *',
+    phone: 'Téléphone *',
+    phoneHint: 'Indicatif du pays requis, par ex. +1 555 123 4567',
+    phoneError: 'Saisissez un numéro international valide avec indicatif du pays.',
     listing: 'Lien de votre annonce Airbnb',
     cta: 'Promouvoir Ma Propriété',
     sending: 'Envoi…',
@@ -98,6 +113,11 @@ const copy = {
     trialEmphasis: 'chấm dứt mà không mất phí.',
     independence: 'IPM không thu hoa hồng đối với các lượt đặt phòng do bạn tự tìm được. Hoa hồng của IPM chỉ áp dụng cho các lượt đặt phòng do IPM mang lại.',
     email: 'Email của bạn',
+    firstName: 'Tên *',
+    lastName: 'Họ *',
+    phone: 'Số điện thoại *',
+    phoneHint: 'Bao gồm mã quốc gia, ví dụ +1 555 123 4567',
+    phoneError: 'Vui lòng nhập số điện thoại quốc tế hợp lệ có mã quốc gia.',
     listing: 'Đường dẫn tin đăng Airbnb',
     cta: 'Bắt Đầu Quảng Bá Chỗ Nghỉ',
     sending: 'Đang gửi…',
@@ -126,13 +146,25 @@ export default function ListingPromotionSection({
     if (status === 'sending') return
     const form = event.currentTarget
     const data = new FormData(form)
+    const phone = String(data.get('phone') || '').replace(/[ \-()]/g, '')
+    if (!/^\+[1-9]\d{7,14}$/.test(phone)) {
+      setStatus('invalid')
+      return
+    }
     setStatus('sending')
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          firstName: data.get('firstName'),
+          lastName: data.get('lastName'),
+          name: `${data.get('firstName')} ${data.get('lastName')}`.trim(),
+          phone,
           email: data.get('email'),
+          listingUrl: data.get('listingUrl'),
+          language,
+          plan: 'listing-promotion',
           subject: 'Listing Promotion Plan inquiry',
           message: `Airbnb listing URL: ${data.get('listingUrl')}`,
           propertyType: 'Listing Promotion',
@@ -190,10 +222,28 @@ export default function ListingPromotionSection({
         <div className="listing-promotion__action">
           <p>{t.support}</p>
           <form onSubmit={submit}>
-            <label className="sr-only" htmlFor="promotion-email">{t.email}</label>
-            <input id="promotion-email" name="email" type="email" required autoComplete="email" placeholder={t.email} disabled={status === 'sending'} />
-            <label className="sr-only" htmlFor="promotion-listing">{t.listing}</label>
-            <input id="promotion-listing" name="listingUrl" type="url" required placeholder={t.listing} disabled={status === 'sending'} />
+            <div className="listing-promotion__field">
+              <label htmlFor="promotion-first-name">{t.firstName}</label>
+              <input id="promotion-first-name" name="firstName" type="text" required autoComplete="given-name" disabled={status === 'sending'} />
+            </div>
+            <div className="listing-promotion__field">
+              <label htmlFor="promotion-last-name">{t.lastName}</label>
+              <input id="promotion-last-name" name="lastName" type="text" required autoComplete="family-name" disabled={status === 'sending'} />
+            </div>
+            <div className="listing-promotion__field">
+              <label htmlFor="promotion-phone">{t.phone}</label>
+              <input id="promotion-phone" name="phone" type="tel" required autoComplete="tel" placeholder="+1 555 123 4567" aria-invalid={status === 'invalid'} aria-describedby={status === 'invalid' ? 'promotion-phone-hint promotion-phone-error' : 'promotion-phone-hint'} onChange={() => status === 'invalid' && setStatus('idle')} disabled={status === 'sending'} />
+              <span id="promotion-phone-hint" className="listing-promotion__hint">{t.phoneHint}</span>
+              {status === 'invalid' && <span id="promotion-phone-error" role="alert" className="listing-promotion__phone-error">{t.phoneError}</span>}
+            </div>
+            <div className="listing-promotion__field">
+              <label htmlFor="promotion-email">{t.email} *</label>
+              <input id="promotion-email" name="email" type="email" required autoComplete="email" placeholder={t.email} disabled={status === 'sending'} />
+            </div>
+            <div className="listing-promotion__field">
+              <label htmlFor="promotion-listing">{t.listing} *</label>
+              <input id="promotion-listing" name="listingUrl" type="url" required placeholder={t.listing} disabled={status === 'sending'} />
+            </div>
             <button type="submit" disabled={status === 'sending'}>
               {status === 'sending' ? t.sending : t.cta}<ArrowRight size={17} aria-hidden="true" />
             </button>

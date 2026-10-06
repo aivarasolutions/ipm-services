@@ -164,9 +164,12 @@ const content = {
       subtitle:
         'Tell us about your property and we\u2019ll show you what international management can do for it. No obligation.',
       fields: {
-        name: 'Name',
-        phone: 'Phone',
+        firstName: 'First Name',
+        lastName: 'Last Name',
+        phone: 'International Phone Number',
+        phoneHint: 'Include your country code, e.g. +1 555 123 4567.',
         email: 'Email',
+        listingUrl: 'Property Listing URL',
         address: 'Property Address',
         bedrooms: 'Number of Bedrooms',
         platform: 'Current Rental Platform',
@@ -179,7 +182,8 @@ const content = {
       successTitle: 'Thank You!',
       successText: 'We\u2019ve received your request. Our team will contact you shortly to schedule your consultation.',
       error: 'Something went wrong. Please try again or email us directly.',
-      required: 'Please fill in your name, email, and phone.',
+      required: 'Please fill in your first name, last name, email, phone, and listing URL.',
+      phoneInvalid: 'Enter a valid international phone number with country code.',
     },
   },
   vi: {
@@ -330,9 +334,12 @@ const content = {
       subtitle:
         'Hãy cho chúng tôi biết về bất động sản của bạn và chúng tôi sẽ cho bạn thấy quản lý quốc tế có thể mang lại điều gì. Hoàn toàn không ràng buộc.',
       fields: {
-        name: 'Họ và Tên',
-        phone: 'Số Điện Thoại',
+        firstName: 'Tên',
+        lastName: 'Họ',
+        phone: 'Số Điện Thoại Quốc Tế',
+        phoneHint: 'Bao gồm mã quốc gia, ví dụ +1 555 123 4567.',
         email: 'Email',
+        listingUrl: 'Đường Dẫn Tin Đăng Bất Động Sản',
         address: 'Địa Chỉ Bất Động Sản',
         bedrooms: 'Số Phòng Ngủ',
         platform: 'Nền Tảng Cho Thuê Hiện Tại',
@@ -345,7 +352,8 @@ const content = {
       successTitle: 'Cảm Ơn Bạn!',
       successText: 'Chúng tôi đã nhận được yêu cầu. Đội ngũ IPM sẽ liên hệ với bạn sớm để sắp xếp buổi tư vấn.',
       error: 'Đã có lỗi xảy ra. Vui lòng thử lại hoặc gửi email trực tiếp cho chúng tôi.',
-      required: 'Vui lòng điền họ tên, email và số điện thoại.',
+      required: 'Vui lòng điền tên, họ, email, số điện thoại và đường dẫn tin đăng.',
+      phoneInvalid: 'Vui lòng nhập số điện thoại quốc tế hợp lệ có mã quốc gia.',
     },
   },
 };
@@ -363,11 +371,14 @@ export default function Vietnam() {
   const t = content[lang];
 
   const [form, setForm] = useState({
-    name: '', phone: '', email: '', address: '', bedrooms: '', platform: '', message: '',
+    firstName: '', lastName: '', phone: '', email: '', listingUrl: '', address: '', bedrooms: '', platform: '', message: '',
   });
   const [status, setStatus] = useState('idle'); // idle | sending | success | error | invalid
 
-  const onChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+  const onChange = (e) => {
+    setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+    if (status === 'invalid') setStatus('idle');
+  };
 
   const scrollToForm = () => {
     document.getElementById('vn-consult')?.scrollIntoView({ behavior: 'smooth' });
@@ -379,7 +390,12 @@ export default function Vietnam() {
   async function handleSubmit(e) {
     e.preventDefault();
     if (status === 'sending') return;
-    if (!form.name.trim() || !form.email.trim() || !form.phone.trim()) {
+    const phone = form.phone.replace(/[ \-()]/g, '');
+    if (!form.firstName.trim() || !form.lastName.trim() || !form.email.trim() || !phone || !form.listingUrl.trim()) {
+      setStatus('invalid');
+      return;
+    }
+    if (!/^\+[1-9]\d{7,14}$/.test(phone)) {
       setStatus('invalid');
       return;
     }
@@ -387,6 +403,7 @@ export default function Vietnam() {
     try {
       const details = [
         `Property Address: ${form.address.trim() || '—'}`,
+        `Property Listing URL: ${form.listingUrl.trim()}`,
         `Bedrooms: ${form.bedrooms.trim() || '—'}`,
         `Current Platform: ${form.platform.trim() || '—'}`,
         '',
@@ -396,9 +413,13 @@ export default function Vietnam() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: form.name.trim(),
+          firstName: form.firstName.trim(),
+          lastName: form.lastName.trim(),
+          name: `${form.firstName.trim()} ${form.lastName.trim()}`.trim(),
           email: form.email.trim(),
-          phone: form.phone.trim(),
+          phone,
+          listingUrl: form.listingUrl.trim(),
+          language: lang,
           subject: 'Vietnam Owner Consultation Request (Da Nang)',
           message: details,
           propertyType: 'Vietnam Property Owner',
@@ -712,10 +733,16 @@ export default function Vietnam() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
-                  <Field label={t.form.fields.name} name="name" value={form.name} onChange={onChange} icon={Users} required />
-                  <Field label={t.form.fields.phone} name="phone" type="tel" value={form.phone} onChange={onChange} icon={Phone} required />
+                  <Field label={t.form.fields.firstName} name="firstName" value={form.firstName} onChange={onChange} icon={Users} required />
+                  <Field label={t.form.fields.lastName} name="lastName" value={form.lastName} onChange={onChange} icon={Users} required />
+                </div>
+                <div>
+                  <Field label={t.form.fields.phone} name="phone" type="tel" value={form.phone} onChange={onChange} icon={Phone} required placeholder="+1 555 123 4567" ariaInvalid={status === 'invalid' && !!form.phone && !/^\+[1-9]\d{7,14}$/.test(form.phone.replace(/[ \-()]/g, ''))} ariaDescribedBy="vn-phone-hint vn-phone-error" />
+                  <p className="mt-1 text-xs text-[#C9D2DE]" id="vn-phone-hint">{t.form.fields.phoneHint}</p>
+                  {status === 'invalid' && form.phone && !/^\+[1-9]\d{7,14}$/.test(form.phone.replace(/[ \-()]/g, '')) && <p id="vn-phone-error" role="alert" className="mt-1 text-sm text-[#F2D98D]">{t.form.phoneInvalid}</p>}
                 </div>
                 <Field label={t.form.fields.email} name="email" type="email" value={form.email} onChange={onChange} icon={Mail} required />
+                <Field label={t.form.fields.listingUrl} name="listingUrl" type="url" value={form.listingUrl} onChange={onChange} icon={Home} required placeholder="https://…" />
                 <Field label={t.form.fields.address} name="address" value={form.address} onChange={onChange} icon={Home} />
                 <div className="grid sm:grid-cols-2 gap-5">
                   <Field label={t.form.fields.bedrooms} name="bedrooms" type="number" value={form.bedrooms} onChange={onChange} icon={Building2} />
@@ -734,7 +761,7 @@ export default function Vietnam() {
                   />
                 </div>
                 <div aria-live="polite">
-                  {status === 'invalid' && <p className="text-sm text-[#F2D98D]">{t.form.required}</p>}
+                  {status === 'invalid' && (!form.phone || /^\+[1-9]\d{7,14}$/.test(form.phone.replace(/[ \-()]/g, ''))) && <p className="text-sm text-[#F2D98D]">{t.form.required}</p>}
                   {status === 'error' && <p className="text-sm text-red-400">{t.form.error}</p>}
                 </div>
                 <button
@@ -753,7 +780,7 @@ export default function Vietnam() {
   );
 }
 
-function Field({ label, name, value, onChange, icon: Icon, type = 'text', required = false, placeholder = '' }) {
+function Field({ label, name, value, onChange, icon: Icon, type = 'text', required = false, placeholder = '', ariaInvalid = false, ariaDescribedBy }) {
   const id = `vn-${name}`;
   return (
     <div>
@@ -767,6 +794,8 @@ function Field({ label, name, value, onChange, icon: Icon, type = 'text', requir
           type={type}
           name={name}
           required={required}
+          aria-invalid={ariaInvalid}
+          aria-describedby={ariaDescribedBy}
           value={value}
           onChange={onChange}
           placeholder={placeholder}

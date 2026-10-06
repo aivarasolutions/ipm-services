@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { OWNER_TAX_POLICY } from '../lib/ownerFaq.js'
 import './Onboarding.css'
@@ -228,13 +228,42 @@ function Field({ id, label, error, ...props }) {
 }
 
 export default function Onboarding() {
-  const { pathname } = useLocation()
+  const { pathname, search } = useLocation()
   const language = pathname.startsWith('/vi/') ? 'vi' : pathname.startsWith('/es/') ? 'es' : 'en'
   const t = copy[language]
   const [form, setForm] = useState(initialForm)
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle')
   const [serverError, setServerError] = useState('')
+  const [invitationMessage, setInvitationMessage] = useState('')
+  useEffect(() => {
+    const token = new URLSearchParams(search).get('invite')
+    if (!token) return
+    const controller = new AbortController()
+    const messages = language === 'es'
+      ? ['Sus datos aprobados se han completado. Revise y complete el formulario.', 'No se pudo cargar su invitación. Puede completar el formulario en blanco.']
+      : language === 'vi'
+        ? ['Thông tin đã được điền sẵn. Hãy kiểm tra và hoàn thành biểu mẫu.', 'Không thể tải lời mời. Bạn có thể điền biểu mẫu trống.']
+        : ['Your approved contact details are filled in. Please review and complete the form.', 'Your invitation could not be loaded. You can complete the blank form below.']
+    fetch(`/api/onboarding-invitations/${encodeURIComponent(token)}`, {
+      signal: controller.signal, referrerPolicy: 'no-referrer',
+    }).then(async response => {
+      if (!response.ok) throw new Error('Invitation unavailable')
+      const details = await response.json()
+      if (controller.signal.aborted) return
+      setForm(current => {
+        const next = { ...current }
+        for (const key of ['fullName', 'email', 'phone', 'airbnbListingUrl', 'plan']) {
+          if (!current[key] && typeof details[key] === 'string') next[key] = details[key]
+        }
+        return next
+      })
+      setInvitationMessage(messages[0])
+    }).catch(error => {
+      if (error.name !== 'AbortError') setInvitationMessage(messages[1])
+    })
+    return () => controller.abort()
+  }, [search, language])
   const timeZones = useMemo(() => {
     try { return Intl.supportedValuesOf('timeZone') } catch { return [...new Set(['UTC', form.timeZone])] }
   }, [form.timeZone])
@@ -286,6 +315,7 @@ export default function Onboarding() {
         <form onSubmit={submit} noValidate>
           <p className="ipm-intro">{t.intro}</p>
           <a className="ipm-pdf-link" href={`/onboarding/ipm-onboarding-${language}.pdf`} download>{t.pdf} (PDF)</a>
+          {invitationMessage && <p role="status">{invitationMessage}</p>}
           <SectionTitle>{t.contact}</SectionTitle>
           <div className="ipm-grid ipm-grid-three">
             <Field id="fullName" label={t.fullName} value={form.fullName} onChange={update} error={errors.fullName} autoComplete="name" required />

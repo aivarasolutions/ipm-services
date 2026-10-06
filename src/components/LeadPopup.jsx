@@ -27,6 +27,7 @@ const PLANS = {
 
 export default function LeadPopup() {
   const location = useLocation();
+  const spanish = location.pathname.startsWith('/es/');
   const pagePlan = getLocaleRouteInfo(location.pathname).routePath.slice(1);
   const incomingPlan = getContactPlan(pagePlan)
     ? pagePlan
@@ -34,7 +35,7 @@ export default function LeadPopup() {
   const [open, setOpen] = useState(false);
   const [status, setStatus] = useState('idle'); // idle | sending | success | error
   const [plan, setPlan] = useState(incomingPlan === 'listing-promotion' ? 'promotion' : 'full');
-  const [form, setForm] = useState({ name: '', email: '', phone: '' });
+  const [form, setForm] = useState({ firstName: '', lastName: '', email: '', phone: '', listingUrl: '' });
   const [errors, setErrors] = useState({});
   const dialogRef = useRef(null);
   const firedRef = useRef(false);
@@ -160,17 +161,29 @@ export default function LeadPopup() {
 
   function validate() {
     const next = {};
-    if (!form.name.trim()) next.name = 'Please enter your name.';
+    if (!form.firstName.trim()) next.firstName = spanish ? 'Ingrese su nombre.' : 'Please enter your first name.';
+    if (!form.lastName.trim()) next.lastName = spanish ? 'Ingrese su apellido.' : 'Please enter your last name.';
     if (!form.email.trim()) {
-      next.email = 'Please enter your email.';
+      next.email = spanish ? 'Ingrese su correo electrónico.' : 'Please enter your email.';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
-      next.email = 'Please enter a valid email.';
+      next.email = spanish ? 'Ingrese un correo electrónico válido.' : 'Please enter a valid email.';
     }
-    const digits = form.phone.replace(/\D/g, '');
     if (!form.phone.trim()) {
-      next.phone = 'Please enter your phone number.';
-    } else if (digits.length < 7) {
-      next.phone = 'Please enter a valid phone number.';
+      next.phone = spanish ? 'Ingrese su número de teléfono.' : 'Please enter your phone number.';
+    } else if (!/^\+[1-9]\d{7,14}$/.test(form.phone.replace(/[ \-()]/g, ''))) {
+      next.phone = spanish
+        ? 'Ingrese un teléfono internacional válido con código de país (por ejemplo, +1 555 123 4567).'
+        : 'Enter a valid international phone number with country code (for example +1 555 123 4567).';
+    }
+    if (!form.listingUrl.trim()) {
+      next.listingUrl = spanish ? 'Ingrese el enlace del anuncio de su propiedad.' : 'Please enter your property listing URL.';
+    } else {
+      try {
+        const url = new URL(form.listingUrl.trim());
+        if (!['http:', 'https:'].includes(url.protocol)) next.listingUrl = spanish ? 'Ingrese un enlace válido del anuncio.' : 'Enter a valid property listing URL.';
+      } catch {
+        next.listingUrl = spanish ? 'Ingrese un enlace válido del anuncio.' : 'Enter a valid property listing URL.';
+      }
     }
     setErrors(next);
     return Object.keys(next).length === 0;
@@ -184,15 +197,21 @@ export default function LeadPopup() {
     setStatus('sending');
     try {
       const selected = PLANS[plan];
+      const normalizedPhone = form.phone.replace(/[ \-()]/g, '');
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: form.name.trim(),
+          firstName: form.firstName.trim(),
+          lastName: form.lastName.trim(),
+          name: `${form.firstName.trim()} ${form.lastName.trim()}`.trim(),
           email: form.email.trim(),
-          phone: form.phone.trim(),
+          phone: normalizedPhone,
+          listingUrl: form.listingUrl.trim(),
+          language: spanish ? 'es' : 'en',
+          plan: plan === 'promotion' ? 'listing-promotion' : 'full-management',
           subject: `Interested in ${selected.name} (${selected.rate})`,
-          message: `Lead from website popup. Plan of interest: ${selected.name} — ${selected.rate} commission.`,
+          message: `Lead from website popup. Plan of interest: ${selected.name} — ${selected.rate} commission.\nProperty listing URL: ${form.listingUrl.trim()}`,
           propertyType: `${selected.name} (${selected.rate})`,
           source: selected.source,
         }),
@@ -275,25 +294,21 @@ export default function LeadPopup() {
                 ))}
               </div>
 
-              <div className="ipm-lp-field">
-                <label htmlFor="ipm-lp-name">Full Name *</label>
-                <input
-                  id="ipm-lp-name"
-                  type="text"
-                  required
-                  value={form.name}
-                  onChange={(e) => update('name', e.target.value)}
-                  disabled={status === 'sending'}
-                  className={errors.name ? 'has-error' : ''}
-                  placeholder="Jane Doe"
-                  aria-invalid={!!errors.name}
-                  aria-describedby={errors.name ? 'ipm-lp-name-err' : undefined}
-                />
-                {errors.name && <span id="ipm-lp-name-err" className="ipm-lp-err">{errors.name}</span>}
+              <div className="ipm-lp-name-fields">
+                <div className="ipm-lp-field">
+                  <label htmlFor="ipm-lp-first-name">{spanish ? 'Nombre *' : 'First name *'}</label>
+                  <input id="ipm-lp-first-name" type="text" required autoComplete="given-name" value={form.firstName} onChange={(e) => update('firstName', e.target.value)} disabled={status === 'sending'} className={errors.firstName ? 'has-error' : ''} aria-invalid={!!errors.firstName} aria-describedby={errors.firstName ? 'ipm-lp-first-name-err' : undefined} />
+                  {errors.firstName && <span id="ipm-lp-first-name-err" className="ipm-lp-err">{errors.firstName}</span>}
+                </div>
+                <div className="ipm-lp-field">
+                  <label htmlFor="ipm-lp-last-name">{spanish ? 'Apellido *' : 'Last name *'}</label>
+                  <input id="ipm-lp-last-name" type="text" required autoComplete="family-name" value={form.lastName} onChange={(e) => update('lastName', e.target.value)} disabled={status === 'sending'} className={errors.lastName ? 'has-error' : ''} aria-invalid={!!errors.lastName} aria-describedby={errors.lastName ? 'ipm-lp-last-name-err' : undefined} />
+                  {errors.lastName && <span id="ipm-lp-last-name-err" className="ipm-lp-err">{errors.lastName}</span>}
+                </div>
               </div>
 
               <div className="ipm-lp-field">
-                <label htmlFor="ipm-lp-email">Email *</label>
+                <label htmlFor="ipm-lp-email">{spanish ? 'Correo electrónico *' : 'Email *'}</label>
                 <input
                   id="ipm-lp-email"
                   type="email"
@@ -310,7 +325,7 @@ export default function LeadPopup() {
               </div>
 
               <div className="ipm-lp-field">
-                <label htmlFor="ipm-lp-phone">Phone *</label>
+                <label htmlFor="ipm-lp-phone">{spanish ? 'Teléfono internacional *' : 'International phone *'}</label>
                 <input
                   id="ipm-lp-phone"
                   type="tel"
@@ -319,16 +334,23 @@ export default function LeadPopup() {
                   onChange={(e) => update('phone', e.target.value)}
                   disabled={status === 'sending'}
                   className={errors.phone ? 'has-error' : ''}
-                  placeholder="+1 (555) 123-4567"
+                  placeholder="+1 555 123 4567"
                   aria-invalid={!!errors.phone}
-                  aria-describedby={errors.phone ? 'ipm-lp-phone-err' : undefined}
+                  aria-describedby={errors.phone ? 'ipm-lp-phone-err' : 'ipm-lp-phone-hint'}
                 />
+                {!errors.phone && <span id="ipm-lp-phone-hint" className="ipm-lp-err">{spanish ? 'Incluya el código de país, por ejemplo +1 555 123 4567.' : 'Include your country code, for example +1 555 123 4567.'}</span>}
                 {errors.phone && <span id="ipm-lp-phone-err" className="ipm-lp-err">{errors.phone}</span>}
               </div>
 
+              <div className="ipm-lp-field">
+                <label htmlFor="ipm-lp-listing">{spanish ? 'Enlace del anuncio de la propiedad *' : 'Property listing URL *'}</label>
+                <input id="ipm-lp-listing" type="url" required value={form.listingUrl} onChange={(e) => update('listingUrl', e.target.value)} disabled={status === 'sending'} className={errors.listingUrl ? 'has-error' : ''} placeholder="https://…" aria-invalid={!!errors.listingUrl} aria-describedby={errors.listingUrl ? 'ipm-lp-listing-err' : undefined} />
+                {errors.listingUrl && <span id="ipm-lp-listing-err" className="ipm-lp-err">{errors.listingUrl}</span>}
+              </div>
+
               {status === 'error' && (
-                <div className="ipm-lp-form-error">
-                  Something went wrong. Please try again.
+                <div className="ipm-lp-form-error" role="alert">
+                  {spanish ? 'Algo salió mal. Inténtelo de nuevo.' : 'Something went wrong. Please try again.'}
                 </div>
               )}
 
@@ -395,6 +417,7 @@ const css = `
 .ipm-lp-sub { font-size: 14px; line-height: 1.5; color: #4A5868; margin: 0; }
 
 .ipm-lp-plans { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
+.ipm-lp-name-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .ipm-lp-plan {
   position: relative; text-align: left;
   display: flex; flex-direction: column; gap: 4px;
@@ -480,6 +503,7 @@ const css = `
 @media (max-width: 420px) {
   .ipm-lp-modal { padding: 30px 20px 22px; }
   .ipm-lp-plans { grid-template-columns: 1fr; }
+  .ipm-lp-name-fields { grid-template-columns: 1fr; gap: 0; }
   .ipm-lp-title { font-size: 24px; }
 }
 `;

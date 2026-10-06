@@ -14,3 +14,4 @@
 - [Hosting diagnostics](hosting-diagnostics.md) — Vercel connection validity is not team access; development inventory can work while production authentication fails.
 - [Hosted booking flow](hosted-booking-flow.md) — public browsing uses book.richaf.global; property reservations use stay.richaf.global, which blocks cross-origin embedding.
 - [Owner tax policy](owner-tax-policy.md) — global independent owner tax responsibility; IPM coordinates required paperwork, with Form 1099 limited to U.S. requirements.
+- [Owner lead approval](owner-lead-approval-policy.md) — require complete owner contact details and review the property before sending a PDF/online onboarding invitation.

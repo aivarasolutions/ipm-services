@@ -22,15 +22,19 @@ const Contact = () => {
   const plan = new URLSearchParams(location.search).get('plan')
   const selectedPlan = getContactPlan(plan)
   const [formData, setFormData] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     phone: '',
+    listingUrl: '',
     subject: '',
     message: '',
     propertyType: 'inquiry'
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const requiresListing = Boolean(selectedPlan) || formData.propertyType === 'management'
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [phoneError, setPhoneError] = useState('')
 
   useEffect(() => {
     setFormData(previous => ({
@@ -71,12 +75,16 @@ const Contact = () => {
       monFri: 'Monday - Friday: 8:00 AM - 8:00 PM',
       sat: 'Saturday: 9:00 AM - 6:00 PM',
       sun: 'Sunday: 10:00 AM - 4:00 PM',
-      fullName: 'Full Name *',
-      fullNamePlaceholder: 'Your full name',
+      firstName: 'First Name *',
+      lastName: 'Last Name *',
       emailAddress: 'Email Address *',
       emailPlaceholder: 'your@email.com',
-      phoneNumber: 'Phone Number',
+      phoneNumber: 'International Phone Number *',
       phonePlaceholder: '+1 (555) 123-4567',
+      phoneHint: 'Include your country code, for example +1 555 123 4567.',
+      phoneError: 'Enter a valid international phone number with country code.',
+      listingUrl: 'Property Listing URL',
+      listingOptional: 'Property Listing URL (optional)',
       inquiryType: 'Inquiry Type',
       generalInquiry: 'General Inquiry',
       propertyManagement: 'Property Management',
@@ -121,12 +129,16 @@ const Contact = () => {
       monFri: 'Lunes - Viernes: 8:00 AM - 8:00 PM',
       sat: 'Sábado: 9:00 AM - 6:00 PM',
       sun: 'Domingo: 10:00 AM - 4:00 PM',
-      fullName: 'Nombre Completo *',
-      fullNamePlaceholder: 'Su nombre completo',
+      firstName: 'Nombre *',
+      lastName: 'Apellido *',
       emailAddress: 'Dirección de Correo Electrónico *',
       emailPlaceholder: 'su@correo.com',
-      phoneNumber: 'Número de Teléfono',
+      phoneNumber: 'Número de Teléfono Internacional *',
       phonePlaceholder: '+1 (555) 123-4567',
+      phoneHint: 'Incluya el código de país, por ejemplo +1 555 123 4567.',
+      phoneError: 'Ingrese un teléfono internacional válido con código de país.',
+      listingUrl: 'Enlace del anuncio de la propiedad',
+      listingOptional: 'Enlace del anuncio (opcional)',
       inquiryType: 'Tipo de Consulta',
       generalInquiry: 'Consulta General',
       propertyManagement: 'Gestión de Propiedad',
@@ -171,12 +183,16 @@ const Contact = () => {
       monFri: 'Lundi - Vendredi: 8:00 AM - 8:00 PM',
       sat: 'Samedi: 9:00 AM - 6:00 PM',
       sun: 'Dimanche: 10:00 AM - 4:00 PM',
-      fullName: 'Nom Complet *',
-      fullNamePlaceholder: 'Votre nom complet',
+      firstName: 'Prénom *',
+      lastName: 'Nom *',
       emailAddress: 'Adresse Email *',
       emailPlaceholder: 'votre@email.com',
-      phoneNumber: 'Numéro de Téléphone',
+      phoneNumber: 'Numéro de Téléphone International *',
       phonePlaceholder: '+1 (555) 123-4567',
+      phoneHint: 'Indicatif du pays requis, par exemple +1 555 123 4567.',
+      phoneError: 'Saisissez un numéro international valide avec indicatif du pays.',
+      listingUrl: 'Lien de l’annonce immobilière',
+      listingOptional: 'Lien de l’annonce immobilière (facultatif)',
       inquiryType: 'Type de Demande',
       generalInquiry: 'Demande Générale',
       propertyManagement: 'Gestion de Propriété',
@@ -206,6 +222,12 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    const normalizedPhone = formData.phone.replace(/[ \-()]/g, '')
+    if (!/^\+[1-9]\d{7,14}$/.test(normalizedPhone)) {
+      setPhoneError(t.phoneError)
+      return
+    }
+    setPhoneError('')
     setIsSubmitting(true)
 
     try {
@@ -216,6 +238,15 @@ const Contact = () => {
         },
         body: JSON.stringify({
           ...formData,
+          firstName: formData.firstName.trim(),
+          lastName: formData.lastName.trim(),
+          name: `${formData.firstName.trim()} ${formData.lastName.trim()}`.trim(),
+          phone: normalizedPhone,
+          listingUrl: formData.listingUrl.trim(),
+          language,
+          plan: plan === 'listing-promotion' || plan === 'full-management'
+            ? plan
+            : undefined,
           source: getContactSource(plan, formData.propertyType),
         })
       })
@@ -227,9 +258,11 @@ const Contact = () => {
         setIsSubmitted(true)
         if (typeof window.gtag === 'function') window.gtag('event', 'book_click', {});
         setFormData({
-          name: '',
+          firstName: '',
+          lastName: '',
           email: '',
           phone: '',
+          listingUrl: '',
           subject: '',
           message: '',
           propertyType: 'inquiry'
@@ -357,11 +390,15 @@ const Contact = () => {
               <Card className="bg-white border border-[#0A1A30]/10 shadow-lg shadow-[#06121F]/5">
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-[#0A1A30] mb-6">{t.sendMessage}</h2>
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-6 [&_input]:text-[#0A1A30] [&_textarea]:text-[#0A1A30] [&_input]:placeholder:text-[#64748B] [&_textarea]:placeholder:text-[#64748B]">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-[#334155] mb-2">{t.fullName}</label>
-                        <Input type="text" id="name" name="name" value={formData.name} onChange={handleInputChange} required placeholder={t.fullNamePlaceholder} />
+                        <label htmlFor="firstName" className="block text-sm font-medium text-[#334155] mb-2">{t.firstName}</label>
+                        <Input type="text" id="firstName" name="firstName" autoComplete="given-name" value={formData.firstName} onChange={handleInputChange} required />
+                      </div>
+                      <div>
+                        <label htmlFor="lastName" className="block text-sm font-medium text-[#334155] mb-2">{t.lastName}</label>
+                        <Input type="text" id="lastName" name="lastName" autoComplete="family-name" value={formData.lastName} onChange={handleInputChange} required />
                       </div>
                       <div>
                         <label htmlFor="email" className="block text-sm font-medium text-[#334155] mb-2">{t.emailAddress}</label>
@@ -372,7 +409,9 @@ const Contact = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label htmlFor="phone" className="block text-sm font-medium text-[#334155] mb-2">{t.phoneNumber}</label>
-                        <Input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleInputChange} placeholder={t.phonePlaceholder} />
+                        <Input type="tel" id="phone" name="phone" autoComplete="tel" value={formData.phone} onChange={(event) => { handleInputChange(event); setPhoneError('') }} placeholder={t.phonePlaceholder} required aria-invalid={!!phoneError} aria-describedby="phone-hint phone-error" />
+                        <p id="phone-hint" className="mt-1 text-xs text-[#475569]">{t.phoneHint}</p>
+                        {phoneError && <p id="phone-error" role="alert" className="mt-1 text-sm text-red-700">{phoneError}</p>}
                       </div>
                       <div>
                         <label htmlFor="propertyType" className="block text-sm font-medium text-[#334155] mb-2">{t.inquiryType}</label>
@@ -384,6 +423,13 @@ const Contact = () => {
                           <option value="support">{t.support}</option>
                         </select>
                       </div>
+                    </div>
+
+                    <div>
+                      <label htmlFor="listingUrl" className="block text-sm font-medium text-[#334155] mb-2">
+                        {requiresListing ? `${t.listingUrl} *` : t.listingOptional}
+                      </label>
+                      <Input type="url" id="listingUrl" name="listingUrl" value={formData.listingUrl} onChange={handleInputChange} required={requiresListing} placeholder="https://…" />
                     </div>
 
                     <div>

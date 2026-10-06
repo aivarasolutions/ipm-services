@@ -9,6 +9,9 @@ import { sendFormEmails } from './emailService.js';
 import { addToMailchimp } from './mailchimpService.js';
 import { onboardingEmailCopies, onboardingSource } from './onboardingEmails.js';
 import { createCommunityIntegration } from './community/integration.js';
+import { normalizeContactLead } from './contactLead.js';
+import { LeadApprovalStore } from './leadApprovalStore.js';
+import { createLeadApprovalRouter, APPROVAL_ORIGIN } from './leadApprovals.js';
 import {
   getIndexableRoutePaths,
   getPropertySlugFromPath,
@@ -39,6 +42,7 @@ const { Pool } = pg;
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
 const app = express();
+const leadApprovalStore = new LeadApprovalStore(pool);
 app.set('trust proxy', 1);
 app.use(express.json({
   limit: '1mb',
@@ -355,17 +359,27 @@ app.post('/api/properties/:identifier/reservations', guardReservationRequest, as
 // Sends admin notification to both team inboxes (reply_to set to visitor).
 // Customer-facing thank-you is sent by Mailchimp Customer Journey (not here).
 // DNS forwarding must be set up at the domain provider separately.
+app.use('/api', createLeadApprovalRouter({ store: leadApprovalStore }));
 app.post('/api/contact', async (req, res) => {
+  let lead;
   try {
-    const { name, email, phone, subject, message, propertyType, source } = req.body;
+    lead = normalizeContactLead(req.body);
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+  try {
+    const { name, firstName, lastName, email, phone, subject, message, propertyType, source, listingUrl } = lead;
+    const approvalToken = lead.plan ? await leadApprovalStore.create(lead) : null;
     const fields = {
       'Name':          name          || '—',
+      ...(firstName ? { 'First Name': firstName, 'Last Name': lastName } : {}),
       'Email':         email         || '—',
       'Phone':         phone         || '—',
       'Subject':       subject       || '—',
       'Property Type': propertyType  || '—',
       'Message':       message       || '—',
       'Source':        source        || 'Contact Form',
+      ...(listingUrl ? { 'Property Listing Link': listingUrl } : {}),
     };
     const [emailResult, mcResult] = await Promise.allSettled([
       sendFormEmails({
@@ -373,11 +387,12 @@ app.post('/api/contact', async (req, res) => {
         customerEmail: email,
         customerName:  name,
         source:        source || 'Contact Form',
+        approvalUrl: approvalToken ? `${APPROVAL_ORIGIN}/api/lead-approvals/${approvalToken}` : undefined,
       }),
       addToMailchimp({
         email,
-        firstName:        name?.split(' ')[0],
-        lastName:         name?.split(' ').slice(1).join(' ') || '',
+        firstName:        firstName || name?.split(' ')[0],
+        lastName:         lastName || name?.split(' ').slice(1).join(' ') || '',
         phone,
         propertyLocation: propertyType || '',
         formSource:       source || 'Contact Form',

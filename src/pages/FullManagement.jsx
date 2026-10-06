@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Check, Mail, MapPin, UserRound } from 'lucide-react'
+import { ArrowRight, Check, Mail, MapPin, Phone, UserRound } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '../contexts/LanguageContext'
 import OwnerFaqSection from '../components/OwnerFaqSection'
@@ -23,8 +23,11 @@ const copy = {
     explanation: 'Full Management includes the Listing Promotion services, with guest communication, operational coordination, revenue strategy, owner support and reporting.',
     formTitle: 'Tell us about your property',
     formIntro: 'Share a few details and our team will be in touch.',
-    name: 'Your name',
+    firstName: 'First name',
+    lastName: 'Last name',
+    phone: 'International phone number',
     email: 'Email address',
+    listingUrl: 'Property listing URL',
     property: 'Property name',
     location: 'Property location',
     details: 'Property details and what you are looking for',
@@ -54,8 +57,11 @@ const copy = {
     explanation: 'La Gestión Completa incluye los servicios de Promoción de Anuncios, además de comunicación con huéspedes, coordinación operativa, estrategia de ingresos, soporte e informes para propietarios.',
     formTitle: 'Cuéntenos sobre su propiedad',
     formIntro: 'Comparta algunos detalles y nuestro equipo se pondrá en contacto.',
-    name: 'Su nombre',
+    firstName: 'Nombre',
+    lastName: 'Apellido',
+    phone: 'Teléfono internacional',
     email: 'Correo electrónico',
+    listingUrl: 'Enlace del anuncio de la propiedad',
     property: 'Nombre de la propiedad',
     location: 'Ubicación de la propiedad',
     details: 'Detalles de la propiedad y qué servicios busca',
@@ -75,22 +81,38 @@ export default function FullManagement() {
   const spanish = language === 'es'
   const t = copy[spanish ? 'es' : 'en']
   const [status, setStatus] = useState('idle')
+  const [phoneError, setPhoneError] = useState('')
 
   async function submit(event) {
     event.preventDefault()
     if (status === 'sending') return
     const form = event.currentTarget
     const data = new FormData(form)
+    const phone = String(data.get('phone') || '').replace(/[ \-()]/g, '')
+    if (!/^\+[1-9]\d{7,14}$/.test(phone)) {
+      setPhoneError(spanish
+        ? 'Ingrese un teléfono internacional válido con código de país.'
+        : 'Enter a valid international phone number with country code.')
+      form.elements.phone.focus()
+      return
+    }
+    setPhoneError('')
     setStatus('sending')
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: data.get('name'),
+          firstName: data.get('firstName'),
+          lastName: data.get('lastName'),
+          name: `${data.get('firstName')} ${data.get('lastName')}`.trim(),
+          phone,
           email: data.get('email'),
+          listingUrl: data.get('listingUrl'),
+          language: spanish ? 'es' : 'en',
+          plan: 'full-management',
           subject: 'Full Management inquiry',
-          message: `Property name: ${data.get('propertyName')}\nProperty location: ${data.get('propertyLocation')}\nProperty details: ${data.get('propertyDetails')}`,
+          message: `Property listing URL: ${data.get('listingUrl')}\nProperty name: ${data.get('propertyName')}\nProperty location: ${data.get('propertyLocation')}\nProperty details: ${data.get('propertyDetails')}`,
           propertyType: 'Full Management',
           source: 'Full Management Page — Full Management (20%)',
         }),
@@ -148,13 +170,29 @@ export default function FullManagement() {
             <p className="text-sm text-[#AEBBCB]">{t.formIntro}</p>
           </div>
           <form onSubmit={submit} className="space-y-4">
+            <div className="grid sm:grid-cols-2 gap-4">
+              <label className="block">
+                <span className="flex items-center gap-2 text-sm text-[#D9E0E8] mb-1.5"><UserRound className="h-4 w-4 text-[#D4AF37]" />{t.firstName} *</span>
+                <input name="firstName" type="text" autoComplete="given-name" required disabled={status === 'sending'} className="w-full rounded-md border border-[#34506A] bg-[#06121F] px-3 py-3 text-white placeholder:text-[#8493A5] focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/50 disabled:opacity-60" />
+              </label>
+              <label className="block">
+                <span className="text-sm text-[#D9E0E8] mb-1.5 block">{t.lastName} *</span>
+                <input name="lastName" type="text" autoComplete="family-name" required disabled={status === 'sending'} className="w-full rounded-md border border-[#34506A] bg-[#06121F] px-3 py-3 text-white placeholder:text-[#8493A5] focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/50 disabled:opacity-60" />
+              </label>
+            </div>
             <label className="block">
-              <span className="flex items-center gap-2 text-sm text-[#D9E0E8] mb-1.5"><UserRound className="h-4 w-4 text-[#D4AF37]" />{t.name}</span>
-              <input name="name" type="text" autoComplete="name" required disabled={status === 'sending'} className="w-full rounded-md border border-[#34506A] bg-[#06121F] px-3 py-3 text-white placeholder:text-[#8493A5] focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/50 disabled:opacity-60" />
+              <span className="flex items-center gap-2 text-sm text-[#D9E0E8] mb-1.5"><Phone className="h-4 w-4 text-[#D4AF37]" />{t.phone} *</span>
+              <input name="phone" type="tel" autoComplete="tel" placeholder="+1 555 123 4567" aria-invalid={!!phoneError} aria-describedby={phoneError ? 'management-phone-help management-phone-error' : 'management-phone-help'} onChange={() => phoneError && setPhoneError('')} required disabled={status === 'sending'} className="w-full rounded-md border border-[#34506A] bg-[#06121F] px-3 py-3 text-white placeholder:text-[#8493A5] focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/50 disabled:opacity-60" />
+              <span id="management-phone-help" className="mt-1 block text-xs text-[#AEBBCB]">{spanish ? 'Incluya el código de país.' : 'Include the country code.'}</span>
+              {phoneError && <span id="management-phone-error" role="alert" className="mt-1 block text-sm text-rose-300">{phoneError}</span>}
             </label>
             <label className="block">
-              <span className="flex items-center gap-2 text-sm text-[#D9E0E8] mb-1.5"><Mail className="h-4 w-4 text-[#D4AF37]" />{t.email}</span>
+              <span className="flex items-center gap-2 text-sm text-[#D9E0E8] mb-1.5"><Mail className="h-4 w-4 text-[#D4AF37]" />{t.email} *</span>
               <input name="email" type="email" autoComplete="email" required disabled={status === 'sending'} className="w-full rounded-md border border-[#34506A] bg-[#06121F] px-3 py-3 text-white placeholder:text-[#8493A5] focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/50 disabled:opacity-60" />
+            </label>
+            <label className="block">
+              <span className="text-sm text-[#D9E0E8] mb-1.5 block">{t.listingUrl} *</span>
+              <input name="listingUrl" type="url" autoComplete="url" required placeholder="https://…" disabled={status === 'sending'} className="w-full rounded-md border border-[#34506A] bg-[#06121F] px-3 py-3 text-white placeholder:text-[#8493A5] focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/50 disabled:opacity-60" />
             </label>
             <label className="block">
               <span className="text-sm text-[#D9E0E8] mb-1.5 block">{t.property}</span>
