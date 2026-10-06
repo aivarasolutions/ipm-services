@@ -20,3 +20,9 @@ Both the homepage and listing-promotion page should show the owner portal demo b
 **Why:** The user wants owners to see how the portal works first and confirmed the existing talking videos look good.
 
 **How to apply:** Apply video placement updates to both pages, not only listing promotion. Preserve the approved talking clips when adjusting this layout. Keep language separation and click-to-load behavior.
+
+The Spanish owner-portal reel must also come first on the Spanish homepage, 10% listing-promotion page and services page, using the same congruent layout as the English videos.
+
+**Why:** The user supplied the Spanish portal reel and explicitly named all three placements, not only the homepage and promotion page.
+
+**How to apply:** Preserve the Spanish talking clips after the portal reel and the existing English placements. Never use the English portal reel as a Spanish fallback.

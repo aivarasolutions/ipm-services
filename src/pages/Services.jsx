@@ -17,6 +17,8 @@ import {
 import { Link } from 'react-router-dom'
 import ReviewsSection from '../components/ReviewsSection'
 import OwnerFaqSection from '../components/OwnerFaqSection'
+import PromoVideoSection from '../components/PromoVideoSection'
+import { getPromoVideos } from '../lib/promoVideos'
 
 const Services = () => {
   const { language } = useLanguage()
@@ -191,6 +193,15 @@ const Services = () => {
           </div>
         </div>
       </section>
+
+      {/* Spanish owner videos, with the portal demonstration first */}
+      {language === 'es' && (
+        <section className="bg-[#06121F] py-12 sm:py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <PromoVideoSection language={language} videos={getPromoVideos(language, true)} />
+          </div>
+        </section>
+      )}
 
       {/* Existing service catalog */}
       <section className="py-20 bg-[#F8F5EF]">

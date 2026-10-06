@@ -117,3 +117,17 @@ mtime_ms = 1790618112096
 storage_uri = "gcs://replit-rams-assets-riker/rams/assets/repl:0647ac4f-02d3-46fa-afa9-3f214720d51b/958381c0-ff6e-4c4c-82db-03c1ffd41e63/ac1bea6e-71d9-4b43-93cd-c990c6f6a095"
 storage_version_token = "1790618427919664"
 content_type = "application/pdf"
+
+[[outputs]]
+id = "fTXmI_kXvtPpVkwHv5qVF"
+uri = "file://public/videos/es-owner-portal.b532dbdd64.mp4"
+type = "video"
+title = "Spanish IPM Owner Portal — web-optimized reel"
+description = "20-second Spanish reel, optimized to 2.4 MB for click-to-play website playback. Original framing and captions preserved."
+logical_id = "48258e0c-2705-4c77-a8bd-defefa1c4089"
+content_hash = "sha256:b532dbdd6409536e4638212a39ac704fb180dd52f598a402feaf0f1a54cf7ee4"
+size = 2419894
+mtime_ms = 1791280595929
+storage_uri = "gcs://replit-rams-assets-riker/rams/assets/repl:0647ac4f-02d3-46fa-afa9-3f214720d51b/48258e0c-2705-4c77-a8bd-defefa1c4089/27176233-07fd-4de4-ba08-31f0fe3bbaec"
+storage_version_token = "1791280817177177"
+content_type = "video/mp4"

@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight, CalendarDays, Check, DollarSign, Percent, ShieldCheck, TrendingUp } from 'lucide-react'
 import './ListingPromotionSection.css'
 import PromoVideoSection from './PromoVideoSection'
-import { OWNER_PORTAL_VIDEO, PROMO_VIDEOS } from '../lib/promoVideos'
+import { getPromoVideos } from '../lib/promoVideos'
 
 const copy = {
   en: {
@@ -221,9 +221,7 @@ export default function ListingPromotionSection({
         {showVideos && (
           <PromoVideoSection
             language={language}
-            videos={includeOwnerPortal && language === 'en'
-              ? [OWNER_PORTAL_VIDEO, ...(PROMO_VIDEOS.en || [])]
-              : PROMO_VIDEOS[language]}
+            videos={getPromoVideos(language, includeOwnerPortal)}
           />
         )}
 

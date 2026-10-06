@@ -7,6 +7,16 @@ export const OWNER_PORTAL_VIDEO = {
   poster: '/videos/en-owner-portal.3d7a06c522.webp',
 }
 
+export const OWNER_PORTAL_VIDEOS = {
+  en: OWNER_PORTAL_VIDEO,
+  es: {
+    id: 'es-owner-portal',
+    title: 'Portal de Propietarios IPM — Conozca Cómo Funciona',
+    src: '/videos/es-owner-portal.b532dbdd64.mp4',
+    poster: '/videos/es-owner-portal.5899221edc.webp',
+  },
+}
+
 export const PROMO_VIDEOS = {
   en: [
     {
@@ -36,4 +46,10 @@ export const PROMO_VIDEOS = {
       poster: '/videos/es-karen-intro.2d904d3b24.webp',
     },
   ],
+}
+
+export function getPromoVideos(language, includeOwnerPortal = false) {
+  const videos = PROMO_VIDEOS[language] || []
+  const portal = OWNER_PORTAL_VIDEOS[language]
+  return includeOwnerPortal && portal ? [portal, ...videos] : videos
 }
