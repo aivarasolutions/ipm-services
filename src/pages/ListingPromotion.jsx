@@ -26,6 +26,7 @@ export default function ListingPromotion() {
         source="10% Promotion Page — Listing Promotion (10%)"
         headingLevel="h1"
         showVideos
+        includeOwnerPortal
       />
       <OwnerFaqSection plan="listing" />
     </div>

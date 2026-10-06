@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight, CalendarDays, Check, DollarSign, Percent, ShieldCheck, TrendingUp } from 'lucide-react'
 import './ListingPromotionSection.css'
 import PromoVideoSection from './PromoVideoSection'
-import { PROMO_VIDEOS } from '../lib/promoVideos'
+import { OWNER_PORTAL_VIDEO, PROMO_VIDEOS } from '../lib/promoVideos'
 
 const copy = {
   en: {
@@ -33,7 +33,7 @@ const copy = {
     sending: 'Sending…',
     sent: 'Thank you! We received your listing and will be in touch.',
     error: 'We could not send your listing. Please try again.',
-    support: 'Send us your Airbnb listing and email to get started.',
+    support: 'Send us your name, phone, email, and Airbnb listing to get started.',
     howTitle: 'How it works',
     steps: ['Send your listing', 'IPM promotes it', 'We bring reservations', 'You get paid'],
   },
@@ -63,7 +63,7 @@ const copy = {
     sending: 'Enviando…',
     sent: '¡Gracias! Recibimos su anuncio y nos pondremos en contacto.',
     error: 'No pudimos enviar su anuncio. Inténtelo de nuevo.',
-    support: 'Envíenos el enlace de Airbnb y su correo electrónico para empezar.',
+    support: 'Envíenos su nombre, teléfono, correo electrónico y enlace de Airbnb para empezar.',
     howTitle: 'Cómo funciona',
     steps: ['Envíe su anuncio', 'IPM lo promociona', 'Conseguimos reservas', 'Usted recibe el pago'],
   },
@@ -93,7 +93,7 @@ const copy = {
     sending: 'Envoi…',
     sent: 'Merci ! Nous avons reçu votre annonce et nous vous contacterons.',
     error: 'Impossible d’envoyer votre annonce. Veuillez réessayer.',
-    support: 'Envoyez-nous le lien de votre annonce Airbnb et votre e-mail pour commencer.',
+    support: 'Envoyez-nous votre nom, téléphone, e-mail et lien de votre annonce Airbnb pour commencer.',
     howTitle: 'Comment ça marche',
     steps: ['Envoyez votre annonce', 'IPM la promeut', 'Nous apportons des réservations', 'Vous êtes payé'],
   },
@@ -123,7 +123,7 @@ const copy = {
     sending: 'Đang gửi…',
     sent: 'Cảm ơn bạn! Chúng tôi đã nhận được tin đăng và sẽ sớm liên hệ.',
     error: 'Không thể gửi tin đăng. Vui lòng thử lại.',
-    support: 'Gửi đường dẫn tin đăng Airbnb và email của bạn để bắt đầu.',
+    support: 'Gửi tên, số điện thoại, email và đường dẫn tin đăng Airbnb của bạn để bắt đầu.',
     howTitle: 'Cách thức hoạt động',
     steps: ['Gửi tin đăng', 'IPM quảng bá', 'Chúng tôi mang lại lượt đặt phòng', 'Bạn nhận tiền'],
   },
@@ -136,6 +136,7 @@ export default function ListingPromotionSection({
   source = 'Homepage — Listing Promotion (10%)',
   headingLevel = 'h2',
   showVideos = false,
+  includeOwnerPortal = false,
 }) {
   const t = copy[language] || copy.en
   const reducedMotion = useReducedMotion()
@@ -217,7 +218,14 @@ export default function ListingPromotionSection({
         </div>
         <p className="listing-promotion__independence"><Check size={19} aria-hidden="true" />{t.independence}</p>
 
-        {showVideos && <PromoVideoSection language={language} videos={PROMO_VIDEOS[language]} />}
+        {showVideos && (
+          <PromoVideoSection
+            language={language}
+            videos={includeOwnerPortal && language === 'en'
+              ? [OWNER_PORTAL_VIDEO, ...(PROMO_VIDEOS.en || [])]
+              : PROMO_VIDEOS[language]}
+          />
+        )}
 
         <div className="listing-promotion__action">
           <p>{t.support}</p>
@@ -240,11 +248,11 @@ export default function ListingPromotionSection({
               <label htmlFor="promotion-email">{t.email} *</label>
               <input id="promotion-email" name="email" type="email" required autoComplete="email" placeholder={t.email} disabled={status === 'sending'} />
             </div>
-            <div className="listing-promotion__field">
+            <div className="listing-promotion__field listing-promotion__field--listing">
               <label htmlFor="promotion-listing">{t.listing} *</label>
               <input id="promotion-listing" name="listingUrl" type="url" required placeholder={t.listing} disabled={status === 'sending'} />
             </div>
-            <button type="submit" disabled={status === 'sending'}>
+            <button className="listing-promotion__submit" type="submit" disabled={status === 'sending'}>
               {status === 'sending' ? t.sending : t.cta}<ArrowRight size={17} aria-hidden="true" />
             </button>
           </form>

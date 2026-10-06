@@ -1,5 +1,12 @@
 // Each public asset is content-hashed and reused on the home/promotion pages.
 // The source uploads remain unchanged in attached_assets.
+export const OWNER_PORTAL_VIDEO = {
+  id: 'en-owner-portal',
+  title: 'IPM Owner Portal — See How It Works',
+  src: '/videos/en-owner-portal.8ec98a8e10.mp4',
+  poster: '/videos/en-owner-portal.3d7a06c522.webp',
+}
+
 export const PROMO_VIDEOS = {
   en: [
     {
