@@ -9,8 +9,8 @@ The IPM 30-Day $100 Booking Guarantee is a website-content promotion only. The I
 
 **How to apply:** Keep this campaign informational and bilingual, linking to existing signup and contact methods. Do not alter existing prices, forms, onboarding, booking functionality or owner accounts, and do not integrate Aivara Social Scheduler.
 
-Management and legal approval are required before this cash-payment promotion is published publicly.
+The user has explicitly authorized publishing the existing cash-payment campaign and removing its development-only restrictions.
 
-**Why:** The user explicitly requested preparation in development for approval, not a public launch.
+**Why:** The original brief required a development draft pending management and legal approval; the user subsequently instructed publishing the completed implementation with normal indexing and sitemap inclusion, without another approval round.
 
-**How to apply:** Preserve the development-only visibility boundary until explicit approval to launch is given. Do not enable the promotion merely because the website is otherwise being published.
+**How to apply:** Keep the existing promotion publicly enabled, preserving its rules, FAQs, graphics and signup links. This authorization covers launching the existing campaign, not changing its payment or eligibility terms.

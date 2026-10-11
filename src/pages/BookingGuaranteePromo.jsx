@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, ShieldCheck } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { BOOKING_GUARANTEE_VISIBLE } from '../lib/bookingGuarantee'
 import { bookingGuaranteeContent } from './bookingGuaranteeContent'
 
@@ -16,9 +16,6 @@ export default function BookingGuaranteePromo({ language = 'en', placement = 'ho
     <section className="relative overflow-hidden border-y border-[#D4AF37]/30 bg-[#0A1A30] px-5 py-12 sm:px-8 sm:py-16" aria-labelledby={`booking-promo-${placement}`}>
       <div className="mx-auto grid max-w-6xl items-center gap-8 md:grid-cols-[minmax(0,1fr)_190px] lg:gap-14">
         <div>
-          <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/40 bg-[#D4AF37]/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.17em] text-[#F2D98D]">
-            <ShieldCheck size={14} aria-hidden="true" /> {t.draft}
-          </p>
           <p className="mb-3 text-xs font-bold uppercase tracking-[.2em] text-[#D4AF37]">{t.eyebrow}</p>
           <h2 id={`booking-promo-${placement}`} className="max-w-3xl font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl lg:text-[2.7rem]">
             {t.headline}

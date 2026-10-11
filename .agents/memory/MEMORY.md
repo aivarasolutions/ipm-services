@@ -16,4 +16,4 @@
 - [Owner tax policy](owner-tax-policy.md) — global independent owner tax responsibility; IPM coordinates required paperwork, with Form 1099 limited to U.S. requirements.
 - [Owner lead approval](owner-lead-approval-policy.md) — require complete owner contact details and review the property before sending a PDF/online onboarding invitation.
 - [Payout calculator assumptions](payout-calculator-assumptions.md) — educational estimates, not contract policy; no guessed taxes or invented allocation of monthly fees.
-- [Booking guarantee approval](booking-guarantee-policy.md) — informational, manual-only campaign; management and legal approval required before any public launch.
+- [Booking guarantee policy](booking-guarantee-policy.md) — informational, manual-only campaign; user authorized public launch of the existing terms without another approval round.

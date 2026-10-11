@@ -6,26 +6,30 @@ import { getIndexableRoutePaths, getLocaleRouteInfo, getSeoMetadata, injectSeoMe
 import { createSitemapXml } from './sitemap.js'
 import { bookingGuaranteeContent } from '../pages/bookingGuaranteeContent.js'
 
-test('Cash-payment promotion stays unapproved and hidden outside development', () => {
-  assert.equal(BOOKING_GUARANTEE_APPROVED, false)
-  assert.equal(BOOKING_GUARANTEE_VISIBLE, false)
+test('Authorized campaign is visible in production without development-only restrictions', () => {
+  assert.equal(BOOKING_GUARANTEE_APPROVED, true)
+  assert.equal(BOOKING_GUARANTEE_VISIBLE, true)
+  assert.doesNotMatch(readFileSync('src/lib/bookingGuarantee.js', 'utf8'), /import\.meta\.env/)
   const app = readFileSync('src/App.jsx', 'utf8')
   assert.match(app, /BOOKING_GUARANTEE_VISIBLE &&/)
   assert.match(app, /BOOKING_GUARANTEE_VISIBLE \? lazy/)
 })
 
-test('Bilingual draft routes use noindex and are absent from sitemap', () => {
+test('Bilingual public routes allow indexing and appear in the sitemap', () => {
   for (const path of ['/booking-guarantee', '/es/booking-guarantee']) {
     const metadata = getSeoMetadata(path)
-    assert.equal(metadata.indexable, false)
+    assert.equal(metadata.indexable, true)
     assert.ok(metadata.canonical.endsWith(path))
     assert.deepEqual(metadata.alternates.map((item) => item.hreflang), ['en', 'es', 'x-default'])
-    assert.ok(!getIndexableRoutePaths().includes(path))
-    assert.match(injectSeoMetadataIntoHtml('<html><head></head><body><div id="root"></div></body></html>', path), /noindex, nofollow/)
+    assert.ok(getIndexableRoutePaths().includes(path))
+    const html = injectSeoMetadataIntoHtml('<html><head></head><body><div id="root"></div></body></html>', path)
+    assert.match(html, /index, follow/)
+    assert.doesNotMatch(html, /noindex|Approval Draft|Borrador para Aprobación/)
+    assert.ok(createSitemapXml([]).includes(`${metadata.canonical}</loc>`))
   }
   assert.equal(getLocaleRouteInfo('/es/booking-guarantee').locale, 'es')
   assert.equal(getLocaleRouteInfo('/es/booking-guarantee').localized, true)
-  assert.doesNotMatch(createSitemapXml([]), /booking-guarantee/)
+  assert.match(createSitemapXml([]), /booking-guarantee/)
 })
 
 test('Selected language-matched campaign images are small optimized web copies', () => {
@@ -45,6 +49,7 @@ test('Information-only guarantee UI has no new forms or network requests', () =>
     assert.match(source, /BOOKING_GUARANTEE_VISIBLE/)
     assert.doesNotMatch(source, /<form|<input|fetch\(|axios|\/api\//)
     assert.match(source, /listing-promotion/)
+    assert.doesNotMatch(source, /t\.draft|t\.pending/)
   }
 })
 

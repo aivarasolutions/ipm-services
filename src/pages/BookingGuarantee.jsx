@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Check, ChevronDown, ShieldCheck } from 'lucide-react'
+import { ArrowRight, Check, ChevronDown } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
 import { bookingGuaranteeContent } from './bookingGuaranteeContent'
 import { BOOKING_GUARANTEE_VISIBLE } from '../lib/bookingGuarantee'
@@ -27,9 +27,6 @@ export default function BookingGuarantee() {
       <section className="relative overflow-hidden border-b border-[#D4AF37]/20 bg-[#0A1A30]">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-12 sm:px-8 sm:py-16 lg:grid-cols-[minmax(0,1fr)_300px] lg:py-20">
           <div>
-            <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#D4AF37]/40 bg-[#D4AF37]/10 px-3 py-2 text-[10px] font-bold uppercase tracking-[.13em] text-[#F2D98D] sm:text-xs">
-              <ShieldCheck size={15} aria-hidden="true" /> {t.draft}
-            </p>
             <p className="mb-4 text-xs font-bold uppercase tracking-[.22em] text-[#D4AF37]">{t.eyebrow}</p>
             <h1 className="max-w-4xl font-display text-4xl font-extrabold leading-[1.08] text-white sm:text-5xl lg:text-6xl">{t.headline}</h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#D5DCE5]">{t.subtitle}</p>
