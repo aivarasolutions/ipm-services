@@ -5,6 +5,7 @@ import PropertyGrid from '../components/PropertyGrid'
 import ListingPromotionSection from '../components/ListingPromotionSection'
 import OwnerFaqSection from '../components/OwnerFaqSection'
 import ClickToPlayVideo from '../components/ClickToPlayVideo'
+import BookingGuaranteePromo from './BookingGuaranteePromo'
 import { FULL_MANAGEMENT_CASE_STUDY, OWNER_PORTAL_VIDEOS } from '../lib/promoVideos'
 import {
   Building2, TrendingUp, Shield, DollarSign,
@@ -352,6 +353,8 @@ const Home = () => {
           </div>
         </section>
       )}
+
+      <BookingGuaranteePromo language={language} placement="home" />
 
       {/* ── 2. STATS BAR ─────────────────────────────────────── */}
       <section className="bg-[#0A1A30] border-y border-[#D4AF37]/20 py-14">

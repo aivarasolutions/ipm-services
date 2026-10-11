@@ -1,6 +1,7 @@
 import { createSeoRouteContent } from './seoContent.js';
 import { OWNER_FAQ_CONTENT } from './ownerFaq.js';
 import { FULL_MANAGEMENT_CASE_STUDY, OWNER_PORTAL_VIDEOS } from './promoVideos.js';
+import { BOOKING_GUARANTEE_APPROVED } from './bookingGuarantee.js';
 
 export const SITE_URL = 'https://www.ipm.services';
 
@@ -202,7 +203,7 @@ const localizedSeoRoutes = {
 };
 
 export const LOCALIZED_ROUTE_PATHS = Object.freeze({
-  es: Object.keys(localizedSeoRoutes.es),
+  es: [...Object.keys(localizedSeoRoutes.es), '/booking-guarantee'],
   fr: Object.keys(localizedSeoRoutes.fr),
   vi: Object.keys(localizedSeoRoutes.vi),
 });
@@ -246,7 +247,7 @@ export const getLocaleRouteInfo = (pathname = '/') => {
   return {
     locale,
     routePath,
-    localized: Boolean(localizedMetadata[locale]?.[routePath]),
+    localized: Boolean(localizedMetadata[locale]?.[routePath] || (locale === 'es' && routePath === '/booking-guarantee')),
   };
 };
 
@@ -254,7 +255,8 @@ export const localizeRoutePath = (routePath, locale = 'en') =>
   locale === 'en' ? normalizePathname(routePath) : `/${locale}${normalizePathname(routePath) === '/' ? '' : normalizePathname(routePath)}`;
 
 const getAlternates = (routePath) => {
-  const locales = ['es', 'fr', 'vi'].filter((locale) => localizedMetadata[locale]?.[routePath]);
+  const locales = ['es', 'fr', 'vi'].filter((locale) =>
+    localizedMetadata[locale]?.[routePath] || (locale === 'es' && routePath === '/booking-guarantee'));
   if (!locales.length) return [];
   return [
     { hreflang: 'en', href: `${SITE_URL}${routePath === '/' ? '/' : routePath}` },
@@ -272,6 +274,24 @@ export const getSeoMetadata = (pathname, options = {}) => {
   const path = normalizePathname(pathname);
   const { locale, routePath, localized } = getLocaleRouteInfo(path);
   if (locale !== 'en' && !localized) return null;
+  if (routePath === '/booking-guarantee') {
+    const spanish = locale === 'es';
+    return {
+      title: BOOKING_GUARANTEE_APPROVED
+        ? (spanish ? 'Garantía de Reservas de $100 USD en 30 Días | IPM' : '30-Day $100 Booking Guarantee | IPM')
+        : (spanish ? 'Garantía de Reservas — Borrador para Aprobación | IPM' : 'Booking Guarantee — Approval Draft | IPM'),
+      description: BOOKING_GUARANTEE_APPROVED
+        ? (spanish ? 'Conozca los requisitos de la garantía de $100 USD para nuevos propietarios elegibles del plan de Promoción del 10% de IPM.' : 'Review the terms of IPM’s conditional $100 USD guarantee for eligible new owners on the 10% Listing Promotion plan.')
+        : (spanish ? 'Borrador de desarrollo pendiente de aprobación de la gerencia y revisión legal. No es una oferta publicada.' : 'Development draft pending management and legal approval. Not a published offer.'),
+      h1: spanish ? 'Garantía de Reservas de IPM' : 'IPM Booking Guarantee',
+      intro: spanish ? 'Consulte los requisitos y condiciones antes de registrarse.' : 'Review the eligibility requirements and terms before signing up.',
+      canonical: `${SITE_URL}${path}`,
+      indexable: BOOKING_GUARANTEE_APPROVED,
+      locale,
+      routePath,
+      alternates: getAlternates(routePath),
+    };
+  }
   const exact = locale === 'en'
     ? INDEXABLE_SEO_ROUTES[routePath]
     : localizedMetadata[locale]?.[routePath];
@@ -515,9 +535,10 @@ export const injectSeoMetadataIntoHtml = (html, pathname, options = {}) => {
 
 export const getIndexableRoutePaths = () => [
   ...Object.keys(INDEXABLE_SEO_ROUTES),
+  ...(BOOKING_GUARANTEE_APPROVED ? ['/booking-guarantee'] : []),
   ...Object.entries(LOCALIZED_ROUTE_PATHS).flatMap(([locale, paths]) =>
     paths.map((path) => localizeRoutePath(path, locale))),
-];
+].filter((path) => getSeoMetadata(path)?.indexable);
 
 export const getRealEstateSeoMetadata = (pathname, listing) =>
   getSeoMetadata(pathname, { realEstateListing: listing });

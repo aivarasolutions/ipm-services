@@ -3,6 +3,7 @@ import { useLanguage } from '../contexts/LanguageContext'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import OwnerFaqSection from '../components/OwnerFaqSection'
+import BookingGuaranteePromo from './BookingGuaranteePromo'
 
 export default function ListingPromotion() {
   const { language, toggleLanguage } = useLanguage()
@@ -21,6 +22,7 @@ export default function ListingPromotion() {
           </div>
         </div>
       </div>
+      <BookingGuaranteePromo language={language} placement="listing" />
       <ListingPromotionSection
         language={language}
         source="10% Promotion Page — Listing Promotion (10%)"

@@ -6,6 +6,8 @@ import './audio-styles.css'
 
 // Keep the homepage in the initial bundle; load other pages only when visited.
 import Home from './pages/Home'
+import { BOOKING_GUARANTEE_VISIBLE } from './lib/bookingGuarantee'
+const BookingGuarantee = BOOKING_GUARANTEE_VISIBLE ? lazy(() => import('./pages/BookingGuarantee')) : null
 const About = lazy(() => import('./pages/About'))
 const Services = lazy(() => import('./pages/Services'))
 const ListingPromotion = lazy(() => import('./pages/ListingPromotion'))
@@ -85,6 +87,12 @@ function AppLayout() {
           <Route path="/services" element={<Services />} />
           <Route path="/listing-promotion" element={<ListingPromotion />} />
           <Route path="/es/listing-promotion" element={<ListingPromotion />} />
+          {BOOKING_GUARANTEE_VISIBLE && (
+            <>
+              <Route path="/booking-guarantee" element={<BookingGuarantee />} />
+              <Route path="/es/booking-guarantee" element={<BookingGuarantee />} />
+            </>
+          )}
           <Route path="/full-management" element={<FullManagement />} />
           <Route path="/es/full-management" element={<FullManagement />} />
           <Route path="/payout-calculator" element={<PayoutCalculator />} />
