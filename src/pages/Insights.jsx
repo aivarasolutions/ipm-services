@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
+import santaBeatrizConfig from '../data/santaBeatrizProposal.json';
 import { DollarSign, Link as LinkIcon, Shield, Smartphone, ArrowRight, CheckCircle } from 'lucide-react';
 
 export default function Insights() {
@@ -231,6 +232,12 @@ export default function Insights() {
 
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-white mb-8 text-center">{t.whatYouFind}</h2>
+          {santaBeatrizConfig.enabled && ['en', 'es'].includes(language) && <Link to={`${language === 'es' ? '/es' : ''}/insights/jardines-santa-beatriz-lima`} className="mb-8 block rounded-xl border border-[#D4AF37]/40 bg-[#F8F5EF] p-6 sm:p-8">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-[#8D6B20]">{language === 'es' ? 'Propuesta de inversión · Lima, Perú' : 'Investment proposal · Lima, Peru'}</p>
+            <h3 className="mb-3 text-2xl font-bold text-[#172334]">Jardines de Santa Beatriz</h3>
+            <p className="mb-4 text-[#475569]">{language === 'es' ? 'Explore el mercado, escenarios editables, mobiliario y retorno de inversión de este departamento de 46.67 m². Análisis preliminar, no una garantía de ingresos.' : 'Explore the market, editable revenue scenarios, furnishings and investment return for this 46.67 m² apartment. Preliminary analysis, not an earnings guarantee.'}</p>
+            <span className="inline-flex items-center gap-2 font-semibold text-[#8D6B20]">{language === 'es' ? 'Ver propuesta' : 'View proposal'}<ArrowRight className="h-4 w-4" /></span>
+          </Link>}
           <div className="grid md:grid-cols-2 gap-8">
             {t.topics.map((topic, index) => {
               const IconComponent = iconMap[['DollarSign', 'LinkIcon', 'Shield', 'Smartphone'][index]];

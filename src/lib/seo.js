@@ -2,6 +2,9 @@ import { createSeoRouteContent } from './seoContent.js';
 import { OWNER_FAQ_CONTENT } from './ownerFaq.js';
 import { FULL_MANAGEMENT_CASE_STUDY, OWNER_PORTAL_VIDEOS } from './promoVideos.js';
 import { BOOKING_GUARANTEE_APPROVED } from './bookingGuarantee.js';
+import santaBeatrizConfig from '../data/santaBeatrizProposal.json' with { type: 'json' };
+
+const SANTA_BEATRIZ_PATH = '/insights/jardines-santa-beatriz-lima';
 
 export const SITE_URL = 'https://www.ipm.services';
 
@@ -203,7 +206,7 @@ const localizedSeoRoutes = {
 };
 
 export const LOCALIZED_ROUTE_PATHS = Object.freeze({
-  es: [...Object.keys(localizedSeoRoutes.es), '/booking-guarantee'],
+  es: [...Object.keys(localizedSeoRoutes.es), '/booking-guarantee', SANTA_BEATRIZ_PATH],
   fr: Object.keys(localizedSeoRoutes.fr),
   vi: Object.keys(localizedSeoRoutes.vi),
 });
@@ -247,7 +250,7 @@ export const getLocaleRouteInfo = (pathname = '/') => {
   return {
     locale,
     routePath,
-    localized: Boolean(localizedMetadata[locale]?.[routePath] || (locale === 'es' && routePath === '/booking-guarantee')),
+    localized: Boolean(localizedMetadata[locale]?.[routePath] || (locale === 'es' && ['/booking-guarantee', SANTA_BEATRIZ_PATH].includes(routePath))),
   };
 };
 
@@ -256,7 +259,7 @@ export const localizeRoutePath = (routePath, locale = 'en') =>
 
 const getAlternates = (routePath) => {
   const locales = ['es', 'fr', 'vi'].filter((locale) =>
-    localizedMetadata[locale]?.[routePath] || (locale === 'es' && routePath === '/booking-guarantee'));
+    localizedMetadata[locale]?.[routePath] || (locale === 'es' && ['/booking-guarantee', SANTA_BEATRIZ_PATH].includes(routePath)));
   if (!locales.length) return [];
   return [
     { hreflang: 'en', href: `${SITE_URL}${routePath === '/' ? '/' : routePath}` },
@@ -274,6 +277,19 @@ export const getSeoMetadata = (pathname, options = {}) => {
   const path = normalizePathname(pathname);
   const { locale, routePath, localized } = getLocaleRouteInfo(path);
   if (locale !== 'en' && !localized) return null;
+  if (routePath === SANTA_BEATRIZ_PATH) {
+    const spanish = locale === 'es';
+    return {
+      title: spanish ? 'Jardines de Santa Beatriz, Lima — Propuesta de Inversión STR | IPM' : 'Jardines de Santa Beatriz, Lima — STR Investment Proposal | IPM',
+      description: spanish ? 'Propuesta preliminar con análisis del mercado de Lima, escenarios editables, presupuesto de mobiliario y retorno de inversión. No es una garantía de ingresos.' : 'Preliminary property proposal with Lima market research, editable revenue scenarios, furnishing budget and investment returns. Not an earnings guarantee.',
+      h1: spanish ? 'Potencial de alquiler temporal en Jardines de Santa Beatriz' : 'Short-Term Rental Potential of Jardines de Santa Beatriz',
+      intro: spanish ? 'Análisis preliminar sujeto a inspección, permisos del condominio y aprobación del propietario.' : 'Preliminary analysis subject to inspection, condominium permissions and owner approval.',
+      canonical: `${SITE_URL}${path}`,
+      indexable: santaBeatrizConfig.enabled,
+      locale, routePath,
+      alternates: getAlternates(routePath),
+    };
+  }
   if (routePath === '/booking-guarantee') {
     const spanish = locale === 'es';
     return {
@@ -536,6 +552,7 @@ export const injectSeoMetadataIntoHtml = (html, pathname, options = {}) => {
 export const getIndexableRoutePaths = () => [
   ...Object.keys(INDEXABLE_SEO_ROUTES),
   ...(BOOKING_GUARANTEE_APPROVED ? ['/booking-guarantee'] : []),
+  ...(santaBeatrizConfig.enabled ? [SANTA_BEATRIZ_PATH] : []),
   ...Object.entries(LOCALIZED_ROUTE_PATHS).flatMap(([locale, paths]) =>
     paths.map((path) => localizeRoutePath(path, locale))),
 ].filter((path) => getSeoMetadata(path)?.indexable);

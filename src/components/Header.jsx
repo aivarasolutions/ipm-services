@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Menu, X, Globe, ChevronDown } from 'lucide-react'
 import { useLanguage } from '../contexts/LanguageContext'
+import santaBeatrizConfig from '../data/santaBeatrizProposal.json'
 import { getLocaleRouteInfo, LOCALIZED_ROUTE_PATHS, localizeRoutePath } from '../lib/seo.js'
 
 const Header = () => {
@@ -46,6 +47,7 @@ const Header = () => {
       name: 'Insights', path: '/insights', key: 'insights',
       dropdown: [
         { name: 'Insights Hub', path: '/insights' },
+        ...(santaBeatrizConfig.enabled ? [{ name: language === 'es' ? 'Propuesta Santa Beatriz · Lima' : 'Santa Beatriz · Lima Proposal', path: '/insights/jardines-santa-beatriz-lima' }] : []),
         { name: language === 'es' ? 'Calculadora de Pagos' : 'Payout Calculator', path: '/payout-calculator' },
         { name: 'Airbnb Fees Explained', path: '/insights/airbnb-fees' },
         { name: 'API Connections & Operating Costs', path: '/insights/api-costs' },

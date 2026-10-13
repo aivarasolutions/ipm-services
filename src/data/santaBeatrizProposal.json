@@ -1,0 +1,146 @@
+{
+  "enabled": true,
+  "status": "preliminary",
+  "publicationMonth": "2026-10",
+  "researchDate": "2026-10-14",
+  "property": {
+    "name": "Jardines de Santa Beatriz",
+    "address": "Jr. José Gálvez 1212, Santa Beatriz, Lima, Peru",
+    "tower": "B",
+    "towerConfirmed": false,
+    "floor": 10,
+    "areaSqm": 46.67,
+    "primaryBedrooms": 1,
+    "studies": 1,
+    "bathrooms": 1,
+    "floorPlanType": "Tipo 5A",
+    "floorPlanConfirmed": false,
+    "balcony": "unconfirmed",
+    "guestCapacity": 3,
+    "capacityConfirmed": false
+  },
+  "images": {
+    "exterior": "/images/santa-beatriz/exterior-reference.webp",
+    "exteriorType": "developer-rendering",
+    "floorPlan": "/images/santa-beatriz/floor-plan-5a.webp",
+    "location": "/images/santa-beatriz/location-brochure.webp",
+    "before": "/images/santa-beatriz/living-current.webp",
+    "after": "/images/santa-beatriz/living-concept.webp",
+    "afterType": "developer-concept",
+    "gallery": [
+      "/images/santa-beatriz/living-current.webp",
+      "/images/santa-beatriz/kitchen-counter.webp",
+      "/images/santa-beatriz/bathroom-shower.webp",
+      "/images/santa-beatriz/living-window.webp",
+      "/images/santa-beatriz/kitchen-equipped.webp",
+      "/images/santa-beatriz/entry.webp",
+      "/images/santa-beatriz/kitchen-current.webp",
+      "/images/santa-beatriz/bathroom-current.webp",
+      "/images/santa-beatriz/kitchen-bar.webp"
+    ],
+    "moodBoard": [
+      "/images/santa-beatriz/living-concept.webp",
+      "/images/santa-beatriz/bedroom-concept.webp",
+      "/images/santa-beatriz/study-concept.webp"
+    ]
+  },
+  "verifiedPerformance": {
+    "existingAnnualRevenueUsd": null,
+    "upgradedAnnualRevenueUsd": null,
+    "source": null,
+    "period": null
+  },
+  "market": {
+    "source": "https://www.airdna.co/vacation-rental-data/app/pe/default/lima/overview",
+    "publicationDate": "2026-10-13",
+    "observationPeriod": "Trailing twelve months through September 2026",
+    "adrUsd": 52,
+    "occupancyPercent": 59,
+    "annualRevenueUsd": 10500,
+    "activeListingsInBrief": 17211,
+    "activeListingsVerified": 17210,
+    "revparUsd": 31
+  },
+  "competitors": [
+    {
+      "id": "katty",
+      "name": "Katty’s Apartment — Jardines de Santa Beatriz",
+      "url": "https://www.airbnb.com/rooms/1527817004235899813",
+      "relationship": "same-building",
+      "bedrooms": 2, "bathrooms": 2, "guests": 3, "rating": 4.88, "reviews": 8,
+      "retrievedDate": "2026-10-14",
+      "amenities": ["pool", "gym", "workspace", "balcony", "paid-laundry", "self-checkin"],
+      "strengthEn": "Same-condominium Tower B reference. Furnished rooms, workspace, balcony, pool and gym access advertised. Laundry costs extra.",
+      "strengthEs": "Referencia en la misma Torre B. Anuncia habitaciones amuebladas, área de trabajo, balcón, piscina y gimnasio. Lavandería con costo adicional.",
+      "nightlyQuoteUsd": null, "quoteDates": "", "quoteSource": "", "occupancyPercent": null
+    },
+    {
+      "id": "cozy",
+      "name": "Cozy & Central — Santa Beatriz",
+      "url": "https://www.airbnb.com/rooms/30176249",
+      "relationship": "nearby",
+      "bedrooms": 2, "bathrooms": 2, "guests": 4, "rating": 4.86, "reviews": 63,
+      "retrievedDate": "2026-10-14",
+      "amenities": ["pool", "gym", "balcony", "washer", "self-checkin"],
+      "strengthEn": "Established review history, two bathrooms, in-unit washer and functional design. Listing says gym access costs S/3 per entry.",
+      "strengthEs": "Historial de reseñas, dos baños, lavadora y diseño funcional. El anuncio indica S/3 por entrada al gimnasio.",
+      "nightlyQuoteUsd": null, "quoteDates": "", "quoteSource": "", "occupancyPercent": null
+    },
+    {
+      "id": "floor12",
+      "name": "Apartment in Santa Beatriz — 12th floor",
+      "url": "https://www.airbnb.com/rooms/1428504002303151039",
+      "relationship": "nearby",
+      "bedrooms": 1, "bathrooms": 1, "guests": 2, "rating": 4.77, "reviews": 101,
+      "retrievedDate": "2026-10-14",
+      "amenities": ["pool", "gym", "workspace", "security"],
+      "strengthEn": "Closer size/capacity reference. Upper-floor positioning, established reviews, pool and gym by reservation, 24-hour security advertised.",
+      "strengthEs": "Referencia de capacidad más cercana. Piso alto, historial de reseñas, piscina y gimnasio con reserva y seguridad las 24 horas anunciados.",
+      "nightlyQuoteUsd": null, "quoteDates": "", "quoteSource": "", "occupancyPercent": null
+    },
+    {
+      "id": "lince",
+      "name": "Lovely Apartment in Lince",
+      "url": "https://www.airbnb.com/rooms/1135633660457689855",
+      "relationship": "nearby",
+      "bedrooms": 1, "bathrooms": 1, "guests": 2, "rating": 4.76, "reviews": 92,
+      "retrievedDate": "2026-10-14",
+      "amenities": ["pool", "gym", "workspace", "balcony", "self-checkin"],
+      "strengthEn": "Modern furnishing, smart-lock arrival and San Isidro positioning. Pool requires advance booking; listing excludes guest BBQ access.",
+      "strengthEs": "Mobiliario moderno, llegada con cerradura inteligente y cercanía a San Isidro. Piscina con reserva; el anuncio excluye el uso de parrillas para huéspedes.",
+      "nightlyQuoteUsd": null, "quoteDates": "", "quoteSource": "", "occupancyPercent": null
+    }
+  ],
+  "furnishings": [
+    {"id":"bedroom","en":"Primary bedroom","es":"Dormitorio principal","minPen":1600,"maxPen":2600,"amountPen":2100,"status":"needed"},
+    {"id":"study","en":"Study / secondary room","es":"Estudio / habitación secundaria","minPen":1200,"maxPen":2200,"amountPen":1700,"status":"needed"},
+    {"id":"living","en":"Living room","es":"Sala","minPen":1200,"maxPen":2200,"amountPen":1700,"status":"needed"},
+    {"id":"electronics","en":"TV and electronics","es":"TV y electrónicos","minPen":700,"maxPen":1300,"amountPen":1000,"status":"needed"},
+    {"id":"dining","en":"Dining furniture","es":"Muebles de comedor","minPen":450,"maxPen":900,"amountPen":675,"status":"needed"},
+    {"id":"kitchen","en":"Kitchen equipment","es":"Equipamiento de cocina","minPen":600,"maxPen":1000,"amountPen":800,"status":"needed"},
+    {"id":"decor","en":"Curtains, lighting and decor","es":"Cortinas, iluminación y decoración","minPen":900,"maxPen":1600,"amountPen":1250,"status":"needed"},
+    {"id":"supplies","en":"Bathroom and guest supplies","es":"Baño y suministros para huéspedes","minPen":400,"maxPen":700,"amountPen":550,"status":"needed"},
+    {"id":"checkin","en":"Internet / check-in equipment","es":"Internet / equipo de llegada","minPen":250,"maxPen":550,"amountPen":400,"status":"needed"},
+    {"id":"setup","en":"Delivery, setup and photography","es":"Entrega, instalación y fotografía","minPen":700,"maxPen":1200,"amountPen":950,"status":"needed"}
+  ],
+  "contingencyPercent": 10,
+  "model": {
+    "availableNights": 365,
+    "exchangeRatePenPerUsd": 3.5,
+    "improvementCostPen": 12000,
+    "currency": "USD",
+    "before": {
+      "adr": 42, "occupancyPercent": 50, "annualRevenueOverride": null,
+      "costs": {"otaPercent":15,"managementMode":"none","managementPercent":20,"ipmSharePercent":100,"commissionBase":"gross","utilities":1080,"internet":360,"maintenance":360,"supplies":360,"cleaningCost":0,"cleaningRecovery":0,"taxes":0,"other":0,"monthlyFee":0,"feeMonths":12}
+    },
+    "after": {
+      "adr": 55, "occupancyPercent": 60, "annualRevenueOverride": null,
+      "costs": {"otaPercent":15,"managementMode":"full","managementPercent":20,"ipmSharePercent":100,"commissionBase":"gross","utilities":1080,"internet":360,"maintenance":360,"supplies":360,"cleaningCost":0,"cleaningRecovery":0,"taxes":0,"other":0,"monthlyFee":0,"feeMonths":12}
+    },
+    "scenarios": [
+      {"id":"conservative","en":"Conservative","es":"Conservador","adr":45,"occupancyPercent":50},
+      {"id":"base","en":"Base","es":"Base","adr":55,"occupancyPercent":60},
+      {"id":"strong","en":"Strong","es":"Favorable","adr":65,"occupancyPercent":68}
+    ]
+  }
+}

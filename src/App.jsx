@@ -29,6 +29,7 @@ const AirbnbFees = lazy(() => import('./pages/insights/AirbnbFees'))
 const ApiCosts = lazy(() => import('./pages/insights/ApiCosts'))
 const AvoidFees = lazy(() => import('./pages/insights/AvoidFees'))
 const CheckinSystem = lazy(() => import('./pages/insights/CheckinSystem'))
+const SantaBeatrizProposal = lazy(() => import('./pages/insights/SantaBeatrizProposal'))
 const CharlotteProposal = lazy(() => import('./pages/CharloetteProposal'))
 const TampaProposal = lazy(() => import('./pages/TampaProposal'))
 const TimberbrookProposal = lazy(() => import('./pages/TimberbrookProposal'))
@@ -108,6 +109,8 @@ function AppLayout() {
           <Route path="/insights/api-costs" element={<ApiCosts />} />
           <Route path="/insights/avoid-fees" element={<AvoidFees />} />
           <Route path="/insights/checkin-system" element={<CheckinSystem />} />
+          <Route path="/insights/jardines-santa-beatriz-lima" element={<SantaBeatrizProposal />} />
+          <Route path="/es/insights/jardines-santa-beatriz-lima" element={<SantaBeatrizProposal />} />
           <Route path="/news" element={<News />} />
           <Route path="/vietnam" element={<Vietnam />} />
           <Route path="/location-guide" element={<LocationGuide />} />
