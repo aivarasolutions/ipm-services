@@ -15,8 +15,8 @@ export function createProposalModel(config) {
 export function validateProposalModel(model) {
   const errors = []
   if (!nonnegative(model.availableNights) || model.availableNights > 365) errors.push('availableNights')
-  if (!number(model.exchangeRatePenPerUsd) || model.exchangeRatePenPerUsd <= 0) errors.push('exchangeRatePenPerUsd')
-  if (!nonnegative(model.improvementCostPen)) errors.push('improvementCostPen')
+  if (model.currency !== 'USD') errors.push('currency')
+  if (!nonnegative(model.improvementCostUsd)) errors.push('improvementCostUsd')
   for (const key of ['before', 'after']) {
     const state = model[key]
     if (!nonnegative(state.adr)) errors.push(`${key}.adr`)
@@ -60,7 +60,7 @@ export function calculateProposal(model) {
   const after = calculateCondition(model.after, model.availableNights)
   const incrementalGross = after.gross - before.gross
   const incrementalNet = after.net - before.net
-  const investmentUsd = model.improvementCostPen / model.exchangeRatePenPerUsd
+  const investmentUsd = model.improvementCostUsd
   const scenarios = model.scenarios.map((s) => {
     // Base case is the upgraded condition; one source of truth for every view.
     const condition = s.id === 'base' ? model.after : { adr: s.adr, occupancyPercent: s.occupancyPercent, annualRevenueOverride: null, costs: model.after.costs }
@@ -74,13 +74,14 @@ export function calculateProposal(model) {
 }
 
 export function calculateFurnishingBudget(items, contingencyPercent = 10) {
+  const cents = (value) => Math.round((value + Number.EPSILON) * 100) / 100
   const contributing = items.filter((item) => !['owned', 'reusable'].includes(item.status))
-  const subtotal = contributing.reduce((sum, item) => sum + Math.max(0, Number(item.amountPen) || 0), 0)
-  const contingency = subtotal * Math.max(0, Number(contingencyPercent) || 0) / 100
-  return { subtotal, contingency, total: subtotal + contingency }
+  const subtotal = cents(contributing.reduce((sum, item) => sum + Math.max(0, Number(item.amountUsd) || 0), 0))
+  const contingency = cents(subtotal * Math.max(0, Number(contingencyPercent) || 0) / 100)
+  return { subtotal, contingency, total: cents(subtotal + contingency) }
 }
 
-export function formatProposalMoney(usd, currency, exchangeRate, language = 'en') {
-  return new Intl.NumberFormat(language === 'es' ? 'es-PE' : 'en-US', { style: 'currency', currency, maximumFractionDigits: 0 })
-    .format(currency === 'PEN' ? usd * exchangeRate : usd)
+export function formatProposalMoney(usd, language = 'en', fractionDigits = 0) {
+  return new Intl.NumberFormat(language === 'es' ? 'es-PE' : 'en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: fractionDigits, maximumFractionDigits: fractionDigits })
+    .format(usd)
 }

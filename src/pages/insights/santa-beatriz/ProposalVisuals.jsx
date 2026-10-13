@@ -52,22 +52,22 @@ export function CompetitorCard({ competitor, language, t }) {
   const same = competitor.relationship === 'same-building';
   return (
     <article className="sp-competitor">
-      <div className="sp-comp-head" role="button" tabIndex={0} aria-expanded={open} onClick={() => setOpen(!open)} onKeyDown={(event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); setOpen(!open); } }}>
+      <div className="sp-comp-head">
         <div>
-          <h3>{competitor.name}</h3>
+          <h3><a href={competitor.url} target="_blank" rel="noopener noreferrer">{competitor.name}</a></h3>
           <span className="sp-tag">{same ? t.sameBuilding : t.nearby}</span>
           <div className="sp-comp-stats">{competitor.bedrooms} {t.bedrooms} · {competitor.bathrooms} {t.bathrooms} · {competitor.guests} {t.guestsLabel}<br />
             {competitor.rating ? `★ ${competitor.rating} · ${competitor.reviews} ${t.reviews} · ${t.retrieved} ${competitor.retrievedDate}` : t.noQuotes}
           </div>
         </div>
-        <span aria-hidden="true">{open ? '−' : '+'}</span>
+        <button className="sp-comp-toggle" type="button" aria-expanded={open} aria-label={language === 'es' ? `${open ? 'Ocultar' : 'Mostrar'} detalles de ${competitor.name}` : `${open ? 'Hide' : 'Show'} details for ${competitor.name}`} onClick={() => setOpen(!open)}><span aria-hidden="true">{open ? '−' : '+'}</span></button>
       </div>
+      <a className="sp-comp-link" href={competitor.url} target="_blank" rel="noopener noreferrer">{t.listing} ↗</a>
       {open && <div className="sp-comp-details">
         <p>{language === 'es' ? competitor.strengthEs : competitor.strengthEn}</p>
         <p><strong>{t.amenities}:</strong> {competitor.amenities.map((amenity) => language === 'es' ? ({pool:'piscina',gym:'gimnasio',workspace:'espacio de trabajo',balcony:'balcón','paid-laundry':'lavandería de pago',washer:'lavadora','self-checkin':'llegada autónoma',security:'seguridad'})[amenity] || amenity : amenity.replace(/-/g, ' ')).join(', ')}</p>
         {competitor.nightlyQuoteUsd !== null && competitor.quoteDates && competitor.quoteSource && <p>{language === 'es' ? 'Precio con fechas y fuente' : 'Sourced date-specific quote'}: USD {competitor.nightlyQuoteUsd} · {competitor.quoteDates} · {competitor.quoteSource}</p>}
         <p>{competitor.nightlyQuoteUsd !== null && competitor.quoteDates && competitor.quoteSource ? (language === 'es' ? 'Ingresos y ocupación no verificados independientemente.' : 'Revenue and occupancy are not independently verified.') : t.noQuotes}</p>
-        <a href={competitor.url} target="_blank" rel="noreferrer">{t.listing} ↗</a>
       </div>}
     </article>
   );

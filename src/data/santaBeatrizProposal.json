@@ -82,8 +82,8 @@
       "bedrooms": 2, "bathrooms": 2, "guests": 4, "rating": 4.86, "reviews": 63,
       "retrievedDate": "2026-10-14",
       "amenities": ["pool", "gym", "balcony", "washer", "self-checkin"],
-      "strengthEn": "Established review history, two bathrooms, in-unit washer and functional design. Listing says gym access costs S/3 per entry.",
-      "strengthEs": "Historial de reseñas, dos baños, lavadora y diseño funcional. El anuncio indica S/3 por entrada al gimnasio.",
+      "strengthEn": "Established review history, two bathrooms, in-unit washer and functional design. Advertised gym entry is approximately USD 0.86 using the planning conversion; confirm the current fee on the listing.",
+      "strengthEs": "Historial de reseñas, dos baños, lavadora y diseño funcional. La entrada anunciada al gimnasio equivale a aproximadamente USD 0.86 con la conversión de planificación; confirme el cargo actual en el anuncio.",
       "nightlyQuoteUsd": null, "quoteDates": "", "quoteSource": "", "occupancyPercent": null
     },
     {
@@ -112,22 +112,27 @@
     }
   ],
   "furnishings": [
-    {"id":"bedroom","en":"Primary bedroom","es":"Dormitorio principal","minPen":1600,"maxPen":2600,"amountPen":2100,"status":"needed"},
-    {"id":"study","en":"Study / secondary room","es":"Estudio / habitación secundaria","minPen":1200,"maxPen":2200,"amountPen":1700,"status":"needed"},
-    {"id":"living","en":"Living room","es":"Sala","minPen":1200,"maxPen":2200,"amountPen":1700,"status":"needed"},
-    {"id":"electronics","en":"TV and electronics","es":"TV y electrónicos","minPen":700,"maxPen":1300,"amountPen":1000,"status":"needed"},
-    {"id":"dining","en":"Dining furniture","es":"Muebles de comedor","minPen":450,"maxPen":900,"amountPen":675,"status":"needed"},
-    {"id":"kitchen","en":"Kitchen equipment","es":"Equipamiento de cocina","minPen":600,"maxPen":1000,"amountPen":800,"status":"needed"},
-    {"id":"decor","en":"Curtains, lighting and decor","es":"Cortinas, iluminación y decoración","minPen":900,"maxPen":1600,"amountPen":1250,"status":"needed"},
-    {"id":"supplies","en":"Bathroom and guest supplies","es":"Baño y suministros para huéspedes","minPen":400,"maxPen":700,"amountPen":550,"status":"needed"},
-    {"id":"checkin","en":"Internet / check-in equipment","es":"Internet / equipo de llegada","minPen":250,"maxPen":550,"amountPen":400,"status":"needed"},
-    {"id":"setup","en":"Delivery, setup and photography","es":"Entrega, instalación y fotografía","minPen":700,"maxPen":1200,"amountPen":950,"status":"needed"}
+    {"id":"bedroom","en":"Primary bedroom","es":"Dormitorio principal","minUsd":457.14,"maxUsd":742.86,"amountUsd":600,"status":"needed"},
+    {"id":"study","en":"Study / secondary room","es":"Estudio / habitación secundaria","minUsd":342.86,"maxUsd":628.57,"amountUsd":485.71,"status":"needed"},
+    {"id":"living","en":"Living room","es":"Sala","minUsd":342.86,"maxUsd":628.57,"amountUsd":485.71,"status":"needed"},
+    {"id":"electronics","en":"TV and electronics","es":"TV y electrónicos","minUsd":200,"maxUsd":371.43,"amountUsd":285.71,"status":"needed"},
+    {"id":"dining","en":"Dining furniture","es":"Muebles de comedor","minUsd":128.57,"maxUsd":257.14,"amountUsd":192.86,"status":"needed"},
+    {"id":"kitchen","en":"Kitchen equipment","es":"Equipamiento de cocina","minUsd":171.43,"maxUsd":285.71,"amountUsd":228.57,"status":"needed"},
+    {"id":"decor","en":"Curtains, lighting and decor","es":"Cortinas, iluminación y decoración","minUsd":257.14,"maxUsd":457.14,"amountUsd":357.14,"status":"needed"},
+    {"id":"supplies","en":"Bathroom and guest supplies","es":"Baño y suministros para huéspedes","minUsd":114.29,"maxUsd":200,"amountUsd":157.14,"status":"needed"},
+    {"id":"checkin","en":"Internet / check-in equipment","es":"Internet / equipo de llegada","minUsd":71.43,"maxUsd":157.14,"amountUsd":114.29,"status":"needed"},
+    {"id":"setup","en":"Delivery, setup and photography","es":"Entrega, instalación y fotografía","minUsd":200,"maxUsd":342.86,"amountUsd":271.43,"status":"needed"}
   ],
+  "budgetReferencesUsd": {
+    "suppliedSubtotalMin": 2285.71, "suppliedSubtotalMax": 4157.14,
+    "suppliedTotalMin": 2514.29, "suppliedTotalMax": 4572.86,
+    "targetMin": 2857.14, "targetMax": 3428.57,
+    "unreconciledSubtotalDifference": 85.71
+  },
   "contingencyPercent": 10,
   "model": {
     "availableNights": 365,
-    "exchangeRatePenPerUsd": 3.5,
-    "improvementCostPen": 12000,
+    "improvementCostUsd": 3428.57,
     "currency": "USD",
     "before": {
       "adr": 42, "occupancyPercent": 50, "annualRevenueOverride": null,

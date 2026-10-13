@@ -28,13 +28,15 @@ Edit `src/data/santaBeatrizProposal.json`, keeping valid JSON:
 - `competitors`: update public listing details, ratings, counts, retrieval date,
   bilingual notes and amenities. Optional `nightlyQuoteUsd` is shown only when
   `quoteDates` and `quoteSource` are also present. No price/occupancy is inferred.
-- `furnishings`: edit planning ranges, selected amounts in PEN and inventory
+- `furnishings`: edit `minUsd`, `maxUsd`, `amountUsd` in **USD** and inventory
   statuses (`needed`, `owned`, `reusable`, `ordered`, `completed`). Owned/reusable
   amounts are excluded from the selected improvement budget; paid/completed or
   ordered items remain included for full-project investment tracking.
 - `contingencyPercent`: selected budget contingency.
-- `model`: ADR in USD, occupancy percentage, available nights, exchange rate in
-  **PEN per USD**, improvement investment in PEN and display currency.
+- `model`: ADR in USD, occupancy percentage, available nights and
+  `improvementCostUsd` in USD. Currency is fixed to **USD**; there is no exchange
+  rate or alternate-currency control. `budgetReferencesUsd` stores the converted
+  supplied reference ranges, recommended target and unresolved source difference.
   Conservative/strong scenarios have separate inputs; base follows the upgraded
   condition, including any room-revenue override.
 - `model.before.costs` / `model.after.costs`: fixed costs are **USD per year**.
@@ -65,8 +67,18 @@ room revenue separately. Competitor presence is not legal/condominium permission
 
 Budget discrepancy: the brief's category maxima sum to S/14,250, not its stated
 S/14,550. With 10% contingency the calculated maximum is S/15,675 rather than
-S/16,005. The proposal and PDF retain the supplied range as a cited reference and
-explain the undocumented S/300 difference; no extra cost category is invented.
+S/16,005. The undocumented S/300 difference is not added as an invented expense.
+
+The user subsequently required USD only on this proposal and its exports.
+The supplied furnishing/investment amounts were converted using the existing
+planning assumption of **3.5 PEN per USD**, not a live exchange-rate quote.
+Converted item fields are rounded to USD cents; budget totals add those rounded
+items and contingency. Default subtotal is **USD 3,178.56** and total with 10%
+contingency is **USD 3,496.42**. The default improvement investment is
+**USD 3,428.57**. Reference ranges and competitor gym-fee observations are
+converted too. Both languages, input values, ROI and PDF use USD natively.
+Do not relabel the original source amounts as dollars or restore currency
+selection. Original attached sources remain unchanged for provenance.
 
 ## Verification and publication
 

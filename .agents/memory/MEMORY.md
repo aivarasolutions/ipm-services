@@ -17,4 +17,4 @@
 - [Owner lead approval](owner-lead-approval-policy.md) — require complete owner contact details and review the property before sending a PDF/online onboarding invitation.
 - [Payout calculator assumptions](payout-calculator-assumptions.md) — educational estimates, not contract policy; no guessed taxes or invented allocation of monthly fees.
 - [Booking guarantee policy](booking-guarantee-policy.md) — informational, manual-only campaign; user authorized public launch of the existing terms without another approval round.
-- [Owner proposal editing](owner-proposal-editor-policy.md) — Santa Beatriz saved edits are Replit-managed; visitor adjustments are temporary, with no new login or database.
+- [Owner proposal policy](owner-proposal-editor-policy.md) — Santa Beatriz is USD-only; saved edits are Replit-managed and visitor adjustments are temporary, with no new login or database.

@@ -86,18 +86,21 @@ test('Zero or negative incremental net returns no positive payback; zero investm
   result = calculateProposal(m)
   close(result.incrementalNet, 0)
   assert.equal(result.paybackYears, null)
-  m.improvementCostPen = 0
+  m.improvementCostUsd = 0
   result = calculateProposal(m)
   assert.equal(result.roiPercent, null)
   assert.equal(result.paybackYears, null)
 })
 
-test('Investment FX and invalid percentage/night/fee assumptions have explicit validation', () => {
+test('USD investment and invalid currency/percentage/night/fee assumptions have explicit validation', () => {
   const m = model()
-  close(calculateProposal(m).investmentUsd, 12000 / 3.5)
-  m.exchangeRatePenPerUsd = 0
+  close(calculateProposal(m).investmentUsd, 3428.57)
+  m.improvementCostUsd = -1
   assert.equal(calculateProposal(m).valid, false)
-  m.exchangeRatePenPerUsd = 3.5
+  m.improvementCostUsd = 3428.57
+  m.currency = 'EUR'
+  assert.equal(calculateProposal(m).valid, false)
+  m.currency = 'USD'
   for (const value of [-1, 366, NaN]) {
     m.availableNights = value
     assert.equal(calculateProposal(m).valid, false)
@@ -108,21 +111,30 @@ test('Investment FX and invalid percentage/night/fee assumptions have explicit v
   m.after.occupancyPercent = 60
   m.after.costs.feeMonths = 13
   assert.equal(calculateProposal(m).valid, false)
-  assert.ok(formatProposalMoney(100, 'PEN', 3.5).includes('350'))
+  assert.equal(formatProposalMoney(100), '$100')
+  assert.ok(formatProposalMoney(100, 'es', 2).includes('100.00'))
 })
 
 test('Furnishing range totals and inventory exclusions match the brief', () => {
-  close(config.furnishings.reduce((sum, item) => sum + item.minPen, 0), 8000)
-  // Supplied category maxima sum to 14,250, not the brief's stated 14,550.
-  close(config.furnishings.reduce((sum, item) => sum + item.maxPen, 0), 14250)
+  close(config.furnishings.reduce((sum, item) => sum + item.minUsd, 0), 2285.72)
+  close(config.furnishings.reduce((sum, item) => sum + item.maxUsd, 0), 4071.42)
   const items = structuredClone(config.furnishings)
   const original = calculateFurnishingBudget(items, 10)
+  close(original.subtotal, 3178.56)
+  close(original.contingency, 317.86)
+  close(original.total, 3496.42)
+  assert.equal(items[0].amountUsd, 600, 'Source bedroom allowance was converted, not relabeled')
   items[0].status = 'owned'
   items[1].status = 'reusable'
   const reduced = calculateFurnishingBudget(items, 10)
-  close(reduced.total, original.total - (items[0].amountPen + items[1].amountPen) * 1.1)
+  close(reduced.subtotal, original.subtotal - items[0].amountUsd - items[1].amountUsd)
+  close(reduced.total, 2302.14)
   items[0].status = 'completed'
-  close(calculateFurnishingBudget(items, 10).total, reduced.total + items[0].amountPen * 1.1)
+  close(calculateFurnishingBudget(items, 10).total, 2962.14)
+  const m = model()
+  m.improvementCostUsd = reduced.total
+  close(calculateProposal(m).investmentUsd, reduced.total)
+  close(calculateProposal(m).paybackYears, reduced.total / calculateProposal(m).incrementalNet)
 })
 
 test('English and Spanish proposal routes have locale-aware metadata and sitemap entries', () => {
@@ -159,7 +171,27 @@ test('PDF exports work in both languages and include current selected calculatio
     assert.ok(pdf.getNumberOfPages() >= 5)
     assert.ok(output.includes('19,999') || output.includes('19.999'))
     assert.ok(output.includes('airbnb.com/rooms/1527817004235899813'))
+    assert.ok(output.includes('3,496.42'))
+    assert.ok(output.includes('USD'))
+    assert.doesNotMatch(output, /\bPEN\b|S\/|Peruvian soles/)
+    assert.doesNotMatch(output, /\bsoles\b/i)
   }
+})
+
+test('Public proposal copy, configuration and controls are USD-only in both languages', () => {
+  for (const file of [
+    'src/pages/insights/SantaBeatrizProposal.jsx',
+    'src/pages/insights/santa-beatriz/copy.js',
+    'src/data/santaBeatrizProposal.json',
+    'src/lib/santaBeatrizPdf.js',
+  ]) {
+    const source = readFileSync(file, 'utf8')
+    assert.doesNotMatch(source, /\bPEN\b|S\/|amountPen|improvementCostPen|exchangeRatePenPerUsd/)
+    assert.doesNotMatch(source, /\bsoles\b/i)
+  }
+  const component = readFileSync('src/pages/insights/SantaBeatrizProposal.jsx', 'utf8')
+  assert.doesNotMatch(component, /id="proposal-(fx|currency)"/)
+  assert.match(component, /updateGlobal\('improvementCostUsd', budget.total\)/)
 })
 
 test('Negative income stays negative and is never treated as an earnings promise', () => {

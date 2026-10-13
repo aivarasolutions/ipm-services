@@ -21,8 +21,8 @@ const amenityList = [
 ];
 const costFields = ['utilities', 'internet', 'maintenance', 'supplies', 'cleaningCost', 'cleaningRecovery', 'taxes', 'other'];
 
-function money(value, model, language) {
-  return formatProposalMoney(Number(value) || 0, model.currency, model.exchangeRatePenPerUsd, language);
+function money(value, language) {
+  return formatProposalMoney(Number(value) || 0, language);
 }
 
 function CostEditor({ label, value, onChange, suffix = 'USD / year' }) {
@@ -47,13 +47,15 @@ export default function SantaBeatrizProposal() {
 
   const result = useMemo(() => calculateProposal(model), [model]);
   const budget = useMemo(() => calculateFurnishingBudget(furnishings, contingency), [furnishings, contingency]);
-  const minSubtotal = furnishings.reduce((total, item) => total + item.minPen, 0);
-  const maxSubtotal = furnishings.reduce((total, item) => total + item.maxPen, 0);
+  const minSubtotal = furnishings.reduce((total, item) => total + item.minUsd, 0);
+  const maxSubtotal = furnishings.reduce((total, item) => total + item.maxUsd, 0);
   const grossRange = { min: minSubtotal * (1 + contingency / 100), max: maxSubtotal * (1 + contingency / 100) };
   const p = proposalConfig.property;
   const market = proposalConfig.market;
   const image = proposalConfig.images;
   const prefix = lang === 'es' ? '/es' : '';
+  const budgetMoney = (value) => formatProposalMoney(value, lang, 2);
+  const references = proposalConfig.budgetReferencesUsd;
   const statusLabel = ({ preliminary: t.proposalStatus, ready: lang === 'es' ? 'Lista para presentar' : 'Ready for presentation', archived: lang === 'es' ? 'Propuesta archivada' : 'Archived proposal' })[proposalConfig.status] || proposalConfig.status;
 
   const updateGlobal = (key, value) => setModel((current) => ({ ...current, [key]: value }));
@@ -80,7 +82,7 @@ export default function SantaBeatrizProposal() {
     scenarios: current.scenarios.map((scenario) => scenario.id === id ? { ...scenario, [key]: value } : scenario)
   }));
   const updateFurnishing = (id, key, value) => setFurnishings((current) => current.map((item) => item.id === id ? { ...item, [key]: value } : item));
-  const displayMoney = (value) => money(value, model, lang);
+  const displayMoney = (value) => money(value, lang);
   const resetModel = () => {
     setModel(createProposalModel(proposalConfig));
     setFurnishings(clone(proposalConfig.furnishings));
@@ -120,7 +122,7 @@ export default function SantaBeatrizProposal() {
       setPdfBusy(false);
     }
   };
-  const applyBudget = () => updateGlobal('improvementCostPen', Math.round(budget.total));
+  const applyBudget = () => updateGlobal('improvementCostUsd', budget.total);
   if (!proposalConfig.enabled) {
     return <div className="santa-proposal"><div className="sp-unavailable"><h1>{t.unavailable}</h1></div></div>;
   }
@@ -233,7 +235,7 @@ export default function SantaBeatrizProposal() {
           <div className="sp-matrix" role="table" aria-label={t.matrix}>
             {[t.matrixListing,t.matrixCapacity,t.matrixStrength,t.matrixGap].map((label) => <div className="sp-matrix-title" role="columnheader" key={label}>{label}</div>)}
             {proposalConfig.competitors.map((c) => <div role="row" key={c.id} className="sp-matrix-row">
-              <span>{c.name} · {c.relationship === 'same-building' ? t.sameBuilding : t.nearby}</span>
+              <span><a href={c.url} target="_blank" rel="noopener noreferrer">{c.name} ↗</a> · {c.relationship === 'same-building' ? t.sameBuilding : t.nearby}</span>
               <span>{c.bedrooms} bd / {c.bathrooms} ba · {c.guests} {t.guestsLabel}</span>
               <span>{lang === 'es' ? c.strengthEs : c.strengthEn}</span>
               <span>{lang === 'es' ? 'Estudio funcional, presentación profesional y verificación de acceso.' : 'Functional study, considered presentation and verified guest access.'}</span>
@@ -300,15 +302,15 @@ export default function SantaBeatrizProposal() {
           <div className="sp-section-head"><div><span className="sp-eyebrow">09 / {t.budget}</span><h2>{t.budget}</h2></div><p className="sp-section-intro">{t.budgetIntro}</p></div>
           <div className="sp-budget-scroll"><table className="sp-budget-table"><thead><tr><th>{t.item}</th><th>{t.range}</th><th>{t.estimate}</th><th>{t.status}</th></tr></thead><tbody>
             {furnishings.map((item) => <tr key={item.id}>
-              <td>{item[lang]}</td><td>S/{item.minPen.toLocaleString()}–{item.maxPen.toLocaleString()}</td>
-              <td><label className="sp-sr-only" htmlFor={`amount-${item.id}`}>{t.estimate}: {item[lang]}</label><input id={`amount-${item.id}`} type="number" min="0" value={item.amountPen} onChange={(event) => updateFurnishing(item.id, 'amountPen', Number(event.target.value))} /></td>
+               <td>{item[lang]}</td><td>{budgetMoney(item.minUsd)}–{budgetMoney(item.maxUsd)}</td>
+               <td><label className="sp-sr-only" htmlFor={`amount-${item.id}`}>{t.estimate}: {item[lang]}</label><input id={`amount-${item.id}`} type="number" min="0" step="0.01" value={item.amountUsd} onChange={(event) => updateFurnishing(item.id, 'amountUsd', Number(event.target.value))} /></td>
               <td><label className="sp-sr-only" htmlFor={`status-${item.id}`}>{t.status}: {item[lang]}</label><select id={`status-${item.id}`} value={item.status} onChange={(event) => updateFurnishing(item.id, 'status', event.target.value)}>{Object.entries(t.statuses).map(([key, value]) => <option value={key} key={key}>{value}</option>)}</select></td>
             </tr>)}
           </tbody></table></div>
-          <div className="sp-budget-summary"><div><span>{t.subtotal}: {formatProposalMoney(budget.subtotal, 'PEN', 1, lang)}</span><br /><span>{t.contingency}: {contingency}% · {formatProposalMoney(budget.contingency, 'PEN', 1, lang)}</span></div><div><span>{t.totalBudget}</span><br /><strong>{formatProposalMoney(budget.total, 'PEN', 1, lang)}</strong></div></div>
+          <div className="sp-budget-summary"><div><span>{t.subtotal}: {budgetMoney(budget.subtotal)}</span><br /><span>{t.contingency}: {contingency}% · {budgetMoney(budget.contingency)}</span></div><div><span>{t.totalBudget}</span><br /><strong>{budgetMoney(budget.total)}</strong></div></div>
           <div className="sp-control"><label htmlFor="proposal-contingency">{t.contingency} (%)</label><input id="proposal-contingency" type="number" min="0" max="100" step="1" value={contingency} onChange={(event) => setContingency(Math.max(0, Math.min(100, Number(event.target.value) || 0)))} /></div>
-          <div className="sp-range-note"><div><strong>{t.budgetRanges}</strong><br />S/{minSubtotal.toLocaleString()}–{maxSubtotal.toLocaleString()} + {contingency}% = S/{grossRange.min.toLocaleString()}–{grossRange.max.toLocaleString()}</div><div>{t.target}</div></div>
-          <p className="sp-caution">{lang === 'es' ? 'Reconciliación del brief: el rango suministrado indica subtotal S/8,000–14,550 y total S/8,800–16,005 con 10%. Sin embargo, las partidas indicadas suman S/8,000–14,250; con 10% son S/8,800–15,675. La diferencia superior de S/300 no tiene una partida documentada y no se incorpora al cálculo. Se conserva el rango original como referencia, no como cotización.' : 'Brief reconciliation: the supplied range states subtotal S/8,000–14,550 and total S/8,800–16,005 with 10%. However, its listed items sum to S/8,000–14,250; with 10% that is S/8,800–15,675. The S/300 upper-subtotal difference has no documented line item and is not added to the calculation. The original range remains a reference, not a quote.'}</p>
+          <div className="sp-range-note"><div><strong>{t.budgetRanges} (USD)</strong><br />{budgetMoney(minSubtotal)}–{budgetMoney(maxSubtotal)} + {contingency}% = {budgetMoney(grossRange.min)}–{budgetMoney(grossRange.max)}</div><div>{t.target}: {budgetMoney(references.targetMin)}–{budgetMoney(references.targetMax)}. {t.targetCondition}</div></div>
+          <p className="sp-caution">{lang === 'es' ? `Reconciliación del brief en USD: el rango suministrado equivale a un subtotal de ${budgetMoney(references.suppliedSubtotalMin)}–${budgetMoney(references.suppliedSubtotalMax)} y un total de ${budgetMoney(references.suppliedTotalMin)}–${budgetMoney(references.suppliedTotalMax)} con 10%. Existe una diferencia superior no documentada de ${budgetMoney(references.unreconciledSubtotalDifference)} en el subtotal original. Los cálculos suman las partidas convertidas y redondeadas a centavos; no incluyen una partida inventada. Son estimaciones, no cotizaciones.` : `Brief reconciliation in USD: the supplied range converts to a subtotal of ${budgetMoney(references.suppliedSubtotalMin)}–${budgetMoney(references.suppliedSubtotalMax)} and a total of ${budgetMoney(references.suppliedTotalMin)}–${budgetMoney(references.suppliedTotalMax)} with 10%. The original upper subtotal contains an undocumented ${budgetMoney(references.unreconciledSubtotalDifference)} difference. Calculations add the converted line items rounded to cents, with no invented balancing expense. These are estimates, not quotes.`}</p>
           <p className="sp-source">{t.suppliers}: <a href="https://www.sodimac.com.pe/" target="_blank" rel="noreferrer">Sodimac Peru</a> · <a href="https://www.promart.pe/" target="_blank" rel="noreferrer">Promart Peru</a>. {t.localSuppliers}</p>
           <button type="button" className="sp-button sp-button-primary" onClick={applyBudget}>{t.applyBudget}</button>
         </section>
@@ -319,9 +321,8 @@ export default function SantaBeatrizProposal() {
           <div className="sp-grid-2">
             <div className="sp-panel"><h3>{t.globalInputs}</h3>
               <div className="sp-control"><label htmlFor="proposal-nights">{t.availability}</label><input id="proposal-nights" type="number" min="0" max="365" value={model.availableNights} onChange={(event) => updateGlobal('availableNights', Number(event.target.value))} /></div>
-              <div className="sp-control"><label htmlFor="proposal-fx">{t.exchange}</label><input id="proposal-fx" type="number" min="0.01" step="0.01" value={model.exchangeRatePenPerUsd} onChange={(event) => updateGlobal('exchangeRatePenPerUsd', Number(event.target.value))} /></div>
-              <div className="sp-control"><label htmlFor="proposal-investment">{t.improvement}</label><input id="proposal-investment" type="number" min="0" step="100" value={model.improvementCostPen} onChange={(event) => updateGlobal('improvementCostPen', Number(event.target.value))} /></div>
-              <div className="sp-control"><label htmlFor="proposal-currency">{t.currency}</label><select id="proposal-currency" value={model.currency} onChange={(event) => updateGlobal('currency', event.target.value)}><option value="USD">USD</option><option value="PEN">PEN</option></select></div>
+              <div className="sp-control"><label htmlFor="proposal-investment">{t.improvement}</label><input id="proposal-investment" type="number" min="0" step="0.01" value={model.improvementCostUsd} onChange={(event) => updateGlobal('improvementCostUsd', Number(event.target.value))} /></div>
+              <p className="sp-source">{t.usdOnly}</p>
             </div>
             <div className="sp-panel"><h3>{t.operatingCosts}</h3>
               {['before','after'].map((condition) => <div key={condition} style={{ marginBottom: 20 }}>
@@ -350,7 +351,7 @@ export default function SantaBeatrizProposal() {
               <div className="sp-result"><span>{t.annualNet} · {t.existing}</span><strong>{displayMoney(result.before.net)}</strong></div>
               <div className="sp-result"><span>{t.annualNet} · {t.upgraded}</span><strong>{displayMoney(result.after.net)}</strong></div>
               <div className="sp-result"><span>{t.incrementalNet}</span><strong>{displayMoney(result.incrementalNet)}</strong></div>
-              <div className="sp-result"><span>{lang === 'es' ? 'Inversión de mejora' : 'Improvement investment'} ({model.currency})</span><strong>{displayMoney(result.investmentUsd)}</strong></div>
+              <div className="sp-result"><span>{lang === 'es' ? 'Inversión de mejora' : 'Improvement investment'} (USD)</span><strong>{budgetMoney(result.investmentUsd)}</strong></div>
             </div>
             <div className="sp-panel" style={{ marginTop: 15 }}><span className="sp-eyebrow">{t.payback}</span><div className="sp-payback">{result.paybackYears === null ? t.notRecovered : `${result.paybackYears.toFixed(1)} ${lang === 'es' ? 'años' : 'years'}`}</div>
               <p>{t.roiReturn}: <strong>{result.roiPercent === null ? '—' : `${result.roiPercent.toFixed(1)}%`}</strong></p>

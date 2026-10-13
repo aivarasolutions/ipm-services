@@ -16,3 +16,17 @@ visitor edits, a new login, or a database for this proposal unless separately
 requested. Treat supplied budgets as evidence, not mathematical authority:
 retain supplied ranges as references while calculating from their actual item
 amounts and flagging discrepancies rather than inventing balancing expenses.
+
+## USD-only presentation
+
+The user said: “We're doing USD currency only” and “We don't want any of that
+other currency on this page.” This applies to the Santa Beatriz proposal in both
+languages, its financial/budget inputs, charts, source-reference amounts and PDF.
+
+**Why:** The user explicitly required USD-only presentation after seeing the
+furnishing estimates in the source budget's local currency.
+
+**How to apply:** Convert non-USD source amounts rather than relabeling them.
+Keep conversion provenance in collaborator documentation; saved configuration
+and visitor-editable estimates should be USD-native. Do not reintroduce an
+alternate-currency or exchange-rate control on this proposal.
