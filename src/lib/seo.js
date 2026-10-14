@@ -1,6 +1,6 @@
 import { createSeoRouteContent } from './seoContent.js';
 import { OWNER_FAQ_CONTENT } from './ownerFaq.js';
-import { FULL_MANAGEMENT_CASE_STUDY, OWNER_PORTAL_VIDEOS } from './promoVideos.js';
+import { FULL_MANAGEMENT_CASE_STUDY, OWNER_PORTAL_VIDEOS, MORE_PLATFORMS_VIDEO } from './promoVideos.js';
 import { BOOKING_GUARANTEE_APPROVED } from './bookingGuarantee.js';
 import santaBeatrizConfig from '../data/santaBeatrizProposal.json' with { type: 'json' };
 
@@ -423,6 +423,7 @@ export const createSeoShell = (metadata, pathname = '/', options = {}) => {
       const portal = locale === 'es' ? OWNER_PORTAL_VIDEOS.es : null;
       const homepageVideos = locale === 'en'
         ? [
+            { video: MORE_PLATFORMS_VIDEO, label: 'More Platforms — One Portal' },
             { video: OWNER_PORTAL_VIDEOS.en, label: 'Owner Portal' },
             { video: FULL_MANAGEMENT_CASE_STUDY, label: 'Full Management case study' },
           ]
@@ -448,7 +449,7 @@ export const createSeoShell = (metadata, pathname = '/', options = {}) => {
 .seo-route-shell .seo-home-video-label{display:flex;min-height:32px;align-items:center;justify-content:center;margin:0 0 12px;text-align:center;color:#F2D98D;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
 .seo-route-shell .seo-home-video .seo-portal{margin:0}
 @media(min-width:640px){.seo-route-shell .seo-portal{max-width:240px}}
-@media(min-width:768px){.seo-route-shell .seo-home-videos{grid-template-columns:repeat(2,minmax(0,240px));justify-content:center;gap:40px}}
+@media(min-width:768px){.seo-route-shell .seo-home-videos{grid-template-columns:repeat(3,minmax(0,240px));justify-content:center;gap:40px}}
 @media(min-width:1024px){.seo-route-shell .seo-hero-inner--portal{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:40px;align-items:center}.seo-route-shell .seo-portal{width:220px;margin:0;justify-self:end}}
 @media(min-width:1280px){.seo-route-shell .seo-hero-inner--portal{grid-template-columns:minmax(0,1fr) 260px}.seo-route-shell .seo-portal{width:240px}}
 .seo-route-shell .seo-eyebrow{display:inline-block;border:1px solid #d4af3766;border-radius:99px;background:#d4af371a;padding:8px 16px;color:#F2D98D;font-size:12px;font-weight:700;letter-spacing:.17em;text-transform:uppercase}

@@ -29,6 +29,7 @@ export default function ListingPromotion() {
         headingLevel="h1"
         showVideos
         includeOwnerPortal
+        includeMorePlatforms
       />
       <OwnerFaqSection plan="listing" />
     </div>

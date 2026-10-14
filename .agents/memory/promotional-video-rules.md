@@ -27,11 +27,17 @@ The Spanish owner-portal reel must also come first on the Spanish homepage, 10% 
 
 **How to apply:** Preserve the Spanish talking clips after the portal reel and the existing English placements. Never use the English portal reel as a Spanish fallback.
 
-The Spanish homepage shows its portal reel on the right of the hero, over the house area. The English homepage places the portal reel in a two-video row immediately below the hero, with the full-management case study to its right. Keep original hero text, buttons and the lower three-video section: the portal reel deliberately appears twice.
+The Spanish homepage shows its portal reel on the right of the hero, over the house area. The English homepage places the More Platforms reel, owner portal reel and full-management case study in that order immediately below the hero. Keep original hero text, buttons and the lower three-video section: the portal reel deliberately appears twice.
 
 **Why:** The user requested a second portal placement and then rejected the full-management case study inside the pricing card, directing it below the hero beside the portal instead.
 
-**How to apply:** Stack the English row portal-first on mobile. Preserve the Spanish hero placement, reuse click-to-play playback and avoid mixed-language fallbacks.
+**How to apply:** Stack the English row More Platforms first on mobile. Preserve the Spanish hero placement, reuse click-to-play playback and avoid mixed-language fallbacks.
+
+The More Platforms reel also goes first on the English listing promotion page, preserving the existing portal and talking clips. The supplied reel is English, not a replacement for Spanish media.
+
+**Why:** The user requested the new reel leftmost beside the two upper homepage videos, first on mobile, and also on listing promotion pages.
+
+**How to apply:** Keep existing clips and language separation; a Spanish version needs a matching-language upload.
 
 The full-management case-study reel belongs beside the English homepage's upper portal video and on the full-management page, separate from the lower portal-first promotion row. Do not put it inside the homepage pricing card.
 

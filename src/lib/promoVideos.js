@@ -1,5 +1,12 @@
 // Each public asset is content-hashed and reused on the home/promotion pages.
 // The source uploads remain unchanged in attached_assets.
+export const MORE_PLATFORMS_VIDEO = {
+  id: 'en-portal-more-platforms',
+  title: 'More Platforms — One IPM Portal',
+  src: '/videos/en-portal-more-platforms.mp4',
+  poster: '/videos/en-portal-more-platforms.webp',
+}
+
 export const FULL_MANAGEMENT_CASE_STUDY = {
   id: 'en-full-management-case-study',
   title: '20% Full Management — Property Case Study',
@@ -55,8 +62,9 @@ export const PROMO_VIDEOS = {
   ],
 }
 
-export function getPromoVideos(language, includeOwnerPortal = false) {
+export function getPromoVideos(language, includeOwnerPortal = false, includeMorePlatforms = false) {
   const videos = PROMO_VIDEOS[language] || []
   const portal = OWNER_PORTAL_VIDEOS[language]
-  return includeOwnerPortal && portal ? [portal, ...videos] : videos
+  const existing = includeOwnerPortal && portal ? [portal, ...videos] : videos
+  return includeMorePlatforms && language === 'en' ? [MORE_PLATFORMS_VIDEO, ...existing] : existing
 }

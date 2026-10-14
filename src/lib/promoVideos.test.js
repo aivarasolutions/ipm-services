@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { existsSync, readFileSync } from 'node:fs'
-import { getPromoVideos, PROMO_VIDEOS, OWNER_PORTAL_VIDEOS, FULL_MANAGEMENT_CASE_STUDY } from './promoVideos.js'
+import { getPromoVideos, PROMO_VIDEOS, OWNER_PORTAL_VIDEOS, FULL_MANAGEMENT_CASE_STUDY, MORE_PLATFORMS_VIDEO } from './promoVideos.js'
 import { createSeoShell, getSeoMetadata } from './seo.js'
 
 test('Each supported language puts its matching portal first without changing the talking clips', () => {
@@ -31,7 +31,7 @@ test('Spanish homepage, promotion and services placements share the portal-first
   const listing = readFileSync('src/components/ListingPromotionSection.jsx', 'utf8')
   assert.match(home, /<ListingPromotionSection[^>]*showVideos[^>]*includeOwnerPortal/)
   assert.match(promotion, /<ListingPromotionSection[\s\S]*?showVideos[\s\S]*?includeOwnerPortal/)
-  assert.match(listing, /videos=\{getPromoVideos\(language, includeOwnerPortal\)\}/)
+  assert.match(listing, /videos=\{getPromoVideos\(language, includeOwnerPortal, includeMorePlatforms\)\}/)
   assert.match(services, /language === 'es'[\s\S]*?<PromoVideoSection language=\{language\} videos=\{getPromoVideos\(language, true\)\}/)
 })
 
@@ -39,6 +39,8 @@ test('Homepage upper videos preserve Spanish hero and the lower promotional sect
   const home = readFileSync('src/pages/Home.jsx', 'utf8')
   assert.match(home, /heroOwnerPortalVideo = language === 'es'/)
   assert.match(home, /homepageVideoPair = language === 'en'/)
+  assert.ok(home.indexOf('video: MORE_PLATFORMS_VIDEO') < home.indexOf('video: OWNER_PORTAL_VIDEOS.en'))
+  assert.match(home, /max-w-5xl grid-cols-1[\s\S]*?md:grid-cols-3/)
   assert.ok(home.indexOf('video: OWNER_PORTAL_VIDEOS.en') < home.indexOf('video: FULL_MANAGEMENT_CASE_STUDY'))
   assert.match(home, /<ClickToPlayVideo video=\{video\} language=\{language\}/)
   assert.ok(home.indexOf('homepageVideoPair &&') < home.indexOf('STATS BAR'))
@@ -57,6 +59,7 @@ test('Homepage first-paint shells match the new hero without eager video downloa
     assert.equal(html.includes('seo-hero-inner seo-hero-inner--portal'), locale === 'es')
     assert.equal(html.includes('<section class="seo-home-videos"'), locale === 'en')
     if (locale === 'en') {
+      assert.ok(html.indexOf(MORE_PLATFORMS_VIDEO.poster) < html.indexOf(portal.poster))
       assert.ok(html.includes(FULL_MANAGEMENT_CASE_STUDY.poster))
       assert.ok(html.indexOf('</header>') < html.indexOf('<section class="seo-home-videos"'))
       assert.ok(html.indexOf(portal.poster) < html.indexOf(FULL_MANAGEMENT_CASE_STUDY.poster))
@@ -70,6 +73,15 @@ test('Homepage first-paint shells match the new hero without eager video downloa
   }
   const french = createSeoShell(getSeoMetadata('/fr'), '/fr')
   assert.doesNotMatch(french, /class="seo-portal"/)
+})
+
+test('New English listing reel is first, retains every existing clip and never mixes languages', () => {
+  assert.deepEqual(getPromoVideos('en', true, true), [MORE_PLATFORMS_VIDEO, OWNER_PORTAL_VIDEOS.en, ...PROMO_VIDEOS.en])
+  assert.deepEqual(getPromoVideos('es', true, true), getPromoVideos('es', true))
+  assert.deepEqual(getPromoVideos('fr', true, true), [])
+  for (const path of [MORE_PLATFORMS_VIDEO.src, MORE_PLATFORMS_VIDEO.poster]) assert.ok(existsSync(`public${path}`))
+  assert.match(readFileSync('src/pages/ListingPromotion.jsx', 'utf8'), /includeMorePlatforms/)
+  assert.match(readFileSync('src/components/PromoVideoSection.jsx', 'utf8'), /lg:grid-cols-4/)
 })
 
 test('Full-management case study uses web assets without changing the portal-first promotional rows', () => {

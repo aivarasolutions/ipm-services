@@ -24,7 +24,7 @@ export default function PromoVideoSection({ language, videos }) {
   if ((locale !== 'en' && locale !== 'es') || language !== locale || !videos?.length) return null
 
   const t = copy[locale]
-  const availableVideos = Array.isArray(videos) ? videos.slice(0, 3) : []
+  const availableVideos = Array.isArray(videos) ? videos.slice(0, 4) : []
   const videoCount = availableVideos.length
 
   return (
@@ -32,7 +32,7 @@ export default function PromoVideoSection({ language, videos }) {
       className="mt-12 border-t border-[#D4AF37]/20 pt-10 sm:mt-14 sm:pt-12"
       aria-labelledby="promo-video-title"
     >
-      <div className={`mx-auto ${videoCount === 3 ? 'max-w-6xl' : 'max-w-4xl'}`}>
+      <div className={`mx-auto ${videoCount >= 3 ? 'max-w-6xl' : 'max-w-4xl'}`}>
         <header className="mx-auto mb-7 max-w-2xl text-center sm:mb-9">
           <h3
             id="promo-video-title"
@@ -46,7 +46,7 @@ export default function PromoVideoSection({ language, videos }) {
         </header>
 
         {availableVideos.length > 0 && (
-          <div className={`grid grid-cols-1 items-start gap-7 md:gap-8 ${videoCount === 3 ? 'md:grid-cols-3' : videoCount === 2 ? 'md:grid-cols-2' : ''}`}>
+          <div className={`grid grid-cols-1 items-start gap-7 md:gap-8 ${videoCount === 4 ? 'md:grid-cols-2 lg:grid-cols-4' : videoCount === 3 ? 'md:grid-cols-3' : videoCount === 2 ? 'md:grid-cols-2' : ''}`}>
             {availableVideos.map((video, index) => (
               <article
                 key={video.id ?? `${locale}-promo-video-${index}`}

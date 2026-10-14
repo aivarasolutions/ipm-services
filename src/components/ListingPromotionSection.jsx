@@ -137,6 +137,7 @@ export default function ListingPromotionSection({
   headingLevel = 'h2',
   showVideos = false,
   includeOwnerPortal = false,
+  includeMorePlatforms = false,
 }) {
   const t = copy[language] || copy.en
   const reducedMotion = useReducedMotion()
@@ -221,7 +222,7 @@ export default function ListingPromotionSection({
         {showVideos && (
           <PromoVideoSection
             language={language}
-            videos={getPromoVideos(language, includeOwnerPortal)}
+            videos={getPromoVideos(language, includeOwnerPortal, includeMorePlatforms)}
           />
         )}
 

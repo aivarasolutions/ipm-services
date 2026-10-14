@@ -6,7 +6,7 @@ import ListingPromotionSection from '../components/ListingPromotionSection'
 import OwnerFaqSection from '../components/OwnerFaqSection'
 import ClickToPlayVideo from '../components/ClickToPlayVideo'
 import BookingGuaranteePromo from './BookingGuaranteePromo'
-import { FULL_MANAGEMENT_CASE_STUDY, OWNER_PORTAL_VIDEOS } from '../lib/promoVideos'
+import { FULL_MANAGEMENT_CASE_STUDY, OWNER_PORTAL_VIDEOS, MORE_PLATFORMS_VIDEO } from '../lib/promoVideos'
 import {
   Building2, TrendingUp, Shield, DollarSign,
   BarChart3, Globe, Calendar, Zap, HeartHandshake,
@@ -250,6 +250,7 @@ const Home = () => {
   const heroOwnerPortalVideo = language === 'es' ? OWNER_PORTAL_VIDEOS.es : null
   const homepageVideoPair = language === 'en'
     ? [
+        { video: MORE_PLATFORMS_VIDEO, label: 'More Platforms — One Portal' },
         { video: OWNER_PORTAL_VIDEOS.en, label: 'Owner Portal' },
         { video: FULL_MANAGEMENT_CASE_STUDY, label: 'Full Management case study' },
       ]
@@ -339,7 +340,7 @@ const Home = () => {
 
       {homepageVideoPair && (
         <section aria-label="IPM video demonstrations" className="bg-[#06121F] px-6 py-12 sm:px-8 lg:px-12">
-          <div className="mx-auto grid max-w-4xl grid-cols-1 justify-items-center gap-8 md:grid-cols-2 md:gap-10">
+          <div className="mx-auto grid max-w-5xl grid-cols-1 justify-items-center gap-8 md:grid-cols-3 md:gap-10">
             {homepageVideoPair.map(({ video, label }) => (
               <figure key={video.id} className="w-full max-w-[240px]">
                 <figcaption className="mb-3 flex min-h-8 items-center justify-center text-center text-xs font-semibold uppercase tracking-[0.18em] text-[#F2D98D]">
