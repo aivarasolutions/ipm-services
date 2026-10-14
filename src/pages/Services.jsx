@@ -16,6 +16,7 @@ import {
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import ReviewsSection from '../components/ReviewsSection'
+import FurnishingServiceLink from '../components/FurnishingServiceLink'
 import OwnerFaqSection from '../components/OwnerFaqSection'
 import PromoVideoSection from '../components/PromoVideoSection'
 import { getPromoVideos } from '../lib/promoVideos'
@@ -239,6 +240,7 @@ const Services = () => {
       </section>
 
       {/* Benefits Section */}
+      <FurnishingServiceLink language={language} overview />
       <section className="py-20 bg-[#06121F]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">

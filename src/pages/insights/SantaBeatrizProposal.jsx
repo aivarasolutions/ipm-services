@@ -398,7 +398,7 @@ export default function SantaBeatrizProposal() {
             <div className="sp-actions">
               <a className="sp-button sp-button-primary" href={`${prefix}/contact`}>{t.schedule}</a>
               <a className="sp-button" href={`${prefix}/listing-promotion`}>{t.promotion}</a>
-              <a className="sp-button" href={`${prefix}/contact`}>{t.furnishingAssessment}</a>
+              <a className="sp-button" href={`${prefix}/services/property-furnishing-setup#furnishing-inquiry`}>{t.furnishingAssessment}</a>
             </div>
           </div>
         </section>

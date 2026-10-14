@@ -1,0 +1,14 @@
+{
+  "consultationFeeUsd": 150,
+  "sourcingPercent": 15,
+  "sourcingMinimumUsd": 300,
+  "setupPercent": 20,
+  "setupMinimumUsd": 500,
+  "packages": ["consultation", "sourcing", "setup"],
+  "conditions": ["empty", "partial", "improvements"],
+  "propertyTypes": ["apartment", "house", "villa", "studio", "other"],
+  "styles": ["modern", "coastal", "minimal", "classic", "undecided"],
+  "currencies": ["USD", "PEN", "MXN", "EUR", "GBP", "CAD", "other"],
+  "maxFiles": 5,
+  "maxUploadBytes": 2097152
+}

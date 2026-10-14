@@ -10,6 +10,7 @@ import { BOOKING_GUARANTEE_VISIBLE } from './lib/bookingGuarantee'
 const BookingGuarantee = BOOKING_GUARANTEE_VISIBLE ? lazy(() => import('./pages/BookingGuarantee')) : null
 const About = lazy(() => import('./pages/About'))
 const Services = lazy(() => import('./pages/Services'))
+const FurnishingSetup = lazy(() => import('./pages/FurnishingSetup'))
 const ListingPromotion = lazy(() => import('./pages/ListingPromotion'))
 const FullManagement = lazy(() => import('./pages/FullManagement'))
 const PayoutCalculator = lazy(() => import('./pages/PayoutCalculator'))
@@ -86,6 +87,8 @@ function AppLayout() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/services/property-furnishing-setup" element={<FurnishingSetup />} />
+          <Route path="/es/services/property-furnishing-setup" element={<FurnishingSetup />} />
           <Route path="/listing-promotion" element={<ListingPromotion />} />
           <Route path="/es/listing-promotion" element={<ListingPromotion />} />
           {BOOKING_GUARANTEE_VISIBLE && (

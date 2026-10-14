@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import OwnerFaqSection from '../components/OwnerFaqSection'
 import BookingGuaranteePromo from './BookingGuaranteePromo'
+import FurnishingServiceLink from '../components/FurnishingServiceLink'
 
 export default function ListingPromotion() {
   const { language, toggleLanguage } = useLanguage()
@@ -32,6 +33,7 @@ export default function ListingPromotion() {
         includeMorePlatforms
       />
       <OwnerFaqSection plan="listing" />
+      <FurnishingServiceLink language={language} />
     </div>
   )
 }

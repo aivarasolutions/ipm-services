@@ -9,6 +9,12 @@ const SANTA_BEATRIZ_PATH = '/insights/jardines-santa-beatriz-lima';
 export const SITE_URL = 'https://www.ipm.services';
 
 const staticSeoRoutes = {
+  '/services/property-furnishing-setup': {
+    title: 'Property Furnishing & Setup Services | International Property Management',
+    description: 'Prepare a guest-ready rental with IPM furnishing consultation, furniture sourcing and complete property setup. Compare standalone packages and request a personalized quote.',
+    h1: 'Turn Your Property Into a Guest-Ready Rental',
+    intro: 'Professional furnishing, supplier comparison, purchasing coordination and property setup. Standalone paid services with transparent USD fees and owner-approved purchases.',
+  },
   '/payout-calculator': {
     title: 'Airbnb, Vrbo & Booking.com Payout Calculator | IPM',
     description: "Estimate your Airbnb, Vrbo, Booking.com, Expedia or direct-booking payout after platform fees, taxes and other costs with IPM's free STR payout calculator.",
@@ -175,6 +181,7 @@ const insightSeoRoutes = {
 
 const localizedSeoRoutes = {
   es: {
+    '/services/property-furnishing-setup': ['Servicios de Amoblamiento y Acondicionamiento | IPM', 'Prepara tu alojamiento con consultoría, búsqueda de muebles y acondicionamiento integral de IPM. Servicios independientes con tarifas transparentes en USD.', 'Transforma Tu Propiedad en un Alojamiento Listo para Recibir Huéspedes', 'Planificación de muebles, comparación de proveedores y coordinación de compras. Solicita una cotización personalizada sin obligación de contratar gestión.'],
     '/payout-calculator': ['Calculadora de Pagos de Airbnb, Vrbo y Booking.com | IPM', 'Estime su pago de Airbnb, Vrbo, Booking.com, Expedia o reservas directas después de comisiones, impuestos y otros costos con la calculadora gratuita de IPM.', 'Calculadora de Pagos de Alquileres Vacacionales', 'Conozca cuánto recibirá de su reserva. Estime los costos del huésped, las comisiones, los impuestos y su pago potencial. Gratis y sin registro.'],
     '/full-management': ['Gestión Integral del 20% | IPM', 'Conozca el plan de gestión integral del 20% de IPM: promoción, precios, atención al huésped, coordinación de limpieza e informes para propietarios.', 'Gestión Integral del 20%', 'Gestión profesional de alquileres vacacionales para propietarios que desean delegar las operaciones diarias a IPM.'],
     '/listing-promotion': ['Promoción de Anuncios del 10% | IPM', 'Genere más reservas con IPM: 10% de las reservas generadas por IPM o una tarifa nocturna acordada, sin costo de configuración ni suscripción los primeros dos meses.', 'Consiga Más Reservas Sin Pagar por Adelantado', 'IPM promociona su propiedad en canales de reserva adicionales. Solo paga cuando le ayudamos a generar ingresos.'],

@@ -4,6 +4,7 @@ import { ArrowRight, Check, Mail, MapPin, Phone, UserRound } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '../contexts/LanguageContext'
 import OwnerFaqSection from '../components/OwnerFaqSection'
+import FurnishingServiceLink from '../components/FurnishingServiceLink'
 import ClickToPlayVideo from '../components/ClickToPlayVideo'
 import { FULL_MANAGEMENT_CASE_STUDY } from '../lib/promoVideos'
 
@@ -231,6 +232,7 @@ export default function FullManagement() {
           <Link to={spanish ? '/es/contact?plan=full-management' : '/contact?plan=full-management'} className="text-[#F2D98D] font-semibold hover:text-white">{t.contact}</Link>
         </div>
       </section>
+      <FurnishingServiceLink language={language} />
       <OwnerFaqSection plan="management" />
     </div>
   )

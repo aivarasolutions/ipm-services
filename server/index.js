@@ -11,6 +11,7 @@ import { onboardingEmailCopies, onboardingSource } from './onboardingEmails.js';
 import { createCommunityIntegration } from './community/integration.js';
 import { normalizeContactLead, buildContactLeadFields } from './contactLead.js';
 import { LeadApprovalStore } from './leadApprovalStore.js';
+import { createFurnishingRouter, FurnishingInquiryStore } from './furnishingInquiry.js';
 import { createLeadApprovalRouter, APPROVAL_ORIGIN } from './leadApprovals.js';
 import {
   getIndexableRoutePaths,
@@ -44,6 +45,7 @@ const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 const app = express();
 const leadApprovalStore = new LeadApprovalStore(pool);
 app.set('trust proxy', 1);
+app.use('/api', createFurnishingRouter({ store: new FurnishingInquiryStore(leadApprovalStore), sendFormEmails, addToMailchimp }));
 app.use(express.json({
   limit: '1mb',
   verify: (req, _res, buffer) => {

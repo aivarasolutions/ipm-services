@@ -314,6 +314,7 @@ export default function Onboarding() {
         <Header language={language} t={t} />
         <form onSubmit={submit} noValidate>
           <p className="ipm-intro">{t.intro}</p>
+          {['en', 'es'].includes(language) && <p className="ipm-intro"><Link to={`${language === 'es' ? '/es' : ''}/services/property-furnishing-setup`}>{language === 'es' ? '¿Necesitas preparar o amoblar tu propiedad? Conoce nuestro servicio independiente de pago.' : 'Need to prepare or furnish your property? Explore our separate paid furnishing service.'}</Link></p>}
           <a className="ipm-pdf-link" href={`/onboarding/ipm-onboarding-${language}.pdf`} download>{t.pdf} (PDF)</a>
           {invitationMessage && <p role="status">{invitationMessage}</p>}
           <SectionTitle>{t.contact}</SectionTitle>

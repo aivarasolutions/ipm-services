@@ -38,6 +38,7 @@ const Header = () => {
   const services = [
     { name: language === 'es' ? 'Promoción de Anuncios (10%)' : language === 'fr' ? 'Promotion d’annonces (10 %)' : '10% Listing Promotion', path: '/listing-promotion' },
     { name: language === 'es' ? 'Gestión Completa (20%)' : language === 'fr' ? 'Gestion complète (20 %)' : '20% Full Management', path: '/full-management' },
+    { name: language === 'es' ? 'Amoblamiento y Acondicionamiento' : 'Property Furnishing & Setup', path: '/services/property-furnishing-setup' },
   ]
   const navItems = [
     { name: language === 'es' ? 'Servicios' : language === 'fr' ? 'Services' : 'Services', path: '/services', dropdown: services, key: 'services' },
@@ -86,7 +87,7 @@ const Header = () => {
 
           <nav className="hidden xl:flex items-center space-x-2" aria-label="Main navigation">
             {navItems.map((item) => {
-              const active = routePath === item.path || (item.key === 'services' && onPagePlan) || (item.key === 'insights' && (routePath.startsWith('/insights') || routePath === '/payout-calculator'))
+              const active = routePath === item.path || (item.key === 'services' && (onPagePlan || routePath.startsWith('/services/'))) || (item.key === 'insights' && (routePath.startsWith('/insights') || routePath === '/payout-calculator'))
               const color = active ? 'bg-[#D4AF37] text-[#06121F]' : 'text-[#CFCFCF] hover:text-[#D4AF37] hover:bg-[#D4AF37]/10'
               if (item.dropdown) return (
                 <div key={item.name} className="relative" onMouseEnter={() => openSoon(item.key)} onMouseLeave={closeSoon} onFocus={(event) => { if (event.target.tagName === 'A') openSoon(item.key) }} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setOpenDropdown(null) }}>
@@ -131,7 +132,7 @@ const Header = () => {
       {isMobileMenuOpen && <div id="mobile-navigation" className="xl:hidden bg-[#0A1A30] border-t border-[#D4AF37]/15 shadow-lg">
         <div className="px-4 pt-2 pb-5 space-y-1">
           {navItems.map((item) => {
-            const active = routePath === item.path || (item.key === 'services' && onPagePlan) || (item.key === 'insights' && (routePath.startsWith('/insights') || routePath === '/payout-calculator'))
+            const active = routePath === item.path || (item.key === 'services' && (onPagePlan || routePath.startsWith('/services/'))) || (item.key === 'insights' && (routePath.startsWith('/insights') || routePath === '/payout-calculator'))
             if (item.dropdown) return <div key={item.name} className="space-y-1">
               <div className="flex items-center">
                 <Link to={routeFor(item.path)} onClick={() => setIsMobileMenuOpen(false)} className={`flex-1 block px-3 py-2 rounded-md text-base font-medium ${active ? 'bg-[#D4AF37] text-[#06121F]' : 'text-[#CFCFCF] hover:text-[#D4AF37] hover:bg-[#D4AF37]/10'}`}>{item.name}</Link>

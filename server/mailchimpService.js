@@ -76,7 +76,8 @@ export async function addToMailchimp({ email, firstName, lastName, phone, formSo
     const listId = await getListId(client);
 
     // Baseline tags applied to every website lead
-    const tags = ['Website Lead', 'IPM Inquiry', 'Property Owner', 'Management Inquiry'];
+    const furnishing = (formSource || '').toLowerCase().includes('furnishing');
+    const tags = ['Website Lead', 'IPM Inquiry', 'Property Owner', ...(furnishing ? ['Property Furnishing & Setup'] : ['Management Inquiry'])];
 
     // Conditional tags based on the known form type
     const src = (formSource || '').toLowerCase();

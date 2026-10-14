@@ -59,7 +59,7 @@ function buildAdminHtml(fields, source, approvalUrl) {
     `<tr>
       <td style="padding:10px 16px;font-weight:600;color:#0A1A30;border-right:3px solid #D4AF37;background:#F8F5EF;white-space:nowrap;">${escapeHtml(k)}</td>
       <td style="padding:10px 16px;color:#334155;overflow-wrap:anywhere;">${k === 'Property Listing Link' && /^https?:\/\//i.test(v || '')
-        ? `<a href="${escapeHtml(v)}">${escapeHtml(v)}</a>` : escapeHtml(v || '—')}</td>
+        ? `<a href="${escapeHtml(v)}">${escapeHtml(v)}</a>` : escapeHtml(v ?? '—')}</td>
     </tr>`
   ).join('');
 
@@ -116,7 +116,7 @@ function buildAdminHtml(fields, source, approvalUrl) {
  * @param {string}  [opts.customerName]
  * @param {string}  [opts.source]
  */
-export async function sendFormEmails({ fields, customerEmail, source = 'Website Form', subject = 'New IPM Website Lead', approvalUrl, deliver = deliverNotification }) {
+export async function sendFormEmails({ fields, customerEmail, source = 'Website Form', subject = 'New IPM Website Lead', approvalUrl, attachments, idempotencyKey, deliver = deliverNotification }) {
   const errors = [];
 
   // Admin notification — reply_to lets either recipient respond to the visitor.
@@ -126,10 +126,11 @@ export async function sendFormEmails({ fields, customerEmail, source = 'Website 
       to:       ADMIN_TO,
       reply_to: customerEmail || undefined,
       subject,
+      ...(attachments?.length ? { attachments } : {}),
       html:     buildAdminHtml(fields, source, approvalUrl),
-      text:     Object.entries(fields).map(([k, v]) => `${k}: ${v || '—'}`).join('\n') +
+      text:     Object.entries(fields).map(([k, v]) => `${k}: ${v ?? '—'}`).join('\n') +
         (approvalUrl ? `\n\nApprove & send onboarding email: ${approvalUrl}\nPrivate team link — do not forward to the owner. Clicking approves the listing and sends their onboarding email and PDF.` : ''),
-    });
+    }, idempotencyKey ? { idempotencyKey } : {});
     console.log(`[emailService] Admin notification accepted for ${ADMIN_TO.join(', ')} (${source})`);
   } catch (err) {
     console.error('[emailService] Admin notification failed:', err.message);
