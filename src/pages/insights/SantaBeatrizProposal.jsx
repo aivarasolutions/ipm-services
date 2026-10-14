@@ -130,7 +130,7 @@ export default function SantaBeatrizProposal() {
   return (
     <div className="santa-proposal" lang={lang}>
       <div className="sp-topline"><div className="sp-shell sp-topline-inner">
-        <div className="sp-brand"><span className="sp-brand-mark">IPM</span><span>International Property Management</span></div>
+        <div className="sp-brand"><span>IPM · International Property Management</span></div>
         <div className="sp-top-actions">
           <button type="button" onClick={() => toggleLanguage(lang === 'en' ? 'es' : 'en')} aria-label={lang === 'en' ? 'Cambiar a español' : 'Switch to English'}>{t.language}</button>
           <button type="button" onClick={share}>{t.share}</button>
