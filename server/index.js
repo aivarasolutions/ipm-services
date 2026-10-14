@@ -13,6 +13,13 @@ import { normalizeContactLead, buildContactLeadFields } from './contactLead.js';
 import { LeadApprovalStore } from './leadApprovalStore.js';
 import { createFurnishingRouter, FurnishingInquiryStore } from './furnishingInquiry.js';
 import { createLeadApprovalRouter, APPROVAL_ORIGIN } from './leadApprovals.js';
+import { clerkMiddleware } from '@clerk/express';
+import { publishableKeyFromHost } from '@clerk/shared/keys';
+import { CLERK_PROXY_PATH, clerkProxyMiddleware, getClerkProxyHost } from './education/clerkProxy.js';
+import { EducationStore } from './education/store.js';
+import { createEducationRouter } from './education/router.js';
+import { createWhopResources } from './education/whopResources.js';
+import { isEducationDocument, educationDocumentOptions, renderEducationDocument } from './education/render.js';
 import {
   getIndexableRoutePaths,
   getPropertySlugFromPath,
@@ -45,6 +52,16 @@ const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 const app = express();
 const leadApprovalStore = new LeadApprovalStore(pool);
 app.set('trust proxy', 1);
+app.use(CLERK_PROXY_PATH, clerkProxyMiddleware());
+const educationStore = new EducationStore(pool);
+const educationWhop = createWhopResources();
+app.use('/api/education/admin', clerkMiddleware((req) => ({
+  publishableKey: publishableKeyFromHost(
+    getClerkProxyHost(req) ?? "",
+    process.env.CLERK_PUBLISHABLE_KEY,
+  ),
+})));
+app.use('/api/education', express.json({ limit: '3mb' }), createEducationRouter({ store: educationStore, whop: educationWhop }));
 app.use('/api', createFurnishingRouter({ store: new FurnishingInquiryStore(leadApprovalStore), sendFormEmails, addToMailchimp }));
 app.use(express.json({
   limit: '1mb',
@@ -681,11 +698,13 @@ const sendRouteDocument = async (req, res, next, distPath) => {
 app.get('/sitemap.xml', async (_req, res) => {
   try {
     const properties = isHostawayConfigured() ? await getListings() : [];
-    res.type('application/xml').send(createSitemapXml(properties));
+    const articles = await educationStore.all('article', { published: true });
+    res.type('application/xml').send(createSitemapXml(properties, articles));
   } catch (error) {
     // A sitemap should remain available during a booking API outage. The
     // static route and real-estate inventory still provide useful coverage.
     console.warn('[seo] live sitemap inventory unavailable:', error.message);
+    // A CMS outage must not advertise stale, unpublished article URLs.
     res.type('application/xml').send(createSitemapXml());
   }
 });
@@ -694,6 +713,21 @@ app.get('/sitemap.xml', async (_req, res) => {
 if (process.env.NODE_ENV === 'production' || process.env.REPLIT_DEPLOYMENT === '1') {
   const distPath = path.join(__dirname, '..', 'dist');
   if (fs.existsSync(path.join(distPath, 'index.html'))) {
+    // Read current CMS records before static files; publishing/unpublishing requires
+    // no frontend rebuild, and drafts always produce a real noindex 404.
+    app.get(/^(?:\/(?:es\/)?(?:insights(?:\/(?:learn|topics)\/[^/]+)?|resources(?:\/whop)?)|\/(?:admin\/education|sign-in|sign-up)(?:\/.*)?)\/?$/, async (req, res, next) => {
+      const pathname = normalizePathname(req.path);
+      if (!isEducationDocument(pathname)) return next();
+      res.set('Cache-Control', 'no-store');
+      try {
+        const options = await educationDocumentOptions(pathname, educationStore, educationWhop);
+        const source = await fs.promises.readFile(path.join(distPath, 'index.html'), 'utf8');
+        return res.type('html').send(renderEducationDocument(source, pathname, options));
+      } catch (error) {
+        if (error.status === 404) return sendNotFoundDocument(res, distPath);
+        return res.status(503).type('html').send('<!doctype html><html><head><meta name="robots" content="noindex"><title>IPM education temporarily unavailable</title></head><body><h1>Education is temporarily unavailable</h1><p>Please retry. No unverified content is shown.</p><a href="/insights">Education hub</a></body></html>');
+      }
+    });
     app.get('/properties/:slug', (req, res, next) =>
       sendRouteDocument(req, res, next, distPath),
     );

@@ -25,7 +25,12 @@ const LocationGuide = lazy(() => import('./pages/LocationGuide'))
 const News = lazy(() => import('./pages/News'))
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 const TermsAndConditions = lazy(() => import('./pages/TermsAndConditions'))
-const Insights = lazy(() => import('./pages/Insights'))
+const Insights = lazy(() => import('./pages/education/EducationHub'))
+const EducationArticle = lazy(() => import('./pages/education/EducationArticle'))
+const EducationTopic = lazy(() => import('./pages/education/EducationTopic'))
+const EducationResources = lazy(() => import('./pages/education/EducationResources'))
+const WhopResources = lazy(() => import('./pages/education/WhopResources'))
+const EducationAuth = lazy(() => import('./pages/education/EducationAuth'))
 const AirbnbFees = lazy(() => import('./pages/insights/AirbnbFees'))
 const ApiCosts = lazy(() => import('./pages/insights/ApiCosts'))
 const AvoidFees = lazy(() => import('./pages/insights/AvoidFees'))
@@ -108,6 +113,17 @@ function AppLayout() {
           <Route path="/real-estate" element={<RealEstate />} />
           <Route path="/real-estate/:slug" element={<RealEstateDetail />} />
           <Route path="/insights" element={<Insights />} />
+          <Route path="/insights/learn/:slug" element={<EducationArticle />} />
+          <Route path="/insights/topics/:category" element={<EducationTopic />} />
+          <Route path="/es/insights/topics/:category" element={<EducationTopic />} />
+          <Route path="/es/insights/learn/:slug" element={<EducationArticle />} />
+          <Route path="/resources" element={<EducationResources />} />
+          <Route path="/es/resources" element={<EducationResources />} />
+          <Route path="/resources/whop" element={<WhopResources />} />
+          <Route path="/es/resources/whop" element={<WhopResources />} />
+          <Route path="/admin/education" element={<EducationAuth />} />
+          <Route path="/sign-in/*" element={<EducationAuth />} />
+          <Route path="/sign-up/*" element={<EducationAuth />} />
           <Route path="/insights/airbnb-fees" element={<AirbnbFees />} />
           <Route path="/insights/api-costs" element={<ApiCosts />} />
           <Route path="/insights/avoid-fees" element={<AvoidFees />} />

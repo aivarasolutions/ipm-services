@@ -45,9 +45,11 @@ const Header = () => {
     { name: language === 'es' ? 'Propiedades' : language === 'fr' ? 'Propriétés' : 'Properties', path: '/properties' },
     { name: language === 'es' ? 'Bienes Raíces' : language === 'fr' ? 'Immobilier' : 'Real Estate', path: '/real-estate' },
     {
-      name: 'Insights', path: '/insights', key: 'insights',
+      name: language === 'es' ? 'Educación' : 'Education & Insights', path: '/insights', key: 'insights',
       dropdown: [
-        { name: 'Insights Hub', path: '/insights' },
+        { name: language === 'es' ? 'Educación y artículos' : 'Education & Insights Hub', path: '/insights' },
+        { name: language === 'es' ? 'Biblioteca de recursos' : 'Resource Library', path: '/resources' },
+        { name: language === 'es' ? 'Comunidad IPM en Whop' : 'Learn More With IPM · Whop', path: '/resources/whop' },
         ...(santaBeatrizConfig.enabled ? [{ name: language === 'es' ? 'Propuesta Santa Beatriz · Lima' : 'Santa Beatriz · Lima Proposal', path: '/insights/jardines-santa-beatriz-lima' }] : []),
         { name: language === 'es' ? 'Calculadora de Pagos' : 'Payout Calculator', path: '/payout-calculator' },
         { name: 'Airbnb Fees Explained', path: '/insights/airbnb-fees' },

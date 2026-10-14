@@ -3,6 +3,8 @@ import { OWNER_FAQ_CONTENT } from './ownerFaq.js';
 import { FULL_MANAGEMENT_CASE_STUDY, OWNER_PORTAL_VIDEOS, MORE_PLATFORMS_VIDEO } from './promoVideos.js';
 import { BOOKING_GUARANTEE_APPROVED } from './bookingGuarantee.js';
 import santaBeatrizConfig from '../data/santaBeatrizProposal.json' with { type: 'json' };
+import { getEducationMetadata, createEducationSource } from './educationSeo.js';
+import { EDUCATION_CATEGORIES } from './educationShared.js';
 
 const SANTA_BEATRIZ_PATH = '/insights/jardines-santa-beatriz-lima';
 
@@ -213,7 +215,7 @@ const localizedSeoRoutes = {
 };
 
 export const LOCALIZED_ROUTE_PATHS = Object.freeze({
-  es: [...Object.keys(localizedSeoRoutes.es), '/booking-guarantee', SANTA_BEATRIZ_PATH],
+  es: [...Object.keys(localizedSeoRoutes.es), '/booking-guarantee', SANTA_BEATRIZ_PATH, '/resources', '/resources/whop', ...EDUCATION_CATEGORIES.map(c => `/insights/topics/${c.id}`)],
   fr: Object.keys(localizedSeoRoutes.fr),
   vi: Object.keys(localizedSeoRoutes.vi),
 });
@@ -234,6 +236,9 @@ export const INDEXABLE_SEO_ROUTES = {
 };
 
 export const NON_INDEXABLE_ROUTES = [
+  '/admin/education',
+  '/sign-in',
+  '/sign-up',
   '/owner-portal',
   '/proposal/charlotte-downhaul',
   '/proposal/tampa-audrey',
@@ -257,7 +262,7 @@ export const getLocaleRouteInfo = (pathname = '/') => {
   return {
     locale,
     routePath,
-    localized: Boolean(localizedMetadata[locale]?.[routePath] || (locale === 'es' && ['/booking-guarantee', SANTA_BEATRIZ_PATH].includes(routePath))),
+    localized: Boolean(localizedMetadata[locale]?.[routePath] || (locale === 'es' && (LOCALIZED_ROUTE_PATHS.es.includes(routePath) || routePath.startsWith('/insights/learn/')))),
   };
 };
 
@@ -282,6 +287,8 @@ const humanizeSlug = (slug) =>
 
 export const getSeoMetadata = (pathname, options = {}) => {
   const path = normalizePathname(pathname);
+  const educationMetadata = getEducationMetadata(path, options);
+  if (educationMetadata) return educationMetadata;
   const { locale, routePath, localized } = getLocaleRouteInfo(path);
   if (locale !== 'en' && !localized) return null;
   if (routePath === SANTA_BEATRIZ_PATH) {
@@ -389,6 +396,7 @@ export const getPropertySeoMetadata = (pathname, property) =>
 
 export const createSeoShell = (metadata, pathname = '/', options = {}) => {
   if (!metadata) return '';
+  if (getEducationMetadata(normalizePathname(pathname), options)) return createEducationSource(normalizePathname(pathname), options, metadata);
   const escape = (value) =>
     String(value).replace(/[&<>"']/g, (character) => ({
       '&': '&amp;',

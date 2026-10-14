@@ -8,6 +8,9 @@ import {
   NON_INDEXABLE_ROUTES,
 } from '../src/lib/seo.js';
 import { createSitemapXml } from '../src/lib/sitemap.js';
+import { articles as educationArticles, resources as educationResources, categories as educationCategories } from '../server/education/seeds.js';
+import { renderEducationDocument } from '../server/education/render.js';
+import { educationPath } from '../src/lib/educationShared.js';
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const distRoot = path.join(projectRoot, 'dist');
@@ -108,4 +111,18 @@ await fs.writeFile(
   path.join(distRoot, '404.html'),
   injectSeoMetadataIntoHtml(sourceHtml, '/404') || sourceHtml,
 );
-await fs.writeFile(path.join(distRoot, 'sitemap.xml'), createSitemapXml(properties));
+const publishedArticles = educationArticles.filter(a => a.status === 'published');
+const educationPaths = [
+  '/insights','/es/insights','/resources','/es/resources','/resources/whop','/es/resources/whop',
+  ...educationCategories.flatMap(c => [`/insights/topics/${c.id}`,`/es/insights/topics/${c.id}`]),
+  ...publishedArticles.map(a => educationPath(a.locale, a.slug)),
+];
+for (const route of educationPaths) {
+  const locale = route.startsWith('/es/') ? 'es' : 'en';
+  const article = publishedArticles.find(a => educationPath(a.locale, a.slug) === route);
+  const options = article ? { educationArticle: article, educationAlternates: publishedArticles.filter(a => a.translationKey === article.translationKey).map(a => ({ locale: a.locale, slug: a.slug })) } : { educationCatalogue: { articles: publishedArticles.filter(a => a.locale === locale), resources: educationResources.filter(r => r.locale === locale) } };
+  const directory = path.join(distRoot, route.slice(1));
+  await fs.mkdir(directory, { recursive: true });
+  await fs.writeFile(path.join(directory, 'index.html'), renderEducationDocument(sourceHtml, route, options));
+}
+await fs.writeFile(path.join(distRoot, 'sitemap.xml'), createSitemapXml(properties, publishedArticles));

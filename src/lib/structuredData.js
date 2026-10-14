@@ -394,6 +394,12 @@ export function createVacationRentalStructuredData(property) {
 
 export function getRouteStructuredData(pathname, options = {}) {
   const path = pathname.replace(/\/+$/, '') || '/';
+  if (path === '/insights' || path === '/es/insights' || /^\/(?:es\/)?(?:resources|insights\/topics)(?:\/|$)/.test(path)) {
+    const collection = { '@context':'https://schema.org', '@type':'CollectionPage', url:`${SITE_URL}${path}`, name:path.startsWith('/es/')?'Educación y recursos de IPM':'IPM Education & Resources', inLanguage:path.startsWith('/es/')?'es':'en' };
+    const articles = options.educationCatalogue?.articles || [];
+    if (articles.length && !path.includes('/resources')) collection.mainEntity = { '@type':'ItemList', itemListElement:articles.filter(a=>!path.includes('/topics/')||a.category===path.split('/').at(-1)).map((a,index)=>({ '@type':'ListItem',position:index+1,url:`${SITE_URL}${a.locale==='es'?'/es':''}/insights/learn/${a.slug}`,name:a.title })) };
+    return [collection];
+  }
   if (path === '/faq' || path === '/es/faq') {
     const locale = path === '/es/faq' ? 'es' : 'en';
     const faq = OWNER_FAQ_CONTENT[locale];
@@ -444,15 +450,6 @@ export function getRouteStructuredData(pathname, options = {}) {
     return schema ? [schema] : [];
   }
 
-  if (path === '/insights') {
-    return [
-      createItemListStructuredData({
-        id: 'insights',
-        name: 'IPM Insights guides',
-        items: INSIGHT_ITEMS.map((item) => ({ ...item, itemType: 'Article' })),
-      }),
-    ];
-  }
 
   if (INSIGHT_GUIDE_EDITORIAL[path]) {
     const schema = createInsightArticleStructuredData(path);

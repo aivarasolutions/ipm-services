@@ -19,3 +19,5 @@
 - [Booking guarantee policy](booking-guarantee-policy.md) — informational, manual-only campaign; user authorized public launch of the existing terms without another approval round.
 - [Owner proposal policy](owner-proposal-editor-policy.md) — Santa Beatriz is USD-only; saved edits are Replit-managed and visitor adjustments are temporary, with no new login or database.
 - [Furnishing service policy](furnishing-service-policy.md) — paid standalone packages, written purchase approvals, separate vendor costs; checkout remains disabled until terms and payment flow are confirmed.
+- [Education editorial voice](education-editorial-policy.md) — experienced, practical explanations without fabricated IPM stories, outcomes or testimonials.
+- [Whop catalogue scoping](whop-catalogue-scoping.md) — successful responses may silently ignore an unknown filter and return unrelated marketplace offerings.

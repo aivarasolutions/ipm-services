@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import process from 'node:process'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
@@ -12,6 +13,7 @@ import {
   injectSeoMetadataIntoHtml,
 } from './src/lib/seo.js'
 import { getListing, getListings } from './server/hostawayService.js'
+import { isEducationDocument, renderEducationDocument } from './server/education/render.js'
 
 const routeStructuredDataPlugin = () => ({
   name: 'route-source-content',
@@ -38,6 +40,28 @@ const routeStructuredDataPlugin = () => ({
       const requestedPath = new URL(ctx.originalUrl || ctx.path || '/', 'https://www.ipm.services').pathname
       const pathname = requestedPath === '/index.html' ? '/' : requestedPath
       const options = {}
+      if (isEducationDocument(pathname)) {
+        const locale = pathname.startsWith('/es/') ? 'es' : 'en'
+        const slug = pathname.match(/\/learn\/([^/]+)$/)?.[1]
+        try {
+          if (slug) {
+            const response = await fetch(`http://127.0.0.1:3001/api/education/articles/${locale}/${slug}`)
+            if (response.ok) {
+              const data = await response.json()
+              options.educationArticle = data.article
+              options.educationAlternates = data.alternates
+            }
+          } else if (!/^\/(?:sign-in|sign-up|admin)/.test(pathname)) {
+            const response = await fetch(`http://127.0.0.1:3001/api/education/catalogue?locale=${locale}`)
+            if (response.ok) options.educationCatalogue = await response.json()
+            if (pathname.endsWith('/whop')) {
+              const whopResponse = await fetch('http://127.0.0.1:3001/api/education/whop')
+              if (whopResponse.ok) options.educationWhop = await whopResponse.json()
+            }
+          }
+        } catch { /* App shows the explicit API error; no fake content fallback. */ }
+        return renderEducationDocument(html, pathname, options)
+      }
       const propertySlug = getPropertySlugFromPath(pathname)
       const realEstateSlug = getRealEstateSlugFromPath(pathname)
 
@@ -68,12 +92,12 @@ const routeStructuredDataPlugin = () => ({
 })
 
 // https://vite.dev/config/
-export default defineConfig(({ command, mode }) => {
+export default defineConfig(({ command }) => {
   const config = {
-    plugins: [react(), tailwindcss(), routeStructuredDataPlugin()],
+    plugins: [react(), tailwindcss({ optimize: false }), routeStructuredDataPlugin()],
     resolve: {
       alias: {
-        "@": path.resolve(__dirname, "./src"),
+        "@": path.resolve(import.meta.dirname, "./src"),
       },
     },
   };

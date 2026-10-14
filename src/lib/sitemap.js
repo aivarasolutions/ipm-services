@@ -1,5 +1,6 @@
 import { getIndexableRoutePaths, SITE_URL } from './seo.js';
 import { REAL_ESTATE_SCHEMA_LISTINGS } from './structuredData.js';
+import { EDUCATION_CATEGORIES, educationPath } from './educationShared.js';
 
 const escapeXml = (value) =>
   String(value).replace(/[<>&'"]/g, (character) => ({
@@ -10,7 +11,7 @@ const escapeXml = (value) =>
     '"': '&quot;',
   }[character]));
 
-export const getSitemapEntries = (properties = []) => {
+export const getSitemapEntries = (properties = [], articles = []) => {
   const entries = getIndexableRoutePaths().map((path) => ({
     path,
     changefreq: path === '/' || path === '/properties' || path === '/insights' ? 'weekly' : 'monthly',
@@ -31,14 +32,19 @@ export const getSitemapEntries = (properties = []) => {
       priority: '0.8',
     }));
 
+  const educationEntries = [
+    '/insights', '/es/insights', '/resources', '/es/resources', '/resources/whop', '/es/resources/whop',
+    ...EDUCATION_CATEGORIES.flatMap(c => [`/insights/topics/${c.id}`, `/es/insights/topics/${c.id}`]),
+    ...articles.filter(a => a.status === 'published').map(a => educationPath(a.locale, a.slug)),
+  ].map(path => ({ path, changefreq: 'weekly', priority: '0.7' }));
   const unique = new Map(
-    [...entries, ...realEstateEntries, ...propertyEntries].map((entry) => [entry.path, entry]),
+    [...entries, ...realEstateEntries, ...propertyEntries, ...educationEntries].map((entry) => [entry.path, entry]),
   );
   return [...unique.values()];
 };
 
-export const createSitemapXml = (properties = []) => {
-  const urls = getSitemapEntries(properties)
+export const createSitemapXml = (properties = [], articles = []) => {
+  const urls = getSitemapEntries(properties, articles)
     .map(
       ({ path, changefreq, priority }) => `  <url>
     <loc>${escapeXml(`${SITE_URL}${path === '/' ? '/' : path}`)}</loc>

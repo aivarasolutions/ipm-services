@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import EducationHomepage from './education/EducationHomepage'
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '../contexts/LanguageContext'
 import PropertyGrid from '../components/PropertyGrid'
@@ -529,6 +530,7 @@ const Home = () => {
         </div>
       </section>
 
+      <EducationHomepage />
       <OwnerFaqSection />
 
       {/* ── 8. FINAL CTA ─────────────────────────────────────── */}

@@ -8,6 +8,8 @@ export default function RouteSeo() {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    // Published CMS articles apply metadata after their live record is loaded.
+    if (/^\/(?:es\/)?insights\/learn\//.test(pathname)) return;
     const listingMatch = pathname.match(/^\/real-estate\/([^/]+)$/);
     const metadata = getSeoMetadata(pathname, {
       realEstateListing: listingMatch ? getRealEstateListing(listingMatch[1]) : undefined,
