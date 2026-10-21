@@ -8,7 +8,7 @@ export default function BookingGuaranteePromo({ language = 'en', placement = 'ho
   const t = bookingGuaranteeContent[language]
   const spanish = language === 'es'
   const detailPath = spanish ? '/es/booking-guarantee' : '/booking-guarantee'
-  const signupPath = `${spanish ? '/es/listing-promotion' : '/listing-promotion'}${placement === 'listing' ? '#listing-promotion' : ''}`
+  const signupPath = `${spanish ? '/es/listing-promotion' : '/listing-promotion'}#property-information`
   const imageName = placement === 'listing' ? 'listing-promotion' : 'empty-nights'
   const image = `/images/booking-guarantee/${language}-${imageName}.webp`
 
@@ -23,9 +23,9 @@ export default function BookingGuaranteePromo({ language = 'en', placement = 'ho
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-[#D5DCE5]">{t.promoBody}</p>
           <p className="mt-4 max-w-3xl border-l-2 border-[#D4AF37] pl-4 text-sm leading-relaxed text-[#F2D98D]">{t.disclosureShort}</p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <a href={signupPath} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-[#D4AF37] px-5 py-3 text-sm font-extrabold tracking-wide text-[#06121F] transition-colors hover:bg-[#F2D98D]">
+            <Link to={signupPath} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-[#D4AF37] px-5 py-3 text-sm font-extrabold tracking-wide text-[#06121F] transition-colors hover:bg-[#F2D98D]">
               {t.list}<ArrowRight size={16} aria-hidden="true" />
-            </a>
+            </Link>
             <Link to={detailPath} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-[#D4AF37]/55 px-5 py-3 text-sm font-bold text-[#F2D98D] transition-colors hover:bg-[#D4AF37]/10">
               {placement === 'home' ? t.learn : t.fullTerms}<ArrowRight size={16} aria-hidden="true" />
             </Link>

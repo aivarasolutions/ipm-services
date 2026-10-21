@@ -9,7 +9,7 @@ export default function BookingGuarantee() {
   if (!BOOKING_GUARANTEE_VISIBLE || (language !== 'en' && language !== 'es')) return null
   const t = bookingGuaranteeContent[language]
   const spanish = language === 'es'
-  const signupPath = spanish ? '/es/listing-promotion' : '/listing-promotion'
+  const signupPath = `${spanish ? '/es/listing-promotion' : '/listing-promotion'}#property-information`
   const homePath = spanish ? '/es' : '/'
 
   return (

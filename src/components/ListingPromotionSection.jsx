@@ -226,7 +226,7 @@ export default function ListingPromotionSection({
           />
         )}
 
-        <div className="listing-promotion__action">
+        <div id="property-information" className="listing-promotion__action">
           <p>{t.support}</p>
           <form onSubmit={submit}>
             <div className="listing-promotion__field">
