@@ -9,7 +9,7 @@ The supplied IPM promotional videos with “Karen” in the filename/title are S
 
 **How to apply:** Keep this separation when replacing videos or adding placements. Other languages need matching-language assets rather than fallback videos.
 
-Preserve the original uploads and their burned-in captions. Optimized web copies are allowed, but do not crop the speaker or captions, add duplicate subtitles, or fetch full videos before the visitor presses Play.
+Preserve the original uploads and their burned-in captions. Optimized web copies are allowed, but do not crop the speaker or captions, add duplicate subtitles, or fetch full videos on an ordinary page visit before the visitor presses Play. Opening a deliberately shared video link is an exception: load and attempt playback of that particular video only.
 
 **Why:** The user called initial-load performance “VERY IMPORTANT” and requires the homepage hero, navigation, text, and CTA to load before promotional media.
 
@@ -20,6 +20,12 @@ Both the homepage and listing-promotion page should show the owner portal demo b
 **Why:** The user wants owners to see how the portal works first and confirmed the existing talking videos look good.
 
 **How to apply:** Apply video placement updates to both pages, not only listing promotion. Preserve the approved talking clips when adjusting this layout. Keep language separation and click-to-load behavior.
+
+Each video needs a share control below it and a direct link to its specific placement, scrolling to that video and attempting playback.
+
+**Why:** The user wants to answer clients' questions by sharing the relevant video in its page context.
+
+**How to apply:** Keep ordinary visits click-to-load. Shared links may initiate only the selected video; respect browser autoplay limits with muted playback/sound controls or a Play fallback. Repeated placements need distinct links.
 
 The Spanish owner-portal reel must also come first on the Spanish homepage, 10% listing-promotion page and services page, using the same congruent layout as the English videos.
 

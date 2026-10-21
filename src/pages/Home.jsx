@@ -333,7 +333,7 @@ const Home = () => {
           </div>
           {heroOwnerPortalVideo && (
             <div className="mx-auto mt-10 w-full max-w-[220px] rounded-xl border border-[#D4AF37]/35 bg-[#06121F]/35 p-1.5 shadow-xl shadow-[#06121F]/30 sm:max-w-[240px] lg:mt-0 lg:w-[220px] lg:justify-self-end xl:w-[240px]">
-              <ClickToPlayVideo video={heroOwnerPortalVideo} language={language} />
+              <ClickToPlayVideo video={heroOwnerPortalVideo} language={language} placement="hero" />
             </div>
           )}
         </div>
@@ -348,7 +348,7 @@ const Home = () => {
                   {label}
                 </figcaption>
                 <div className="rounded-xl border border-[#D4AF37]/30 bg-[#0A1A30] p-1.5 shadow-xl shadow-[#06121F]/30">
-                  <ClickToPlayVideo video={video} language={language} />
+                  <ClickToPlayVideo video={video} language={language} placement="showcase" />
                 </div>
               </figure>
             ))}
