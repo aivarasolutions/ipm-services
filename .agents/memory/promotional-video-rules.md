@@ -21,9 +21,9 @@ Both the homepage and listing-promotion page should show the owner portal demo b
 
 **How to apply:** Apply video placement updates to both pages, not only listing promotion. Preserve the approved talking clips when adjusting this layout. Keep language separation and click-to-load behavior.
 
-Each video needs a share control below it and a direct link to its specific placement, scrolling to that video and attempting playback.
+Each video needs Share and an explicitly visible Copy link option below it, plus a direct link to its specific placement, scrolling to that video and attempting playback. Apply this to every video across the website.
 
-**Why:** The user wants to answer clients' questions by sharing the relevant video in its page context.
+**Why:** The user wants to answer clients' questions by sharing the relevant video in its page context. They reported that desktop sharing menus did not provide a copy option and explicitly required this for all video links.
 
 **How to apply:** Keep ordinary visits click-to-load. Shared links may initiate only the selected video; respect browser autoplay limits with muted playback/sound controls or a Play fallback. Repeated placements need distinct links.
 

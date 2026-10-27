@@ -36,7 +36,7 @@ test('Share uses the native menu, copies on unsupported devices, and handles can
       if (mode === 'cancel') throw Object.assign(Error('Cancelled'), { name: 'AbortError' })
     }
     const context = {
-      h, Check: 'check', Share2: 'share', navigator,
+      h, Check: 'check', Copy: 'copy', Share2: 'share', navigator,
       useId: () => 'share-link',
       useState: initial => [initial, value => states.push(value)],
     }
@@ -48,6 +48,44 @@ test('Share uses the native menu, copies on unsupported devices, and handles can
     if (mode === 'denied') {
       assert.ok(states.includes(true))
       assert.ok(states.some(value => typeof value === 'string' && value.includes('manually')))
+    }
+  }
+})
+
+test('Every player offers direct Copy link even when native sharing is available', async () => {
+  for (const language of ['en', 'es']) {
+    for (const mode of ['success', 'denied', 'unsupported']) {
+      const states = []
+      const calls = []
+      const url = 'https://ipm.services/es/listing-promotion#video-es-owner-portal'
+      const navigator = {
+        share: async () => { calls.push('native-share') },
+      }
+      if (mode !== 'unsupported') {
+        navigator.clipboard = { writeText: async value => {
+          calls.push(value)
+          if (mode === 'denied') throw Error('Permission denied')
+        } }
+      }
+      const context = {
+        h, Check: 'check', Copy: 'copy', Share2: 'share', navigator,
+        useId: () => 'share-link',
+        useState: initial => [initial, value => states.push(value)],
+        url, language,
+      }
+      vm.runInNewContext(`${componentSource('VideoShareButton')}\nvar tree = VideoShareButton({url,title:'Portal',language});`, context)
+      const buttons = context.tree.children[0].children
+      assert.equal(buttons.length, 2)
+      assert.equal(buttons[1].children[1].children[0], language === 'es' ? 'Copiar enlace' : 'Copy link')
+      await buttons[1].props.onClick()
+      assert.ok(!calls.includes('native-share'), 'Copy must bypass the native share menu')
+      if (mode === 'success') {
+        assert.deepEqual(calls, [url])
+        assert.ok(states.includes(language === 'es' ? 'Enlace copiado.' : 'Link copied.'))
+      } else {
+        assert.ok(states.includes(true), 'Clipboard failure must expose a manually selectable link')
+        assert.ok(states.some(value => typeof value === 'string' && value.includes(language === 'es' ? 'manualmente' : 'manually')))
+      }
     }
   }
 })
