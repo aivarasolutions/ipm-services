@@ -1,3 +1,5 @@
+import { OWNER_FAQ_CATEGORIES, getUpdatedOwnerFaqItems } from './ownerFaqUpdates.js'
+
 export const OWNER_TAX_POLICY = {
   en: 'Owners are independently responsible for registering themselves and their rental properties with the appropriate authorities, obtaining any required tax registrations, and filing and paying their own taxes under the rules that apply to their property and personal circumstances. IPM does not provide tax advice, select an owner’s tax status, or handle the owner’s independent registrations, returns, or tax obligations. We recommend working with your own accountant or qualified tax representative. IPM will coordinate with you to confirm the tax forms and documentation we need from you for our payment and reporting requirements. In the U.S., IPM provides Form 1099 where required. This document coordination does not replace your independent tax professional or transfer your tax responsibilities to IPM.',
   es: 'Cada propietario es responsable de registrar su actividad y sus propiedades de alquiler ante las autoridades correspondientes, obtener los registros fiscales necesarios y declarar y pagar sus propios impuestos conforme a las normas aplicables a su propiedad y situación personal. IPM no brinda asesoría fiscal, no elige la situación fiscal del propietario ni se encarga de sus registros, declaraciones u obligaciones fiscales independientes. Recomendamos trabajar con su propio contador o representante fiscal calificado. IPM coordinará con usted los formularios y documentos fiscales que necesitamos recibir para nuestros requisitos de pago e información. En Estados Unidos, IPM proporciona el Formulario 1099 cuando sea obligatorio. Esta coordinación documental no sustituye a su profesional fiscal ni transfiere sus responsabilidades fiscales a IPM.',
@@ -127,14 +129,49 @@ export const OWNER_FAQ_CONTENT = {
   },
 };
 
+// Keep useful older questions, but never keep their superseded fee/exit claims.
+const retainedItems = [
+  [1, 'full-management', 'listing'],
+  [3, 'existing-airbnb-account', 'listing'],
+  [5, 'calendar-sync', 'listing'],
+  [6, 'blocked-dates', 'listing'],
+  [7, 'setup-timing', 'listing'],
+  [9, 'professional-photos', 'listing'],
+]
+
+for (const locale of ['en', 'es']) {
+  const content = OWNER_FAQ_CONTENT[locale]
+  const previous = content.items
+  content.categories = OWNER_FAQ_CATEGORIES[locale]
+  content.items = [
+    ...getUpdatedOwnerFaqItems(locale).map(item => item.id === 'tax-responsibility'
+      ? { ...item, answer: `${item.answer}\n\n${OWNER_TAX_POLICY[locale]}` }
+      : item),
+    ...retainedItems.map(([index, id, category]) => ({ ...previous[index], id, category })),
+  ]
+  content.cta = locale === 'es'
+    ? '¿Aún tiene preguntas? Contáctenos para conocer cómo IPM puede ayudarle a maximizar el potencial de su propiedad.'
+    : 'Still have questions? Contact our team to learn how IPM can help maximize your property’s potential.'
+  content.button = locale === 'es' ? 'Contactar al equipo' : 'Contact our team'
+}
+
+export function filterOwnerFaqItems(items, query = '') {
+  const normalize = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase()
+  const terms = normalize(query).trim().split(/\s+/).filter(Boolean)
+  return items.filter(item => {
+    const text = normalize(`${item.question} ${item.answer}`)
+    return terms.every(term => text.includes(term))
+  })
+}
+
 const FAQ_IDS = {
-  common: ['promotion-fees', 'full-management', 'subscription', 'tax-responsibility', 'cancel'],
-  listing: ['promotion-fees', 'subscription', 'tax-responsibility', 'cancel'],
+  common: ['listing-options', 'promotion-fees', 'full-management', 'subscription', 'guest-communication', 'tax-responsibility', 'cancel'],
+  listing: ['listing-options', 'promotion-fees', 'subscription', 'pricing-approval', 'guest-communication', 'cleaning-fee', 'tax-responsibility', 'cancel'],
   management: ['full-management', 'tax-responsibility', 'cancel'],
 }
 
 export const getOwnerFaqItems = (locale = 'en', plan = 'common') => {
   const content = OWNER_FAQ_CONTENT[locale === 'es' ? 'es' : 'en']
   const allowed = FAQ_IDS[plan] || FAQ_IDS.common
-  return content.items.filter((item) => allowed.includes(item.id))
+  return allowed.map(id => content.items.find(item => item.id === id)).filter(Boolean)
 }

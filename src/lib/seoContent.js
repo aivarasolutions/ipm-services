@@ -499,7 +499,11 @@ export const createSeoRouteContent = (pathname, metadata, options = {}) => {
     const faq = OWNER_FAQ_CONTENT[locale];
     content = {
       sections: [
-        ...faq.items.map(({ question, answer }) => section(question, [answer])),
+        ...faq.categories.flatMap(category => [
+          section(category.title),
+          ...faq.items.filter(item => item.category === category.id)
+            .map(({ question, answer }) => section(question, answer.split('\n\n'))),
+        ]),
         section(faq.cta),
       ],
       links: [{ href: locale === 'es' ? '/es/contact' : '/contact', label: faq.button }],

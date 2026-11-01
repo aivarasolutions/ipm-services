@@ -21,3 +21,4 @@
 - [Furnishing service policy](furnishing-service-policy.md) — paid standalone packages, written purchase approvals, separate vendor costs; checkout remains disabled until terms and payment flow are confirmed.
 - [Education editorial voice](education-editorial-policy.md) — experienced, practical explanations without fabricated IPM stories, outcomes or testimonials.
 - [Whop catalogue scoping](whop-catalogue-scoping.md) — successful responses may silently ignore an unknown filter and return unrelated marketplace offerings.
+- [Owner FAQ policy authority](owner-faq-policy-authority.md) — newer owner-approved FAQ terms supersede blanket legacy marketing claims; contract/onboarding changes need separate scope.

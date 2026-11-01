@@ -63,7 +63,7 @@ export default function OwnerFaqSection({ plan }) {
                   <span>{item.question}</span>
                 </span>
               </AccordionTrigger>
-              <AccordionContent className="px-5 pb-5 pl-12 text-[15px] leading-7 text-[#334155] sm:px-7 sm:pb-6 sm:pl-[4.25rem] sm:text-base">
+              <AccordionContent className="whitespace-pre-line px-5 pb-5 pl-12 text-[15px] leading-7 text-[#334155] sm:px-7 sm:pb-6 sm:pl-[4.25rem] sm:text-base">
                 {item.answer}
               </AccordionContent>
             </AccordionItem>
