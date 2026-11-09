@@ -20,5 +20,6 @@
 - [Owner proposal policy](owner-proposal-editor-policy.md) — Santa Beatriz is USD-only; saved edits are Replit-managed and visitor adjustments are temporary, with no new login or database.
 - [Furnishing service policy](furnishing-service-policy.md) — paid standalone packages, written purchase approvals, separate vendor costs; checkout remains disabled until terms and payment flow are confirmed.
 - [Education editorial voice](education-editorial-policy.md) — experienced, practical explanations without fabricated IPM stories, outcomes or testimonials.
+- [Homepage education width](education-layout-policy.md) — the education section must span the page in beige, without blue side margins or a narrow centered panel.
 - [Whop catalogue scoping](whop-catalogue-scoping.md) — successful responses may silently ignore an unknown filter and return unrelated marketplace offerings.
 - [Owner FAQ policy authority](owner-faq-policy-authority.md) — newer owner-approved FAQ terms supersede blanket legacy marketing claims; contract/onboarding changes need separate scope.

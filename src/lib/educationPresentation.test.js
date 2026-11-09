@@ -50,13 +50,14 @@ test('Featured education image is local, optimized, and present even without a C
   }
 })
 
-test('Homepage education has a full-width background and matches the neighboring content gutters', () => {
+test('Homepage education is edge-to-edge beige with no capped section or content width', () => {
   const home = read('../pages/education/EducationHomepage.jsx')
   assert.match(home, /section className="education edu-home-section"/)
   assert.match(home, /className="edu-home-inner edu-section"/)
   assert.doesNotMatch(home, /className="education edu-wrap/)
   assert.match(css, /\.education:not\(\.edu-home-section\) \{ min-height: 100dvh; \}/)
-  assert.match(css, /\.edu-home-inner \{[^}]*max-width: 1280px/)
+  assert.match(css, /\.education\.edu-home-section \{[^}]*width:100%;max-width:none[^}]*background:#f7f4ed/)
+  assert.match(css, /\.edu-home-inner \{[^}]*max-width:none/)
   assert.match(css, /min-width:1024px[^}]*padding-inline:32px/)
   assert.match(css, /edu-section-head > \.edu-link \{ flex-shrink:0;white-space:nowrap/)
 })
