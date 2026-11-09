@@ -1,8 +1,31 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { EDUCATION_CATEGORIES, educationPath, resourcePath } from '../../lib/educationShared';
 import { EducationMasthead, ArticleCard, CategoryName, ResourceLinks, SearchField, StatusMessage, useCatalogue, useFilteredArticles, localeFromPath } from './EducationShared';
+
+const LEARNING_IMAGE = '/images/education/property-management-learning.webp';
+
+function FeaturedImage({ article, locale }) {
+  const es = locale === 'es';
+  const [src, setSrc] = useState(article.imageUrl || LEARNING_IMAGE);
+  useEffect(() => setSrc(article.imageUrl || LEARNING_IMAGE), [article.imageUrl]);
+  const fallback = src === LEARNING_IMAGE;
+  const alt = fallback
+    ? (es ? 'Personas aprendiendo juntas en una mesa de trabajo' : 'People learning together around a work table')
+    : (article.imageAlt || article.title);
+
+  return <img
+    src={src}
+    alt={alt}
+    width="1600"
+    height="1067"
+    fetchPriority="high"
+    onError={() => {
+      if (src !== LEARNING_IMAGE) setSrc(LEARNING_IMAGE);
+    }}
+  />;
+}
 
 export default function EducationHub() {
   const locale = localeFromPath();
@@ -18,7 +41,7 @@ export default function EducationHub() {
     <EducationMasthead locale={locale} eyebrow={es ? 'Educación e información IPM' : 'IPM education & insights'} title={es ? 'La operación completa de una propiedad de alquiler.' : 'Understand the whole rental operation.'} description={es ? 'Reservas, costos, sistemas, responsabilidades y las cosas que suelen quedar fuera de la conversación. Explicado de forma práctica y directa.' : 'Bookings, costs, systems, responsibilities, and the parts that are usually left out of the conversation. Explained plainly, from an operator’s point of view.'}/>
     {heroArticle && <section className="edu-wrap edu-featured" aria-label={es ? 'Artículo destacado' : 'Featured article'}>
       <div className="edu-featured-copy"><div className="edu-kicker">{es ? 'Para empezar' : 'A good place to start'}</div><h2>{heroArticle.title}</h2><p>{heroArticle.excerpt}</p><Link className="edu-link" to={educationPath(locale, heroArticle.slug)}>{es ? 'Leer artículo' : 'Read the article'} <ArrowRight size={17}/></Link></div>
-      <div className="edu-featured-image">{heroArticle.imageUrl && <img src={heroArticle.imageUrl} alt={heroArticle.imageAlt || ''}/>}</div>
+      <div className="edu-featured-image"><FeaturedImage article={heroArticle} locale={locale}/></div>
     </section>}
     <section className="edu-wrap edu-section" aria-labelledby="edu-library-title">
       <div className="edu-section-head"><div><div className="edu-kicker">{es ? 'Biblioteca educativa' : 'Education library'}</div><h2 id="edu-library-title">{es ? 'Respuestas para operar mejor' : 'Answers for running the business'}</h2></div><Link className="edu-link" to={resourcePath(locale)}>{es ? 'Ver recursos' : 'Browse resources'} <ArrowRight size={17}/></Link></div>
